@@ -1,0 +1,489 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+
+{% block title %}Servicios de Desarrollo e Integración de APIs | Sergio Rueda{% endblock %}
+{% block meta_description %}Desarrollo de APIs REST y GraphQL de nivel producción, integraciones con terceros, pasarelas de pago y conectores con Stripe/HubSpot/Shopify. Diseñadas, construidas, documentadas y desplegadas.{% endblock %}
+{% block meta_keywords %}desarrollo de APIs, desarrollador API REST, API GraphQL, integración de APIs, integración con Stripe, API de Shopify, integración con HubSpot, integración con terceros, contratar desarrollador API Colombia{% endblock %}
+{% block og_title %}Servicios de Desarrollo e Integración de APIs{% endblock %}
+{% block og_description %}APIs REST y GraphQL, pasarelas de pago, integraciones con terceros y webhooks. Diseñadas, construidas, documentadas y desplegadas por un desarrollador fullstack freelance.{% endblock %}
+{% block og_type %}service{% endblock %}
+{% block extra_jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Desarrollo e Integración de APIs",
+  "name": "Desarrollo e Integración de APIs",
+  "provider": { "@id": "https://dev.sruedadev.com/#business" },
+  "areaServed": { "@type": "Country", "name": "Colombia" },
+  "description": "APIs REST y GraphQL, integraciones con terceros, pasarelas de pago, webhooks y documentación técnica para empresas.",
+  "url": "https://dev.sruedadev.com{{ request.path }}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+  <!-- ============================================================
+       1. HERO
+  ============================================================ -->
+  <section class="api-hero">
+    <div class="api-hero-shapes" aria-hidden="true">
+      <div class="api-shape api-shape-1"></div>
+      <div class="api-shape api-shape-2"></div>
+    </div>
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <p class="api-eyebrow">Desarrollo e Integración de APIs</p>
+          <h1 class="api-h1">APIs que conectan tu negocio <span class="accent">con el mundo.</span></h1>
+          <p class="api-lead">
+            Diseño, construyo, documento y despliego APIs e integraciones de nivel producción para
+            empresas que necesitan mover datos entre sistemas, socios y clientes — rápido,
+            seguro y listo para escalar.
+          </p>
+          <div class="api-hero-actions mt-4">
+            <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20APIs%20para%20mi%20negocio."
+               target="_blank" rel="noopener" class="btn btn-primary-custom me-2 mb-2">
+              <i class="bi bi-whatsapp me-2"></i>Hablemos por WhatsApp
+            </a>
+            <a href="#api-faq" class="btn btn-outline-custom mb-2">
+              Cómo trabajo <i class="bi bi-arrow-down ms-1"></i>
+            </a>
+          </div>
+          <div class="api-trust-strip mt-4">
+            <span><i class="bi bi-patch-check-fill"></i> 11+ años de experiencia</span>
+            <span><i class="bi bi-hdd-network"></i> 30+ APIs entregadas</span>
+            <span><i class="bi bi-shield-lock"></i> Nivel producción</span>
+            <span><i class="bi bi-clock-history"></i> Horario flexible</span>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="api-hero-card">
+            <div class="api-hero-card-header">
+              <span class="frame-dot red"></span>
+              <span class="frame-dot yellow"></span>
+              <span class="frame-dot green"></span>
+              <span class="api-hero-card-title">api.tunegocio.com</span>
+            </div>
+            <pre class="api-hero-code"><code><span class="cm">// POST /api/v1/orders</span>
+<span class="kw">curl</span> -X POST https://api.tunegocio.com/v1/orders \
+  -H <span class="str">"Authorization: Bearer $TOKEN"</span> \
+  -H <span class="str">"Content-Type: application/json"</span> \
+  -d <span class="str">'{ "customer_id": 4321,
+       "items": [{ "sku": "A-100", "qty": 2 }],
+       "currency": "COP" }'</span>
+
+<span class="cm">// 201 Created</span>
+{
+  <span class="str">"id"</span>: <span class="str">"ord_8a2f"</span>,
+  <span class="str">"status"</span>: <span class="str">"confirmed"</span>,
+  <span class="str">"total"</span>: <span class="num">59800</span>,
+  <span class="str">"webhook"</span>: <span class="str">"https://tusitio.com/hooks/orders"</span>
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. QUÉ CONSTRUYO
+  ============================================================ -->
+  <section class="api-section api-what">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Qué Construyo</p>
+        <h2 class="section-title">Cada tipo de API <span class="accent">que tu stack</span> necesita.</h2>
+        <p class="section-subtitle">Seis familias de APIs que he entregado en producción para clientes de distintas industrias.</p>
+      </div>
+
+      <div class="api-card-grid">
+        <div class="api-card">
+          <div class="api-card-icon green-glow"><i class="bi bi-hdd-network"></i></div>
+          <h4>APIs REST</h4>
+          <p>APIs JSON orientadas a recursos con autenticación, paginación, filtros, versionado y documentación OpenAPI lista desde el inicio.</p>
+          <div class="api-card-tools">Django REST · FastAPI · Express</div>
+        </div>
+
+        <div class="api-card">
+          <div class="api-card-icon purple-glow"><i class="bi bi-broadcast-pin"></i></div>
+          <h4>Webhooks y Event-Driven</h4>
+          <p>Entrega confiable de eventos con reintentos, firmas, claves de idempotencia y colas dead-letter. Stripe, Shopify, buses a la medida.</p>
+          <div class="api-card-tools">SNS / SQS · Kafka · Redis Streams</div>
+        </div>
+
+        <div class="api-card">
+          <div class="api-card-icon green-glow"><i class="bi bi-lightning-charge-fill"></i></div>
+          <h4>APIs en Tiempo Real</h4>
+          <p>Dashboards en vivo, chats, tracking, notificaciones. WebSockets, Server-Sent Events, MQTT — elijo lo que mejor encaja.</p>
+          <div class="api-card-tools">WebSockets · SSE · MQTT</div>
+        </div>
+
+        <div class="api-card">
+          <div class="api-card-icon teal-glow"><i class="bi bi-shield-lock-fill"></i></div>
+          <h4>API Gateways</h4>
+          <p>Autenticación centralizada, rate limiting, caché, enrutamiento de peticiones y monitoreo a través de todos tus servicios.</p>
+          <div class="api-card-tools">AWS API Gateway · Kong · Nginx</div>
+        </div>
+
+        <div class="api-card">
+          <div class="api-card-icon purple-glow"><i class="bi bi-boxes"></i></div>
+          <h4>Microservicios</h4>
+          <p>Servicios containerizados desplegables de forma independiente, con fronteras claras, contratos y pipelines CI/CD.</p>
+          <div class="api-card-tools">Docker · ECS · Lambda</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. INTEGRACIONES
+  ============================================================ -->
+  <section class="api-section api-integrations">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Integraciones</p>
+        <h2 class="section-title">Me integro con las herramientas <span class="accent">que tu negocio ya usa.</span></h2>
+        <p class="section-subtitle">Si tiene API o webhook, lo conecto a tu flujo de trabajo.</p>
+      </div>
+
+      <div class="api-int-group">
+        <h5 class="api-int-group-title">Pagos</h5>
+        <div class="api-int-grid">
+          <div class="api-int-chip"><i class="bi bi-stripe"></i><span>Stripe</span></div>
+          <div class="api-int-chip"><i class="bi bi-paypal"></i><span>PayPal</span></div>
+          <div class="api-int-chip"><span class="api-int-letter">WP</span><span>Wompi</span></div>
+          <div class="api-int-chip"><span class="api-int-letter">MP</span><span>Mercado Pago</span></div>
+        </div>
+      </div>
+
+      <div class="api-int-group">
+        <h5 class="api-int-group-title">Comunicaciones</h5>
+        <div class="api-int-grid">
+          <div class="api-int-chip"><span class="api-int-letter">TW</span><span>Twilio</span></div>
+          <div class="api-int-chip"><span class="api-int-letter">SG</span><span>SendGrid</span></div>
+          <div class="api-int-chip"><i class="bi bi-whatsapp"></i><span>WhatsApp Business</span></div>
+          <div class="api-int-chip"><i class="bi bi-slack"></i><span>Slack</span></div>
+        </div>
+      </div>
+
+      <div class="api-int-group">
+        <h5 class="api-int-group-title">CRM y Marketing</h5>
+        <div class="api-int-grid">
+          <div class="api-int-chip"><span class="api-int-letter">HS</span><span>HubSpot</span></div>
+          <div class="api-int-chip"><span class="api-int-letter">SF</span><span>Salesforce</span></div>
+          <div class="api-int-chip"><span class="api-int-letter">MC</span><span>Mailchimp</span></div>
+          <div class="api-int-chip"><span class="api-int-letter">AC</span><span>ActiveCampaign</span></div>
+        </div>
+      </div>
+
+      <div class="api-int-group">
+        <h5 class="api-int-group-title">Comercio, Nube e IA</h5>
+        <div class="api-int-grid">
+          <div class="api-int-chip"><span class="api-int-letter">SH</span><span>Shopify</span></div>
+          <div class="api-int-chip"><i class="bi bi-robot"></i><span>OpenAI</span></div>
+          <div class="api-int-chip"><i class="bi bi-google"></i><span>Google Workspace</span></div>
+          <div class="api-int-chip"><i class="bi bi-cloud-fill"></i><span>AWS</span></div>
+        </div>
+      </div>
+
+      <p class="api-int-footnote text-center">
+        <i class="bi bi-info-circle me-1 teal-text"></i>
+        ¿No ves tu herramienta? <a href="https://wa.me/573506240534?text=Hola!%20Puedes%20integrarte%20con..." target="_blank" rel="noopener" class="accent">Pregúntame</a> — he integrado con más de 50 servicios a lo largo de los años.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. PROCESO
+  ============================================================ -->
+  <section class="api-section api-process">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Mi Proceso</p>
+        <h2 class="section-title">De la idea a <span class="accent">producción</span> en cinco pasos.</h2>
+        <p class="section-subtitle">Predecible, transparente y con demos semanales para que siempre sepas en dónde vamos.</p>
+      </div>
+
+      <div class="api-process-timeline">
+        <div class="api-step">
+          <div class="api-step-num">1</div>
+          <h5>Descubrimiento</h5>
+          <p>Llamada de 30 min. Mapeamos tus datos, usuarios, sistemas actuales y cómo se ve el éxito.</p>
+        </div>
+        <div class="api-step">
+          <div class="api-step-num">2</div>
+          <h5>Diseño</h5>
+          <p>Spec OpenAPI, modelos de datos, estrategia de autenticación y un acuerdo escrito de entregables.</p>
+        </div>
+        <div class="api-step">
+          <div class="api-step-num">3</div>
+          <h5>Construcción</h5>
+          <p>Desarrollo iterativo con demos cada viernes. Ves progreso real todas las semanas.</p>
+        </div>
+        <div class="api-step">
+          <div class="api-step-num">4</div>
+          <h5>Pruebas</h5>
+          <p>Pruebas unitarias, de integración y de carga. Entrego colección Postman y CI en verde.</p>
+        </div>
+        <div class="api-step">
+          <div class="api-step-num">5</div>
+          <h5>Despliegue y Monitoreo</h5>
+          <p>CI/CD en AWS, logs estructurados, alertas de error y documentación completa de entrega.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. STACK TECNOLÓGICO
+  ============================================================ -->
+  <section class="api-section api-stack">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Stack Tecnológico</p>
+        <h2 class="section-title">Herramientas probadas en batalla, <span class="accent">sin modas.</span></h2>
+        <p class="section-subtitle">Escojo la opción aburrida y confiable siempre que hace el trabajo — y sé cuándo no.</p>
+      </div>
+
+      <div class="api-stack-grid">
+        <div class="api-stack-col">
+          <h6><i class="bi bi-code-square me-2 teal-text"></i>Lenguajes</h6>
+          <div class="api-stack-pills">
+            <span>Python</span><span>TypeScript</span><span>Node.js</span><span>SQL</span>
+          </div>
+        </div>
+        <div class="api-stack-col">
+          <h6><i class="bi bi-layers me-2 teal-text"></i>Frameworks</h6>
+          <div class="api-stack-pills">
+            <span>Django REST</span><span>FastAPI</span><span>Express</span><span>NestJS</span>
+          </div>
+        </div>
+        <div class="api-stack-col">
+          <h6><i class="bi bi-cloud-arrow-up me-2 teal-text"></i>Infraestructura</h6>
+          <div class="api-stack-pills">
+            <span>AWS API Gateway</span><span>Lambda</span><span>ECS</span><span>RDS</span><span>Docker</span><span>GitHub Actions</span>
+          </div>
+        </div>
+        <div class="api-stack-col">
+          <h6><i class="bi bi-bullseye me-2 teal-text"></i>Calidad</h6>
+          <div class="api-stack-pills">
+            <span>OpenAPI / Swagger</span><span>Postman</span><span>pytest</span><span>Sentry</span><span>CloudWatch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       6. INDUSTRIAS
+  ============================================================ -->
+  <section class="api-section api-industries">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Industrias</p>
+        <h2 class="section-title">He entregado APIs para <span class="accent">estas industrias.</span></h2>
+        <p class="section-subtitle">Cada una con sus propias restricciones. Las conozco.</p>
+      </div>
+
+      <div class="api-industries-grid">
+        <div class="api-industry">
+          <div class="api-industry-icon"><i class="bi bi-credit-card-2-front"></i></div>
+          <div>
+            <h5>Fintech y Pagos</h5>
+            <p>Integraciones conscientes de PCI, claves de idempotencia, conciliación, trazas de auditoría.</p>
+          </div>
+        </div>
+        <div class="api-industry">
+          <div class="api-industry-icon"><i class="bi bi-heart-pulse"></i></div>
+          <div>
+            <h5>Salud</h5>
+            <p>Patrones de seguridad, manejo seguro de datos sensibles, backups encriptados, logs de auditoría.</p>
+          </div>
+        </div>
+        <div class="api-industry">
+          <div class="api-industry-icon"><i class="bi bi-cart4"></i></div>
+          <div>
+            <h5>E-commerce</h5>
+            <p>Sincronización de catálogo, webhooks de pedidos, actualizaciones de inventario, APIs de pago y envío.</p>
+          </div>
+        </div>
+        <div class="api-industry">
+          <div class="api-industry-icon"><i class="bi bi-cloud-fill"></i></div>
+          <div>
+            <h5>SaaS</h5>
+            <p>Multi-tenancy, proveedores OAuth, APIs públicas con versionado y rate limits.</p>
+          </div>
+        </div>
+        <div class="api-industry">
+          <div class="api-industry-icon"><i class="bi bi-truck"></i></div>
+          <div>
+            <h5>Logística</h5>
+            <p>Tracking en tiempo real, integraciones con socios, puentes EDI, hooks de optimización de rutas.</p>
+          </div>
+        </div>
+        <div class="api-industry">
+          <div class="api-industry-icon"><i class="bi bi-megaphone"></i></div>
+          <div>
+            <h5>Marketing y Operaciones</h5>
+            <p>Sync con CRM, enrutamiento de leads, workflows con IA, automatización entre herramientas SaaS.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       7. BARRA DE CONFIANZA Y SEGURIDAD
+  ============================================================ -->
+  <section class="api-trust-bar">
+    <div class="container">
+      <div class="api-trust-grid">
+        <div class="api-trust-item"><i class="bi bi-shield-lock"></i><span>JWT / OAuth 2.0</span></div>
+        <div class="api-trust-item"><i class="bi bi-speedometer2"></i><span>Rate limiting</span></div>
+        <div class="api-trust-item"><i class="bi bi-lock-fill"></i><span>Cifrado en reposo y en tránsito</span></div>
+        <div class="api-trust-item"><i class="bi bi-file-text"></i><span>Documentación OpenAPI</span></div>
+        <div class="api-trust-item"><i class="bi bi-graph-up"></i><span>Uptime objetivo 99.9%</span></div>
+        <div class="api-trust-item"><i class="bi bi-bell"></i><span>Monitoreo en producción</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       8. FAQ
+  ============================================================ -->
+  <section id="api-faq" class="api-section api-faq">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Preguntas Frecuentes</p>
+        <h2 class="section-title">Preguntas <span class="accent">frecuentes.</span></h2>
+      </div>
+
+      <div class="accordion api-accordion mx-auto" id="apiFaqAccordion">
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+              ¿Cuánto toma un proyecto de API?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#apiFaqAccordion">
+            <div class="accordion-body">
+              Una API inicial normalmente se entrega en <strong>1–2 semanas</strong>. Una integración de negocio toma <strong>3–5 semanas</strong>.
+              Los proyectos empresariales van de <strong>6–12 semanas</strong> según el alcance. Después de la llamada de descubrimiento
+              te entrego un cronograma escrito antes de cualquier compromiso.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              ¿Entregas documentación?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#apiFaqAccordion">
+            <div class="accordion-body">
+              Siempre. Cada proyecto incluye un <strong>spec OpenAPI / Swagger</strong>, una <strong>colección Postman</strong> lista para importar
+              y un README en markdown con autenticación, ambientes y códigos de error comunes. Tu equipo puede arrancar de inmediato.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+              ¿Puedes integrarte con un servicio que no está en tu lista?
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#apiFaqAccordion">
+            <div class="accordion-body">
+              Sí. Si tiene API pública, webhook, SDK o incluso un feed FTP, lo puedo conectar. En los últimos 11 años he
+              integrado más de 50 servicios en fintech, salud, e-commerce y SaaS. Envíame la documentación y te devuelvo
+              una llamada de viabilidad.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+              ¿Dónde se va a alojar mi API?
+            </button>
+          </h2>
+          <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#apiFaqAccordion">
+            <div class="accordion-body">
+              Por defecto, en <strong>tu propia cuenta de AWS</strong>, para que tengas la infraestructura desde el día uno.
+              También puedo desplegar en GCP, Azure, DigitalOcean, Render, Fly.io o en tu VPS existente — tú decides.
+              Siempre conservas las credenciales root.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+              ¿Ofreces mantenimiento continuo?
+            </button>
+          </h2>
+          <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#apiFaqAccordion">
+            <div class="accordion-body">
+              Sí. Ofrezco <strong>planes de mantenimiento mensual desde $1.500.000 COP/mes</strong>, que incluyen parches de seguridad,
+              actualización de dependencias, monitoreo, respuesta on-call y un bloque fijo de horas para pequeños cambios.
+              No es obligatorio después de la entrega — pero la mayoría de los clientes me mantienen a bordo.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+              ¿Cómo funcionan los pagos y los contratos?
+            </button>
+          </h2>
+          <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#apiFaqAccordion">
+            <div class="accordion-body">
+              <strong>50% por adelantado, 50% a la entrega</strong>. Pago por transferencia bancaria, Stripe o Wise (COP, USD o EUR).
+              Antes de arrancar firmamos un contrato de servicios y un NDA si lo pides. Todos los entregables, tiempos y
+              criterios de aceptación quedan por escrito.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       10. CTA FINAL
+  ============================================================ -->
+  <section class="api-section api-final-cta">
+    <div class="container">
+      <div class="api-final-box">
+        <p class="section-tag">¿Listo para empezar?</p>
+        <h2 class="api-final-title">Cuéntame sobre <span class="accent">tu proyecto.</span></h2>
+        <p class="api-final-desc">
+          Una llamada de 30 minutos es todo lo que necesito para entender tus necesidades y decirte si soy la opción correcta.
+          Primera respuesta en menos de 2 horas en horario laboral.
+        </p>
+        <div class="api-final-actions">
+          <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20API."
+             target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <i class="bi bi-whatsapp me-2"></i>Escríbeme por WhatsApp
+          </a>
+          <a href="mailto:hello@sruedadev.com?subject=Consulta%20proyecto%20de%20API" class="btn btn-outline-custom">
+            <i class="bi bi-envelope me-2"></i>Envíame un Correo
+          </a>
+        </div>
+        <div class="api-final-perks">
+          <span><i class="bi bi-check2-circle"></i> Llamada gratuita de 30 min</span>
+          <span><i class="bi bi-check2-circle"></i> Sin compromisos</span>
+          <span><i class="bi bi-check2-circle"></i> NDA disponible si lo pides</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

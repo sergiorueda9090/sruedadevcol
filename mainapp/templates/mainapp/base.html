@@ -1,0 +1,405 @@
+{% load static %}{% load nav_extras %}<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+       SEO PRIMARIO
+  ============================================================ -->
+  <title>{% block title %}Sergio Rueda | Desarrollador Fullstack Freelance en Colombia{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Desarrollador fullstack freelance. Construyo sitios web de alta conversión, software a la medida, APIs e integraciones con IA para empresas. Remoto, entrega rápida, precios justos.{% endblock %}" />
+  <meta name="keywords" content="{% block meta_keywords %}desarrollador fullstack freelance, desarrollo web Colombia, software a la medida, desarrollo de APIs, integración con IA, desarrollador Django, desarrollador React, landing pages, e-commerce, contratar desarrollador remoto{% endblock %}" />
+  <meta name="author" content="Sergio Rueda" />
+  <meta name="robots" content="{% block meta_robots %}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{% endblock %}" />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- ============================================================
+       GOOGLE CONSENT MODE v2 — default denied, upgraded on accept
+       Required by Google Ads/Analytics for EEA + recommended for LATAM.
+  ============================================================ -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+    try {
+      var c = localStorage.getItem('cookie_consent');
+      if (c === 'granted') {
+        gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted',
+          'analytics_storage': 'granted'
+        });
+      }
+    } catch (e) {}
+  </script>
+
+  {% if GTM_CONTAINER_ID %}
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{ GTM_CONTAINER_ID }}');</script>
+  <!-- End Google Tag Manager -->
+  {% endif %}
+
+  {% if GA4_MEASUREMENT_ID %}
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA4_MEASUREMENT_ID }}"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', '{{ GA4_MEASUREMENT_ID }}', { 'anonymize_ip': true });
+  </script>
+  {% endif %}
+
+  {% if GOOGLE_ADS_ID %}
+  <!-- Google Ads -->
+  {% if not GA4_MEASUREMENT_ID %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ADS_ID }}"></script>
+  <script>gtag('js', new Date());</script>
+  {% endif %}
+  <script>gtag('config', '{{ GOOGLE_ADS_ID }}');</script>
+  {% endif %}
+
+  <!-- Geo hints -->
+  <meta name="geo.region" content="CO" />
+  <meta name="geo.placename" content="Colombia" />
+  <meta name="language" content="Spanish" />
+  <link rel="alternate" hreflang="es" href="{% block hreflang_url %}https://dev.sruedadev.com{{ request.path }}{% endblock %}" />
+  <link rel="alternate" hreflang="x-default" href="https://dev.sruedadev.com{{ request.path }}" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{% block canonical %}https://dev.sruedadev.com{{ request.path }}{% endblock %}" />
+
+  <!-- ============================================================
+       OPEN GRAPH / FACEBOOK / LINKEDIN
+  ============================================================ -->
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
+  <meta property="og:site_name" content="Sergio Rueda — Desarrollador Fullstack" />
+  <meta property="og:title" content="{% block og_title %}Sergio Rueda | Desarrollador Fullstack Freelance{% endblock %}" />
+  <meta property="og:description" content="{% block og_description %}Desarrollador fullstack freelance. Sitios web de alta conversión, software a la medida, APIs e integraciones con IA. Remoto, entrega rápida, precios justos.{% endblock %}" />
+  <meta property="og:url" content="https://dev.sruedadev.com{{ request.path }}" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:image" content="{% block og_image %}https://dev.sruedadev.com{% static 'mainapp/img/sergio_main.jpg' %}{% endblock %}" />
+  <meta property="og:image:alt" content="Sergio Rueda — Desarrollador Fullstack Freelance" />
+
+  <!-- ============================================================
+       TWITTER CARD
+  ============================================================ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{% block tw_title %}Sergio Rueda | Desarrollador Fullstack Freelance{% endblock %}" />
+  <meta name="twitter:description" content="{% block tw_description %}Desarrollador fullstack freelance. Sitios web, software a la medida, APIs e integraciones con IA. Remoto.{% endblock %}" />
+  <meta name="twitter:image" content="{% block tw_image %}https://dev.sruedadev.com{% static 'mainapp/img/sergio_main.jpg' %}{% endblock %}" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="{% static 'mainapp/img/logo.png' %}" />
+  <link rel="apple-touch-icon" href="{% static 'mainapp/img/logo.png' %}" />
+
+  <!-- ============================================================
+       PERFORMANCE — preconnect
+  ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+  {% block preload_lcp %}
+  <link rel="preload" as="image" href="{% static 'mainapp/img/sergio_main.jpg' %}" fetchpriority="high" />
+  {% endblock %}
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5.3.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Bootstrap Icons -->
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
+
+  <!-- CSS propio -->
+  <link rel="stylesheet" href="{% static 'mainapp/css/styles.css' %}" />
+  {% block extra_css %}{% endblock %}
+
+  <!-- Scripts diferidos -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="{% static 'mainapp/js/scripts.js' %}" defer></script>
+
+  <!-- ============================================================
+       JSON-LD — ProfessionalService + Person
+  ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://dev.sruedadev.com/#business",
+    "name": "Sergio Rueda — Desarrollador Fullstack Freelance",
+    "alternateName": "Sergio Rueda Dev",
+    "url": "https://dev.sruedadev.com/",
+    "image": "https://dev.sruedadev.com{% static 'mainapp/img/sergio_main.jpg' %}",
+    "logo": "https://dev.sruedadev.com{% static 'mainapp/img/logo.png' %}",
+    "description": "Desarrollador fullstack freelance desde Colombia. Construyo sitios web de alta conversión, software a la medida, APIs e integraciones con IA para empresas. 100% remoto.",
+    "priceRange": "$$",
+    "areaServed": [
+      { "@type": "Country", "name": "Colombia" },
+      { "@type": "Place",   "name": "Remoto (mundial)" }
+    ],
+    "serviceType": [
+      "Desarrollo Web",
+      "Software a la Medida",
+      "Desarrollo e Integración de APIs",
+      "Integración con IA",
+      "E-commerce",
+      "Landing Pages",
+      "Despliegue en la Nube (AWS)"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Sergio Rueda",
+      "jobTitle": "Desarrollador Fullstack",
+      "nationality": "Colombiana",
+      "sameAs": [
+        "https://linkedin.com/in/sergiorueda-dev",
+        "https://github.com/sergiorueda-dev"
+      ]
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Ventas",
+      "telephone": "+57-350-624-0534",
+      "email": "hello@sruedadev.com",
+      "availableLanguage": ["Spanish", "English"],
+      "areaServed": "CO"
+    },
+    "sameAs": [
+      "https://instagram.com/sergiodevsolutions",
+      "https://facebook.com/sergiodevsolutions",
+      "https://linkedin.com/in/sergiorueda-dev",
+      "https://github.com/sergiorueda-dev"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://dev.sruedadev.com/",
+    "name": "Sergio Rueda — Desarrollador Fullstack",
+    "inLanguage": "es",
+    "publisher": { "@id": "https://dev.sruedadev.com/#business" }
+  }
+  </script>
+  {% block extra_jsonld %}{% endblock %}
+</head>
+<body>
+
+  {% if GTM_CONTAINER_ID %}
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ GTM_CONTAINER_ID }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  {% endif %}
+
+  <!-- Skip link -->
+  <a class="visually-hidden-focusable" href="#main-content">Saltar al contenido principal</a>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav id="mainNav" class="navbar navbar-expand-lg fixed-top" aria-label="Principal">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'mainapp:index' %}">
+        <img src="{% static 'mainapp/img/logo.png' %}" alt="Logo Sergio Rueda" class="nav-logo" width="32" height="32" decoding="async">
+        Sergio Rueda<span class="accent">.</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+        aria-controls="navMenu" aria-expanded="false" aria-label="Abrir navegación">
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link {% is_current 'index' %}" href="{% section_link 'home' %}">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% section_link 'about' %}">Sobre mí</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% section_link 'services' %}">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link {% is_current 'api_services' %}" href="{% url 'mainapp:api_services' %}"{% if request.resolver_match.url_name == 'api_services' %} aria-current="page"{% endif %}>APIs</a></li>
+          <li class="nav-item"><a class="nav-link {% is_current 'software_ai_services' %}" href="{% url 'mainapp:software_ai_services' %}"{% if request.resolver_match.url_name == 'software_ai_services' %} aria-current="page"{% endif %}>Software + IA</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% section_link 'portfolio' %}">Portafolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% section_link 'testimonials' %}">Testimonios</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% section_link 'pricing' %}">Precios</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% section_link 'contact' %}">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row g-5">
+
+          <div class="col-lg-4 col-md-6">
+            <a class="footer-brand" href="{% url 'mainapp:index' %}">Sergio Rueda<span class="accent">.</span></a>
+            <p class="footer-desc">Desarrollador fullstack freelance desde Colombia con amplia experiencia entregando soluciones tecnológicas para empresas en todo el mundo. Independiente, rápido y comprometido con construir software que genera resultados reales de negocio.</p>
+            <div class="footer-socials">
+              <a href="https://instagram.com/sergiodevsolutions" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+              <a href="https://facebook.com/sergiodevsolutions" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://linkedin.com/in/sergiorueda-dev" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="https://github.com/sergiorueda-dev" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-3 col-6">
+            <h6 class="footer-heading">Navegación</h6>
+            <ul class="footer-links">
+              <li><a href="{% section_link 'home' %}">Inicio</a></li>
+              <li><a href="{% section_link 'about' %}">Sobre mí</a></li>
+              <li><a href="{% section_link 'services' %}">Servicios</a></li>
+              <li><a href="{% section_link 'portfolio' %}">Portafolio</a></li>
+              <li><a href="{% section_link 'pricing' %}">Precios</a></li>
+              <li><a href="{% section_link 'contact' %}">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-md-3 col-6">
+            <h6 class="footer-heading">Servicios</h6>
+            <ul class="footer-links">
+              <li><a href="{% section_link 'services' %}">Landing Pages</a></li>
+              <li><a href="{% section_link 'services' %}">E-commerce</a></li>
+              <li><a href="{% section_link 'services' %}">Sitios Corporativos</a></li>
+              <li><a href="{% url 'mainapp:api_services' %}">Desarrollo de APIs</a></li>
+              <li><a href="{% url 'mainapp:software_ai_services' %}">Software a la Medida + IA</a></li>
+              <li><a href="{% section_link 'services' %}">Despliegue en AWS</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <h6 class="footer-heading">Asesoría Gratuita</h6>
+            <p class="footer-newsletter-desc">Tu negocio funcionando mejor en 7 días. En una llamada de 15 minutos te muestro exactamente qué puedes automatizar y en cuánto tiempo lo construimos.</p>
+            <div class="lead-form-perks">
+              <span><i class="bi bi-clock-fill"></i> Respuesta en menos de 2 horas</span>
+              <span><i class="bi bi-shield-check-fill"></i> Sin compromisos ni pagos por adelantado</span>
+              <span><i class="bi bi-gift-fill"></i> Diagnóstico gratuito incluido</span>
+            </div>
+            <form class="lead-capture-form" id="leadForm" method="post" action="{% url 'mainapp:lead_submit' %}">
+              {% csrf_token %}
+              <input type="text" class="lead-input" id="leadName" name="name" placeholder="Tu nombre" required />
+              <input type="text" class="lead-input" id="leadBusiness" name="business" placeholder="Tu negocio (ej. Panadería Doña Luz)" required />
+              <input type="tel" class="lead-input" id="leadPhone" name="phone" placeholder="Tu WhatsApp (ej. 350 624 0534)" required />
+              <select class="lead-input lead-select" id="leadService" name="service" required>
+                <option value="" disabled selected>Tipo de servicio</option>
+                <option value="Landing Page">Landing Page</option>
+                <option value="Tienda E-commerce">Tienda E-commerce</option>
+                <option value="Sitio Corporativo">Sitio Corporativo</option>
+                <option value="Software a la Medida">Software a la Medida</option>
+                <option value="Desarrollo de APIs">Desarrollo de APIs</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <input type="hidden" name="source" value="footer_form" />
+              <label class="lead-consent">
+                <input type="checkbox" id="leadConsent" required />
+                <span>He leído y acepto la <a href="{% url 'mainapp:privacidad' %}" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
+              </label>
+              <button type="submit" class="lead-submit-btn">
+                <i class="bi bi-whatsapp me-2"></i>Enviar por WhatsApp
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="footer-copy">© 2025 <span class="accent">Sergio Rueda</span>. Todos los derechos reservados.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <p class="footer-copy">
+              <a href="{% url 'mainapp:privacidad' %}">Privacidad</a>
+              &nbsp;·&nbsp;
+              <a href="{% url 'mainapp:terminos' %}">Términos</a>
+              &nbsp;·&nbsp;
+              Hecho con <i class="bi bi-heart-fill" style="color:#ef4444;font-size:.75rem;"></i> desde Colombia
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Estoy%20interesado%20en%20tus%20servicios."
+     class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp"
+     data-track="whatsapp_float">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Volver arriba -->
+  <button id="backToTop" class="back-to-top" aria-label="Volver arriba">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- ============================================================
+       COOKIE CONSENT BANNER — updates Google Consent Mode v2
+  ============================================================ -->
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+    <div class="cookie-banner-inner">
+      <p class="cookie-banner-text">
+        Usamos cookies propias y de terceros para medir el uso del sitio y mostrar anuncios relevantes.
+        Puedes aceptar todas o rechazarlas. Más información en nuestra
+        <a href="{% url 'mainapp:privacidad' %}">Política de Privacidad</a>.
+      </p>
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn-cookie btn-cookie-reject" id="cookieReject">Rechazar</button>
+        <button type="button" class="btn-cookie btn-cookie-accept" id="cookieAccept">Aceptar todas</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var banner = document.getElementById('cookieBanner');
+      var accept = document.getElementById('cookieAccept');
+      var reject = document.getElementById('cookieReject');
+      var stored;
+      try { stored = localStorage.getItem('cookie_consent'); } catch (e) {}
+      if (!stored) { banner.hidden = false; }
+
+      function setConsent(granted) {
+        try { localStorage.setItem('cookie_consent', granted ? 'granted' : 'denied'); } catch (e) {}
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'ad_storage':         granted ? 'granted' : 'denied',
+            'ad_user_data':       granted ? 'granted' : 'denied',
+            'ad_personalization': granted ? 'granted' : 'denied',
+            'analytics_storage':  granted ? 'granted' : 'denied'
+          });
+        }
+        banner.hidden = true;
+      }
+      accept.addEventListener('click', function () { setConsent(true);  });
+      reject.addEventListener('click', function () { setConsent(false); });
+    })();
+  </script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

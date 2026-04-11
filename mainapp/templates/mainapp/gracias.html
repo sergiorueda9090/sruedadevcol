@@ -1,0 +1,61 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block title %}¡Gracias! | Sergio Rueda{% endblock %}
+{% block meta_description %}Mensaje recibido. Te estoy redirigiendo a WhatsApp para continuar la conversación.{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<section class="section-padding" style="min-height:70vh;display:flex;align-items:center;">
+  <div class="container text-center">
+    <div style="max-width:640px;margin:0 auto;">
+      <i class="bi bi-check-circle-fill teal-text" style="font-size:4rem;"></i>
+      <h1 class="section-title mt-4">¡Mensaje <span class="accent">recibido!</span></h1>
+      <p class="lead mt-3">Gracias por contactarme. Te estoy abriendo WhatsApp para que podamos hablar directamente. Normalmente respondo en menos de 2 horas.</p>
+
+      <div class="mt-5">
+        <a id="waFallback" href="{{ wa_url|default:'https://wa.me/573506240534' }}"
+           class="btn btn-primary-custom" target="_blank" rel="noopener">
+          <i class="bi bi-whatsapp me-2"></i>Abrir WhatsApp
+        </a>
+        <a href="{% url 'mainapp:index' %}" class="btn btn-outline-custom ms-2">
+          Volver al inicio
+        </a>
+      </div>
+
+      <p class="mt-4" style="opacity:.7;font-size:.9rem;">
+        Si no se abre automáticamente, toca el botón verde.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var waUrl = {{ wa_url|default:'""'|safe }} ? decodeURIComponent("{{ wa_url|escapejs }}") : null;
+
+    // 1) Google Ads conversion
+    if (typeof gtag === 'function') {
+      {% if GOOGLE_ADS_ID and GOOGLE_ADS_LEAD_LABEL %}
+      gtag('event', 'conversion', {
+        'send_to': '{{ GOOGLE_ADS_ID }}/{{ GOOGLE_ADS_LEAD_LABEL }}',
+        'event_callback': function () {}
+      });
+      {% endif %}
+      gtag('event', 'generate_lead', {
+        'event_category': 'lead',
+        'event_label': 'lead_form_submit'
+      });
+    }
+
+    // 2) GTM dataLayer event (works even without gtag)
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'event': 'lead_form_submit' });
+
+    // 3) Auto-open WhatsApp after a short delay (gives tags time to fire)
+    if (waUrl) {
+      setTimeout(function () { window.open(waUrl, '_blank'); }, 1200);
+    }
+  })();
+</script>
+{% endblock %}

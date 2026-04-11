@@ -1,0 +1,583 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+
+{% block title %}Software a la Medida + Integración con IA | Sergio Rueda{% endblock %}
+{% block meta_description %}Software a la medida, herramientas internas, dashboards y plataformas SaaS con IA integrada donde realmente aporta valor. Construido por un desarrollador fullstack freelance. Sin humo, sistemas reales.{% endblock %}
+{% block meta_keywords %}desarrollo de software a la medida, integración con IA, contratar desarrollador IA, herramientas internas, desarrollo SaaS, integración OpenAI, integración API Claude, automatización de negocio, contratar desarrollador fullstack Colombia{% endblock %}
+{% block og_title %}Software a la Medida + Integración con IA{% endblock %}
+{% block og_description %}Herramientas internas, dashboards y plataformas SaaS a la medida con IA integrada donde entrega valor medible. Construido por un desarrollador fullstack freelance.{% endblock %}
+{% block og_type %}service{% endblock %}
+{% block extra_jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Software a la Medida + Integración con IA",
+  "name": "Software a la Medida + Integración con IA",
+  "provider": { "@id": "https://dev.sruedadev.com/#business" },
+  "areaServed": { "@type": "Country", "name": "Colombia" },
+  "description": "Herramientas internas, dashboards, plataformas SaaS e integraciones con IA construidas para empresas que necesitan software real y medible.",
+  "url": "https://dev.sruedadev.com{{ request.path }}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+  <!-- ============================================================
+       1. HERO
+  ============================================================ -->
+  <section class="csa-hero">
+    <div class="csa-hero-shapes" aria-hidden="true">
+      <div class="csa-shape csa-shape-1"></div>
+      <div class="csa-shape csa-shape-2"></div>
+    </div>
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <p class="csa-eyebrow">Software a la Medida + Integración con IA</p>
+          <h1 class="csa-h1">Software construido para tu negocio — <span class="accent">con IA donde realmente aporta.</span></h1>
+          <p class="csa-lead">
+            Diseño y construyo software a la medida que se ajusta a cómo trabaja tu equipo — herramientas internas,
+            dashboards, plataformas SaaS, automatizaciones — y le integro IA por dentro cuando entrega
+            valor real y medible. Sin humo. Sin añadidos superficiales. Sistemas reales.
+          </p>
+          <div class="csa-hero-actions mt-4">
+            <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20software%20a%20la%20medida%20con%20IA."
+               target="_blank" rel="noopener" class="btn btn-primary-custom me-2 mb-2">
+              <i class="bi bi-whatsapp me-2"></i>Hablemos por WhatsApp
+            </a>
+            <a href="#csa-process" class="btn btn-outline-custom mb-2">
+              Ver cómo trabajo <i class="bi bi-arrow-down ms-1"></i>
+            </a>
+          </div>
+          <div class="csa-trust-strip mt-4">
+            <span><i class="bi bi-patch-check-fill"></i> 11+ años de experiencia</span>
+            <span><i class="bi bi-boxes"></i> 30+ proyectos a la medida entregados</span>
+            <span><i class="bi bi-robot"></i> Experto en OpenAI / Claude</span>
+            <span><i class="bi bi-shield-lock"></i> Tus datos son tuyos</span>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="csa-app-mockup">
+            <div class="csa-app-header">
+              <span class="frame-dot red"></span>
+              <span class="frame-dot yellow"></span>
+              <span class="frame-dot green"></span>
+              <span class="csa-app-title">app.tunegocio.com</span>
+            </div>
+            <div class="csa-app-body">
+              <div class="csa-app-toolbar">
+                <span class="csa-app-tab active"><i class="bi bi-bar-chart-fill"></i> Dashboard</span>
+                <span class="csa-app-tab"><i class="bi bi-robot"></i> Copiloto IA</span>
+              </div>
+              <div class="csa-chat">
+                <div class="csa-chat-msg user">
+                  <div class="csa-chat-bubble">Muéstrame los SKUs con bajo desempeño del último trimestre.</div>
+                </div>
+                <div class="csa-chat-msg ai">
+                  <div class="csa-chat-bubble">
+                    Encontré <strong>4 SKUs</strong> por debajo de la meta en Q3:
+                    <table class="csa-chat-table">
+                      <tr><td>SKU-A100</td><td class="num">−18%</td></tr>
+                      <tr><td>SKU-B204</td><td class="num">−12%</td></tr>
+                      <tr><td>SKU-C051</td><td class="num">−9%</td></tr>
+                      <tr><td>SKU-D903</td><td class="num">−6%</td></tr>
+                    </table>
+                    <span class="csa-chat-action"><i class="bi bi-arrow-right-circle me-1"></i>Armar plan de reabastecimiento</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. QUÉ CONSTRUYO
+  ============================================================ -->
+  <section class="csa-section csa-what">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Qué Construyo</p>
+        <h2 class="section-title">Software a la medida <span class="accent">que encaja</span> con tu negocio.</h2>
+        <p class="section-subtitle">Seis categorías de software que entrego en producción para clientes de distintas industrias.</p>
+      </div>
+
+      <div class="csa-card-grid">
+        <div class="csa-card">
+          <div class="csa-card-icon green-glow"><i class="bi bi-tools"></i></div>
+          <h4>Herramientas Internas</h4>
+          <p>Paneles de administración, dashboards de operaciones, CRMs a la medida que se ajustan a cómo tu equipo realmente trabaja — no como un SaaS genérico cree que deberían trabajar.</p>
+          <div class="csa-card-tools">Django · React · Postgres</div>
+        </div>
+
+        <div class="csa-card">
+          <div class="csa-card-icon teal-glow"><i class="bi bi-cloud-fill"></i></div>
+          <h4>Plataformas SaaS</h4>
+          <p>Productos multi-tenant con autenticación, facturación y administración desde el día uno. Construidos para escalar desde tus primeros 10 usuarios hasta tus primeros 10.000.</p>
+          <div class="csa-card-tools">Django · Stripe · AWS</div>
+        </div>
+
+        <div class="csa-card">
+          <div class="csa-card-icon purple-glow"><i class="bi bi-bar-chart-fill"></i></div>
+          <h4>Dashboards y Reportes</h4>
+          <p>Dashboards con datos en vivo, filtros, drill-downs, exportaciones y reportes programados por correo. Tu equipo deja de preguntar "¿dónde encuentro esto?".</p>
+          <div class="csa-card-tools">React · Recharts · Pandas</div>
+        </div>
+
+        <div class="csa-card">
+          <div class="csa-card-icon green-glow"><i class="bi bi-arrow-repeat"></i></div>
+          <h4>Automatización de Procesos</h4>
+          <p>Reemplaza procesos manuales repetitivos con software confiable y auditable. Aprobaciones, notificaciones, sincronizaciones, tareas programadas.</p>
+          <div class="csa-card-tools">Celery · Cron · Webhooks</div>
+        </div>
+
+        <div class="csa-card csa-card-highlight">
+          <div class="csa-card-icon purple-glow"><i class="bi bi-robot"></i></div>
+          <h4>Copilotos con IA</h4>
+          <p>Asistentes de IA integrados <strong>dentro</strong> de tu aplicación existente, entrenados en tus datos, tu tono y tus flujos de trabajo. No un chatbot pegado por encima.</p>
+          <div class="csa-card-tools">OpenAI · Claude · LangChain</div>
+        </div>
+
+        <div class="csa-card">
+          <div class="csa-card-icon teal-glow"><i class="bi bi-puzzle-fill"></i></div>
+          <h4>Integraciones de Sistemas</h4>
+          <p>El pegamento entre las herramientas que tu equipo usa todos los días. Salesforce, HubSpot, Stripe, Slack, APIs internas — todas hablando entre sí.</p>
+          <div class="csa-card-tools">REST · Webhooks · SDKs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. CAPACIDADES DE IA
+  ============================================================ -->
+  <section class="csa-section csa-ai">
+    <div class="csa-ai-shapes" aria-hidden="true">
+      <div class="csa-shape csa-shape-3"></div>
+    </div>
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Capacidades de IA</p>
+        <h2 class="section-title">Funcionalidades de IA que <span class="accent">realmente funcionan</span> en producción.</h2>
+        <p class="section-subtitle">Cosas reales que la IA hace bien hoy — sin el humo. Construyo lo que aporta valor.</p>
+      </div>
+
+      <div class="csa-card-grid">
+        <div class="csa-card csa-card-ai">
+          <div class="csa-card-icon purple-glow"><i class="bi bi-chat-square-dots-fill"></i></div>
+          <h4>IA Conversacional</h4>
+          <p>Chatbots y asistentes impulsados por GPT-4 o Claude, integrados en tu app, WhatsApp, Slack o widget web.</p>
+          <div class="csa-card-tools">OpenAI · Claude · WhatsApp Business</div>
+        </div>
+
+        <div class="csa-card csa-card-ai">
+          <div class="csa-card-icon teal-glow"><i class="bi bi-file-text-fill"></i></div>
+          <h4>Preguntas a Documentos (RAG)</h4>
+          <p>Haz preguntas en lenguaje natural sobre tus PDFs, contratos, manuales o base de conocimiento. Respuestas basadas en tu propio contenido.</p>
+          <div class="csa-card-tools">LangChain · LlamaIndex · pgvector</div>
+        </div>
+
+        <div class="csa-card csa-card-ai">
+          <div class="csa-card-icon green-glow"><i class="bi bi-tags-fill"></i></div>
+          <h4>Clasificación y Extracción</h4>
+          <p>Etiqueta, enruta y extrae datos estructurados de correos, facturas, tickets y contratos — de forma automática y a escala.</p>
+          <div class="csa-card-tools">GPT-4o · function calling · JSON schema</div>
+        </div>
+
+        <div class="csa-card csa-card-ai">
+          <div class="csa-card-icon purple-glow"><i class="bi bi-file-earmark-image-fill"></i></div>
+          <h4>OCR y Procesamiento de Documentos</h4>
+          <p>Lee documentos escaneados, cédulas, recibos y formularios. Convierte papel en filas de base de datos que tu software puede usar.</p>
+          <div class="csa-card-tools">AWS Textract · GPT-4 Vision · Tesseract</div>
+        </div>
+
+        <div class="csa-card csa-card-ai">
+          <div class="csa-card-icon teal-glow"><i class="bi bi-search"></i></div>
+          <h4>Búsqueda Semántica</h4>
+          <p>Búsqueda que entiende significado, no solo palabras clave. Indexa tus datos una vez, encuéntralos sin importar cómo los pregunten.</p>
+          <div class="csa-card-tools">Embeddings · pgvector · Pinecone</div>
+        </div>
+
+        <div class="csa-card csa-card-ai">
+          <div class="csa-card-icon green-glow"><i class="bi bi-cpu-fill"></i></div>
+          <h4>Agentes de IA</h4>
+          <p>Agentes multi-paso que toman acciones reales: envían correos, actualizan registros, llaman tus APIs y escalan a un humano cuando no están seguros.</p>
+          <div class="csa-card-tools">LangGraph · function calling · tool use</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. PROCESO
+  ============================================================ -->
+  <section id="csa-process" class="csa-section csa-process">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Mi Proceso</p>
+        <h2 class="section-title">De la idea a <span class="accent">producción</span> en cinco pasos claros.</h2>
+        <p class="section-subtitle">Predecible, transparente, con demos semanales para que siempre sepas en dónde vamos.</p>
+      </div>
+
+      <div class="csa-process-timeline">
+        <div class="csa-step">
+          <div class="csa-step-num">1</div>
+          <h5>Descubrimiento</h5>
+          <p>Llamada gratuita de 30 min. Aprendo sobre tu negocio, tus datos y qué duele hoy.</p>
+        </div>
+        <div class="csa-step">
+          <div class="csa-step-num">2</div>
+          <h5>Prototipo</h5>
+          <p>En 1-2 semanas ves un prototipo funcional clicable, no un slide deck.</p>
+        </div>
+        <div class="csa-step">
+          <div class="csa-step-num">3</div>
+          <h5>Construcción</h5>
+          <p>Desarrollo iterativo con demos cada viernes. Progreso real todas las semanas.</p>
+        </div>
+        <div class="csa-step">
+          <div class="csa-step-num">4</div>
+          <h5>Entrenamiento y Ajuste</h5>
+          <p>Para funciones de IA: evalúo, ajusto y conecto el modelo con tus datos reales.</p>
+        </div>
+        <div class="csa-step">
+          <div class="csa-step-num">5</div>
+          <h5>Despliegue y Monitoreo</h5>
+          <p>CI/CD en tu nube, logs estructurados, alertas, documentación completa de entrega.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. STACK TECNOLÓGICO
+  ============================================================ -->
+  <section class="csa-section csa-stack">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Stack Tecnológico</p>
+        <h2 class="section-title">Herramientas modernas, <span class="accent">probadas en producción.</span></h2>
+        <p class="section-subtitle">Escojo la opción aburrida y confiable siempre que hace el trabajo — y sé cuándo ir por lo de punta.</p>
+      </div>
+
+      <div class="csa-stack-grid">
+        <div class="csa-stack-col">
+          <h6><i class="bi bi-server me-2 teal-text"></i>Backend</h6>
+          <div class="csa-stack-pills">
+            <span>Python</span><span>Django</span><span>FastAPI</span><span>Node.js</span><span>PostgreSQL</span><span>Redis</span>
+          </div>
+        </div>
+        <div class="csa-stack-col">
+          <h6><i class="bi bi-window-fullscreen me-2 teal-text"></i>Frontend</h6>
+          <div class="csa-stack-pills">
+            <span>React</span><span>Next.js</span><span>TypeScript</span><span>Tailwind</span><span>HTMX</span>
+          </div>
+        </div>
+        <div class="csa-stack-col">
+          <h6><i class="bi bi-robot me-2 teal-text"></i>IA / LLM</h6>
+          <div class="csa-stack-pills">
+            <span>OpenAI GPT-4o</span><span>Claude</span><span>LangChain</span><span>LlamaIndex</span><span>Embeddings</span><span>pgvector</span><span>Pinecone</span>
+          </div>
+        </div>
+        <div class="csa-stack-col">
+          <h6><i class="bi bi-cloud-arrow-up me-2 teal-text"></i>Infraestructura</h6>
+          <div class="csa-stack-pills">
+            <span>AWS</span><span>Docker</span><span>GitHub Actions</span><span>Sentry</span><span>CloudWatch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       6. CASOS DE USO
+  ============================================================ -->
+  <section class="csa-section csa-use-cases">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Casos de Uso</p>
+        <h2 class="section-title">Lo que he construido <span class="accent">para negocios como el tuyo.</span></h2>
+        <p class="section-subtitle">Seis ejemplos concretos de software a la medida + IA en la vida real.</p>
+      </div>
+
+      <div class="csa-use-grid">
+        <div class="csa-use-case">
+          <div class="csa-use-icon"><i class="bi bi-graph-up-arrow"></i></div>
+          <div>
+            <h5>Operaciones de Ventas</h5>
+            <p>Un CRM a la medida con un copiloto de IA que redacta seguimientos, resume llamadas y saca a la luz deals en riesgo antes de que el equipo los note.</p>
+          </div>
+        </div>
+        <div class="csa-use-case">
+          <div class="csa-use-icon"><i class="bi bi-headset"></i></div>
+          <div>
+            <h5>Atención al Cliente</h5>
+            <p>Q&amp;A sobre tus documentos entrenado con tu centro de ayuda; los agentes reciben respuestas sugeridas en tiempo real con sus fuentes citadas.</p>
+          </div>
+        </div>
+        <div class="csa-use-case">
+          <div class="csa-use-icon"><i class="bi bi-receipt"></i></div>
+          <div>
+            <h5>Operaciones</h5>
+            <p>Pipeline de OCR + extracción que procesa facturas y órdenes de compra de extremo a extremo. Los humanos solo revisan casos extremos.</p>
+          </div>
+        </div>
+        <div class="csa-use-case">
+          <div class="csa-use-icon"><i class="bi bi-clipboard2-pulse"></i></div>
+          <div>
+            <h5>Administración en Salud</h5>
+            <p>Formularios de ingreso que auto-extraen información del paciente, agendan citas y pre-llenan historias clínicas — conscientes de la privacidad.</p>
+          </div>
+        </div>
+        <div class="csa-use-case">
+          <div class="csa-use-icon"><i class="bi bi-bag-check-fill"></i></div>
+          <div>
+            <h5>Operaciones E-commerce</h5>
+            <p>Auto-etiquetado de productos nuevos, descripciones generadas por IA, triage de devoluciones y alertas de anomalías en inventario.</p>
+          </div>
+        </div>
+        <div class="csa-use-case">
+          <div class="csa-use-icon"><i class="bi bi-book-half"></i></div>
+          <div>
+            <h5>Conocimiento Interno</h5>
+            <p>Un "ChatGPT privado para tu empresa" — respuestas basadas en tu wiki, políticas, contratos y manuales internos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       7. SEGURIDAD DE IA Y PRIVACIDAD DE DATOS
+  ============================================================ -->
+  <section class="csa-trust-bar">
+    <div class="container">
+      <div class="text-center mb-4">
+        <p class="section-tag">Seguridad de IA y Privacidad</p>
+        <h3 class="csa-trust-headline">Tus datos son tuyos. <span class="accent">En serio.</span></h3>
+      </div>
+      <div class="csa-trust-grid">
+        <div class="csa-trust-item"><i class="bi bi-shield-fill-check"></i><span>Nunca se usan para entrenar modelos</span></div>
+        <div class="csa-trust-item"><i class="bi bi-cloud-check"></i><span>Alojados en tu propia nube</span></div>
+        <div class="csa-trust-item"><i class="bi bi-geo-alt-fill"></i><span>Los datos se quedan en tu región</span></div>
+        <div class="csa-trust-item"><i class="bi bi-journal-text"></i><span>Logs de auditoría en cada llamada de IA</span></div>
+        <div class="csa-trust-item"><i class="bi bi-person-lock"></i><span>Control de acceso por roles</span></div>
+        <div class="csa-trust-item"><i class="bi bi-person-check-fill"></i><span>Humano en el loop para acciones de riesgo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       8. ANTES / DESPUÉS
+  ============================================================ -->
+  <section class="csa-section csa-before-after">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Antes / Después</p>
+        <h2 class="section-title">Qué cambia cuando <span class="accent">la IA hace la parte aburrida.</span></h2>
+        <p class="section-subtitle">Tres patrones reales que he entregado. Sin promesas vagas.</p>
+      </div>
+
+      <div class="csa-ba-list">
+
+        <div class="csa-ba-row">
+          <div class="csa-ba-title-wrap">
+            <span class="csa-ba-icon"><i class="bi bi-chat-left-text"></i></span>
+            <h5 class="csa-ba-title">Tickets de soporte al cliente</h5>
+          </div>
+          <div class="csa-ba-cols">
+            <div class="csa-ba-col csa-ba-before">
+              <span class="csa-ba-label">Antes</span>
+              <p>Promedio <strong>18 min</strong> por ticket. Los agentes copian y pegan desde 4 herramientas distintas para redactar una respuesta.</p>
+            </div>
+            <div class="csa-ba-divider"><i class="bi bi-arrow-right"></i></div>
+            <div class="csa-ba-col csa-ba-after">
+              <span class="csa-ba-label">Después</span>
+              <p>La IA redacta respuestas basadas en tus docs de ayuda. Promedio <strong>4 min</strong> por ticket. Misma precisión, mismo tono.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="csa-ba-row">
+          <div class="csa-ba-title-wrap">
+            <span class="csa-ba-icon"><i class="bi bi-receipt"></i></span>
+            <h5 class="csa-ba-title">Procesamiento de facturas</h5>
+          </div>
+          <div class="csa-ba-cols">
+            <div class="csa-ba-col csa-ba-before">
+              <span class="csa-ba-label">Antes</span>
+              <p><strong>3 personas, 2 días por semana</strong> digitando datos de PDFs al ERP. Los errores se escapan.</p>
+            </div>
+            <div class="csa-ba-divider"><i class="bi bi-arrow-right"></i></div>
+            <div class="csa-ba-col csa-ba-after">
+              <span class="csa-ba-label">Después</span>
+              <p>Pipeline de OCR + extracción. <strong>95% procesado automáticamente</strong>. El equipo solo revisa excepciones y aprueba.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="csa-ba-row">
+          <div class="csa-ba-title-wrap">
+            <span class="csa-ba-icon"><i class="bi bi-megaphone"></i></span>
+            <h5 class="csa-ba-title">Seguimientos de ventas</h5>
+          </div>
+          <div class="csa-ba-cols">
+            <div class="csa-ba-col csa-ba-before">
+              <span class="csa-ba-label">Antes</span>
+              <p>Los vendedores olvidan hacer seguimiento. El pipeline se fuga. El gerente pasa los lunes persiguiendo al equipo.</p>
+            </div>
+            <div class="csa-ba-divider"><i class="bi bi-arrow-right"></i></div>
+            <div class="csa-ba-col csa-ba-after">
+              <span class="csa-ba-label">Después</span>
+              <p>El copiloto de IA redacta seguimientos personalizados cada día. Los vendedores revisan y envían en <strong>1 clic</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       9. FAQ
+  ============================================================ -->
+  <section class="csa-section csa-faq">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Preguntas Frecuentes</p>
+        <h2 class="section-title">Preguntas <span class="accent">frecuentes.</span></h2>
+      </div>
+
+      <div class="accordion api-accordion mx-auto" id="csaFaqAccordion">
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#csafaq1">
+              ¿Cuánto toma un proyecto de software a la medida?
+            </button>
+          </h2>
+          <div id="csafaq1" class="accordion-collapse collapse show" data-bs-parent="#csaFaqAccordion">
+            <div class="accordion-body">
+              Un <strong>prototipo</strong> clicable se entrega en <strong>1–2 semanas</strong>.
+              Un <strong>MVP</strong> toma <strong>4–8 semanas</strong>.
+              Construcciones completas con múltiples módulos y funciones de IA van de <strong>2–4 meses</strong>.
+              Después de la llamada de descubrimiento te entrego un cronograma escrito antes de cualquier compromiso.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#csafaq2">
+              ¿Mis datos van a ser usados para entrenar modelos de IA?
+            </button>
+          </h2>
+          <div id="csafaq2" class="accordion-collapse collapse" data-bs-parent="#csaFaqAccordion">
+            <div class="accordion-body">
+              <strong>No. Nunca.</strong> Uso proveedores con políticas explícitas de no-entrenamiento (OpenAI API,
+              Anthropic API, Azure OpenAI). Tus datos pasan por el modelo y regresan — no terminan
+              en el set de entrenamiento de nadie. Esto queda documentado por escrito en cada contrato.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#csafaq3">
+              ¿Dónde corre la IA?
+            </button>
+          </h2>
+          <div id="csafaq3" class="accordion-collapse collapse" data-bs-parent="#csaFaqAccordion">
+            <div class="accordion-body">
+              Por defecto, en <strong>tu propia cuenta de AWS, GCP o Azure</strong>. Tú conservas las llaves,
+              los logs y puedes revocar el acceso en cualquier momento. Para industrias sensibles también
+              puedo desplegar modelos self-hosted (Llama, Mistral) on-premise o en tu VPC.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#csafaq4">
+              ¿Qué pasa si la IA se equivoca?
+            </button>
+          </h2>
+          <div id="csafaq4" class="accordion-collapse collapse" data-bs-parent="#csaFaqAccordion">
+            <div class="accordion-body">
+              Diseño pensando en <strong>humano en el loop</strong> para cualquier cosa que toque dinero, clientes
+              o temas legales. La IA redacta — un humano aprueba. Cada llamada a la IA queda registrada con
+              entrada, salida, versión del modelo y confianza. Puedes auditar cualquier decisión después.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#csafaq5">
+              ¿Puedes agregar funciones de IA al software que ya tengo?
+            </button>
+          </h2>
+          <div id="csafaq5" class="accordion-collapse collapse" data-bs-parent="#csaFaqAccordion">
+            <div class="accordion-body">
+              <strong>Sí — eso es la mayor parte de lo que hago.</strong> Integro funciones de IA <em>dentro</em>
+              de tus herramientas existentes (Django, Rails, Laravel, .NET, Node, incluso PHP legacy), no al lado.
+              No hay que tumbar y reemplazar nada.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#csafaq6">
+              ¿Cómo funcionan los pagos y los contratos?
+            </button>
+          </h2>
+          <div id="csafaq6" class="accordion-collapse collapse" data-bs-parent="#csaFaqAccordion">
+            <div class="accordion-body">
+              <strong>50% por adelantado, 50% a la entrega.</strong> Pago por transferencia bancaria, Stripe o Wise
+              (COP, USD o EUR). Antes de arrancar firmamos un contrato de servicios y un NDA si lo pides. Todos los
+              entregables, tiempos y criterios de aceptación quedan por escrito.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       10. CTA FINAL
+  ============================================================ -->
+  <section class="csa-section csa-final-cta">
+    <div class="container">
+      <div class="csa-final-box">
+        <p class="section-tag">¿Listo para empezar?</p>
+        <h2 class="csa-final-title">Cuéntame qué quieres <span class="accent">construir.</span></h2>
+        <p class="csa-final-desc">
+          Una llamada de 30 minutos es todo lo que necesito para entender tus necesidades y decirte si soy la opción correcta.
+          Primera respuesta en menos de 2 horas en horario laboral.
+        </p>
+        <div class="csa-final-actions">
+          <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto%20de%20software%20a%20la%20medida%20con%20IA."
+             target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <i class="bi bi-whatsapp me-2"></i>Escríbeme por WhatsApp
+          </a>
+          <a href="mailto:hello@sruedadev.com?subject=Consulta%20software%20a%20la%20medida%20%2B%20IA" class="btn btn-outline-custom">
+            <i class="bi bi-envelope me-2"></i>Envíame un Correo
+          </a>
+        </div>
+        <div class="csa-final-perks">
+          <span><i class="bi bi-check2-circle"></i> Llamada gratuita de 30 min</span>
+          <span><i class="bi bi-check2-circle"></i> Sin compromisos</span>
+          <span><i class="bi bi-check2-circle"></i> NDA disponible si lo pides</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat SaaS Demo</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body { background:#f1f5f9; }
+
+/* SIDEBAR */
+.sidebar {
+  background:#0f172a;
+  color:white;
+  height:100vh;
+}
+
+.conversation {
+  padding:12px;
+  border-bottom:1px solid #1e293b;
+  cursor:pointer;
+}
+.conversation:hover { background:#1e293b; }
+.conversation.active { background:#2563eb; }
+
+.chat-box {
+  height:70vh;
+  overflow-y:auto;
+  background:white;
+  border-radius:10px;
+  padding:15px;
+}
+
+.message { margin-bottom:10px; }
+.user { text-align:right; }
+
+.bubble {
+  display:inline-block;
+  padding:10px 15px;
+  border-radius:20px;
+  max-width:70%;
+}
+
+.user .bubble { background:#2563eb; color:white; }
+.bot .bubble { background:#e2e8f0; }
+
+.header {
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+/* BOT FLOAT */
+.bot-button {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#2563eb;
+  color:white;
+  padding:15px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:20px;
+}
+
+.bot-box {
+  position:fixed;
+  bottom:80px;
+  right:20px;
+  width:300px;
+  background:white;
+  border-radius:10px;
+  display:none;
+  flex-direction:column;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.bot-header {
+  background:#2563eb;
+  color:white;
+  padding:10px;
+  border-radius:10px 10px 0 0;
+}
+
+.bot-messages {
+  height:200px;
+  overflow-y:auto;
+  padding:10px;
+}
+
+.bot-input {
+  display:flex;
+  border-top:1px solid #ddd;
+}
+
+.bot-input input {
+  border:none;
+  flex:1;
+  padding:10px;
+}
+
+.bot-input button {
+  border:none;
+  background:#2563eb;
+  color:white;
+  padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+<div class="row">
+
+<!-- CONVERSATIONS -->
+<div class="col-md-3 sidebar">
+  <h5 class="p-3">Conversaciones</h5>
+
+  <div class="conversation active" onclick="loadChat('Juan')">Juan (Web)</div>
+  <div class="conversation" onclick="loadChat('Maria')">Maria (WhatsApp)</div>
+  <div class="conversation" onclick="loadChat('Carlos')">Carlos (Instagram)</div>
+</div>
+
+<!-- CHAT -->
+<div class="col-md-9 p-3">
+
+  <div class="header d-flex justify-content-between">
+    <strong id="chatName">Juan</strong>
+    <span class="badge bg-success">Auto-Routed</span>
+  </div>
+
+  <div id="chatBox" class="chat-box"></div>
+
+  <div class="mt-3 d-flex">
+    <input id="input" class="form-control me-2" placeholder="Escribe...">
+    <button class="btn btn-primary" onclick="send()">Enviar</button>
+  </div>
+
+</div>
+
+</div>
+</div>
+
+<!-- BOT FLOAT -->
+<div class="bot-button" onclick="toggleBot()">🤖</div>
+
+<div class="bot-box" id="botBox">
+  <div class="bot-header">Asistente IA</div>
+  <div class="bot-messages" id="botMessages"></div>
+
+  <div class="bot-input">
+    <input id="botInput" placeholder="Pregúntame...">
+    <button onclick="sendBot()">➤</button>
+  </div>
+</div>
+
+<script>
+let currentUser = "Juan";
+
+const chats = {
+  Juan: ["Hola 👋", "Necesito precios"],
+  Maria: ["Hola desde WhatsApp 📱"],
+  Carlos: ["Vengo de Instagram 📸"]
+};
+
+// Load chat
+function loadChat(name) {
+  currentUser = name;
+  document.getElementById("chatName").innerText = name;
+
+  document.querySelectorAll(".conversation").forEach(c => c.classList.remove("active"));
+  event.target.classList.add("active");
+
+  renderChat();
+}
+
+// Render messages
+function renderChat() {
+  const box = document.getElementById("chatBox");
+  box.innerHTML = "";
+
+  chats[currentUser].forEach(msg => {
+    box.innerHTML += `<div class="message bot"><div class="bubble">${msg}</div></div>`;
+  });
+}
+
+// Send message
+function send() {
+  const input = document.getElementById("input");
+  const text = input.value.trim();
+  if (!text) return;
+
+  chats[currentUser].push(text);
+
+  document.getElementById("chatBox").innerHTML +=
+    `<div class="message user"><div class="bubble">${text}</div></div>`;
+
+  input.value = "";
+
+  setTimeout(() => {
+    let reply = "Te asignaremos un agente 👨‍💻";
+
+    if (text.includes("precio")) reply = "Plan desde $10 USD 💰";
+    if (text.includes("soporte")) reply = "Te movemos a WhatsApp 📱";
+
+    chats[currentUser].push(reply);
+
+    document.getElementById("chatBox").innerHTML +=
+      `<div class="message bot"><div class="bubble">${reply}</div></div>`;
+
+    document.getElementById("chatBox").scrollTop = 9999;
+
+  }, 1000);
+}
+
+// BOT FLOAT
+function toggleBot() {
+  const bot = document.getElementById("botBox");
+  bot.style.display = bot.style.display === "flex" ? "none" : "flex";
+}
+
+// BOT MESSAGE
+function sendBot() {
+  const input = document.getElementById("botInput");
+  const text = input.value.trim();
+  if (!text) return;
+
+  const box = document.getElementById("botMessages");
+
+  box.innerHTML += `<div class="message user"><div class="bubble">${text}</div></div>`;
+
+  input.value = "";
+
+  setTimeout(() => {
+    let reply = "Soy tu asistente 🤖";
+
+    if (text.includes("ventas")) reply = "Te recomiendo el plan PRO 🚀";
+    if (text.includes("api")) reply = "Integramos APIs fácilmente 🔌";
+
+    box.innerHTML += `<div class="message bot"><div class="bubble">${reply}</div></div>`;
+    box.scrollTop = 9999;
+
+  }, 800);
+}
+
+// Init
+renderChat();
+</script>
+
+</body>
+</html>

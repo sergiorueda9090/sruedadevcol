@@ -1,0 +1,173 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+
+{% block title %}{{ project.title }} — Caso de Estudio {{ project.category }} | Sergio Rueda{% endblock %}
+{% block meta_description %}{{ project.short_desc }} Construido por Sergio Rueda — desarrollador fullstack freelance.{% endblock %}
+{% block og_title %}{{ project.title }} — Caso de Estudio {{ project.category }}{% endblock %}
+{% block og_description %}{{ project.short_desc }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_image %}https://dev.sruedadev.com{% static project.image %}{% endblock %}
+{% block tw_image %}https://dev.sruedadev.com{% static project.image %}{% endblock %}
+{% block extra_jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "{{ project.title }}",
+  "headline": "{{ project.title }} — {{ project.category }}",
+  "description": "{{ project.long_desc|escapejs }}",
+  "image": "https://dev.sruedadev.com{% static project.image %}",
+  "url": "https://dev.sruedadev.com{{ request.path }}",
+  "datePublished": "{{ project.year }}",
+  "creator": { "@id": "https://dev.sruedadev.com/#business" },
+  "about": "{{ project.industry }}",
+  "keywords": "{% for t in project.tech_stack %}{{ t }}{% if not forloop.last %}, {% endif %}{% endfor %}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+  <!-- ============================================================
+       HERO DEL PROYECTO
+  ============================================================ -->
+  <section class="project-hero">
+    <div class="container">
+      <a href="{% url 'mainapp:index' %}#portfolio" class="project-back">
+        <i class="bi bi-arrow-left me-2"></i>Volver al Portafolio
+      </a>
+
+      <div class="row align-items-center g-5 mt-2">
+        <div class="col-lg-7">
+          <div class="project-badges mb-3">
+            <span class="project-category-badge">{{ project.category }}</span>
+            <span class="project-industry-badge">{{ project.industry }}</span>
+            <span class="project-live-badge"><span class="live-dot"></span> Demo en Vivo</span>
+          </div>
+          <h1 class="project-title">{{ project.title }}</h1>
+          <p class="project-long-desc">{{ project.long_desc }}</p>
+          <div class="project-tech-pills">
+            {% for tech in project.tech_stack %}
+              <span class="tech-pill"><i class="bi bi-check2 me-1"></i>{{ tech }}</span>
+            {% endfor %}
+          </div>
+          <div class="project-actions mt-4">
+            <a href="{% static project.html_file %}" target="_blank" rel="noopener" class="btn btn-primary-custom me-2 mb-2">
+              <i class="bi bi-box-arrow-up-right me-2"></i>Abrir Demo en Vivo
+            </a>
+            <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Vi%20el%20proyecto%20{{ project.title|urlencode }}%20y%20me%20gustar%C3%ADa%20algo%20similar%20para%20mi%20negocio."
+               target="_blank" rel="noopener" class="btn btn-outline-custom mb-2">
+              <i class="bi bi-whatsapp me-2"></i>Quiero algo similar
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="project-metric-card">
+            <span class="metric-label-top">Resultado Real</span>
+            <span class="metric-number">{{ project.highlight_metric }}</span>
+            <span class="metric-label">{{ project.highlight_label }}</span>
+            <div class="metric-divider"></div>
+            <div class="metric-meta">
+              <span><i class="bi bi-calendar3 me-1"></i>Entregado {{ project.year }}</span>
+              <span><i class="bi bi-check-circle-fill me-1"></i>Listo para producción</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IFRAME DEMO EN VIVO
+  ============================================================ -->
+  <section class="project-demo-section">
+    <div class="container-xl">
+      <div class="demo-frame-shell">
+        <div class="demo-frame-bar">
+          <div class="frame-dots">
+            <span class="frame-dot red"></span>
+            <span class="frame-dot yellow"></span>
+            <span class="frame-dot green"></span>
+          </div>
+          <div class="frame-url">
+            <i class="bi bi-lock-fill me-2"></i>{{ project.slug }}.sruedadev.com
+          </div>
+          <a href="{% static project.html_file %}" target="_blank" rel="noopener" class="frame-fullscreen" title="Abrir en nueva pestaña">
+            <i class="bi bi-arrows-fullscreen"></i>
+          </a>
+        </div>
+        <iframe src="{% static project.html_file %}"
+                class="project-iframe"
+                title="Demo en vivo de {{ project.title }}"
+                loading="lazy"></iframe>
+      </div>
+      <p class="demo-caption">
+        <i class="bi bi-info-circle me-1 teal-text"></i>
+        Este es el proyecto real en vivo — totalmente interactivo. Haz scroll, da clic, llena formularios, pruébalo.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BARRA DE CONFIANZA
+  ============================================================ -->
+  <section class="project-trust-bar">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-md-3 col-6">
+          <div class="trust-item">
+            <i class="bi bi-shield-check"></i>
+            <span class="trust-label">Con SSL</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="trust-item">
+            <i class="bi bi-phone"></i>
+            <span class="trust-label">Optimizado para móvil</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="trust-item">
+            <i class="bi bi-lightning-charge"></i>
+            <span class="trust-label">Listo para SEO</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="trust-item">
+            <i class="bi bi-cloud-check"></i>
+            <span class="trust-label">Desplegable en AWS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA FINAL
+  ============================================================ -->
+  <section class="project-cta-bottom section-padding">
+    <div class="container">
+      <div class="project-cta-box">
+        <div class="row align-items-center">
+          <div class="col-lg-8 mb-4 mb-lg-0">
+            <p class="section-tag">Tu turno</p>
+            <h2 class="project-cta-title">¿Quieres algo <span class="accent">como esto</span> para tu negocio?</h2>
+            <p class="project-cta-desc">
+              Puedo entregar un proyecto similar — totalmente personalizado a tu marca, contenido y objetivos — en 2 a 4 semanas.
+              Sin agencias, sin intermediarios. Solo un desarrollador senior que entrega.
+            </p>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Vi%20el%20proyecto%20{{ project.title|urlencode }}%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20algo%20similar."
+               target="_blank" rel="noopener" class="btn btn-whatsapp d-block mb-3">
+              <i class="bi bi-whatsapp me-2"></i>Empezar una Conversación
+            </a>
+            <a href="{% url 'mainapp:index' %}#portfolio" class="btn btn-outline-custom d-block">
+              <i class="bi bi-grid-3x3-gap me-2"></i>Ver más Proyectos
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
