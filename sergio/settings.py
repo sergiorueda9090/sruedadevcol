@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Django respeta el esquema HTTPS pasado por el proxy
-CSRF_TRUSTED_ORIGINS = ['https://dev.sruedadev.com']
+CSRF_TRUSTED_ORIGINS = ['https://col.sruedadev.com']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 # Application definition
