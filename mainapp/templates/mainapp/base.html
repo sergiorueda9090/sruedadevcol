@@ -55,42 +55,20 @@
   <!-- End Google Tag Manager -->
   {% endif %}
 
-  {% if GA4_MEASUREMENT_ID %}
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA4_MEASUREMENT_ID }}"></script>
+  <!-- ============================================================
+       Google tag (gtag.js) — Google Ads + GA4
+       Consent Mode v2 ya está cargado arriba.
+  ============================================================ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17226987245"></script>
   <script>
     gtag('js', new Date());
-    gtag('config', '{{ GA4_MEASUREMENT_ID }}', { 'anonymize_ip': true });
-  </script>
-  {% endif %}
 
-  {% if GOOGLE_ADS_ID %}
-  <!-- Google Ads -->
-  {% if not GA4_MEASUREMENT_ID %}
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ADS_ID }}"></script>
-  <script>gtag('js', new Date());</script>
-  {% endif %}
-  <script>gtag('config', '{{ GOOGLE_ADS_ID }}');</script>
-  <!-- Google Ads conversion event: page view -->
-  <script>
-    gtag('event', 'ads_conversion_PAGE_VIEW_1', {});
+    // Google Ads
+    gtag('config', 'AW-17226987245');
+
+    // Google Analytics 4
+    gtag('config', 'G-398CX1LFFX');
   </script>
-  <!-- Google tag (gtag.js) event - delayed navigation helper -->
-  <script>
-    function gtagSendEvent(url) {
-      var callback = function () {
-        if (typeof url === 'string') {
-          window.location = url;
-        }
-      };
-      gtag('event', 'ads_conversion_PAGE_VIEW_1', {
-        'event_callback': callback,
-        'event_timeout': 2000,
-      });
-      return false;
-    }
-  </script>
-  {% endif %}
 
   <!-- Geo hints -->
   <meta name="geo.region" content="CO" />
