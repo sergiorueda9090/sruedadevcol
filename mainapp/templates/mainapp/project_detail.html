@@ -55,8 +55,7 @@
               <i class="bi bi-box-arrow-up-right me-2"></i>Abrir Demo en Vivo
             </a>
             <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Vi%20el%20proyecto%20{{ project.title|urlencode }}%20y%20me%20gustar%C3%ADa%20algo%20similar%20para%20mi%20negocio."
-               target="_blank" rel="noopener" class="btn btn-outline-custom mb-2"
-               onclick="gtag('event', 'click_whatsapp', {'ubicacion': 'hero_proyecto'});">
+               target="_blank" rel="noopener" class="btn btn-outline-custom mb-2">
               <i class="bi bi-whatsapp me-2"></i>Quiero algo similar
             </a>
           </div>
@@ -160,8 +159,7 @@
           </div>
           <div class="col-lg-4 text-lg-end">
             <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Vi%20el%20proyecto%20{{ project.title|urlencode }}%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20algo%20similar."
-               target="_blank" rel="noopener" class="btn btn-whatsapp d-block mb-3"
-               onclick="gtag('event', 'click_whatsapp', {'ubicacion': 'cta_final_proyecto'});">
+               target="_blank" rel="noopener" class="btn btn-whatsapp d-block mb-3">
               <i class="bi bi-whatsapp me-2"></i>Empezar una Conversación
             </a>
             <a href="{% url 'mainapp:index' %}#portfolio" class="btn btn-outline-custom d-block">

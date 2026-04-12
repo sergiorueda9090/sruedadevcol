@@ -15,8 +15,7 @@
 
       <div class="mt-5">
         <a id="waFallback" href="{{ wa_url|default:'https://wa.me/573506240534' }}"
-           class="btn btn-primary-custom" target="_blank" rel="noopener"
-           onclick="gtag('event', 'click_whatsapp', {'ubicacion': 'gracias'});">
+           class="btn btn-primary-custom" target="_blank" rel="noopener">
           <i class="bi bi-whatsapp me-2"></i>Abrir WhatsApp
         </a>
         <a href="{% url 'mainapp:index' %}" class="btn btn-outline-custom ms-2">
@@ -41,6 +40,9 @@
         'tipo': 'lead_footer',
         'fuente': 'tiendas_online'
       });
+      console.log('✅ enviar_formulario disparado a GA4');
+    } else {
+      console.error('❌ gtag NO está definido en /gracias/');
     }
 
     // Auto-open WhatsApp after a short delay (gives tags time to fire)

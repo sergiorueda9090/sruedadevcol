@@ -407,9 +407,9 @@
       push('cta_click', { cta_id: tracked, cta_href: href });
     }
     if (href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp.com') !== -1) {
-      push('whatsapp_click', { link_url: href });
+      push('click_whatsapp', { link_url: href });
     } else if (href.indexOf('tel:') === 0) {
-      push('phone_click', { link_url: href });
+      push('click_telefono', { link_url: href });
     } else if (href.indexOf('mailto:') === 0) {
       push('email_click', { link_url: href });
     }
