@@ -281,11 +281,11 @@
           <div class="col-lg-2 col-md-3 col-6">
             <h6 class="footer-heading">Servicios</h6>
             <ul class="footer-links">
-              <li><a href="{% section_link 'services' %}">Landing Pages</a></li>
-              <li><a href="{% section_link 'services' %}">E-commerce</a></li>
-              <li><a href="{% section_link 'services' %}">Sitios Corporativos</a></li>
+              <li><a href="{% url 'mainapp:landing_pages' %}">Landing Pages</a></li>
+              <li><a href="{% url 'mainapp:tiendas_online' %}">Tiendas Online</a></li>
+              <li><a href="{% url 'mainapp:software_medida' %}">Software a la Medida</a></li>
               <li><a href="{% url 'mainapp:api_services' %}">Desarrollo de APIs</a></li>
-              <li><a href="{% url 'mainapp:software_ai_services' %}">Software a la Medida + IA</a></li>
+              <li><a href="{% url 'mainapp:software_ai_services' %}">Software + IA</a></li>
               <li><a href="{% section_link 'services' %}">Despliegue en AWS</a></li>
             </ul>
           </div>

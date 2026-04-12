@@ -1,0 +1,230 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+
+{% block title %}Crear Tienda Online a la Medida en Colombia | Sergio Rueda{% endblock %}
+{% block meta_description %}Desarrollo de tiendas online y ecommerce a la medida en Colombia. Pasarelas Mercado Pago, Wompi y PayU, gestión de inventario, panel de pedidos y tracking de ventas.{% endblock %}
+{% block meta_keywords %}crear tienda online, desarrollo tienda virtual, tienda online colombia, ecommerce a la medida, tienda online con mercado pago, diseño de tienda virtual, ecommerce colombia, tienda online wompi{% endblock %}
+{% block og_title %}Desarrollo de Tiendas Online a la Medida | Sergio Rueda{% endblock %}
+{% block og_description %}Tiendas virtuales a la medida con Mercado Pago, Wompi y PayU. Inventario, pedidos, envíos y tracking de ventas. Construidas para vender, no solo para verse bien.{% endblock %}
+{% block og_type %}service{% endblock %}
+{% block extra_jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Desarrollo de Tiendas Online y E-commerce",
+  "name": "Desarrollo de Tiendas Online a la Medida",
+  "provider": { "@id": "https://dev.sruedadev.com/#business" },
+  "areaServed": { "@type": "Country", "name": "Colombia" },
+  "description": "Desarrollo de tiendas virtuales a la medida en Colombia con integración a Mercado Pago, Wompi y PayU. Gestión de inventario, pedidos, envíos y reportes de ventas.",
+  "url": "https://dev.sruedadev.com{{ request.path }}",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "COP",
+    "price": "3500000",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+  <section class="api-hero">
+    <div class="api-hero-shapes" aria-hidden="true">
+      <div class="api-shape api-shape-1"></div>
+      <div class="api-shape api-shape-2"></div>
+    </div>
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <p class="api-eyebrow">Tiendas Online y E-commerce</p>
+          <h1 class="api-h1">Tu tienda online <span class="accent">vendiendo en 3 semanas.</span></h1>
+          <p class="api-lead">
+            Desarrollo tiendas virtuales a la medida en Colombia con pasarelas
+            Mercado Pago, Wompi y PayU. Inventario, pedidos, envíos, cupones y reportes
+            de ventas — todo en un panel que tú controlas, sin pagar mensualidades a Shopify.
+          </p>
+          <div class="api-hero-actions mt-4">
+            <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Quiero%20crear%20una%20tienda%20online%20para%20mi%20negocio."
+               target="_blank" rel="noopener" class="btn btn-primary-custom me-2 mb-2">
+              <i class="bi bi-whatsapp me-2"></i>Cotizar mi tienda online
+            </a>
+            <a href="#ec-faq" class="btn btn-outline-custom mb-2">Ver detalles</a>
+          </div>
+          <div class="api-trust-strip mt-4">
+            <span><i class="bi bi-credit-card-2-front-fill"></i> Mercado Pago, Wompi, PayU</span>
+            <span><i class="bi bi-box-seam"></i> Inventario y pedidos</span>
+            <span><i class="bi bi-truck"></i> Envíos integrados</span>
+            <span><i class="bi bi-graph-up-arrow"></i> Reportes de ventas</span>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="api-hero-card">
+            <div class="api-hero-card-header">
+              <span class="frame-dot red"></span>
+              <span class="frame-dot yellow"></span>
+              <span class="frame-dot green"></span>
+              <span class="api-hero-card-title">tienda.tunegocio.co</span>
+            </div>
+            <pre class="api-hero-code"><code><span class="cm">// dashboard de ventas</span>
+{
+  <span class="str">"ventasHoy"</span>:        <span class="str">"$1.840.000"</span>,
+  <span class="str">"pedidosNuevos"</span>:    <span class="num">23</span>,
+  <span class="str">"productosActivos"</span>: <span class="num">147</span>,
+  <span class="str">"stockBajo"</span>:        <span class="num">4</span>,
+  <span class="str">"pasarela"</span>:         <span class="str">"Mercado Pago"</span>,
+  <span class="str">"comision"</span>:         <span class="str">"3.49%"</span>
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="api-section api-what">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Qué Incluye</p>
+        <h2 class="section-title">Una tienda online <span class="accent">completa</span> desde el día uno.</h2>
+      </div>
+
+      <div class="api-card-grid">
+        <div class="api-card"><div class="api-card-icon green-glow"><i class="bi bi-bag-fill"></i></div><h4>Catálogo de productos</h4><p>Categorías, variantes (talla, color), galerías, descripciones SEO, productos relacionados y buscador interno con filtros.</p></div>
+        <div class="api-card"><div class="api-card-icon purple-glow"><i class="bi bi-credit-card-2-front-fill"></i></div><h4>Pasarelas locales</h4><p>Mercado Pago, Wompi, PayU, ePayco. PSE, tarjeta, Nequi, Daviplata, contra entrega. Tu cliente paga como prefiera.</p></div>
+        <div class="api-card"><div class="api-card-icon teal-glow"><i class="bi bi-box-seam-fill"></i></div><h4>Inventario en vivo</h4><p>Stock actualizado en cada venta, alertas por bajo inventario, control de bodegas y movimientos manuales.</p></div>
+        <div class="api-card"><div class="api-card-icon green-glow"><i class="bi bi-truck"></i></div><h4>Cálculo de envíos</h4><p>Integración con Servientrega, Envia, Coordinadora o tarifas por ciudad/peso. Generación de guías desde el panel.</p></div>
+        <div class="api-card"><div class="api-card-icon purple-glow"><i class="bi bi-tags-fill"></i></div><h4>Cupones y descuentos</h4><p>Códigos promocionales, descuentos por categoría, ofertas con fecha de expiración y precios mayoristas.</p></div>
+        <div class="api-card"><div class="api-card-icon teal-glow"><i class="bi bi-bar-chart-fill"></i></div><h4>Reportes y analítica</h4><p>Ventas por día/mes, productos más vendidos, ticket promedio, GA4 ecommerce, eventos de Google Ads y Meta Pixel.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="api-section api-process">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Proceso</p>
+        <h2 class="section-title">De idea a tienda <span class="accent">en 3 semanas.</span></h2>
+      </div>
+      <div class="api-process-timeline">
+        <div class="api-step"><div class="api-step-num">1</div><h5>Semana 0 — Brief</h5><p>Productos, métodos de pago, envíos, categorías, branding y métricas de éxito.</p></div>
+        <div class="api-step"><div class="api-step-num">2</div><h5>Semana 1 — Diseño</h5><p>Mockups del home, catálogo, ficha de producto, carrito y checkout. Aprobación tuya.</p></div>
+        <div class="api-step"><div class="api-step-num">3</div><h5>Semana 2 — Desarrollo</h5><p>Construyo tienda + panel admin. Integro pasarela y envíos. Cargo tus primeros 20 productos.</p></div>
+        <div class="api-step"><div class="api-step-num">4</div><h5>Semana 3 — Pruebas y lanzamiento</h5><p>Pruebas de pago real, capacitación, despliegue en tu dominio, SSL, sitemap y tracking.</p></div>
+        <div class="api-step"><div class="api-step-num">5</div><h5>Post-lanzamiento</h5><p>30 días de soporte sin costo: ajustes, dudas y arreglos de bugs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="api-section api-stack">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Stack Tecnológico</p>
+        <h2 class="section-title">Construida sobre <span class="accent">tecnología seria.</span></h2>
+      </div>
+      <div class="api-stack-grid">
+        <div class="api-stack-col"><h6><i class="bi bi-server me-2 teal-text"></i>Backend</h6><div class="api-stack-pills"><span>Django</span><span>Python</span><span>PostgreSQL</span></div></div>
+        <div class="api-stack-col"><h6><i class="bi bi-window me-2 teal-text"></i>Frontend</h6><div class="api-stack-pills"><span>HTML5</span><span>Bootstrap 5</span><span>JavaScript</span><span>HTMX opcional</span></div></div>
+        <div class="api-stack-col"><h6><i class="bi bi-credit-card me-2 teal-text"></i>Pagos y envíos</h6><div class="api-stack-pills"><span>Mercado Pago</span><span>Wompi</span><span>PayU</span><span>ePayco</span><span>Servientrega</span></div></div>
+        <div class="api-stack-col"><h6><i class="bi bi-cloud-arrow-up me-2 teal-text"></i>Hosting</h6><div class="api-stack-pills"><span>AWS</span><span>DigitalOcean</span><span>Hostinger VPS</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="api-section api-industries">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Inversión</p>
+        <h2 class="section-title">Precios <span class="accent">claros.</span></h2>
+        <p class="section-subtitle">Pagas una sola vez. La tienda es 100% tuya, sin mensualidades a terceros (solo hosting).</p>
+      </div>
+      <div class="api-card-grid">
+        <div class="api-card">
+          <h4>Tienda Starter</h4>
+          <p style="font-size:1.6rem;font-weight:700" class="accent">desde $3.500.000 COP</p>
+          <p>Para negocios que están empezando a vender online y necesitan una tienda funcional sin complicaciones.</p>
+          <ul class="api-card-list">
+            <li><i class="bi bi-check2 teal-text me-2"></i>Hasta 50 productos cargados</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>1 pasarela de pago (Mercado Pago, Wompi o PayU)</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Categorías y buscador interno</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Carrito y checkout optimizado</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Envío con tarifa fija o por ciudad</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Panel admin para gestionar pedidos</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Diseño 100% responsive</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>SSL y dominio configurado</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Capacitación para tu equipo</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>30 días de soporte tras lanzamiento</li>
+          </ul>
+        </div>
+        <div class="api-card">
+          <h4>Tienda Pro</h4>
+          <p style="font-size:1.1rem;font-weight:600" class="accent">Cotización personalizada</p>
+          <p>Para negocios con catálogo amplio que quieren convertir mejor con marketing avanzado y métricas reales.</p>
+          <ul class="api-card-list">
+            <li><i class="bi bi-check2 teal-text me-2"></i>Todo lo del plan Starter</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Productos ilimitados</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Variantes (talla, color, material)</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>2 pasarelas de pago activas</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Cálculo de envíos por ciudad/peso</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Cupones y descuentos por categoría</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Productos relacionados y recomendaciones</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>GA4 ecommerce con eventos de compra</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Meta Pixel y Google Ads conversiones</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Reportes de ventas y stock bajo</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Recuperación de carritos abandonados</li>
+          </ul>
+        </div>
+        <div class="api-card">
+          <h4>Tienda Premium</h4>
+          <p style="font-size:1.1rem;font-weight:600" class="accent">Cotización personalizada</p>
+          <p>Para empresas con operación compleja: múltiples bodegas, ventas mayoristas y necesidad de integraciones con sistemas internos.</p>
+          <ul class="api-card-list">
+            <li><i class="bi bi-check2 teal-text me-2"></i>Todo lo del plan Pro</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Multi-bodega con stock por ubicación</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Cuentas B2B y precios mayoristas</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Múltiples niveles de precios por cliente</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Integración con CRM (HubSpot, Salesforce)</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Integración con ERP o contabilidad</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Facturación electrónica DIAN (Siigo, Alegra)</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>App móvil ligera para clientes</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Diseño de marca personalizado</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Migración de tienda existente</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Capacitación extendida del equipo</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Soporte prioritario los primeros 60 días</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ec-faq" class="api-section api-faq">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Preguntas Frecuentes</p>
+        <h2 class="section-title">Preguntas <span class="accent">frecuentes.</span></h2>
+      </div>
+      <div class="accordion api-accordion mx-auto" id="ecFaqAccordion">
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#ecfaq1">¿Por qué a la medida y no Shopify o WooCommerce?</button></h2><div id="ecfaq1" class="accordion-collapse collapse show" data-bs-parent="#ecFaqAccordion"><div class="accordion-body">Shopify cobra <strong>mensualidad + comisión</strong> de por vida y limita lo que puedes personalizar. WooCommerce parece gratis pero termina costándote en plugins, hosting lento y mantenimiento. Una tienda a la medida la pagas <strong>una sola vez</strong>, es tuya 100%, no tiene mensualidades extras y se adapta exactamente a tu operación.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ecfaq2">¿Qué pasarelas de pago integras?</button></h2><div id="ecfaq2" class="accordion-collapse collapse" data-bs-parent="#ecFaqAccordion"><div class="accordion-body">Mercado Pago, Wompi, PayU, ePayco, Stripe y PayPal. Si necesitas pago contra entrega también lo configuro. Recomiendo combinar 2 pasarelas para no perder ventas si una falla.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ecfaq3">¿Quién carga los productos?</button></h2><div id="ecfaq3" class="accordion-collapse collapse" data-bs-parent="#ecFaqAccordion"><div class="accordion-body">Yo cargo los primeros <strong>20 productos</strong> como muestra y te capacito para que cargues el resto. El panel admin está pensado para que cualquier persona del equipo pueda usarlo sin saber código.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ecfaq4">¿Y si después necesito cambios?</button></h2><div id="ecfaq4" class="accordion-collapse collapse" data-bs-parent="#ecFaqAccordion"><div class="accordion-body">Tienes <strong>30 días gratis</strong> de soporte después del lanzamiento. Después puedes contratar mantenimiento mensual o pagar cambios puntuales por hora. Tú decides.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ecfaq5">¿Mi tienda va a salir en Google?</button></h2><div id="ecfaq5" class="accordion-collapse collapse" data-bs-parent="#ecFaqAccordion"><div class="accordion-body">Sí. Cada tienda incluye SEO técnico: URLs limpias, meta tags por producto, sitemap automático, datos estructurados de Producto y Oferta, y velocidad optimizada. El posicionamiento orgánico depende también del contenido y backlinks, pero arrancas con la base correcta.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="api-section api-final-cta">
+    <div class="container">
+      <div class="api-final-box">
+        <p class="section-tag">¿Listo para vender online?</p>
+        <h2 class="api-final-title">Cotiza tu tienda <span class="accent">hoy.</span></h2>
+        <p class="api-final-desc">Cuéntame qué vendes en una llamada de 15 minutos y te paso una cotización formal en 24 horas.</p>
+        <div class="api-final-actions">
+          <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Quiero%20cotizar%20una%20tienda%20online." target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="bi bi-whatsapp me-2"></i>Cotizar por WhatsApp</a>
+          <a href="mailto:hello@sruedadev.com?subject=Cotizaci%C3%B3n%20tienda%20online" class="btn btn-outline-custom"><i class="bi bi-envelope me-2"></i>Enviar correo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

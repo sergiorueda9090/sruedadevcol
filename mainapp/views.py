@@ -32,6 +32,18 @@ def software_ai_services(request):
     return render(request, 'mainapp/services/custom_software_ai.html')
 
 
+def landing_pages(request):
+    return render(request, 'mainapp/services/landing_pages.html')
+
+
+def tiendas_online(request):
+    return render(request, 'mainapp/services/tiendas_online.html')
+
+
+def software_medida(request):
+    return render(request, 'mainapp/services/software_medida.html')
+
+
 # ----------------------------------------------------------------
 # Lead capture — POST → save → redirect to /gracias/ (conversion page).
 # The thank-you page fires the Google Ads conversion event, then opens
@@ -130,6 +142,9 @@ def robots_txt(request):
 def sitemap_xml(request):
     urls = [
         (reverse('mainapp:index'), "1.0", "weekly"),
+        (reverse('mainapp:landing_pages'), "0.9", "monthly"),
+        (reverse('mainapp:tiendas_online'), "0.9", "monthly"),
+        (reverse('mainapp:software_medida'), "0.9", "monthly"),
         (reverse('mainapp:api_services'), "0.9", "monthly"),
         (reverse('mainapp:software_ai_services'), "0.9", "monthly"),
         (reverse('mainapp:privacidad'), "0.3", "yearly"),

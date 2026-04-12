@@ -1,0 +1,216 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+
+{% block title %}Desarrollo de Software a la Medida en Colombia | Sergio Rueda{% endblock %}
+{% block meta_description %}Desarrollo de software a la medida en Colombia. Sistemas internos, automatización, APIs REST y aplicaciones web con Django y Python. Programador freelance con 11+ años de experiencia.{% endblock %}
+{% block meta_keywords %}desarrollo de software a la medida, software a la medida colombia, desarrollador freelance colombia, desarrollo de api rest, programador django freelance, programador python colombia, software empresarial a la medida{% endblock %}
+{% block og_title %}Desarrollo de Software a la Medida | Sergio Rueda{% endblock %}
+{% block og_description %}Sistemas internos, automatización de procesos, APIs REST y aplicaciones web a la medida. Django, Python, AWS. Desarrollador freelance senior en Colombia.{% endblock %}
+{% block og_type %}service{% endblock %}
+{% block extra_jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Desarrollo de Software a la Medida",
+  "name": "Desarrollo de Software a la Medida en Colombia",
+  "provider": { "@id": "https://dev.sruedadev.com/#business" },
+  "areaServed": { "@type": "Country", "name": "Colombia" },
+  "description": "Desarrollo de software empresarial a la medida en Colombia: sistemas internos, automatización, APIs REST y aplicaciones web con Django y Python.",
+  "url": "https://dev.sruedadev.com{{ request.path }}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+  <section class="api-hero">
+    <div class="api-hero-shapes" aria-hidden="true">
+      <div class="api-shape api-shape-1"></div>
+      <div class="api-shape api-shape-2"></div>
+    </div>
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <p class="api-eyebrow">Software a la Medida</p>
+          <h1 class="api-h1">Software hecho <span class="accent">para tu operación.</span></h1>
+          <p class="api-lead">
+            Desarrollo software a la medida en Colombia: sistemas internos,
+            automatización de procesos, APIs REST y aplicaciones web. Construido
+            con Django, Python y AWS por un programador freelance con más de 11
+            años entregando soluciones reales en producción.
+          </p>
+          <div class="api-hero-actions mt-4">
+            <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Necesito%20software%20a%20la%20medida%20para%20mi%20empresa."
+               target="_blank" rel="noopener" class="btn btn-primary-custom me-2 mb-2">
+              <i class="bi bi-whatsapp me-2"></i>Agendar consultoría
+            </a>
+            <a href="#sw-faq" class="btn btn-outline-custom mb-2">Ver detalles</a>
+          </div>
+          <div class="api-trust-strip mt-4">
+            <span><i class="bi bi-patch-check-fill"></i> 11+ años de experiencia</span>
+            <span><i class="bi bi-code-slash"></i> Python · Django · AWS</span>
+            <span><i class="bi bi-shield-lock"></i> Nivel producción</span>
+            <span><i class="bi bi-globe2"></i> Remoto Colombia</span>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="api-hero-card">
+            <div class="api-hero-card-header">
+              <span class="frame-dot red"></span>
+              <span class="frame-dot yellow"></span>
+              <span class="frame-dot green"></span>
+              <span class="api-hero-card-title">app.tuempresa.co</span>
+            </div>
+            <pre class="api-hero-code"><code><span class="cm"># models.py</span>
+<span class="kw">class</span> <span class="str">Pedido</span>(models.Model):
+    cliente   = models.ForeignKey(<span class="str">Cliente</span>)
+    items     = models.JSONField()
+    estado    = models.CharField(choices=ESTADOS)
+    creado    = models.DateTimeField(auto_now_add=<span class="num">True</span>)
+
+    <span class="kw">def</span> <span class="str">facturar</span>(<span class="kw">self</span>):
+        <span class="cm"># integración DIAN</span>
+        <span class="kw">return</span> dian.emitir(<span class="kw">self</span>)</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="api-section api-what">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Qué Construyo</p>
+        <h2 class="section-title">Soluciones a la medida <span class="accent">para problemas reales.</span></h2>
+        <p class="section-subtitle">Si tu operación se gestiona con Excel, WhatsApp y memoria — hay algo que automatizar.</p>
+      </div>
+
+      <div class="api-card-grid">
+        <div class="api-card"><div class="api-card-icon green-glow"><i class="bi bi-building-gear"></i></div><h4>Sistemas internos (ERP/CRM)</h4><p>Gestión de clientes, pedidos, inventario, facturación, recursos humanos o cualquier flujo específico de tu empresa. Sin pagar licencias mensuales.</p></div>
+        <div class="api-card"><div class="api-card-icon purple-glow"><i class="bi bi-arrow-repeat"></i></div><h4>Automatización de procesos</h4><p>Bots, scripts y workflows que eliminan tareas manuales: importar Excels, generar reportes, enviar facturas, sincronizar sistemas, descargar datos web.</p></div>
+        <div class="api-card"><div class="api-card-icon teal-glow"><i class="bi bi-hdd-network-fill"></i></div><h4>APIs REST</h4><p>APIs documentadas en OpenAPI para conectar tu software con apps móviles, webs externas, terceros o equipos internos. Auth, rate limit, versionado.</p></div>
+        <div class="api-card"><div class="api-card-icon green-glow"><i class="bi bi-window-stack"></i></div><h4>Aplicaciones web</h4><p>Plataformas SaaS, dashboards admin, portales B2B, herramientas internas. Multi-usuario, multi-rol, multi-tenant si lo necesitas.</p></div>
+        <div class="api-card"><div class="api-card-icon purple-glow"><i class="bi bi-robot"></i></div><h4>Integraciones con IA</h4><p>OpenAI, Claude, n8n. Clasificación de leads, resúmenes automáticos, asistentes internos, búsqueda inteligente sobre tus propios documentos.</p></div>
+        <div class="api-card"><div class="api-card-icon teal-glow"><i class="bi bi-arrow-left-right"></i></div><h4>Integraciones DIAN, Siigo, Alegra</h4><p>Conecto tu software con facturación electrónica, contabilidad y bancos en Colombia. Webhooks, sincronización y trazabilidad.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="api-section api-process">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Mi Proceso</p>
+        <h2 class="section-title">Predecible <span class="accent">de inicio a fin.</span></h2>
+      </div>
+      <div class="api-process-timeline">
+        <div class="api-step"><div class="api-step-num">1</div><h5>Descubrimiento</h5><p>Llamada de 60 min: mapeo tus procesos actuales, dolores y prioridades. Salgo con un alcance claro.</p></div>
+        <div class="api-step"><div class="api-step-num">2</div><h5>Propuesta escrita</h5><p>Cronograma, hitos, precio fijo o por hora, entregables y criterios de aceptación firmados.</p></div>
+        <div class="api-step"><div class="api-step-num">3</div><h5>Sprints semanales</h5><p>Demo cada viernes con avance real. Tú decides qué entra al próximo sprint. Sin sorpresas.</p></div>
+        <div class="api-step"><div class="api-step-num">4</div><h5>Pruebas y QA</h5><p>Tests automáticos, pruebas de carga y QA manual con tu equipo antes de salir a producción.</p></div>
+        <div class="api-step"><div class="api-step-num">5</div><h5>Despliegue + capacitación</h5><p>Despliegue en AWS o tu nube preferida, documentación, capacitación al equipo y soporte post-lanzamiento.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="api-section api-stack">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Stack Tecnológico</p>
+        <h2 class="section-title">Tecnologías <span class="accent">probadas.</span></h2>
+      </div>
+      <div class="api-stack-grid">
+        <div class="api-stack-col"><h6><i class="bi bi-code-square me-2 teal-text"></i>Lenguajes</h6><div class="api-stack-pills"><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>SQL</span></div></div>
+        <div class="api-stack-col"><h6><i class="bi bi-layers me-2 teal-text"></i>Frameworks</h6><div class="api-stack-pills"><span>Django</span><span>Django REST</span><span>FastAPI</span><span>React</span><span>HTMX</span></div></div>
+        <div class="api-stack-col"><h6><i class="bi bi-database me-2 teal-text"></i>Bases de datos</h6><div class="api-stack-pills"><span>PostgreSQL</span><span>MySQL</span><span>SQLite</span><span>Redis</span></div></div>
+        <div class="api-stack-col"><h6><i class="bi bi-cloud-arrow-up me-2 teal-text"></i>Infraestructura</h6><div class="api-stack-pills"><span>AWS</span><span>EC2</span><span>RDS</span><span>S3</span><span>Lambda</span><span>Docker</span><span>GitHub Actions</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="api-section api-industries">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Modelos de Trabajo</p>
+        <h2 class="section-title">Cómo <span class="accent">cobro.</span></h2>
+        <p class="section-subtitle">Tres formas. Tú eliges la que mejor encaja con tu proyecto.</p>
+      </div>
+      <div class="api-card-grid">
+        <div class="api-card">
+          <h4>Por hora</h4>
+          <p style="font-size:1.6rem;font-weight:700" class="accent">$40.000 COP / hora</p>
+          <p>Pagas solo lo que se trabaja. Ideal para mejoras puntuales, mantenimiento, bug fixes o proyectos exploratorios donde el alcance aún no está claro.</p>
+          <ul class="api-card-list">
+            <li><i class="bi bi-check2 teal-text me-2"></i>Reporte semanal de horas trabajadas</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Sin compromiso mínimo de horas</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Entregables visibles cada semana</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Acceso al repositorio desde el día uno</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Comunicación directa por WhatsApp / Slack</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Facturación mensual</li>
+          </ul>
+        </div>
+        <div class="api-card">
+          <h4>Por proyecto (precio fijo)</h4>
+          <p style="font-size:1.1rem;font-weight:600" class="accent">Cotización personalizada</p>
+          <p>Cuando ya sabes qué necesitas y quieres cerrar el alcance antes de empezar. Cronograma definido, entregables claros y precio fijo escrito en el contrato.</p>
+          <ul class="api-card-list">
+            <li><i class="bi bi-check2 teal-text me-2"></i>Propuesta escrita con cronograma</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Entregables y criterios de aceptación firmados</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Sprints semanales con demo cada viernes</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>50% al iniciar, 50% a la entrega</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Tests automáticos y QA antes de salir a producción</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Despliegue en tu cuenta de AWS</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Capacitación y documentación incluidas</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>30 días de garantía sobre bugs</li>
+          </ul>
+        </div>
+        <div class="api-card">
+          <h4>Retainer mensual</h4>
+          <p style="font-size:1.1rem;font-weight:600" class="accent">Cotización personalizada</p>
+          <p>Para empresas con software en producción que necesitan un desarrollador disponible cada mes para mejoras, soporte y nuevas features.</p>
+          <ul class="api-card-list">
+            <li><i class="bi bi-check2 teal-text me-2"></i>Bloque fijo de horas al mes</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Prioridad de respuesta sobre clientes por hora</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Reuniones semanales de seguimiento</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Monitoreo de errores (Sentry, CloudWatch)</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Parches de seguridad y actualizaciones</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Backups verificados periódicamente</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Reporte mensual de horas y trabajo realizado</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Cancelación con 30 días de aviso</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sw-faq" class="api-section api-faq">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Preguntas Frecuentes</p>
+        <h2 class="section-title">Preguntas <span class="accent">frecuentes.</span></h2>
+      </div>
+      <div class="accordion api-accordion mx-auto" id="swFaqAccordion">
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#swfaq1">¿Cuánto cuesta un software a la medida?</button></h2><div id="swfaq1" class="accordion-collapse collapse show" data-bs-parent="#swFaqAccordion"><div class="accordion-body">Depende del alcance. Un MVP funcional arranca en <strong>$5.000.000 COP</strong>. Sistemas internos completos suelen ir entre <strong>$15M y $40M COP</strong>. Te entrego una propuesta escrita con cronograma y precio fijo después de la llamada de descubrimiento — gratis y sin compromiso.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#swfaq2">¿De quién es el código?</button></h2><div id="swfaq2" class="accordion-collapse collapse" data-bs-parent="#swFaqAccordion"><div class="accordion-body"><strong>Tuyo, 100%.</strong> El repositorio se entrega en tu cuenta de GitHub/GitLab, el servidor en tu cuenta de AWS y conservas todas las credenciales root. Nada queda atado a mí.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#swfaq3">¿Trabajas con empresas fuera de Bucaramanga?</button></h2><div id="swfaq3" class="accordion-collapse collapse" data-bs-parent="#swFaqAccordion"><div class="accordion-body">Sí. Trabajo 100% remoto con clientes en toda Colombia (Bogotá, Medellín, Cali, Barranquilla, Cartagena, Bucaramanga, etc.) y también LATAM, España y EE.UU. Reuniones por Google Meet, soporte por Slack/WhatsApp.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#swfaq4">¿Firmas NDA?</button></h2><div id="swfaq4" class="accordion-collapse collapse" data-bs-parent="#swFaqAccordion"><div class="accordion-body">Sí. Firmo NDA antes de cualquier llamada técnica si lo necesitas. También firmo contrato de servicios estándar antes de iniciar el desarrollo.</div></div></div>
+        <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#swfaq5">¿Y después de la entrega?</button></h2><div id="swfaq5" class="accordion-collapse collapse" data-bs-parent="#swFaqAccordion"><div class="accordion-body">Tienes <strong>30 días gratis</strong> de garantía sobre bugs. Después puedes contratar mantenimiento mensual (retainer) o pagar mejoras puntuales por hora. La mayoría de mis clientes me mantienen a bordo a largo plazo.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="api-section api-final-cta">
+    <div class="container">
+      <div class="api-final-box">
+        <p class="section-tag">¿Listo para empezar?</p>
+        <h2 class="api-final-title">Cuéntame sobre <span class="accent">tu proyecto.</span></h2>
+        <p class="api-final-desc">Una llamada de 30 minutos. Te respondo en menos de 2 horas en horario laboral.</p>
+        <div class="api-final-actions">
+          <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Necesito%20desarrollo%20de%20software%20a%20la%20medida." target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="bi bi-whatsapp me-2"></i>Hablemos por WhatsApp</a>
+          <a href="mailto:hello@sruedadev.com?subject=Consulta%20software%20a%20la%20medida" class="btn btn-outline-custom"><i class="bi bi-envelope me-2"></i>Enviar correo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
