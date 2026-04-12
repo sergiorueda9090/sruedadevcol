@@ -68,16 +68,6 @@ def lead_submit(request):
     if not (name and business and phone and service):
         return JsonResponse({'ok': False, 'error': 'missing_fields'}, status=400)
 
-    Lead.objects.create(
-        name=name,
-        business=business,
-        phone=phone,
-        service=service,
-        source=(request.POST.get('source') or 'lead_form')[:40],
-        user_agent=request.META.get('HTTP_USER_AGENT', '')[:300],
-        ip=_client_ip(request),
-    )
-
     message = (
         f"¡Hola Sergio! Estoy interesado en tus servicios.\n\n"
         f"*Nombre:* {name}\n"

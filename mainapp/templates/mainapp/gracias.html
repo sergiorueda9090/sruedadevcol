@@ -11,7 +11,7 @@
     <div style="max-width:640px;margin:0 auto;">
       <i class="bi bi-check-circle-fill teal-text" style="font-size:4rem;"></i>
       <h1 class="section-title mt-4">¡Mensaje <span class="accent">recibido!</span></h1>
-      <p class="lead mt-3">Gracias por contactarme. Te estoy abriendo WhatsApp para que podamos hablar directamente. Normalmente respondo en menos de 2 horas.</p>
+      <p class="lead mt-3">Gracias por contactarme. Te estoy abriendo WhatsApp para que podamos hablar directamente. Normalmente respondo en menos de 3 minutos.</p>
 
       <div class="mt-5">
         <a id="waFallback" href="{{ wa_url|default:'https://wa.me/573506240534' }}"
@@ -35,25 +35,15 @@
   (function () {
     var waUrl = {{ wa_url|default:'""'|safe }} ? decodeURIComponent("{{ wa_url|escapejs }}") : null;
 
-    // 1) Google Ads conversion
+    // Evento de conversión: formulario enviado exitosamente
     if (typeof gtag === 'function') {
-      {% if GOOGLE_ADS_ID and GOOGLE_ADS_LEAD_LABEL %}
-      gtag('event', 'conversion', {
-        'send_to': '{{ GOOGLE_ADS_ID }}/{{ GOOGLE_ADS_LEAD_LABEL }}',
-        'event_callback': function () {}
-      });
-      {% endif %}
-      gtag('event', 'generate_lead', {
-        'event_category': 'lead',
-        'event_label': 'lead_form_submit'
+      gtag('event', 'enviar_formulario', {
+        'tipo': 'lead_footer',
+        'fuente': 'tiendas_online'
       });
     }
 
-    // 2) GTM dataLayer event (works even without gtag)
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ 'event': 'lead_form_submit' });
-
-    // 3) Auto-open WhatsApp after a short delay (gives tags time to fire)
+    // Auto-open WhatsApp after a short delay (gives tags time to fire)
     if (waUrl) {
       setTimeout(function () { window.open(waUrl, '_blank'); }, 1200);
     }
