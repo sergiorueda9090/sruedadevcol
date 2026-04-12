@@ -15,7 +15,8 @@
 
       <div class="mt-5">
         <a id="waFallback" href="{{ wa_url|default:'https://wa.me/573506240534' }}"
-           class="btn btn-primary-custom" target="_blank" rel="noopener">
+           class="btn btn-primary-custom" target="_blank" rel="noopener"
+           onclick="gtag('event', 'click_whatsapp', {'ubicacion': 'gracias'});">
           <i class="bi bi-whatsapp me-2"></i>Abrir WhatsApp
         </a>
         <a href="{% url 'mainapp:index' %}" class="btn btn-outline-custom ms-2">

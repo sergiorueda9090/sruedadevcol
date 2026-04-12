@@ -47,7 +47,8 @@
           </p>
           <div class="api-hero-actions mt-4">
             <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Quiero%20crear%20una%20tienda%20online%20para%20mi%20negocio."
-               target="_blank" rel="noopener" class="btn btn-primary-custom me-2 mb-2">
+               target="_blank" rel="noopener" class="btn btn-primary-custom me-2 mb-2"
+               onclick="gtag('event', 'click_whatsapp', {'ubicacion': 'hero_tiendas'});">
               <i class="bi bi-whatsapp me-2"></i>Cotizar mi tienda online
             </a>
             <a href="#ec-faq" class="btn btn-outline-custom mb-2">Ver detalles</a>
@@ -220,7 +221,7 @@
         <h2 class="api-final-title">Cotiza tu tienda <span class="accent">hoy.</span></h2>
         <p class="api-final-desc">Cuéntame qué vendes en una llamada de 15 minutos y te paso una cotización formal en 24 horas.</p>
         <div class="api-final-actions">
-          <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Quiero%20cotizar%20una%20tienda%20online." target="_blank" rel="noopener" class="btn btn-whatsapp"><i class="bi bi-whatsapp me-2"></i>Cotizar por WhatsApp</a>
+          <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Quiero%20cotizar%20una%20tienda%20online." target="_blank" rel="noopener" class="btn btn-whatsapp" onclick="gtag('event', 'click_whatsapp', {'ubicacion': 'cta_final_tiendas'});"><i class="bi bi-whatsapp me-2"></i>Cotizar por WhatsApp</a>
           <a href="mailto:hello@sruedadev.com?subject=Cotizaci%C3%B3n%20tienda%20online" class="btn btn-outline-custom"><i class="bi bi-envelope me-2"></i>Enviar correo</a>
         </div>
       </div>
