@@ -32,7 +32,8 @@
 
 <script>
   (function () {
-    var waUrl = {{ wa_url|default:'""'|safe }} ? decodeURIComponent("{{ wa_url|escapejs }}") : null;
+    // wa_url viene de Django ya escapado para JS
+    var waUrl = "{{ wa_url|default:''|escapejs }}";
 
     // Evento de conversión: formulario enviado exitosamente
     if (typeof gtag === 'function') {
