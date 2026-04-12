@@ -136,5 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ----------------------------------------------------------------
 GTM_CONTAINER_ID = os.environ.get('GTM_CONTAINER_ID', '')          # e.g. 'GTM-XXXXXXX'
 GA4_MEASUREMENT_ID = os.environ.get('GA4_MEASUREMENT_ID', '')      # e.g. 'G-XXXXXXXXXX'
-GOOGLE_ADS_ID = os.environ.get('GOOGLE_ADS_ID', '')                # e.g. 'AW-1234567890'
+GOOGLE_ADS_ID = os.environ.get('GOOGLE_ADS_ID', 'AW-17226987245')  # Google Ads conversion tag
 GOOGLE_ADS_LEAD_LABEL = os.environ.get('GOOGLE_ADS_LEAD_LABEL', '')  # e.g. 'abcDEF123'
