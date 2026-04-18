@@ -95,6 +95,17 @@ def gracias(request):
 
 
 # ----------------------------------------------------------------
+# Facebook Ads entry point — /contacto redirects straight to WhatsApp
+# with a pre-filled message that identifies the ad source.
+# ----------------------------------------------------------------
+
+def whatsapp_redirect(request):
+    message = "Hola, vi tu anuncio de la landing page en 2 horas y quiero más info"
+    url = f"https://wa.me/{WHATSAPP_NUMBER}?text={quote(message)}"
+    return HttpResponseRedirect(url)
+
+
+# ----------------------------------------------------------------
 # Legal pages
 # ----------------------------------------------------------------
 

@@ -17,6 +17,9 @@ urlpatterns = [
     path('leads/', views.lead_submit, name='lead_submit'),
     path('gracias/', views.gracias, name='gracias'),
 
+    # Facebook Ads entry point — redirects directly to WhatsApp
+    path('contacto/', views.whatsapp_redirect, name='contacto'),
+
     # Legal
     path('privacidad/', views.privacidad, name='privacidad'),
     path('terminos/', views.terminos, name='terminos'),
