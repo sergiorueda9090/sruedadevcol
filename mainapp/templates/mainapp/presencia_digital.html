@@ -1,0 +1,401 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+
+{% block title %}Presencia Digital Esencial para Negocios | sruedadev{% endblock %}
+{% block meta_description %}Los 4 pilares de presencia digital profesional que todo negocio necesita: dominio propio, correo con dominio, firma profesional y Google Business Profile. Guía + ejemplos reales.{% endblock %}
+{% block meta_keywords %}presencia digital, dominio propio empresa, correo profesional, google business profile, ficha google maps, firma de correo, identidad digital negocio, presencia online pyme colombia{% endblock %}
+{% block og_title %}Presencia Digital Esencial — Los 4 pilares para tu negocio{% endblock %}
+{% block og_description %}Dominio propio, correo con dominio, firma profesional y Google Business Profile. Los 4 cimientos de una marca que inspira confianza online.{% endblock %}
+{% block og_type %}article{% endblock %}
+
+{% block extra_jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Presencia Digital Esencial — Los 4 pilares para tu negocio",
+  "description": "Guía práctica de los 4 elementos que todo negocio necesita para una presencia digital profesional: dominio propio, correo con dominio, firma de correo y Google Business Profile.",
+  "author": { "@id": "https://dev.sruedadev.com/#business" },
+  "publisher": { "@id": "https://dev.sruedadev.com/#business" },
+  "mainEntityOfPage": "https://dev.sruedadev.com{{ request.path }}",
+  "inLanguage": "es-CO"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="api-hero">
+    <div class="api-hero-shapes" aria-hidden="true">
+      <div class="api-shape api-shape-1"></div>
+      <div class="api-shape api-shape-2"></div>
+    </div>
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <p class="api-eyebrow">Presencia Digital Esencial</p>
+          <h1 class="api-h1">Los <span class="accent">4 pilares</span> que todo negocio necesita online.</h1>
+          <p class="api-lead">
+            Antes de invertir un peso en pauta, SEO o redes sociales, tu negocio necesita
+            una base digital profesional. Estos son los <strong>4 cimientos</strong> que
+            convierten visitantes en clientes y hacen que tu marca se vea seria frente a
+            clientes, proveedores y bancos.
+          </p>
+          <div class="api-hero-actions mt-4">
+            <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Quiero%20que%20me%20configures%20la%20presencia%20digital%20esencial%20para%20mi%20negocio."
+               target="_blank" rel="noopener" class="btn btn-primary-custom me-2 mb-2">
+              <i class="bi bi-whatsapp me-2"></i>Configurar mi presencia
+            </a>
+            <a href="#pilares" class="btn btn-outline-custom mb-2">Ver los 4 pilares</a>
+          </div>
+          <div class="api-trust-strip mt-4">
+            <span><i class="bi bi-globe2"></i> Dominio propio</span>
+            <span><i class="bi bi-envelope-at-fill"></i> Correo profesional</span>
+            <span><i class="bi bi-vcard-fill"></i> Firma con marca</span>
+            <span><i class="bi bi-geo-alt-fill"></i> Google Maps</span>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="api-hero-card">
+            <div class="api-hero-card-header">
+              <span class="frame-dot red"></span>
+              <span class="frame-dot yellow"></span>
+              <span class="frame-dot green"></span>
+              <span class="api-hero-card-title">cafeteriaaurora.com</span>
+            </div>
+            <pre class="api-hero-code"><code><span class="cm"># checklist.md</span>
+<span class="kw">[✓]</span> Dominio propio .......... <span class="str">cafeteriaaurora.com</span>
+<span class="kw">[✓]</span> Correo con dominio ...... <span class="str">laura@cafeteriaaurora.com</span>
+<span class="kw">[✓]</span> Firma profesional ....... <span class="str">con logo + redes</span>
+<span class="kw">[✓]</span> Google Business Profile . <span class="str">4.8 ⭐ (132 reseñas)</span>
+
+<span class="cm"># resultado</span>
+<span class="kw">→</span> marca seria
+<span class="kw">→</span> clientes que llegan solos
+<span class="kw">→</span> confianza en cada email</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       POR QUÉ IMPORTAN
+  ============================================================ -->
+  <section class="api-section api-what">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Por qué importa</p>
+        <h2 class="section-title">Sin estos 4 pilares, <span class="accent">pierdes credibilidad.</span></h2>
+        <p class="section-subtitle">Cada día que tu negocio aparece online con un dominio gratis o un correo @gmail genérico, estás perdiendo clientes que ni siquiera sabes que existieron.</p>
+      </div>
+
+      <div class="api-card-grid">
+        <div class="api-card">
+          <div class="api-card-icon teal-glow"><i class="bi bi-shield-check"></i></div>
+          <h4>Confianza inmediata</h4>
+          <p>El 75% de los usuarios juzga la credibilidad de un negocio por su presencia digital. Un dominio propio y correo con marca disparan la percepción de seriedad en segundos.</p>
+        </div>
+        <div class="api-card">
+          <div class="api-card-icon green-glow"><i class="bi bi-graph-up-arrow"></i></div>
+          <h4>Clientes que te encuentran</h4>
+          <p>46% de las búsquedas en Google son locales. Una ficha de Google Business bien optimizada trae clientes listos para comprar, sin pagar un solo peso en publicidad.</p>
+        </div>
+        <div class="api-card">
+          <div class="api-card-icon purple-glow"><i class="bi bi-currency-dollar"></i></div>
+          <h4>Retorno desde el día 1</h4>
+          <p>Google Business Profile es gratis. El dominio cuesta menos que un café al mes. El correo profesional vale lo mismo que un almuerzo. Es la inversión con mejor ROI que existe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LOS 4 PILARES
+  ============================================================ -->
+  <section id="pilares" class="api-section api-process">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Los 4 Pilares</p>
+        <h2 class="section-title">Presencia Digital <span class="accent">Esencial.</span></h2>
+        <p class="section-subtitle">Explicados en detalle, con ejemplos reales de "Cafetería Aurora".</p>
+      </div>
+
+      <!-- ================= PILAR 1 ================= -->
+      <div class="row g-4 align-items-stretch mb-5" data-reveal="up">
+        <div class="col-lg-5">
+          <div class="api-card h-100">
+            <div class="api-step-num mb-3">1</div>
+            <div class="api-card-icon green-glow"><i class="bi bi-globe2"></i></div>
+            <h3 style="color:var(--white);">Dominio propio profesional</h3>
+            <p>Es la dirección única de tu negocio en internet — tu "dirección postal digital". Se compra una vez al año en proveedores como <strong>GoDaddy, Namecheap, Hostinger</strong> o <strong>Google Domains</strong>.</p>
+            <p style="font-size:1.05rem;" class="accent"><i class="bi bi-tag-fill me-1"></i>10 – 15 USD / año (.com)</p>
+            <p><strong class="teal-text">Consejo:</strong> elige corto, fácil de pronunciar y sin guiones ni números.</p>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="api-card h-100">
+            <h4 style="color:var(--white);">Ejemplo — Cafetería Aurora</h4>
+
+            <div class="api-hero-card mt-3" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);">
+              <div class="api-hero-card-header">
+                <span class="frame-dot red"></span>
+                <span class="frame-dot yellow"></span>
+                <span class="frame-dot green"></span>
+                <span class="api-hero-card-title" style="color:#fca5a5;">Malo — dominio gratuito</span>
+              </div>
+              <pre class="api-hero-code"><code><span class="cm"># poco profesional, difícil de recordar</span>
+<span style="color:#fca5a5;">cafeteriaaurora.wixsite.com/inicio</span></code></pre>
+            </div>
+
+            <div class="api-hero-card mt-3" style="background:rgba(88,196,255,.08);border:1px solid rgba(88,196,255,.3);">
+              <div class="api-hero-card-header">
+                <span class="frame-dot red"></span>
+                <span class="frame-dot yellow"></span>
+                <span class="frame-dot green"></span>
+                <span class="api-hero-card-title" style="color:var(--accent-primary);">Bueno — dominio propio</span>
+              </div>
+              <pre class="api-hero-code"><code><span class="cm"># corto, memorable, marca</span>
+<span class="accent">cafeteriaaurora.com</span>
+
+<span class="cm"># alternativas modernas</span>
+<span class="accent">cafeaurora.co</span>      <span class="cm"># Colombia</span>
+<span class="accent">aurora.cafe</span>       <span class="cm"># TLD temático</span>
+<span class="accent">aurora.coffee</span>     <span class="cm"># TLD premium</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= PILAR 2 ================= -->
+      <div class="row g-4 align-items-stretch mb-5" data-reveal="up">
+        <div class="col-lg-5">
+          <div class="api-card h-100">
+            <div class="api-step-num mb-3">2</div>
+            <div class="api-card-icon teal-glow"><i class="bi bi-envelope-at-fill"></i></div>
+            <h3 style="color:var(--white);">Correo con dominio propio</h3>
+            <p>Cuentas de correo que usan tu dominio en lugar de <code>@gmail.com</code> o <code>@hotmail.com</code>. Se configuran con <strong>Google Workspace</strong> o <strong>Microsoft 365</strong>.</p>
+            <p style="font-size:1.05rem;" class="accent"><i class="bi bi-tag-fill me-1"></i>~ 6 USD / mes por usuario</p>
+            <p><strong class="teal-text">Beneficio:</strong> genera confianza y se ve serio frente a clientes, proveedores y bancos.</p>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="api-card h-100">
+            <h4 style="color:var(--white);">Ejemplo — Cafetería Aurora</h4>
+
+            <div class="api-hero-card mt-3" style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);">
+              <div class="api-hero-card-header">
+                <span class="frame-dot red"></span>
+                <span class="frame-dot yellow"></span>
+                <span class="frame-dot green"></span>
+                <span class="api-hero-card-title" style="color:#fca5a5;">Malo</span>
+              </div>
+              <pre class="api-hero-code"><code><span style="color:#fca5a5;">cafeaurora2024@gmail.com</span></code></pre>
+            </div>
+
+            <div class="api-hero-card mt-3" style="background:rgba(88,196,255,.08);border:1px solid rgba(88,196,255,.3);">
+              <div class="api-hero-card-header">
+                <span class="frame-dot red"></span>
+                <span class="frame-dot yellow"></span>
+                <span class="frame-dot green"></span>
+                <span class="api-hero-card-title" style="color:var(--accent-primary);">Bueno — estructura profesional</span>
+              </div>
+              <pre class="api-hero-code"><code><span class="cm"># atención general al público</span>
+<span class="accent">contacto</span>@cafeteriaaurora.com
+
+<span class="cm"># órdenes y catering</span>
+<span class="accent">pedidos</span>@cafeteriaaurora.com
+
+<span class="cm"># administración</span>
+<span class="accent">gerencia</span>@cafeteriaaurora.com
+
+<span class="cm"># correo personal de la dueña</span>
+<span class="accent">laura</span>@cafeteriaaurora.com</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= PILAR 3 ================= -->
+      <div class="row g-4 align-items-stretch mb-5" data-reveal="up">
+        <div class="col-lg-5">
+          <div class="api-card h-100">
+            <div class="api-step-num mb-3">3</div>
+            <div class="api-card-icon purple-glow"><i class="bi bi-vcard-fill"></i></div>
+            <h3 style="color:var(--white);">Firma de correo profesional</h3>
+            <p>Bloque de información que aparece <strong>automáticamente al final de cada correo</strong>. Funciona como una "tarjeta de presentación digital" y refuerza la marca en cada envío.</p>
+            <p><strong class="teal-text">Tips clave:</strong></p>
+            <ul class="api-card-list">
+              <li><i class="bi bi-check2 teal-text me-2"></i>Logo debe pesar menos de 50 KB</li>
+              <li><i class="bi bi-check2 teal-text me-2"></i>Máximo 2 colores + color del logo</li>
+              <li><i class="bi bi-check2 teal-text me-2"></i>Evita imágenes pesadas (se ven mal en móvil)</li>
+              <li><i class="bi bi-check2 teal-text me-2"></i>Herramientas gratis: WiseStamp, MySignature, HubSpot</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="api-card h-100">
+            <h4 style="color:var(--white);">Ejemplo — Firma de Laura</h4>
+
+            <div class="api-hero-card mt-3" style="background:rgba(88,196,255,.08);border:1px solid rgba(88,196,255,.3);">
+              <div class="api-hero-card-header">
+                <span class="frame-dot red"></span>
+                <span class="frame-dot yellow"></span>
+                <span class="frame-dot green"></span>
+                <span class="api-hero-card-title" style="color:var(--accent-primary);">Vista previa — firma profesional</span>
+              </div>
+              <div style="padding:1.5rem; font-family: var(--font-body); color: var(--gray-light); border-top: 3px solid var(--accent-primary); margin-top:.75rem;">
+                <p style="font-size:1.1rem; font-weight:700; color:var(--white); margin-bottom:.15rem;">Laura Martínez</p>
+                <p style="color:var(--teal); font-weight:600; margin-bottom:.75rem;">Fundadora <span style="color:var(--gray);">|</span> Cafetería Aurora <span style="color:var(--teal);">☕</span></p>
+                <p style="margin-bottom:.25rem;"><i class="bi bi-geo-alt-fill teal-text me-2"></i>Cra. 15 #93-47, Bogotá</p>
+                <p style="margin-bottom:.25rem;"><i class="bi bi-telephone-fill teal-text me-2"></i>+57 310 456 7890</p>
+                <p style="margin-bottom:.25rem;"><i class="bi bi-globe2 teal-text me-2"></i><a href="#" class="accent">www.cafeteriaaurora.com</a></p>
+                <p style="margin-bottom:.75rem;"><i class="bi bi-envelope-fill teal-text me-2"></i><a href="#" class="accent">laura@cafeteriaaurora.com</a></p>
+                <div style="display:flex; gap:.6rem; margin-bottom:.75rem;">
+                  <span class="accent"><i class="bi bi-instagram"></i> Instagram</span>
+                  <span style="color:var(--gray);">·</span>
+                  <span class="accent"><i class="bi bi-facebook"></i> Facebook</span>
+                  <span style="color:var(--gray);">·</span>
+                  <span class="accent"><i class="bi bi-tiktok"></i> TikTok</span>
+                </div>
+                <p style="font-style:italic; color:var(--gray); font-size:.9rem; border-left: 2px solid var(--teal); padding-left:.75rem;">"Especialidad colombiana desde 2021"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= PILAR 4 ================= -->
+      <div class="row g-4 align-items-stretch mb-5" data-reveal="up">
+        <div class="col-lg-5">
+          <div class="api-card h-100">
+            <div class="api-step-num mb-3">4</div>
+            <div class="api-card-icon green-glow"><i class="bi bi-geo-alt-fill"></i></div>
+            <h3 style="color:var(--white);">Google Business Profile</h3>
+            <p>Perfil <strong>gratuito</strong> que Google crea para que tu negocio aparezca en <strong>Google Maps</strong> y búsquedas locales tipo "cafetería cerca de mí". Se gestiona desde <code>business.google.com</code>.</p>
+            <p style="font-size:1.05rem;" class="accent"><i class="bi bi-gift-fill me-1"></i>100% gratis</p>
+            <p><strong class="teal-text">Es el elemento con mayor ROI</strong> — trae clientes que ya están buscando lo que vendes.</p>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="api-card h-100">
+            <h4 style="color:var(--white);">Ejemplo — Ficha completa de Cafetería Aurora</h4>
+
+            <div class="api-hero-card mt-3" style="background:rgba(88,196,255,.08);border:1px solid rgba(88,196,255,.3);">
+              <div class="api-hero-card-header">
+                <span class="frame-dot red"></span>
+                <span class="frame-dot yellow"></span>
+                <span class="frame-dot green"></span>
+                <span class="api-hero-card-title" style="color:var(--accent-primary);">Google Business Profile</span>
+              </div>
+              <div style="padding:1.25rem;">
+                <p style="margin-bottom:.4rem;"><i class="bi bi-shop me-2 teal-text"></i><strong class="accent">Nombre:</strong> Cafetería Aurora</p>
+                <p style="margin-bottom:.4rem;"><i class="bi bi-bookmark-star-fill me-2 teal-text"></i><strong class="accent">Categoría principal:</strong> Cafetería</p>
+                <p style="margin-bottom:.4rem;"><i class="bi bi-bookmarks-fill me-2 teal-text"></i><strong class="accent">Secundarias:</strong> Desayunos · Postres · WiFi gratis</p>
+                <p style="margin-bottom:.4rem;"><i class="bi bi-geo-alt-fill me-2 teal-text"></i><strong class="accent">Dirección:</strong> Cra. 15 #93-47, Chapinero, Bogotá</p>
+                <p style="margin-bottom:.2rem;"><i class="bi bi-clock-fill me-2 teal-text"></i><strong class="accent">Horario:</strong></p>
+                <p style="margin-left:1.7rem; margin-bottom:.4rem; color:var(--gray);">
+                  Lun–Vie: 7:00 a.m. – 8:00 p.m.<br>
+                  Sáb–Dom: 8:00 a.m. – 9:00 p.m.
+                </p>
+                <p style="margin-bottom:.4rem;"><i class="bi bi-telephone-fill me-2 teal-text"></i><strong class="accent">Teléfono:</strong> +57 310 456 7890</p>
+                <p style="margin-bottom:.4rem;"><i class="bi bi-whatsapp me-2 teal-text"></i><strong class="accent">WhatsApp:</strong> +57 310 456 7890</p>
+                <p style="margin-bottom:.4rem;"><i class="bi bi-globe2 me-2 teal-text"></i><strong class="accent">Web:</strong> www.cafeteriaaurora.com</p>
+                <p style="margin-bottom:.4rem;"><i class="bi bi-images me-2 teal-text"></i><strong class="accent">Fotos:</strong> 20 (fachada, interior, café, postres, menú)</p>
+                <p style="margin-bottom:.4rem;"><i class="bi bi-star-fill me-2" style="color:var(--teal);"></i><strong class="accent">Reseñas:</strong> <span style="color:var(--teal); font-weight:700;">4.8 ⭐</span> — 132 reseñas, todas respondidas</p>
+                <p style="margin-bottom:.2rem;"><i class="bi bi-chat-quote-fill me-2 teal-text"></i><strong class="accent">Descripción:</strong></p>
+                <p style="margin-left:1.7rem; font-style:italic; color:var(--gray); border-left: 2px solid var(--teal); padding-left:.75rem; margin-bottom:.75rem;">
+                  "Café de especialidad 100% colombiano en el corazón de Chapinero.
+                  Granos de origen único, repostería artesanal y ambiente para trabajar
+                  o compartir. Pet-friendly y con WiFi gratis."
+                </p>
+                <p style="margin-bottom:.2rem;"><i class="bi bi-megaphone-fill me-2 teal-text"></i><strong class="accent">Publicaciones semanales:</strong></p>
+                <ul style="margin-left:1.7rem; margin-bottom:.75rem; color:var(--gray);">
+                  <li>Nuevo: café frío de Huila</li>
+                  <li>2x1 en croissants los martes</li>
+                </ul>
+                <p style="margin-bottom:0;"><i class="bi bi-bell-fill me-2 teal-text"></i><strong class="accent">Botón de acción:</strong> "Reservar mesa" / "Ver menú"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMPARACIÓN MALO VS BUENO — tabla visual
+  ============================================================ -->
+  <section class="api-section api-industries">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Antes vs Después</p>
+        <h2 class="section-title">La diferencia que <span class="accent">sí se nota.</span></h2>
+      </div>
+
+      <div class="api-card-grid">
+        <div class="api-card">
+          <h4 style="color:#fca5a5;"><i class="bi bi-x-circle-fill me-2"></i>Negocio sin presencia digital</h4>
+          <ul class="api-card-list">
+            <li style="color:var(--gray);"><i class="bi bi-dash-circle me-2" style="color:#fca5a5;"></i>Dominio: <code>negocio.wixsite.com</code></li>
+            <li style="color:var(--gray);"><i class="bi bi-dash-circle me-2" style="color:#fca5a5;"></i>Correo: <code>minegocio2024@gmail.com</code></li>
+            <li style="color:var(--gray);"><i class="bi bi-dash-circle me-2" style="color:#fca5a5;"></i>Firma: nombre + número suelto</li>
+            <li style="color:var(--gray);"><i class="bi bi-dash-circle me-2" style="color:#fca5a5;"></i>Google Maps: no aparece</li>
+            <li style="color:var(--gray);"><i class="bi bi-dash-circle me-2" style="color:#fca5a5;"></i>Percepción del cliente: <em>"parece informal"</em></li>
+            <li style="color:var(--gray);"><i class="bi bi-dash-circle me-2" style="color:#fca5a5;"></i>Bancos y proveedores: desconfianza</li>
+            <li style="color:var(--gray);"><i class="bi bi-dash-circle me-2" style="color:#fca5a5;"></i>Clientes nuevos: solo por referidos</li>
+          </ul>
+        </div>
+        <div class="api-card" style="border:1px solid var(--accent-primary); box-shadow: 0 0 40px rgba(88,196,255,.15);">
+          <h4 class="accent"><i class="bi bi-check-circle-fill me-2"></i>Negocio con los 4 pilares</h4>
+          <ul class="api-card-list">
+            <li><i class="bi bi-check2 teal-text me-2"></i>Dominio: <code class="accent">negocio.com</code></li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Correo: <code class="accent">contacto@negocio.com</code></li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Firma con logo, datos y redes clicables</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Google Maps: 4.8 ⭐ con reseñas respondidas</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Percepción del cliente: <em>"se ve serio"</em></li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Bancos y proveedores: confianza</li>
+            <li><i class="bi bi-check2 teal-text me-2"></i>Clientes nuevos: llegan desde Google a diario</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
+        <p style="font-size:1.05rem; color:var(--gray-light); max-width:720px; margin:0 auto;">
+          <i class="bi bi-lightbulb-fill me-1" style="color:var(--teal);"></i>
+          <strong>Inversión total aproximada:</strong> menos de <span class="accent">200.000 COP / año</span>
+          en dominio + correo profesional. Google Business Profile es gratis.
+          Retorno: <span class="accent">incalculable</span> — la diferencia entre un negocio que
+          parece informal y uno que inspira confianza desde el primer contacto.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA FINAL
+  ============================================================ -->
+  <section class="api-section api-final-cta">
+    <div class="container">
+      <div class="api-final-box">
+        <p class="section-tag">Deja que yo me encargue</p>
+        <h2 class="api-final-title">Te configuro los <span class="accent">4 pilares</span> en un día.</h2>
+        <p class="api-final-desc">Compro el dominio, configuro los correos con tu marca, diseño tu firma profesional y optimizo tu ficha de Google Business Profile. Listo para que empieces a vender.</p>
+        <div class="api-final-actions">
+          <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Quiero%20que%20me%20configures%20la%20presencia%20digital%20esencial%20(dominio%20%2B%20correo%20%2B%20firma%20%2B%20Google%20Business%20Profile)%20para%20mi%20negocio."
+             target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <i class="bi bi-whatsapp me-2"></i>Hablemos por WhatsApp
+          </a>
+          <a href="mailto:hello@sruedadev.com?subject=Presencia%20Digital%20Esencial" class="btn btn-outline-custom">
+            <i class="bi bi-envelope me-2"></i>Enviar correo
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

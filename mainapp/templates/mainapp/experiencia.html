@@ -1,0 +1,211 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+
+{% block title %}Experiencia Laboral | sruedadev — Desarrollador Fullstack Freelance{% endblock %}
+{% block meta_description %}Trayectoria profesional detrás de sruedadev: 11+ años construyendo software para empresas en Colombia y el exterior. Lead fullstack, backend senior y desarrollo web a la medida.{% endblock %}
+{% block meta_keywords %}experiencia sruedadev, trayectoria desarrollador fullstack, lead fullstack colombia, desarrollador backend senior, experiencia laboral programador, curriculum desarrollador remoto{% endblock %}
+{% block og_title %}Experiencia Laboral | sruedadev — Desarrollador Fullstack{% endblock %}
+{% block og_description %}11+ años de experiencia entregando software para empresas. Revisa la trayectoria completa detrás de sruedadev.{% endblock %}
+{% block og_type %}profile{% endblock %}
+
+{% block extra_jsonld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sergio Rueda",
+  "jobTitle": "Desarrollador Fullstack Freelance",
+  "url": "https://dev.sruedadev.com{{ request.path }}",
+  "nationality": "Colombiana",
+  "hasOccupation": [
+    {
+      "@type": "Occupation",
+      "name": "Lead Fullstack Developer",
+      "occupationLocation": { "@type": "Country", "name": "Colombia" },
+      "skills": "Python, Django, React, AWS, PostgreSQL"
+    },
+    {
+      "@type": "Occupation",
+      "name": "Desarrollador Backend Senior",
+      "skills": "Django REST, Node.js, Redis, Stripe, Docker"
+    },
+    {
+      "@type": "Occupation",
+      "name": "Desarrollador Fullstack",
+      "skills": "PHP, Laravel, React, MySQL"
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+  <!-- ============================================================
+       EXPERIENCIA LABORAL
+  ============================================================ -->
+  <section id="experience" class="experience-section section-padding" style="padding-top:140px;">
+    <div class="code-bg" aria-hidden="true">
+      <pre class="code-lines"><code><span class="cm">// === server.js ===</span>
+<span>const</span> express = require(<span class="str">'express'</span>);
+<span>const</span> app = express();
+
+<span class="cm"># serializers.py</span>
+<span>from</span> rest_framework <span>import</span> serializers
+<span>class</span> UserSerializer(serializers.ModelSerializer):
+    <span>class</span> Meta:
+        model = User
+        fields = [<span class="str">'id'</span>, <span class="str">'name'</span>, <span class="str">'email'</span>]
+
+<span class="cm">// App.jsx</span>
+<span>import</span> React, { useState, useEffect } <span>from</span> <span class="str">'react'</span>;
+<span>const</span> [projects, setProjects] = useState([]);
+<span>useEffect</span>(() => {
+    fetchProjects().then(setProjects);
+}, []);
+
+<span class="cm"># deploy.py</span>
+<span>def</span> deploy_to_aws(config):
+    client = boto3.client(<span class="str">'ecs'</span>)
+    <span>return</span> client.run_task(**config)
+
+<span class="cm">// routes/api.js</span>
+app.get(<span class="str">'/api/users'</span>, <span>async</span> (req, res) => {
+    <span>const</span> users = <span>await</span> db.query(<span class="str">'SELECT * FROM users'</span>);
+    res.json({ data: users });
+});
+
+<span class="cm">/* queries.sql */</span>
+<span>SELECT</span> p.name, COUNT(o.id) <span>AS</span> total
+<span>FROM</span> products p <span>JOIN</span> orders o <span>ON</span> p.id = o.product_id
+<span>GROUP BY</span> p.name <span>ORDER BY</span> total <span>DESC</span>;
+
+<span class="cm"># views.py</span>
+<span>class</span> PaymentGateway:
+    <span>def</span> process(self, amount):
+        <span>return</span> stripe.Charge.create(
+            amount=amount,
+            currency=<span class="str">'usd'</span>
+        )
+
+<span class="cm">// middleware/auth.js</span>
+<span>const</span> verifyToken = (req, res, next) => {
+    <span>const</span> token = req.headers[<span class="str">'authorization'</span>];
+    <span>if</span> (!token) <span>return</span> res.status(401).send();
+    jwt.verify(token, SECRET, next);
+};
+
+<span class="cm"># models.py</span>
+<span>class</span> Project(models.Model):
+    name = models.CharField(max_length=200)
+    tech_stack = models.JSONField(default=list)
+    deployed = models.BooleanField(default=<span>False</span>)
+
+<span class="cm">// hooks/useApi.ts</span>
+<span>export function</span> useApi&lt;T&gt;(url: string) {
+    <span>const</span> [data, setData] = useState&lt;T | null&gt;(null);
+    <span>const</span> [loading, setLoading] = useState(<span>true</span>);
+    <span>return</span> { data, loading };
+}
+
+<span class="cm"># settings.py</span>
+DATABASES = {
+    <span class="str">'default'</span>: {
+        <span class="str">'ENGINE'</span>: <span class="str">'django.db.backends.postgresql'</span>,
+        <span class="str">'NAME'</span>: os.environ.get(<span class="str">'DB_NAME'</span>),
+    }
+}
+
+<span class="cm">// docker-compose.yml</span>
+services:
+  web:
+    build: .
+    ports:
+      - <span class="str">"8000:8000"</span>
+    depends_on:
+      - db
+      - redis</code></pre>
+    </div>
+    <div class="container">
+      <div class="text-center mb-5" data-reveal="up">
+        <p class="section-tag">Mi Camino</p>
+        <h1 class="section-title">Experiencia <span class="accent">Laboral</span></h1>
+        <p class="section-subtitle">Más de 11 años construyendo software que genera resultados reales para empresas en Colombia y el exterior.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline-item" data-reveal="left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2023 — Presente</span>
+            <h4 class="timeline-role">Lead Fullstack Developer</h4>
+            <p class="timeline-company">
+              <i class="bi bi-building me-1 teal-text"></i>TechSoluciones SAS — Remoto (Colombia)
+            </p>
+            <p class="timeline-desc">Lidero un equipo de 4 desarrolladores construyendo productos SaaS para clientes del sector salud y retail. Arquitecto de monorepos Django/React en AWS ECS. Introduje pipelines CI/CD que redujeron el tiempo de release en 60%.</p>
+            <div class="timeline-tags">
+              <span class="tag">Python</span><span class="tag">Django</span>
+              <span class="tag">React</span><span class="tag">AWS</span><span class="tag">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal="right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2019 — 2023</span>
+            <h4 class="timeline-role">Desarrollador Backend Senior</h4>
+            <p class="timeline-company">
+              <i class="bi bi-building me-1 teal-text"></i>Digital Ventures — Remoto
+            </p>
+            <p class="timeline-desc">Desarrollé y mantuve APIs RESTful que sirvieron a más de 50.000 usuarios diarios para clientes de fintech y e-commerce. Integré Stripe y PayPal en 8 plataformas. Reduje los tiempos de respuesta de las APIs en 40% usando caché con Redis.</p>
+            <div class="timeline-tags">
+              <span class="tag">Django REST</span><span class="tag">Node.js</span>
+              <span class="tag">Redis</span><span class="tag">Stripe</span><span class="tag">Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal="left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2016 — 2019</span>
+            <h4 class="timeline-role">Desarrollador Fullstack</h4>
+            <p class="timeline-company">
+              <i class="bi bi-building me-1 teal-text"></i>InnovaWeb Studio — Remoto
+            </p>
+            <p class="timeline-desc">Construí más de 15 sitios web y plataformas e-commerce a la medida para negocios locales. Introduje React al stack frontend del equipo, mejorando la velocidad de desarrollo en 35%.</p>
+            <div class="timeline-tags">
+              <span class="tag">PHP</span><span class="tag">Laravel</span>
+              <span class="tag">React</span><span class="tag">MySQL</span><span class="tag">VPS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-reveal="right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2013 — 2016</span>
+            <h4 class="timeline-role">Desarrollador Web Junior</h4>
+            <p class="timeline-company">
+              <i class="bi bi-building me-1 teal-text"></i>StartupHub — Presencial
+            </p>
+            <p class="timeline-desc">Construí MVPs para startups en etapa temprana. Adquirí bases sólidas en HTML/CSS/JavaScript, diseño responsivo y programación del lado servidor con PHP y Python.</p>
+            <div class="timeline-tags">
+              <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span>
+              <span class="tag">PHP</span><span class="tag">Python</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center mt-5" data-reveal="up">
+        <a href="{% url 'mainapp:index' %}#contact" class="btn btn-primary-custom me-2">
+          Trabajemos juntos <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+        <a href="{% url 'mainapp:index' %}#portfolio" class="btn btn-outline-custom">Ver Portafolio</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

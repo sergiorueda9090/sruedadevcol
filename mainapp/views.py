@@ -44,6 +44,14 @@ def software_medida(request):
     return render(request, 'mainapp/services/software_medida.html')
 
 
+def experiencia(request):
+    return render(request, 'mainapp/experiencia.html')
+
+
+def presencia_digital(request):
+    return render(request, 'mainapp/presencia_digital.html')
+
+
 # ----------------------------------------------------------------
 # Lead capture — POST → save → redirect to /gracias/ (conversion page).
 # The thank-you page fires the Google Ads conversion event, then opens
@@ -148,6 +156,8 @@ def sitemap_xml(request):
         (reverse('mainapp:software_medida'), "0.9", "monthly"),
         (reverse('mainapp:api_services'), "0.9", "monthly"),
         (reverse('mainapp:software_ai_services'), "0.9", "monthly"),
+        (reverse('mainapp:experiencia'), "0.6", "monthly"),
+        (reverse('mainapp:presencia_digital'), "0.8", "monthly"),
         (reverse('mainapp:privacidad'), "0.3", "yearly"),
         (reverse('mainapp:terminos'), "0.3", "yearly"),
     ]

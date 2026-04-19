@@ -12,6 +12,8 @@ urlpatterns = [
     path('landing-pages/', views.landing_pages, name='landing_pages'),
     path('tiendas-online/', views.tiendas_online, name='tiendas_online'),
     path('software-a-la-medida/', views.software_medida, name='software_medida'),
+    path('experiencia/', views.experiencia, name='experiencia'),
+    path('presencia-digital/', views.presencia_digital, name='presencia_digital'),
 
     # Lead capture → thank-you page (Google Ads conversion point)
     path('leads/', views.lead_submit, name='lead_submit'),

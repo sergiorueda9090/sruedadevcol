@@ -7,10 +7,10 @@
   <!-- ============================================================
        SEO PRIMARIO
   ============================================================ -->
-  <title>{% block title %}Sergio Rueda | Desarrollador Fullstack Freelance en Colombia{% endblock %}</title>
+  <title>{% block title %}sruedadev | Desarrollador Fullstack Freelance en Colombia{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}Desarrollador fullstack freelance. Construyo sitios web de alta conversión, software a la medida, APIs e integraciones con IA para empresas. Remoto, entrega rápida, precios justos.{% endblock %}" />
   <meta name="keywords" content="{% block meta_keywords %}desarrollador fullstack freelance, desarrollo web Colombia, software a la medida, desarrollo de APIs, integración con IA, desarrollador Django, desarrollador React, landing pages, e-commerce, contratar desarrollador remoto{% endblock %}" />
-  <meta name="author" content="Sergio Rueda" />
+  <meta name="author" content="sruedadev" />
   <meta name="robots" content="{% block meta_robots %}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{% endblock %}" />
   <meta name="theme-color" content="#0b1220" />
 
@@ -84,19 +84,19 @@
        OPEN GRAPH / FACEBOOK / LINKEDIN
   ============================================================ -->
   <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
-  <meta property="og:site_name" content="Sergio Rueda — Desarrollador Fullstack" />
-  <meta property="og:title" content="{% block og_title %}Sergio Rueda | Desarrollador Fullstack Freelance{% endblock %}" />
+  <meta property="og:site_name" content="sruedadev — Desarrollador Fullstack" />
+  <meta property="og:title" content="{% block og_title %}sruedadev | Desarrollador Fullstack Freelance{% endblock %}" />
   <meta property="og:description" content="{% block og_description %}Desarrollador fullstack freelance. Sitios web de alta conversión, software a la medida, APIs e integraciones con IA. Remoto, entrega rápida, precios justos.{% endblock %}" />
   <meta property="og:url" content="https://dev.sruedadev.com{{ request.path }}" />
   <meta property="og:locale" content="es_CO" />
   <meta property="og:image" content="{% block og_image %}https://dev.sruedadev.com{% static 'mainapp/img/sergio_main.jpg' %}{% endblock %}" />
-  <meta property="og:image:alt" content="Sergio Rueda — Desarrollador Fullstack Freelance" />
+  <meta property="og:image:alt" content="sruedadev — Desarrollador Fullstack Freelance" />
 
   <!-- ============================================================
        TWITTER CARD
   ============================================================ -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{% block tw_title %}Sergio Rueda | Desarrollador Fullstack Freelance{% endblock %}" />
+  <meta name="twitter:title" content="{% block tw_title %}sruedadev | Desarrollador Fullstack Freelance{% endblock %}" />
   <meta name="twitter:description" content="{% block tw_description %}Desarrollador fullstack freelance. Sitios web, software a la medida, APIs e integraciones con IA. Remoto.{% endblock %}" />
   <meta name="twitter:image" content="{% block tw_image %}https://dev.sruedadev.com{% static 'mainapp/img/sergio_main.jpg' %}{% endblock %}" />
 
@@ -142,7 +142,7 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": "https://dev.sruedadev.com/#business",
-    "name": "Sergio Rueda — Desarrollador Fullstack Freelance",
+    "name": "sruedadev — Desarrollador Fullstack Freelance",
     "alternateName": "Sergio Rueda Dev",
     "url": "https://dev.sruedadev.com/",
     "image": "https://dev.sruedadev.com{% static 'mainapp/img/sergio_main.jpg' %}",
@@ -193,7 +193,7 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "url": "https://dev.sruedadev.com/",
-    "name": "Sergio Rueda — Desarrollador Fullstack",
+    "name": "sruedadev — Desarrollador Fullstack",
     "inLanguage": "es",
     "publisher": { "@id": "https://dev.sruedadev.com/#business" }
   }
@@ -217,8 +217,8 @@
   <nav id="mainNav" class="navbar navbar-expand-lg fixed-top" aria-label="Principal">
     <div class="container">
       <a class="navbar-brand" href="{% url 'mainapp:index' %}">
-        <img src="{% static 'mainapp/img/logo.png' %}" alt="Logo Sergio Rueda" class="nav-logo" width="32" height="32" decoding="async">
-        Sergio Rueda<span class="accent">.</span>
+        <img src="{% static 'mainapp/img/logo.png' %}" alt="Logo sruedadev" class="nav-logo" width="32" height="32" decoding="async">
+        sruedadev<span class="accent">.</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
         aria-controls="navMenu" aria-expanded="false" aria-label="Abrir navegación">
@@ -226,15 +226,57 @@
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-          <li class="nav-item"><a class="nav-link {% is_current 'index' %}" href="{% section_link 'home' %}">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% section_link 'about' %}">Sobre mí</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% section_link 'services' %}">Servicios</a></li>
-          <li class="nav-item"><a class="nav-link {% is_current 'api_services' %}" href="{% url 'mainapp:api_services' %}"{% if request.resolver_match.url_name == 'api_services' %} aria-current="page"{% endif %}>APIs</a></li>
-          <li class="nav-item"><a class="nav-link {% is_current 'software_ai_services' %}" href="{% url 'mainapp:software_ai_services' %}"{% if request.resolver_match.url_name == 'software_ai_services' %} aria-current="page"{% endif %}>Software + IA</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% section_link 'portfolio' %}">Portafolio</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% section_link 'testimonials' %}">Testimonios</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% section_link 'pricing' %}">Precios</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% section_link 'contact' %}">Contacto</a></li>
+
+          <li class="nav-item">
+            <a class="nav-link {% is_current 'index' %}" href="{% section_link 'home' %}">Inicio</a>
+          </li>
+
+          {# ========== SOBRE MÍ (dropdown) ========== #}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle {% is_current 'experiencia' %}" href="#" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">Sobre mí</a>
+            <ul class="dropdown-menu nav-dropdown-menu">
+              <li><a class="dropdown-item" href="{% section_link 'about' %}"><i class="bi bi-person-circle"></i>Mi historia</a></li>
+              <li><a class="dropdown-item {% if request.resolver_match.url_name == 'experiencia' %}active{% endif %}" href="{% url 'mainapp:experiencia' %}"{% if request.resolver_match.url_name == 'experiencia' %} aria-current="page"{% endif %}><i class="bi bi-briefcase-fill"></i>Experiencia laboral</a></li>
+              <li><a class="dropdown-item" href="{% section_link 'testimonials' %}"><i class="bi bi-chat-quote-fill"></i>Testimonios</a></li>
+            </ul>
+          </li>
+
+          {# ========== SERVICIOS (dropdown) ========== #}
+          <li class="nav-item dropdown">
+            {% with sn=request.resolver_match.url_name %}
+            <a class="nav-link dropdown-toggle {% if sn == 'landing_pages' or sn == 'tiendas_online' or sn == 'software_medida' or sn == 'api_services' or sn == 'software_ai_services' or sn == 'presencia_digital' %}active{% endif %}"
+               href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+            <ul class="dropdown-menu nav-dropdown-menu">
+              <li><h6 class="dropdown-header">Desarrollo web</h6></li>
+              <li><a class="dropdown-item {% if sn == 'landing_pages' %}active{% endif %}" href="{% url 'mainapp:landing_pages' %}"><i class="bi bi-window-fullscreen"></i>Landing Pages</a></li>
+              <li><a class="dropdown-item {% if sn == 'tiendas_online' %}active{% endif %}" href="{% url 'mainapp:tiendas_online' %}"><i class="bi bi-cart4"></i>Tiendas Online</a></li>
+              <li><a class="dropdown-item {% if sn == 'software_medida' %}active{% endif %}" href="{% url 'mainapp:software_medida' %}"><i class="bi bi-cpu-fill"></i>Software a la Medida</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><h6 class="dropdown-header">Integraciones & IA</h6></li>
+              <li><a class="dropdown-item {% if sn == 'api_services' %}active{% endif %}" href="{% url 'mainapp:api_services' %}"><i class="bi bi-hdd-network-fill"></i>Desarrollo de APIs</a></li>
+              <li><a class="dropdown-item {% if sn == 'software_ai_services' %}active{% endif %}" href="{% url 'mainapp:software_ai_services' %}"><i class="bi bi-robot"></i>Software + IA</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><h6 class="dropdown-header">Fundamentos</h6></li>
+              <li><a class="dropdown-item {% if sn == 'presencia_digital' %}active{% endif %}" href="{% url 'mainapp:presencia_digital' %}"><i class="bi bi-stars"></i>Presencia Digital</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% section_link 'services' %}"><i class="bi bi-grid-3x3-gap-fill"></i>Ver todos los servicios</a></li>
+            </ul>
+            {% endwith %}
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% section_link 'portfolio' %}">Portafolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% section_link 'pricing' %}">Precios</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link nav-cta" href="{% section_link 'contact' %}">
+              <i class="bi bi-chat-dots-fill me-1"></i>Contacto
+            </a>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -253,7 +295,7 @@
         <div class="row g-5">
 
           <div class="col-lg-4 col-md-6">
-            <a class="footer-brand" href="{% url 'mainapp:index' %}">Sergio Rueda<span class="accent">.</span></a>
+            <a class="footer-brand" href="{% url 'mainapp:index' %}">sruedadev<span class="accent">.</span></a>
             <p class="footer-desc">Desarrollador fullstack freelance desde Colombia con amplia experiencia entregando soluciones tecnológicas para empresas en todo el mundo. Independiente, rápido y comprometido con construir software que genera resultados reales de negocio.</p>
             <div class="footer-socials">
               <a href="https://instagram.com/sergiodevsolutions" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
@@ -270,6 +312,7 @@
               <li><a href="{% section_link 'about' %}">Sobre mí</a></li>
               <li><a href="{% section_link 'services' %}">Servicios</a></li>
               <li><a href="{% section_link 'portfolio' %}">Portafolio</a></li>
+              <li><a href="{% url 'mainapp:experiencia' %}">Experiencia</a></li>
               <li><a href="{% section_link 'pricing' %}">Precios</a></li>
               <li><a href="{% section_link 'contact' %}">Contacto</a></li>
             </ul>
@@ -283,6 +326,7 @@
               <li><a href="{% url 'mainapp:software_medida' %}">Software a la Medida</a></li>
               <li><a href="{% url 'mainapp:api_services' %}">Desarrollo de APIs</a></li>
               <li><a href="{% url 'mainapp:software_ai_services' %}">Software + IA</a></li>
+              <li><a href="{% url 'mainapp:presencia_digital' %}">Presencia Digital</a></li>
               <li><a href="{% section_link 'services' %}">Despliegue en AWS</a></li>
             </ul>
           </div>
@@ -327,7 +371,7 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6 text-center text-md-start">
-            <p class="footer-copy">© 2025 <span class="accent">Sergio Rueda</span>. Todos los derechos reservados.</p>
+            <p class="footer-copy">© 2025 <span class="accent">sruedadev</span>. Todos los derechos reservados.</p>
           </div>
           <div class="col-md-6 text-center text-md-end">
             <p class="footer-copy">
