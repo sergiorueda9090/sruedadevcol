@@ -199,6 +199,33 @@
   }
   </script>
   {% block extra_jsonld %}{% endblock %}
+
+  <!-- ============================================================
+       Meta Pixel Code
+  ============================================================ -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    // Respeta el consentimiento de cookies (alineado con Consent Mode v2)
+    try {
+      var _fbConsent = localStorage.getItem('cookie_consent');
+      if (_fbConsent !== 'granted') { fbq('consent', 'revoke'); }
+    } catch (e) {}
+
+    fbq('init', '1350985523530844');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1350985523530844&ev=PageView&noscript=1"
+    alt="" /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -433,6 +460,9 @@
             'ad_personalization': granted ? 'granted' : 'denied',
             'analytics_storage':  granted ? 'granted' : 'denied'
           });
+        }
+        if (typeof fbq === 'function') {
+          fbq('consent', granted ? 'grant' : 'revoke');
         }
         banner.hidden = true;
       }

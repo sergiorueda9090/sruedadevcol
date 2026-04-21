@@ -319,7 +319,119 @@ img { max-width: 100%; height: auto; }
   top: 50%; left: 40%;
 }
 
-.hero-section .container { position: relative; z-index: 1; }
+.hero-section .container { position: relative; z-index: 2; }
+.hero-section .scroll-hint { z-index: 3; }
+
+/* ----------------------------------------------------------------
+   FONDO: GALAXIA + GLOBO WIREFRAME (loading-spinner prototype)
+   ---------------------------------------------------------------- */
+.hero-galaxy {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(88, 90, 190, .22), transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(60, 80, 170, .18), transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(10, 14, 40, .35), transparent 80%);
+}
+
+/* Starfield via massive box-shadow lists */
+.galaxy-stars {
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 2px;
+  border-radius: 50%;
+  background: transparent;
+}
+.galaxy-stars.stars-a {
+  width: 1px; height: 1px;
+  box-shadow:
+    37px 122px #cfd8ff, 210px 48px #e4ecff, 420px 310px #fff,
+    580px 92px #d9e3ff, 760px 420px #f0f5ff, 930px 180px #cfd8ff,
+    1120px 540px #fff, 1280px 70px #e4ecff, 65px 380px #cfd8ff,
+    150px 610px #f0f5ff, 330px 480px #e4ecff, 710px 260px #fff,
+    890px 640px #cfd8ff, 1040px 320px #d9e3ff, 1210px 420px #fff,
+    1360px 560px #e4ecff, 260px 720px #cfd8ff, 480px 690px #fff,
+    620px 520px #e4ecff, 820px 780px #d9e3ff, 990px 740px #cfd8ff,
+    1180px 690px #fff, 1320px 780px #e4ecff, 50px 820px #cfd8ff,
+    200px 860px #fff, 410px 830px #d9e3ff, 690px 870px #e4ecff,
+    900px 820px #cfd8ff, 1100px 860px #fff, 1290px 830px #d9e3ff,
+    120px 40px #fff, 360px 120px #cfd8ff, 540px 260px #e4ecff,
+    740px 170px #fff, 960px 40px #d9e3ff, 1150px 240px #cfd8ff,
+    1350px 340px #fff, 30px 260px #e4ecff, 280px 330px #cfd8ff,
+    470px 580px #fff, 660px 420px #d9e3ff;
+  animation: twinkle-a 3.2s ease-in-out infinite;
+}
+.galaxy-stars.stars-b {
+  width: 1.5px; height: 1.5px;
+  box-shadow:
+    180px 90px #fff, 370px 200px #f0f5ff, 550px 350px #e4ecff,
+    720px 60px #fff, 900px 260px #f0f5ff, 1080px 450px #e4ecff,
+    1260px 130px #fff, 80px 500px #f0f5ff, 250px 650px #fff,
+    440px 760px #e4ecff, 620px 610px #fff, 810px 700px #f0f5ff,
+    980px 550px #fff, 1170px 620px #e4ecff, 1340px 720px #fff,
+    310px 80px #f0f5ff, 500px 140px #fff, 680px 330px #e4ecff,
+    860px 470px #fff, 1040px 80px #f0f5ff, 1230px 340px #fff,
+    40px 140px #e4ecff, 220px 270px #fff, 400px 400px #f0f5ff,
+    600px 50px #fff, 790px 490px #e4ecff, 970px 680px #fff,
+    1160px 780px #f0f5ff, 1330px 450px #fff, 90px 780px #e4ecff,
+    270px 490px #fff, 450px 20px #f0f5ff, 640px 820px #fff,
+    830px 160px #e4ecff, 1010px 850px #fff, 1200px 500px #f0f5ff,
+    1380px 80px #fff, 510px 870px #e4ecff;
+  animation: twinkle-b 5.4s ease-in-out infinite;
+}
+.galaxy-stars.stars-c {
+  width: 2.5px; height: 2.5px;
+  box-shadow:
+    140px 200px #fff, 460px 90px #f0f5ff, 780px 330px #fff,
+    1120px 150px #f5f8ff, 60px 650px #fff, 360px 770px #f0f5ff,
+    700px 560px #fff, 1020px 750px #f5f8ff, 1290px 600px #fff,
+    220px 420px #f0f5ff, 540px 520px #fff, 880px 410px #f5f8ff,
+    1220px 870px #fff, 80px 880px #f0f5ff, 340px 30px #fff,
+    600px 780px #f5f8ff, 960px 30px #fff, 1360px 260px #f0f5ff;
+  animation: twinkle-c 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 3px rgba(240, 246, 255, .7));
+}
+
+@keyframes twinkle-a {
+  0%, 100% { opacity: .6; }
+  50%      { opacity: 1; }
+}
+@keyframes twinkle-b {
+  0%, 100% { opacity: .9; }
+  45%      { opacity: .35; }
+}
+@keyframes twinkle-c {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .55; transform: scale(.8); }
+}
+
+/* Stellar dust drifting */
+.galaxy-dust {
+  position: absolute;
+  inset: -10%;
+  background:
+    radial-gradient(2px 2px at 12% 18%, rgba(220, 225, 255, .5), transparent 60%),
+    radial-gradient(1.5px 1.5px at 28% 64%, rgba(200, 210, 255, .4), transparent 60%),
+    radial-gradient(2.5px 2.5px at 48% 34%, rgba(230, 235, 255, .5), transparent 60%),
+    radial-gradient(1.5px 1.5px at 66% 82%, rgba(180, 195, 250, .45), transparent 60%),
+    radial-gradient(2px 2px at 82% 22%, rgba(215, 225, 255, .55), transparent 60%),
+    radial-gradient(1.5px 1.5px at 92% 58%, rgba(195, 210, 255, .4), transparent 60%);
+  animation: drift 24s linear infinite;
+  opacity: .6;
+}
+@keyframes drift {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-40px, -20px, 0); }
+}
+
+/* Accesibilidad: reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .galaxy-dust,
+  .galaxy-stars { animation: none; }
+}
 
 .hero-greeting {
   font-family: var(--font-head);
