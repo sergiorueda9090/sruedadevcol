@@ -325,46 +325,142 @@
 })();
 
 /* ----------------------------------------------------------------
-   8. LEAD CAPTURE FORM — POSTs to Django, then navigates to /gracias/
-   where the Google Ads conversion fires before opening WhatsApp.
+   8. META LEAD TRACKING — Pixel + Conversions API (server-side)
+   Uses a shared event_id so Meta deduplicates the browser event and the
+   server event (sent from Django via /api/track-lead/). Without dedup
+   the same Lead would be counted twice.
    ---------------------------------------------------------------- */
-(function initLeadForm() {
-  const form = document.getElementById('leadForm');
-  if (!form) return;
+(function initMetaLeadTracking() {
+  function uuid() {
+    if (window.crypto && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+    // RFC4122 v4 fallback for older browsers
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = (Math.random() * 16) | 0;
+      var v = c === 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+  function getCsrf() {
+    var m = document.cookie.match(/(?:^|;\s*)csrftoken=([^;]+)/);
+    return m ? decodeURIComponent(m[1]) : '';
+  }
 
-    const btn = form.querySelector('.lead-submit-btn');
-    const original = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Enviando…';
+  // Public API: window.metaTrackLead(payload)
+  // payload may include: { source, name, phone, email, business, service, value, currency }
+  window.metaTrackLead = function (payload) {
+    payload = payload || {};
+    var eventId = uuid();
+    var source = payload.source || 'unknown';
 
-    const formData = new FormData(form);
+    // 1) Browser Pixel
+    if (typeof fbq === 'function') {
+      var pixelData = {
+        content_name: payload.service || source,
+        content_category: 'Lead',
+      };
+      if (payload.value)    pixelData.value = payload.value;
+      if (payload.currency) pixelData.currency = payload.currency;
+      try {
+        fbq('track', 'Lead', pixelData, { eventID: eventId });
+      } catch (e) { /* ignore */ }
+    }
 
-    fetch(form.action, {
-      method: 'POST',
-      headers: { 'X-Requested-With': 'XMLHttpRequest' },
-      body: formData,
-      credentials: 'same-origin'
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error('bad_response');
-        return res.json();
+    // 2) Server-side CAPI (Django will hash PII and send to Meta)
+    try {
+      fetch('/api/track-lead/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRFToken': getCsrf(),
+        },
+        credentials: 'same-origin',
+        keepalive: true,
+        body: JSON.stringify({
+          event_id: eventId,
+          event_name: 'Lead',
+          source: source,
+          name: payload.name || '',
+          phone: payload.phone || '',
+          email: payload.email || '',
+          business: payload.business || '',
+          service: payload.service || '',
+          value: payload.value || null,
+          currency: payload.currency || 'USD',
+          event_source_url: window.location.href,
+          fbp: (document.cookie.match(/(?:^|;\s*)_fbp=([^;]+)/) || [])[1] || '',
+          fbc: (document.cookie.match(/(?:^|;\s*)_fbc=([^;]+)/) || [])[1] || '',
+        }),
+      }).catch(function () { /* CAPI failure must NOT block UX */ });
+    } catch (e) { /* ignore */ }
+
+    return eventId;
+  };
+
+  // -- Lead form submit ----------------------------------------------
+  var form = document.getElementById('leadForm');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var btn = form.querySelector('.lead-submit-btn');
+      var original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Enviando…';
+
+      var formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        body: formData,
+        credentials: 'same-origin'
       })
-      .then(function (data) {
-        if (data && data.ok && data.redirect) {
-          window.location.href = data.redirect;
-        } else {
-          throw new Error('invalid_payload');
-        }
-      })
-      .catch(function () {
-        btn.disabled = false;
-        btn.innerHTML = original;
-        alert('No pudimos enviar el formulario. Por favor intenta de nuevo o escríbenos directamente por WhatsApp.');
-      });
-  });
+        .then(function (res) {
+          if (!res.ok) throw new Error('bad_response');
+          return res.json();
+        })
+        .then(function (data) {
+          if (data && data.ok && data.redirect) {
+            // Fire Lead event with form PII so CAPI gets matchable data
+            window.metaTrackLead({
+              source: formData.get('source') || 'lead_form',
+              name: formData.get('name') || '',
+              phone: formData.get('phone') || '',
+              business: formData.get('business') || '',
+              service: formData.get('service') || '',
+            });
+            window.location.href = data.redirect;
+          } else {
+            throw new Error('invalid_payload');
+          }
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.innerHTML = original;
+          alert('No pudimos enviar el formulario. Por favor intenta de nuevo o escríbenos directamente por WhatsApp.');
+        });
+    });
+  }
+
+  // -- WhatsApp click → Lead -----------------------------------------
+  // Any <a href="https://wa.me/..."> or [data-track-lead] click counts as a Lead.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var isWa = href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp.com') !== -1;
+    var hasMarker = a.hasAttribute('data-track-lead');
+    if (!isWa && !hasMarker) return;
+
+    window.metaTrackLead({
+      source: a.getAttribute('data-track') || (isWa ? 'whatsapp_click' : 'cta_click'),
+      service: a.getAttribute('data-service') || '',
+    });
+  }, { passive: true });
 })();
 
 /* ----------------------------------------------------------------

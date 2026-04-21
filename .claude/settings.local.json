@@ -46,7 +46,8 @@
       "Bash(sed -i '570,806d' C:/proyectos/sergio_es/mainapp/templates/mainapp/index.html)",
       "Bash(sed -n '565,580p' C:/proyectos/sergio_es/mainapp/templates/mainapp/index.html)",
       "Bash(python -c \"import django; django.setup\")",
-      "Bash(python manage.py shell -c \"from django.template.loader import get_template; t = get_template\\('mainapp/presencia_digital.html'\\); print\\('OK - template loaded'\\)\")"
+      "Bash(python manage.py shell -c \"from django.template.loader import get_template; t = get_template\\('mainapp/presencia_digital.html'\\); print\\('OK - template loaded'\\)\")",
+      "Bash(C:/proyectos/sergio_es/env/Scripts/python.exe *)"
     ]
   }
 }

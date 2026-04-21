@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
+    'meta',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,13 @@ GTM_CONTAINER_ID = os.environ.get('GTM_CONTAINER_ID', '')          # e.g. 'GTM-X
 GA4_MEASUREMENT_ID = os.environ.get('GA4_MEASUREMENT_ID', '')      # e.g. 'G-XXXXXXXXXX'
 GOOGLE_ADS_ID = os.environ.get('GOOGLE_ADS_ID', 'AW-17226987245')  # Google Ads conversion tag
 GOOGLE_ADS_LEAD_LABEL = os.environ.get('GOOGLE_ADS_LEAD_LABEL', '')  # e.g. 'abcDEF123'
+
+# ----------------------------------------------------------------
+# Meta (Facebook) Pixel + Conversions API
+# Empty CAPI token disables server-side tracking but keeps the browser pixel.
+# TEST_EVENT_CODE is shown ONLY in the "Test Events" tab of Meta Events Manager;
+# leave empty in production.
+# ----------------------------------------------------------------
+META_PIXEL_ID = os.environ.get('META_PIXEL_ID', '1350985523530844')
+META_CAPI_ACCESS_TOKEN = os.environ.get('META_CAPI_ACCESS_TOKEN', '')
+META_TEST_EVENT_CODE = os.environ.get('META_TEST_EVENT_CODE', '')
