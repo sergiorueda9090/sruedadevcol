@@ -3,3 +3,4 @@ Django==4.0
 sqlparse==0.5.5
 tzdata==2026.1
 facebook-business==21.0.5
+python-dotenv==1.2.2

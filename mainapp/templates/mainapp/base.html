@@ -59,26 +59,24 @@
        Google tag (gtag.js) — Google Ads + GA4
        Consent Mode v2 ya está cargado arriba.
   ============================================================ -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17226987245"></script>
+  {% if GOOGLE_ADS_ID or GA4_MEASUREMENT_ID %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ADS_ID|default:GA4_MEASUREMENT_ID }}"></script>
   <script>
     gtag('js', new Date());
-
-    // Google Ads
-    gtag('config', 'AW-17226987245');
-
-    // Google Analytics 4 — propiedad dedicada a col.sruedadev.com
-    gtag('config', 'G-BDREPVRSDC');
+    {% if GOOGLE_ADS_ID %}gtag('config', '{{ GOOGLE_ADS_ID }}');{% endif %}
+    {% if GA4_MEASUREMENT_ID %}gtag('config', '{{ GA4_MEASUREMENT_ID }}');{% endif %}
   </script>
+  {% endif %}
 
   <!-- Geo hints -->
   <meta name="geo.region" content="CO" />
   <meta name="geo.placename" content="Colombia" />
   <meta name="language" content="Spanish" />
-  <link rel="alternate" hreflang="es" href="{% block hreflang_url %}https://dev.sruedadev.com{{ request.path }}{% endblock %}" />
-  <link rel="alternate" hreflang="x-default" href="https://dev.sruedadev.com{{ request.path }}" />
+  <link rel="alternate" hreflang="es" href="{% block hreflang_url %}{{ SITE_ORIGIN }}{{ request.path }}{% endblock %}" />
+  <link rel="alternate" hreflang="x-default" href="{{ SITE_ORIGIN }}{{ request.path }}" />
 
   <!-- Canonical -->
-  <link rel="canonical" href="{% block canonical %}https://dev.sruedadev.com{{ request.path }}{% endblock %}" />
+  <link rel="canonical" href="{% block canonical %}{{ SITE_ORIGIN }}{{ request.path }}{% endblock %}" />
 
   <!-- ============================================================
        OPEN GRAPH / FACEBOOK / LINKEDIN
@@ -87,9 +85,9 @@
   <meta property="og:site_name" content="sruedadev — Desarrollador Fullstack" />
   <meta property="og:title" content="{% block og_title %}sruedadev | Desarrollador Fullstack Freelance{% endblock %}" />
   <meta property="og:description" content="{% block og_description %}Desarrollador fullstack freelance. Sitios web de alta conversión, software a la medida, APIs e integraciones con IA. Remoto, entrega rápida, precios justos.{% endblock %}" />
-  <meta property="og:url" content="https://dev.sruedadev.com{{ request.path }}" />
+  <meta property="og:url" content="{{ SITE_ORIGIN }}{{ request.path }}" />
   <meta property="og:locale" content="es_CO" />
-  <meta property="og:image" content="{% block og_image %}https://dev.sruedadev.com{% static 'mainapp/img/sergio_main.jpg' %}{% endblock %}" />
+  <meta property="og:image" content="{% block og_image %}{{ SITE_ORIGIN }}{% static 'mainapp/img/sergio_main.jpg' %}{% endblock %}" />
   <meta property="og:image:alt" content="sruedadev — Desarrollador Fullstack Freelance" />
 
   <!-- ============================================================
@@ -98,7 +96,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{% block tw_title %}sruedadev | Desarrollador Fullstack Freelance{% endblock %}" />
   <meta name="twitter:description" content="{% block tw_description %}Desarrollador fullstack freelance. Sitios web, software a la medida, APIs e integraciones con IA. Remoto.{% endblock %}" />
-  <meta name="twitter:image" content="{% block tw_image %}https://dev.sruedadev.com{% static 'mainapp/img/sergio_main.jpg' %}{% endblock %}" />
+  <meta name="twitter:image" content="{% block tw_image %}{{ SITE_ORIGIN }}{% static 'mainapp/img/sergio_main.jpg' %}{% endblock %}" />
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="{% static 'mainapp/img/logo.png' %}" />
@@ -141,12 +139,12 @@
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://dev.sruedadev.com/#business",
+    "@id": "{{ SITE_ORIGIN }}/#business",
     "name": "sruedadev — Desarrollador Fullstack Freelance",
     "alternateName": "Sergio Rueda Dev",
-    "url": "https://dev.sruedadev.com/",
-    "image": "https://dev.sruedadev.com{% static 'mainapp/img/sergio_main.jpg' %}",
-    "logo": "https://dev.sruedadev.com{% static 'mainapp/img/logo.png' %}",
+    "url": "{{ SITE_ORIGIN }}/",
+    "image": "{{ SITE_ORIGIN }}{% static 'mainapp/img/sergio_main.jpg' %}",
+    "logo": "{{ SITE_ORIGIN }}{% static 'mainapp/img/logo.png' %}",
     "description": "Desarrollador fullstack freelance desde Colombia. Construyo sitios web de alta conversión, software a la medida, APIs e integraciones con IA para empresas. 100% remoto.",
     "priceRange": "$$",
     "areaServed": [
@@ -168,23 +166,23 @@
       "jobTitle": "Desarrollador Fullstack",
       "nationality": "Colombiana",
       "sameAs": [
-        "https://linkedin.com/in/sergiorueda-dev",
-        "https://github.com/sergiorueda-dev"
+        "{{ SOCIAL_LINKEDIN }}",
+        "{{ SOCIAL_GITHUB }}"
       ]
     },
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Ventas",
-      "telephone": "+57-350-624-0534",
-      "email": "hello@sruedadev.com",
+      "telephone": "{{ CONTACT_PHONE }}",
+      "email": "{{ CONTACT_EMAIL }}",
       "availableLanguage": ["Spanish", "English"],
       "areaServed": "CO"
     },
     "sameAs": [
-      "https://instagram.com/sergiodevsolutions",
-      "https://facebook.com/sergiodevsolutions",
-      "https://linkedin.com/in/sergiorueda-dev",
-      "https://github.com/sergiorueda-dev"
+      "{{ SOCIAL_INSTAGRAM }}",
+      "{{ SOCIAL_FACEBOOK }}",
+      "{{ SOCIAL_LINKEDIN }}",
+      "{{ SOCIAL_GITHUB }}"
     ]
   }
   </script>
@@ -192,10 +190,10 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "url": "https://dev.sruedadev.com/",
+    "url": "{{ SITE_ORIGIN }}/",
     "name": "sruedadev — Desarrollador Fullstack",
     "inLanguage": "es",
-    "publisher": { "@id": "https://dev.sruedadev.com/#business" }
+    "publisher": { "@id": "{{ SITE_ORIGIN }}/#business" }
   }
   </script>
   {% block extra_jsonld %}{% endblock %}
@@ -328,10 +326,10 @@
             <a class="footer-brand" href="{% url 'mainapp:index' %}">sruedadev<span class="accent">.</span></a>
             <p class="footer-desc">Desarrollador fullstack freelance desde Colombia con amplia experiencia entregando soluciones tecnológicas para empresas en todo el mundo. Independiente, rápido y comprometido con construir software que genera resultados reales de negocio.</p>
             <div class="footer-socials">
-              <a href="https://instagram.com/sergiodevsolutions" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-              <a href="https://facebook.com/sergiodevsolutions" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-              <a href="https://linkedin.com/in/sergiorueda-dev" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-              <a href="https://github.com/sergiorueda-dev" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+              <a href="{{ SOCIAL_INSTAGRAM }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+              <a href="{{ SOCIAL_FACEBOOK }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="{{ SOCIAL_LINKEDIN }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="{{ SOCIAL_GITHUB }}" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
             </div>
           </div>
 
@@ -418,7 +416,7 @@
   </footer>
 
   <!-- WhatsApp flotante -->
-  <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Estoy%20interesado%20en%20tus%20servicios."
+  <a href="https://wa.me/{{ WHATSAPP_NUMBER }}?text=Hola%20Sergio!%20Estoy%20interesado%20en%20tus%20servicios."
      class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp"
      data-track="whatsapp_float">
     <i class="bi bi-whatsapp"></i>

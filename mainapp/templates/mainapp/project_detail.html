@@ -6,8 +6,8 @@
 {% block og_title %}{{ project.title }} — Caso de Estudio {{ project.category }}{% endblock %}
 {% block og_description %}{{ project.short_desc }}{% endblock %}
 {% block og_type %}article{% endblock %}
-{% block og_image %}https://dev.sruedadev.com{% static project.image %}{% endblock %}
-{% block tw_image %}https://dev.sruedadev.com{% static project.image %}{% endblock %}
+{% block og_image %}https://sruedadev.com{% static project.image %}{% endblock %}
+{% block tw_image %}https://sruedadev.com{% static project.image %}{% endblock %}
 {% block extra_jsonld %}
 <script type="application/ld+json">
 {
@@ -16,10 +16,10 @@
   "name": "{{ project.title }}",
   "headline": "{{ project.title }} — {{ project.category }}",
   "description": "{{ project.long_desc|escapejs }}",
-  "image": "https://dev.sruedadev.com{% static project.image %}",
-  "url": "https://dev.sruedadev.com{{ request.path }}",
+  "image": "https://sruedadev.com{% static project.image %}",
+  "url": "https://sruedadev.com{{ request.path }}",
   "datePublished": "{{ project.year }}",
-  "creator": { "@id": "https://dev.sruedadev.com/#business" },
+  "creator": { "@id": "https://sruedadev.com/#business" },
   "about": "{{ project.industry }}",
   "keywords": "{% for t in project.tech_stack %}{{ t }}{% if not forloop.last %}, {% endif %}{% endfor %}"
 }

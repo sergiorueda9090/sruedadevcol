@@ -15,20 +15,38 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ----------------------------------------------------------------
+# Load .env from project root (no-op if file is missing)
+# ----------------------------------------------------------------
+try:
+    from dotenv import load_dotenv
+    load_dotenv(BASE_DIR / '.env')
+except ImportError:
+    pass
+
+
+def _env_bool(name: str, default: bool = False) -> bool:
+    return os.environ.get(name, str(default)).strip().lower() in ('1', 'true', 'yes', 'on')
+
+
+def _env_list(name: str, default: str = '') -> list[str]:
+    raw = os.environ.get(name, default)
+    return [item.strip() for item in raw.split(',') if item.strip()]
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ra-m3aer1kf-8v&6(rw)$t3idim=2x0e0#+)us%plqu+#@s54p'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = _env_bool('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = _env_list('DJANGO_ALLOWED_HOSTS')
 
 # Django respeta el esquema HTTPS pasado por el proxy
-CSRF_TRUSTED_ORIGINS = ['https://col.sruedadev.com']
+CSRF_TRUSTED_ORIGINS = _env_list('DJANGO_CSRF_TRUSTED_ORIGINS')
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 # Application definition
@@ -109,9 +127,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = os.environ['DJANGO_LANGUAGE_CODE']
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = os.environ['DJANGO_TIME_ZONE']
 
 USE_I18N = True
 
@@ -132,13 +150,33 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # ----------------------------------------------------------------
-# Google Ads / Analytics — replace with real IDs when wiring the account.
-# Leave as empty strings to disable all tag output in templates.
+# Site identity — used in canonical URLs, sitemap, JSON-LD, OG tags.
 # ----------------------------------------------------------------
-GTM_CONTAINER_ID = os.environ.get('GTM_CONTAINER_ID', '')          # e.g. 'GTM-XXXXXXX'
-GA4_MEASUREMENT_ID = os.environ.get('GA4_MEASUREMENT_ID', '')      # e.g. 'G-XXXXXXXXXX'
-GOOGLE_ADS_ID = os.environ.get('GOOGLE_ADS_ID', 'AW-17226987245')  # Google Ads conversion tag
-GOOGLE_ADS_LEAD_LABEL = os.environ.get('GOOGLE_ADS_LEAD_LABEL', '')  # e.g. 'abcDEF123'
+SITE_ORIGIN = os.environ['SITE_ORIGIN']
+SITE_NAME = os.environ['SITE_NAME']
+
+# ----------------------------------------------------------------
+# Contact channels — used in views (WhatsApp redirects) and JSON-LD.
+# ----------------------------------------------------------------
+WHATSAPP_NUMBER = os.environ['WHATSAPP_NUMBER']
+CONTACT_EMAIL = os.environ['CONTACT_EMAIL']
+CONTACT_PHONE = os.environ['CONTACT_PHONE']
+
+# ----------------------------------------------------------------
+# Social profiles — surfaced in footer links and JSON-LD `sameAs`.
+# ----------------------------------------------------------------
+SOCIAL_INSTAGRAM = os.environ['SOCIAL_INSTAGRAM']
+SOCIAL_FACEBOOK = os.environ['SOCIAL_FACEBOOK']
+SOCIAL_LINKEDIN = os.environ['SOCIAL_LINKEDIN']
+SOCIAL_GITHUB = os.environ['SOCIAL_GITHUB']
+
+# ----------------------------------------------------------------
+# Google Ads / Analytics — leave empty in .env to disable a specific tag block.
+# ----------------------------------------------------------------
+GTM_CONTAINER_ID = os.environ['GTM_CONTAINER_ID']
+GA4_MEASUREMENT_ID = os.environ['GA4_MEASUREMENT_ID']
+GOOGLE_ADS_ID = os.environ['GOOGLE_ADS_ID']
+GOOGLE_ADS_LEAD_LABEL = os.environ['GOOGLE_ADS_LEAD_LABEL']
 
 # ----------------------------------------------------------------
 # Meta (Facebook) Pixel + Conversions API
@@ -146,6 +184,6 @@ GOOGLE_ADS_LEAD_LABEL = os.environ.get('GOOGLE_ADS_LEAD_LABEL', '')  # e.g. 'abc
 # TEST_EVENT_CODE is shown ONLY in the "Test Events" tab of Meta Events Manager;
 # leave empty in production.
 # ----------------------------------------------------------------
-META_PIXEL_ID = os.environ.get('META_PIXEL_ID', '1350985523530844')
-META_CAPI_ACCESS_TOKEN = os.environ.get('META_CAPI_ACCESS_TOKEN', '')
-META_TEST_EVENT_CODE = os.environ.get('META_TEST_EVENT_CODE', '')
+META_PIXEL_ID = os.environ['META_PIXEL_ID']
+META_CAPI_ACCESS_TOKEN = os.environ['META_CAPI_ACCESS_TOKEN']
+META_TEST_EVENT_CODE = os.environ['META_TEST_EVENT_CODE']

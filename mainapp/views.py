@@ -1,5 +1,6 @@
 from urllib.parse import quote
 
+from django.conf import settings
 from django.http import Http404, HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
@@ -10,7 +11,7 @@ from .models import Lead
 from .projects import PROJECTS, PROJECTS_BY_SLUG
 
 
-WHATSAPP_NUMBER = "573506240534"
+WHATSAPP_NUMBER = settings.WHATSAPP_NUMBER
 
 
 def index(request):
@@ -130,7 +131,7 @@ def terminos(request):
 # Both are cached aggressively (1 day) since their content rarely changes.
 # ----------------------------------------------------------------
 
-SITE_ORIGIN = "https://dev.sruedadev.com"
+SITE_ORIGIN = settings.SITE_ORIGIN
 
 
 @cache_control(max_age=86400, public=True)
