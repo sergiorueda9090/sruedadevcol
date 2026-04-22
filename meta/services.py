@@ -99,6 +99,7 @@ class MetaCAPIService:
             from facebook_business.adobjects.serverside.event_request import EventRequest
             from facebook_business.adobjects.serverside.user_data import UserData
             from facebook_business.adobjects.serverside.custom_data import CustomData
+            from facebook_business.adobjects.serverside.action_source import ActionSource
         except ImportError:
             logger.warning("facebook-business SDK not installed; CAPI no-op")
             return {'ok': False, 'reason': 'sdk_missing'}
@@ -130,7 +131,7 @@ class MetaCAPIService:
             event_time=int(time.time()),
             event_id=event_id,                       # ← deduplication key
             event_source_url=event_source_url,
-            action_source='website',
+            action_source=ActionSource.WEBSITE,
             user_data=user_data,
             custom_data=custom_data,
         )
