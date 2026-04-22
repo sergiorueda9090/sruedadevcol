@@ -418,7 +418,8 @@
   <!-- WhatsApp flotante -->
   <a href="https://wa.me/{{ WHATSAPP_NUMBER }}?text=Hola%20Sergio!%20Estoy%20interesado%20en%20tus%20servicios."
      class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp"
-     data-track="whatsapp_float">
+     data-track="whatsapp_float"
+     onclick="disparaLeadMeta('General - ' + window.location.pathname, 'WhatsApp - Flotante');">
     <i class="bi bi-whatsapp"></i>
   </a>
 
@@ -473,5 +474,77 @@
   </script>
 
   {% block extra_js %}{% endblock %}
+
+  <!-- ============================================================ -->
+  <!-- Tracking de clics en botones de WhatsApp → evento "Lead" Meta -->
+  <!-- Envía el evento al Pixel y prepara el envelope para CAPI.      -->
+  <!-- El Pixel respeta Consent Mode v2 internamente (no duplicar).   -->
+  <!-- ============================================================ -->
+  <script>
+  (function () {
+    // Lee la cookie csrftoken de Django. Si no existe, devuelve "".
+    function getCsrfToken() {
+      var name = 'csrftoken=';
+      var parts = document.cookie ? document.cookie.split(';') : [];
+      for (var i = 0; i < parts.length; i++) {
+        var c = parts[i];
+        while (c.charAt(0) === ' ') { c = c.substring(1); }
+        if (c.indexOf(name) === 0) {
+          return decodeURIComponent(c.substring(name.length));
+        }
+      }
+      return '';
+    }
+
+    // Genera un event_id único por clic — el MISMO se envía al Pixel
+    // y al backend, para que CAPI pueda deduplicar cuando exista.
+    function generarEventId() {
+      var rand = Math.random().toString(36).substring(2, 10);
+      return 'lead_' + Date.now() + '_' + rand;
+    }
+
+    // Handler público. contentName y sourceLabel identifican el origen
+    // del clic en el Events Manager de Meta. No enviar datos personales.
+    window.disparaLeadMeta = function (contentName, sourceLabel) {
+      try {
+        var eventId = generarEventId();
+
+        var payload = {
+          content_name: contentName,
+          content_category: sourceLabel,
+          value: 250000,
+          currency: 'COP'
+        };
+
+        // 1) Pixel del navegador — respeta consent gracias a la init existente.
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', payload, { eventID: eventId });
+        }
+
+        // 2) Envelope para CAPI (el endpoint aún no existe: fallar silencioso).
+        fetch('/api/track-lead/', {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCsrfToken()
+          },
+          body: JSON.stringify({
+            event_id: eventId,
+            event_name: 'Lead',
+            event_source_url: window.location.href,
+            content_name: contentName,
+            content_category: sourceLabel,
+            value: 250000,
+            currency: 'COP'
+          })
+        }).catch(function () { /* silencioso: no romper UX */ });
+      } catch (e) {
+        // Nunca bloquear la navegación por un error de tracking.
+      }
+      // No retornamos false: el <a> sigue abriendo WhatsApp normalmente.
+    };
+  })();
+  </script>
 </body>
 </html>
