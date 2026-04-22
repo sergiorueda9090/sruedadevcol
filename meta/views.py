@@ -46,6 +46,22 @@ def track_lead(request):
 
     first, last = _split_name(payload.get('name', ''))
 
+    # Priorizar content_name/category del payload (viene del botón de WhatsApp).
+    # Fallback a 'service'/'source' (futuros formularios de leads) y luego 'Lead'.
+    content_name = (
+        payload.get('content_name')
+        or payload.get('service')
+        or payload.get('source')
+        or 'Lead'
+    )
+    content_category = payload.get('content_category') or 'Lead'
+
+    # Leer fbp/fbc del payload si vienen, o de las cookies del Pixel como fallback.
+    # El Pixel del navegador deja estas cookies, y el navegador las envía a Django
+    # automáticamente en el request. Mejora el match rate de CAPI.
+    fbp = payload.get('fbp') or request.COOKIES.get('_fbp') or None
+    fbc = payload.get('fbc') or request.COOKIES.get('_fbc') or None
+
     service = MetaCAPIService()
     result = service.send_lead(
         event_id=event_id,
@@ -56,13 +72,13 @@ def track_lead(request):
         phone=payload.get('phone') or None,
         first_name=first or None,
         last_name=last or None,
-        fbp=payload.get('fbp') or None,
-        fbc=payload.get('fbc') or None,
+        fbp=fbp,
+        fbc=fbc,
         value=payload.get('value'),
         currency=payload.get('currency') or 'USD',
         custom={
-            'content_name': payload.get('service') or payload.get('source') or 'Lead',
-            'content_category': 'Lead',
+            'content_name': content_name,
+            'content_category': content_category,
         },
     )
 
