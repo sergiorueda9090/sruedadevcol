@@ -359,7 +359,7 @@
     if (typeof fbq === 'function') {
       var pixelData = {
         content_name: payload.service || source,
-        content_category: 'Lead',
+        content_category: payload.category || 'Lead',
       };
       if (payload.value)    pixelData.value = payload.value;
       if (payload.currency) pixelData.currency = payload.currency;
@@ -459,6 +459,7 @@
     window.metaTrackLead({
       source: a.getAttribute('data-track') || (isWa ? 'whatsapp_click' : 'cta_click'),
       service: a.getAttribute('data-service') || '',
+      category: a.getAttribute('data-category') || '',
     });
   }, { passive: true });
 })();
