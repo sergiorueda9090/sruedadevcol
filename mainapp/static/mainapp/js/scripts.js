@@ -329,6 +329,10 @@
    Uses a shared event_id so Meta deduplicates the browser event and the
    server event (sent from Django via /api/track-lead/). Without dedup
    the same Lead would be counted twice.
+
+   Page-aware: on /presencia-digital/ clicks are enriched with the
+   package's real service name, value and currency (250000 COP). On
+   other pages, the payload stays generic.
    ---------------------------------------------------------------- */
 (function initMetaLeadTracking() {
   function uuid() {
@@ -348,20 +352,73 @@
     return m ? decodeURIComponent(m[1]) : '';
   }
 
+  // --------------------------------------------------------------
+  // Page-aware defaults. Centralizes what each landing is selling so
+  // CAPI events carry accurate metadata (value/currency/service). Add
+  // new pages here as more landings go live.
+  // --------------------------------------------------------------
+  var LANDING_OFFERS = {
+    '/presencia-digital/': {
+      service:  'Paquete Presencia Digital',
+      category: 'Presencia Digital',
+      value:    250000,
+      currency: 'COP',
+    },
+    // '/landing-pages/':         { service: '...', value: ..., currency: 'COP' },
+    // '/tiendas-online/':        { service: '...', value: ..., currency: 'COP' },
+    // '/software-a-la-medida/':  { service: '...', value: ..., currency: 'COP' },
+  };
+
+  function getLandingOffer() {
+    var path = window.location.pathname;
+    // Match both "/presencia-digital/" and "/presencia-digital" (no trailing slash)
+    if (LANDING_OFFERS[path]) return LANDING_OFFERS[path];
+    if (LANDING_OFFERS[path + '/']) return LANDING_OFFERS[path + '/'];
+    return null;
+  }
+
+  // Identify which button was clicked on the current landing, to label
+  // the event with finer granularity (Hero, CTA Final, Flotante).
+  function getButtonLabel(el) {
+    if (!el) return '';
+    if (el.classList.contains('whatsapp-float'))       return 'Flotante';
+    if (el.classList.contains('btn-primary-custom'))   return 'Hero';
+    if (el.classList.contains('btn-whatsapp'))         return 'CTA Final';
+    // Fallback: any wa.me link in the navbar, footer, etc.
+    return 'Otro';
+  }
+
   // Public API: window.metaTrackLead(payload)
-  // payload may include: { source, name, phone, email, business, service, value, currency }
+  // payload may include: { source, name, phone, email, business, service,
+  //                        category, value, currency, buttonLabel }
   window.metaTrackLead = function (payload) {
     payload = payload || {};
     var eventId = uuid();
-    var source = payload.source || 'unknown';
+    var source  = payload.source || 'unknown';
+
+    // Enrich payload with landing-specific defaults (value, currency, service)
+    // unless the caller already specified them.
+    var offer = getLandingOffer();
+    if (offer) {
+      if (!payload.service)  payload.service  = offer.service;
+      if (!payload.category) payload.category = offer.category;
+      if (payload.value == null)  payload.value    = offer.value;
+      if (!payload.currency) payload.currency = offer.currency;
+    }
+
+    // Build category with button label if present (e.g. "Presencia Digital - Hero")
+    var category = payload.category || 'Lead';
+    if (payload.buttonLabel) {
+      category = category + ' - ' + payload.buttonLabel;
+    }
 
     // 1) Browser Pixel
     if (typeof fbq === 'function') {
       var pixelData = {
-        content_name: payload.service || source,
-        content_category: payload.category || 'Lead',
+        content_name:     payload.service || source,
+        content_category: category,
       };
-      if (payload.value)    pixelData.value = payload.value;
+      if (payload.value)    pixelData.value    = payload.value;
       if (payload.currency) pixelData.currency = payload.currency;
       try {
         fbq('track', 'Lead', pixelData, { eventID: eventId });
@@ -373,23 +430,25 @@
       fetch('/api/track-lead/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type':     'application/json',
           'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRFToken': getCsrf(),
+          'X-CSRFToken':      getCsrf(),
         },
         credentials: 'same-origin',
-        keepalive: true,
+        keepalive:   true,
         body: JSON.stringify({
-          event_id: eventId,
-          event_name: 'Lead',
-          source: source,
-          name: payload.name || '',
-          phone: payload.phone || '',
-          email: payload.email || '',
-          business: payload.business || '',
-          service: payload.service || '',
-          value: payload.value || null,
-          currency: payload.currency || 'USD',
+          event_id:         eventId,
+          event_name:       'Lead',
+          source:           source,
+          name:             payload.name     || '',
+          phone:            payload.phone    || '',
+          email:            payload.email    || '',
+          business:         payload.business || '',
+          service:          payload.service  || '',
+          content_name:     payload.service  || source,
+          content_category: category,
+          value:            payload.value    != null ? payload.value : null,
+          currency:         payload.currency || 'USD',
           event_source_url: window.location.href,
           fbp: (document.cookie.match(/(?:^|;\s*)_fbp=([^;]+)/) || [])[1] || '',
           fbc: (document.cookie.match(/(?:^|;\s*)_fbc=([^;]+)/) || [])[1] || '',
@@ -427,11 +486,12 @@
           if (data && data.ok && data.redirect) {
             // Fire Lead event with form PII so CAPI gets matchable data
             window.metaTrackLead({
-              source: formData.get('source') || 'lead_form',
-              name: formData.get('name') || '',
-              phone: formData.get('phone') || '',
+              source:   formData.get('source')   || 'lead_form',
+              name:     formData.get('name')     || '',
+              phone:    formData.get('phone')    || '',
               business: formData.get('business') || '',
-              service: formData.get('service') || '',
+              service:  formData.get('service')  || '',
+              buttonLabel: 'Formulario Footer',
             });
             window.location.href = data.redirect;
           } else {
@@ -457,9 +517,10 @@
     if (!isWa && !hasMarker) return;
 
     window.metaTrackLead({
-      source: a.getAttribute('data-track') || (isWa ? 'whatsapp_click' : 'cta_click'),
-      service: a.getAttribute('data-service') || '',
-      category: a.getAttribute('data-category') || '',
+      source:      a.getAttribute('data-track')    || (isWa ? 'whatsapp_click' : 'cta_click'),
+      service:     a.getAttribute('data-service')  || '',
+      category:    a.getAttribute('data-category') || '',
+      buttonLabel: getButtonLabel(a),
     });
   }, { passive: true });
 })();
