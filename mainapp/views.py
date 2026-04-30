@@ -8,6 +8,7 @@ from django.views.decorators.cache import cache_control
 from django.views.decorators.http import require_POST
 
 from .models import Lead
+from .mvps import MVPS, MVPS_BY_SLUG
 from .projects import PROJECTS, PROJECTS_BY_SLUG
 
 
@@ -42,7 +43,14 @@ def tiendas_online(request):
 
 
 def software_medida(request):
-    return render(request, 'mainapp/services/software_medida.html')
+    return render(request, 'mainapp/services/software_medida.html', {'mvps': MVPS})
+
+
+def mvp_detail(request, slug):
+    mvp = MVPS_BY_SLUG.get(slug)
+    if mvp is None:
+        raise Http404("MVP not found")
+    return render(request, 'mainapp/mvp_detail.html', {'mvp': mvp})
 
 
 def experiencia(request):
@@ -165,6 +173,12 @@ def sitemap_xml(request):
     for project in PROJECTS:
         urls.append((
             reverse('mainapp:project_detail', kwargs={'slug': project['slug']}),
+            "0.7",
+            "monthly",
+        ))
+    for mvp in MVPS:
+        urls.append((
+            reverse('mainapp:mvp_detail', kwargs={'slug': mvp['slug']}),
             "0.7",
             "monthly",
         ))

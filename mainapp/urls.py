@@ -12,6 +12,7 @@ urlpatterns = [
     path('landing-pages/', views.landing_pages, name='landing_pages'),
     path('tiendas-online/', views.tiendas_online, name='tiendas_online'),
     path('software-a-la-medida/', views.software_medida, name='software_medida'),
+    path('software-a-la-medida/mvp/<slug:slug>/', views.mvp_detail, name='mvp_detail'),
     path('experiencia/', views.experiencia, name='experiencia'),
     path('presencia-digital/', views.presencia_digital, name='presencia_digital'),
 

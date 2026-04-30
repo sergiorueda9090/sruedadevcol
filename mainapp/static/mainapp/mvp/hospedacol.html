@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HospédaCol — Gestión de Hostal</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --brand:        #1e3a5f;
+      --brand-dark:   #142940;
+      --brand-light:  #e8eef5;
+      --accent:       #c9a961;
+      --accent-dark:  #a98a45;
+      --ink:          #1a1a1a;
+      --muted:        #6c757d;
+      --bg:           #faf8f5;
+      --card-shadow:  0 1px 3px rgba(20,33,61,.06), 0 4px 12px rgba(20,33,61,.04);
+
+      /* room states */
+      --st-available:   #2e7d4f;
+      --st-occupied:    #c0392b;
+      --st-cleaning:    #d6a417;
+      --st-maintenance: #6c757d;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink);
+    }
+
+    /* ---------- Layout ---------- */
+    .app { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 260px;
+      background: linear-gradient(180deg, var(--brand) 0%, var(--brand-dark) 100%);
+      color: #fff;
+      padding: 1.25rem 0;
+      position: sticky; top: 0; height: 100vh;
+      flex-shrink: 0;
+    }
+    .brand {
+      padding: 0 1.25rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; gap: .65rem;
+    }
+    .brand .logo {
+      width: 38px; height: 38px;
+      background: var(--accent); color: var(--brand-dark);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.15rem;
+    }
+    .brand h1 { font-size: 1.05rem; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+    .brand small { color: rgba(255,255,255,.65); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+
+    .nav-list { list-style: none; padding: 1rem .75rem; margin: 0; }
+    .nav-list li { margin-bottom: 2px; }
+    .nav-list a {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .65rem .85rem;
+      color: rgba(255,255,255,.85);
+      text-decoration: none; border-radius: 8px;
+      font-size: .92rem;
+      transition: background .15s, color .15s;
+    }
+    .nav-list a:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .nav-list a.active { background: rgba(201,169,97,.2); color: #fff; font-weight: 600; border-left: 3px solid var(--accent); padding-left: .6rem; }
+    .nav-list i { width: 18px; text-align: center; }
+
+    .main { flex: 1; padding: 2rem 2.25rem; min-width: 0; }
+    @media (max-width: 768px) {
+      .app { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: static; }
+      .nav-list { display: flex; overflow-x: auto; padding: .75rem; }
+      .nav-list li { margin: 0 4px 0 0; flex-shrink: 0; }
+      .main { padding: 1.25rem; }
+    }
+
+    /* ---------- Header ---------- */
+    .page-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .page-header h2 { font-size: 1.55rem; font-weight: 700; margin: 0; letter-spacing: -.02em; }
+    .page-header .subtitle { color: var(--muted); font-size: .9rem; margin-top: .15rem; }
+
+    /* ---------- Cards / KPIs ---------- */
+    .card-soft {
+      background: #fff; border: none; border-radius: 14px;
+      box-shadow: var(--card-shadow);
+    }
+    .kpi {
+      background: #fff; border-radius: 14px; padding: 1.25rem;
+      box-shadow: var(--card-shadow);
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .kpi .icon-box {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .kpi .label { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+    .kpi .value { font-size: 1.55rem; font-weight: 700; margin-top: .15rem; }
+    .kpi .extra { font-size: .8rem; color: var(--muted); margin-top: .15rem; }
+
+    .kpi.kpi-blue   .icon-box { background: var(--brand-light); color: var(--brand); }
+    .kpi.kpi-gold   .icon-box { background: #f7efd9; color: var(--accent-dark); }
+    .kpi.kpi-green  .icon-box { background: #e3f1ea; color: var(--st-available); }
+    .kpi.kpi-red    .icon-box { background: #fbe5e2; color: var(--st-occupied); }
+
+    /* ---------- Section visibility ---------- */
+    .view { display: none; }
+    .view.active { display: block; animation: fade .25s ease; }
+    @keyframes fade { from { opacity: 0; transform: translateY(4px);} to { opacity: 1; transform: none;} }
+
+    /* ---------- Forms ---------- */
+    .form-label { font-weight: 600; font-size: .88rem; }
+
+    /* ---------- Room grid ---------- */
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .room-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.1rem;
+      box-shadow: var(--card-shadow);
+      border-top: 4px solid var(--st-available);
+      transition: transform .15s, box-shadow .15s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .room-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(20,33,61,.12); }
+    .room-card.state-ocupada     { border-top-color: var(--st-occupied); }
+    .room-card.state-limpieza    { border-top-color: var(--st-cleaning); }
+    .room-card.state-mantenimiento { border-top-color: var(--st-maintenance); opacity: .75; }
+
+    .room-number {
+      font-size: 2rem; font-weight: 800; line-height: 1;
+      letter-spacing: -.02em; color: var(--ink);
+    }
+    .room-type { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-top: .1rem; }
+    .room-state {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+      padding: .2rem .55rem; border-radius: 20px;
+    }
+    .state-disponible .room-state    { background: #e3f1ea; color: var(--st-available); }
+    .state-ocupada .room-state       { background: #fbe5e2; color: var(--st-occupied); }
+    .state-limpieza .room-state      { background: #fcf3d4; color: #8a6d10; }
+    .state-mantenimiento .room-state { background: #e9ecef; color: var(--muted); }
+    .state-disponible .dot    { background: var(--st-available); }
+    .state-ocupada .dot       { background: var(--st-occupied); }
+    .state-limpieza .dot      { background: var(--st-cleaning); }
+    .state-mantenimiento .dot { background: var(--st-maintenance); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+    .room-meta { font-size: .85rem; color: var(--muted); margin-top: .75rem; }
+    .room-tarifa { font-weight: 700; color: var(--ink); font-size: 1rem; margin-top: .25rem; }
+    .room-guest {
+      margin-top: .65rem; padding-top: .65rem; border-top: 1px dashed #e0e0e0;
+      font-size: .85rem;
+    }
+    .room-guest strong { color: var(--brand); }
+
+    .legend {
+      display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+      background: #fff; padding: .75rem 1rem; border-radius: 10px;
+      box-shadow: var(--card-shadow); margin-bottom: 1.25rem;
+    }
+    .legend .item { display: flex; align-items: center; gap: .4rem; font-size: .85rem; color: var(--muted); }
+
+    /* ---------- Tables ---------- */
+    .table-modern { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: var(--card-shadow); }
+    .table-modern thead { background: #f8f9fa; }
+    .table-modern thead th {
+      font-size: .75rem; text-transform: uppercase; letter-spacing: .06em;
+      color: var(--muted); font-weight: 600; padding: .85rem 1rem; border: none;
+    }
+    .table-modern tbody td { padding: .85rem 1rem; vertical-align: middle; border-color: #f1f3f5; }
+
+    /* ---------- Buttons ---------- */
+    .btn-brand { background: var(--brand); color: #fff; border-color: var(--brand); }
+    .btn-brand:hover { background: var(--brand-dark); color: #fff; border-color: var(--brand-dark); }
+    .btn-accent { background: var(--accent); color: #1a1a1a; border-color: var(--accent); font-weight: 600; }
+    .btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+
+    /* ---------- Receipt ---------- */
+    .receipt {
+      background: linear-gradient(135deg, #fff 0%, #faf8f5 100%);
+      border: 2px dashed #d0c9b8; border-radius: 14px;
+      padding: 1.5rem;
+    }
+    .receipt h3 { font-family: system-ui, sans-serif; }
+    .receipt .row-line {
+      display: flex; justify-content: space-between;
+      padding: .35rem 0; border-bottom: 1px dotted #d0c9b8;
+    }
+    .receipt .total {
+      font-size: 1.4rem; font-weight: 800; color: var(--brand);
+      padding-top: .75rem; margin-top: .5rem; border-top: 2px solid var(--brand);
+    }
+
+    /* ---------- Empty / misc ---------- */
+    .empty-state { text-align: center; padding: 3rem 1rem; color: var(--muted); }
+    .empty-state i { font-size: 3rem; opacity: .35; }
+    .toast-container { z-index: 1080; }
+
+    .extras-list { background: #f8f9fa; border-radius: 8px; padding: .5rem; }
+    .extras-list .extra-row { display: flex; justify-content: space-between; padding: .35rem .5rem; }
+    .extras-list .extra-row + .extra-row { border-top: 1px dashed #dee2e6; }
+
+    .doc-badge {
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      background: #f1f3f5; padding: .2rem .5rem; border-radius: 6px;
+      font-size: .8rem; font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============== SIDEBAR ============== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">H</div>
+      <div>
+        <h1>HospédaCol</h1>
+        <small>MVP v1.0</small>
+      </div>
+    </div>
+    <ul class="nav-list" id="navList">
+      <li><a href="#" data-view="dashboard" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+      <li><a href="#" data-view="habitaciones"><i class="bi bi-grid-3x3-gap-fill"></i> Habitaciones</a></li>
+      <li><a href="#" data-view="checkin"><i class="bi bi-box-arrow-in-right"></i> Check-in</a></li>
+      <li><a href="#" data-view="checkout"><i class="bi bi-box-arrow-right"></i> Check-out</a></li>
+      <li><a href="#" data-view="huespedes"><i class="bi bi-people-fill"></i> Huéspedes activos</a></li>
+      <li><a href="#" data-view="historial"><i class="bi bi-clock-history"></i> Historial</a></li>
+      <li><a href="#" data-view="config"><i class="bi bi-gear-fill"></i> Configuración</a></li>
+    </ul>
+  </aside>
+
+  <!-- ============== MAIN ============== -->
+  <main class="main">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section class="view active" id="view-dashboard">
+      <div class="page-header">
+        <div>
+          <h2>Dashboard</h2>
+          <div class="subtitle" id="dashboardDate"></div>
+        </div>
+        <button class="btn btn-brand" data-go="checkin"><i class="bi bi-plus-lg"></i> Nuevo check-in</button>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-6 col-xl-3">
+          <div class="kpi kpi-blue">
+            <div class="icon-box"><i class="bi bi-bar-chart-fill"></i></div>
+            <div>
+              <div class="label">Ocupación actual</div>
+              <div class="value" id="kpiOcc">0%</div>
+              <div class="extra" id="kpiOccExtra">0/0 habitaciones</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="kpi kpi-green">
+            <div class="icon-box"><i class="bi bi-people-fill"></i></div>
+            <div>
+              <div class="label">Huéspedes hospedados</div>
+              <div class="value" id="kpiGuests">0</div>
+              <div class="extra" id="kpiGuestsExtra">0 estadías activas</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="kpi kpi-gold">
+            <div class="icon-box"><i class="bi bi-cash-stack"></i></div>
+            <div>
+              <div class="label">Ingresos hoy</div>
+              <div class="value" id="kpiRevToday">$0</div>
+              <div class="extra" id="kpiRevTodayExtra">0 check-outs</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="kpi kpi-red">
+            <div class="icon-box"><i class="bi bi-graph-up"></i></div>
+            <div>
+              <div class="label">Ingresos del mes</div>
+              <div class="value" id="kpiRevMonth">$0</div>
+              <div class="extra" id="kpiRevMonthExtra">0 estadías facturadas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-lg-7">
+          <div class="card-soft p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="mb-0"><i class="bi bi-calendar-check me-2" style="color:var(--accent-dark)"></i>Movimientos de hoy</h5>
+              <a href="#" data-go="huespedes" class="small text-decoration-none">Ver activos →</a>
+            </div>
+            <div id="todayMovements"></div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card-soft p-4 h-100">
+            <h5 class="mb-3"><i class="bi bi-pie-chart me-2" style="color:var(--brand)"></i>Estado de habitaciones</h5>
+            <div id="roomStateSummary"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HABITACIONES ===== -->
+    <section class="view" id="view-habitaciones">
+      <div class="page-header">
+        <div>
+          <h2>Habitaciones</h2>
+          <div class="subtitle" id="roomsCount">0 habitaciones configuradas</div>
+        </div>
+        <div class="d-flex gap-2">
+          <select class="form-select" id="filterRoomState" style="max-width: 200px;">
+            <option value="all">Todos los estados</option>
+            <option value="disponible">Disponibles</option>
+            <option value="ocupada">Ocupadas</option>
+            <option value="limpieza">En limpieza</option>
+            <option value="mantenimiento">En mantenimiento</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="legend">
+        <strong class="small text-muted text-uppercase me-2">Convención:</strong>
+        <div class="item"><span class="dot" style="background:var(--st-available)"></span> Disponible</div>
+        <div class="item"><span class="dot" style="background:var(--st-occupied)"></span> Ocupada</div>
+        <div class="item"><span class="dot" style="background:var(--st-cleaning)"></span> En limpieza</div>
+        <div class="item"><span class="dot" style="background:var(--st-maintenance)"></span> Mantenimiento</div>
+      </div>
+
+      <div class="rooms-grid" id="roomsGrid"></div>
+    </section>
+
+    <!-- ===== CHECK-IN ===== -->
+    <section class="view" id="view-checkin">
+      <div class="page-header">
+        <div>
+          <h2>Registro de check-in</h2>
+          <div class="subtitle">Registra al huésped y asígnale una habitación disponible</div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="card-soft p-4">
+            <form id="formCheckin" autocomplete="off">
+              <h6 class="text-uppercase text-muted small mb-3">Datos del huésped</h6>
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label class="form-label">Nombre completo *</label>
+                  <input type="text" class="form-control" id="hNombre" required maxlength="100" placeholder="Ej: María Fernanda Gómez Pérez" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Tipo doc. *</label>
+                  <select class="form-select" id="hTipoDoc" required>
+                    <option value="CC">CC</option>
+                    <option value="CE">CE</option>
+                    <option value="PA">Pasaporte</option>
+                    <option value="TI">TI</option>
+                  </select>
+                </div>
+                <div class="col-md-8">
+                  <label class="form-label">Número de documento *</label>
+                  <input type="text" class="form-control" id="hDocumento" required maxlength="20" placeholder="1234567890" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="hTelefono" placeholder="+57 300 000 0000" maxlength="20" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" id="hEmail" placeholder="correo@ejemplo.com" maxlength="60" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Procedencia</label>
+                  <input type="text" class="form-control" id="hProcedencia" placeholder="Ciudad / país" maxlength="60" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Personas en la habitación</label>
+                  <input type="number" class="form-control" id="hPersonas" value="1" min="1" max="10" required />
+                </div>
+              </div>
+
+              <hr class="my-4">
+              <h6 class="text-uppercase text-muted small mb-3">Reserva</h6>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Habitación *</label>
+                  <select class="form-select" id="hRoom" required>
+                    <option value="">— Selecciona —</option>
+                  </select>
+                  <div class="form-text" id="roomInfo"></div>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Check-in *</label>
+                  <input type="date" class="form-control" id="hCheckIn" required />
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Salida prevista *</label>
+                  <input type="date" class="form-control" id="hCheckOut" required />
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Observaciones</label>
+                  <input type="text" class="form-control" id="hObs" maxlength="200" placeholder="Notas adicionales (opcional)" />
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-brand btn-lg w-100 mt-4">
+                <i class="bi bi-check-lg"></i> Confirmar check-in
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div id="checkinSummary" class="card-soft p-4">
+            <h6 class="text-uppercase text-muted small mb-3">Resumen de la reserva</h6>
+            <div id="reservationPreview" class="text-muted">
+              Completa los datos para ver el resumen de la reserva.
+            </div>
+          </div>
+          <div id="lastCheckinTicket" class="mt-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHECK-OUT ===== -->
+    <section class="view" id="view-checkout">
+      <div class="page-header">
+        <div>
+          <h2>Check-out y liquidación</h2>
+          <div class="subtitle">Selecciona la habitación, agrega cargos extras y cobra</div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="card-soft p-4">
+            <label class="form-label">Buscar por habitación o huésped</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" id="searchCheckout" placeholder="Número, nombre o documento" />
+            </div>
+            <div id="checkoutResults"></div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div id="checkoutPanel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HUÉSPEDES ACTIVOS ===== -->
+    <section class="view" id="view-huespedes">
+      <div class="page-header">
+        <div>
+          <h2>Huéspedes activos</h2>
+          <div class="subtitle" id="guestsCount">0 estadías activas</div>
+        </div>
+        <div class="input-group" style="max-width: 280px;">
+          <span class="input-group-text"><i class="bi bi-funnel"></i></span>
+          <input type="text" class="form-control" id="filterGuests" placeholder="Buscar por nombre, doc o hab.">
+        </div>
+      </div>
+      <div id="guestsTable"></div>
+    </section>
+
+    <!-- ===== HISTORIAL ===== -->
+    <section class="view" id="view-historial">
+      <div class="page-header">
+        <div>
+          <h2>Historial de estadías</h2>
+          <div class="subtitle" id="historialCount">0 estadías facturadas</div>
+        </div>
+        <div class="d-flex gap-2">
+          <select class="form-select" id="filterHistPeriod" style="max-width: 180px;">
+            <option value="all">Todo el historial</option>
+            <option value="today">Solo hoy</option>
+            <option value="week" selected>Últimos 7 días</option>
+            <option value="month">Este mes</option>
+          </select>
+          <button class="btn btn-outline-secondary" id="btnExportCsv"><i class="bi bi-download"></i> CSV</button>
+        </div>
+      </div>
+      <div id="historialTable"></div>
+    </section>
+
+    <!-- ===== CONFIGURACIÓN ===== -->
+    <section class="view" id="view-config">
+      <div class="page-header">
+        <div>
+          <h2>Configuración</h2>
+          <div class="subtitle">Administra tipos de habitación, cargos extras y datos del hostal</div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="card-soft p-4 mb-4">
+            <h5 class="mb-3">Habitaciones</h5>
+            <div class="table-responsive">
+              <table class="table table-sm align-middle mb-3">
+                <thead>
+                  <tr><th>N°</th><th>Tipo</th><th>Capacidad</th><th>Tarifa/noche</th><th>Estado</th><th></th></tr>
+                </thead>
+                <tbody id="configRoomsTable"></tbody>
+              </table>
+            </div>
+            <button class="btn btn-outline-primary btn-sm" id="btnAddRoom"><i class="bi bi-plus-lg"></i> Agregar habitación</button>
+          </div>
+
+          <div class="card-soft p-4">
+            <h5 class="mb-3">Cargos extras predefinidos</h5>
+            <div class="table-responsive">
+              <table class="table table-sm align-middle mb-3">
+                <thead><tr><th>Concepto</th><th>Valor</th><th></th></tr></thead>
+                <tbody id="configExtrasTable"></tbody>
+              </table>
+            </div>
+            <button class="btn btn-outline-primary btn-sm" id="btnAddExtra"><i class="bi bi-plus-lg"></i> Agregar cargo</button>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="card-soft p-4 mb-4">
+            <h5 class="mb-3">Datos del hostal</h5>
+            <form id="formHotelInfo">
+              <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="hotelNombre" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="hotelDir" />
+              </div>
+              <div class="row g-2">
+                <div class="col-6">
+                  <label class="form-label">Ciudad</label>
+                  <input type="text" class="form-control" id="hotelCiudad" />
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Teléfono</label>
+                  <input type="text" class="form-control" id="hotelTel" />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-brand mt-3"><i class="bi bi-save"></i> Guardar</button>
+            </form>
+          </div>
+
+          <div class="card-soft p-4">
+            <h6 class="text-muted text-uppercase small">Acciones</h6>
+            <button class="btn btn-outline-danger btn-sm w-100 mt-2" id="btnReset">
+              <i class="bi bi-arrow-counterclockwise"></i> Restablecer datos de demo
+            </button>
+            <div class="form-text mt-2">Borra estadías activas, historial y vuelve a cargar habitaciones de ejemplo.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Modals -->
+<div class="modal fade" id="roomModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="formRoom">
+        <div class="modal-header">
+          <h5 class="modal-title" id="roomModalTitle">Habitación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="rId" />
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label">Número *</label>
+              <input type="text" class="form-control" id="rNumero" required maxlength="10" />
+            </div>
+            <div class="col-md-8">
+              <label class="form-label">Tipo *</label>
+              <input type="text" class="form-control" id="rTipo" required maxlength="40" placeholder="Sencilla, Doble, Suite…" />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Capacidad *</label>
+              <input type="number" class="form-control" id="rCap" required min="1" max="10" />
+            </div>
+            <div class="col-md-8">
+              <label class="form-label">Tarifa por noche (COP) *</label>
+              <input type="number" class="form-control" id="rTarifa" required min="0" step="1000" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Estado</label>
+              <select class="form-select" id="rEstado">
+                <option value="disponible">Disponible</option>
+                <option value="limpieza">En limpieza</option>
+                <option value="mantenimiento">En mantenimiento</option>
+              </select>
+              <div class="form-text">El estado "ocupada" se asigna automáticamente al hacer check-in.</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link text-danger me-auto" id="btnDeleteRoom">Eliminar</button>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-brand">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="extraModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="formExtra">
+        <div class="modal-header">
+          <h5 class="modal-title">Cargo extra</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="eId" />
+          <div class="mb-3">
+            <label class="form-label">Concepto</label>
+            <input type="text" class="form-control" id="eConcepto" required maxlength="40" />
+          </div>
+          <div>
+            <label class="form-label">Valor (COP)</label>
+            <input type="number" class="form-control" id="eValor" required min="0" step="500" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link text-danger me-auto" id="btnDeleteExtra">Eliminar</button>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-brand">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Toasts -->
+<div class="toast-container position-fixed top-0 end-0 p-3" id="toastContainer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ============================================================
+   HospédaCol — MVP de Hostal/Hotel Pequeño
+   ============================================================ */
+
+const STATE_INFO = {
+  disponible:    { label: 'Disponible',    icon: 'bi-check-circle-fill' },
+  ocupada:       { label: 'Ocupada',       icon: 'bi-person-fill' },
+  limpieza:      { label: 'En limpieza',   icon: 'bi-droplet-fill' },
+  mantenimiento: { label: 'Mantenimiento', icon: 'bi-tools' }
+};
+
+const DEFAULT_STATE = {
+  hotel: { nombre: 'Hostal Vista Hermosa', direccion: 'Cra 25 #34-12', ciudad: 'Bucaramanga', telefono: '+57 300 000 0000' },
+  rooms: [],
+  extras: [
+    { id: 1, concepto: 'Desayuno',    valor: 12000 },
+    { id: 2, concepto: 'Lavandería',  valor: 18000 },
+    { id: 3, concepto: 'Frigobar',    valor: 8000 },
+    { id: 4, concepto: 'Parqueadero', valor: 10000 },
+    { id: 5, concepto: 'Late check-out', valor: 25000 }
+  ],
+  stays: [],
+  history: [],
+  nextRoomId: 1,
+  nextExtraId: 6,
+  nextStayId: 1
+};
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+const STORAGE_KEY = 'hospedacol-state-v1';
+
+/* ---------- Persistencia ---------- */
+async function loadState() {
+  try {
+    if (window.storage) {
+      const r = await window.storage.get(STORAGE_KEY);
+      if (r && r.value) { state = JSON.parse(r.value); return true; }
+    }
+  } catch (e) {}
+  return false;
+}
+async function saveState() {
+  try {
+    if (window.storage) await window.storage.set(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) { console.warn('Storage no disponible', e); }
+}
+
+/* ---------- Utils ---------- */
+const COP = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+const fmtDate  = iso => new Date(iso).toLocaleDateString('es-CO', { day:'2-digit', month:'short', year:'numeric' });
+const fmtDateT = iso => new Date(iso).toLocaleString('es-CO', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit', hour12:true });
+const todayISO = () => new Date().toISOString().slice(0,10);
+const addDaysISO = (iso, n) => { const d = new Date(iso); d.setDate(d.getDate() + n); return d.toISOString().slice(0,10); };
+const noches = (a, b) => Math.max(1, Math.round((new Date(b) - new Date(a)) / 86400000));
+const isToday = iso => { const d = new Date(iso), t = new Date(); return d.toDateString() === t.toDateString(); };
+const isThisMonth = iso => { const d = new Date(iso), t = new Date(); return d.getMonth() === t.getMonth() && d.getFullYear() === t.getFullYear(); };
+const lastNDays = (iso, n) => (new Date() - new Date(iso)) <= n * 86400000;
+
+function toast(msg, variant='success', icon='check-circle-fill') {
+  const id = 't' + Date.now();
+  const variants = { success:'text-bg-success', danger:'text-bg-danger', warning:'text-bg-warning', info:'text-bg-primary' };
+  document.getElementById('toastContainer').insertAdjacentHTML('beforeend', `
+    <div id="${id}" class="toast ${variants[variant]} border-0">
+      <div class="d-flex">
+        <div class="toast-body"><i class="bi bi-${icon} me-2"></i>${msg}</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>`);
+  const t = new bootstrap.Toast(document.getElementById(id), { delay: 3000 });
+  t.show();
+  document.getElementById(id).addEventListener('hidden.bs.toast', () => document.getElementById(id).remove());
+}
+
+/* ---------- Navegación ---------- */
+function goTo(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  document.querySelectorAll('#navList a').forEach(a => a.classList.toggle('active', a.dataset.view === view));
+  if (view === 'dashboard')    renderDashboard();
+  if (view === 'habitaciones') renderRoomsGrid();
+  if (view === 'checkin')      prepareCheckin();
+  if (view === 'checkout')     prepareCheckout();
+  if (view === 'huespedes')    renderGuests();
+  if (view === 'historial')    renderHistorial();
+  if (view === 'config')       renderConfig();
+}
+document.getElementById('navList').addEventListener('click', e => {
+  const a = e.target.closest('a[data-view]');
+  if (a) { e.preventDefault(); goTo(a.dataset.view); }
+});
+document.body.addEventListener('click', e => {
+  const btn = e.target.closest('[data-go]');
+  if (btn) { e.preventDefault(); goTo(btn.dataset.go); }
+});
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+function renderDashboard() {
+  document.getElementById('dashboardDate').textContent =
+    new Date().toLocaleDateString('es-CO', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+  const totalRooms = state.rooms.length;
+  const occupied = state.rooms.filter(r => r.estado === 'ocupada').length;
+  const occ = totalRooms ? Math.round((occupied / totalRooms) * 100) : 0;
+  document.getElementById('kpiOcc').textContent = occ + '%';
+  document.getElementById('kpiOccExtra').textContent = `${occupied}/${totalRooms} habitaciones`;
+
+  const totalGuests = state.stays.reduce((a,s) => a + (s.personas || 1), 0);
+  document.getElementById('kpiGuests').textContent = totalGuests;
+  document.getElementById('kpiGuestsExtra').textContent = `${state.stays.length} estadía${state.stays.length === 1 ? '' : 's'} activa${state.stays.length === 1 ? '' : 's'}`;
+
+  const todayHist = state.history.filter(h => isToday(h.checkOut));
+  const monthHist = state.history.filter(h => isThisMonth(h.checkOut));
+  document.getElementById('kpiRevToday').textContent = COP.format(todayHist.reduce((a,h)=>a+h.total,0));
+  document.getElementById('kpiRevTodayExtra').textContent = `${todayHist.length} check-out${todayHist.length===1?'':'s'}`;
+  document.getElementById('kpiRevMonth').textContent = COP.format(monthHist.reduce((a,h)=>a+h.total,0));
+  document.getElementById('kpiRevMonthExtra').textContent = `${monthHist.length} estadías facturadas`;
+
+  // Movimientos hoy: check-ins y check-outs
+  const checkins = state.stays.filter(s => s.checkIn === todayISO());
+  const checkouts = state.history.filter(h => isToday(h.checkOut));
+  const planned = state.stays.filter(s => s.checkOutEsperado === todayISO());
+
+  const mov = document.getElementById('todayMovements');
+  if (checkins.length === 0 && checkouts.length === 0 && planned.length === 0) {
+    mov.innerHTML = `<div class="empty-state"><i class="bi bi-calendar"></i><p class="mt-2 mb-0">Sin movimientos para hoy</p></div>`;
+  } else {
+    let html = '';
+    if (checkins.length) {
+      html += `<div class="text-uppercase text-muted small fw-bold mb-2">Check-ins de hoy (${checkins.length})</div>`;
+      html += checkins.map(s => {
+        const room = state.rooms.find(r => r.id === s.roomId);
+        return `<div class="d-flex justify-content-between py-2 border-bottom">
+          <span><i class="bi bi-arrow-down-circle-fill text-success me-2"></i><strong>${s.huesped.nombre}</strong> · Hab. ${room ? room.numero : '?'}</span>
+          <span class="text-muted small">${s.personas} pers.</span>
+        </div>`;
+      }).join('');
+    }
+    if (planned.length) {
+      html += `<div class="text-uppercase text-muted small fw-bold mt-3 mb-2">Salidas previstas hoy (${planned.length})</div>`;
+      html += planned.map(s => {
+        const room = state.rooms.find(r => r.id === s.roomId);
+        return `<div class="d-flex justify-content-between py-2 border-bottom">
+          <span><i class="bi bi-arrow-up-circle-fill text-warning me-2"></i><strong>${s.huesped.nombre}</strong> · Hab. ${room ? room.numero : '?'}</span>
+          <button class="btn btn-sm btn-accent" onclick="goTo('checkout'); setTimeout(()=>seleccionarCheckout(${s.id}), 80)">Cobrar</button>
+        </div>`;
+      }).join('');
+    }
+    if (checkouts.length) {
+      html += `<div class="text-uppercase text-muted small fw-bold mt-3 mb-2">Check-outs realizados hoy (${checkouts.length})</div>`;
+      html += checkouts.map(h => `<div class="d-flex justify-content-between py-2 border-bottom">
+        <span><i class="bi bi-check-circle-fill text-success me-2"></i><strong>${h.huesped.nombre}</strong> · Hab. ${h.roomNumero}</span>
+        <span><strong class="text-success">${COP.format(h.total)}</strong></span>
+      </div>`).join('');
+    }
+    mov.innerHTML = html;
+  }
+
+  // Resumen de estados
+  const counts = { disponible:0, ocupada:0, limpieza:0, mantenimiento:0 };
+  state.rooms.forEach(r => counts[r.estado]++);
+  document.getElementById('roomStateSummary').innerHTML = Object.keys(STATE_INFO).map(k => {
+    const pct = totalRooms ? Math.round((counts[k]/totalRooms)*100) : 0;
+    const color = `var(--st-${k === 'disponible' ? 'available' : k === 'ocupada' ? 'occupied' : k === 'limpieza' ? 'cleaning' : 'maintenance'})`;
+    return `<div class="mb-3">
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <span><span class="dot me-2" style="background:${color}"></span><strong>${STATE_INFO[k].label}</strong></span>
+        <span class="text-muted small">${counts[k]} / ${totalRooms} (${pct}%)</span>
+      </div>
+      <div style="height:8px;border-radius:4px;background:#e9ecef;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${color};transition:width .3s"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ============================================================
+   HABITACIONES (grid)
+   ============================================================ */
+function renderRoomsGrid() {
+  const filter = document.getElementById('filterRoomState').value;
+  let list = [...state.rooms].sort((a,b) => a.numero.localeCompare(b.numero, 'es', { numeric: true }));
+  if (filter !== 'all') list = list.filter(r => r.estado === filter);
+
+  document.getElementById('roomsCount').textContent = `${state.rooms.length} habitaciones configuradas · ${list.length} mostradas`;
+
+  const grid = document.getElementById('roomsGrid');
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="bi bi-grid-3x3"></i><p class="mt-2">Sin habitaciones que mostrar</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(r => {
+    const stay = state.stays.find(s => s.roomId === r.id);
+    let actionBtn = '';
+    if (r.estado === 'disponible') {
+      actionBtn = `<button class="btn btn-sm btn-brand w-100 mt-2" onclick="goTo('checkin'); setTimeout(()=>preselectRoom(${r.id}), 80)"><i class="bi bi-box-arrow-in-right"></i> Check-in</button>`;
+    } else if (r.estado === 'ocupada') {
+      actionBtn = `<button class="btn btn-sm btn-accent w-100 mt-2" onclick="goTo('checkout'); setTimeout(()=>seleccionarCheckout(${stay ? stay.id : 0}), 80)"><i class="bi bi-box-arrow-right"></i> Check-out</button>`;
+    } else if (r.estado === 'limpieza') {
+      actionBtn = `<button class="btn btn-sm btn-outline-success w-100 mt-2" onclick="marcarDisponible(${r.id})"><i class="bi bi-check-lg"></i> Marcar lista</button>`;
+    } else {
+      actionBtn = `<button class="btn btn-sm btn-outline-secondary w-100 mt-2" onclick="marcarDisponible(${r.id})"><i class="bi bi-arrow-repeat"></i> Reactivar</button>`;
+    }
+    return `
+      <div class="room-card state-${r.estado}">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="room-number">${r.numero}</div>
+            <div class="room-type">${r.tipo}</div>
+          </div>
+          <span class="room-state"><span class="dot"></span>${STATE_INFO[r.estado].label}</span>
+        </div>
+        <div class="room-meta">
+          <i class="bi bi-people"></i> ${r.capacidad} ${r.capacidad === 1 ? 'persona' : 'personas'}
+        </div>
+        <div class="room-tarifa">${COP.format(r.tarifa)} / noche</div>
+        ${stay ? `
+          <div class="room-guest">
+            <strong>${stay.huesped.nombre.split(' ').slice(0,2).join(' ')}</strong><br>
+            <span class="text-muted small">Hasta ${fmtDate(stay.checkOutEsperado)}</span>
+          </div>` : ''}
+        ${actionBtn}
+      </div>`;
+  }).join('');
+}
+document.getElementById('filterRoomState').addEventListener('change', renderRoomsGrid);
+
+window.marcarDisponible = async function(roomId) {
+  const r = state.rooms.find(x => x.id === roomId);
+  if (!r) return;
+  r.estado = 'disponible';
+  await saveState();
+  renderRoomsGrid();
+  toast(`Habitación ${r.numero} disponible`, 'success');
+};
+
+/* ============================================================
+   CHECK-IN
+   ============================================================ */
+function prepareCheckin() {
+  document.getElementById('formCheckin').reset();
+  document.getElementById('hCheckIn').value = todayISO();
+  document.getElementById('hCheckOut').value = addDaysISO(todayISO(), 1);
+  document.getElementById('hPersonas').value = 1;
+  populateRoomSelect();
+  updateReservationPreview();
+  document.getElementById('lastCheckinTicket').innerHTML = '';
+}
+function populateRoomSelect(preselectId = null) {
+  const sel = document.getElementById('hRoom');
+  const available = state.rooms.filter(r => r.estado === 'disponible')
+    .sort((a,b) => a.numero.localeCompare(b.numero, 'es', { numeric: true }));
+  sel.innerHTML = '<option value="">— Selecciona —</option>' + available.map(r =>
+    `<option value="${r.id}">Hab. ${r.numero} — ${r.tipo} (${COP.format(r.tarifa)}/noche)</option>`
+  ).join('');
+  if (preselectId) sel.value = preselectId;
+  updateRoomInfo();
+}
+window.preselectRoom = function(roomId) {
+  populateRoomSelect(roomId);
+  updateReservationPreview();
+};
+function updateRoomInfo() {
+  const id = parseInt(document.getElementById('hRoom').value);
+  const r = state.rooms.find(x => x.id === id);
+  document.getElementById('roomInfo').textContent = r
+    ? `Capacidad: ${r.capacidad} personas · Tarifa ${COP.format(r.tarifa)}/noche`
+    : '';
+}
+function updateReservationPreview() {
+  const id = parseInt(document.getElementById('hRoom').value);
+  const ci = document.getElementById('hCheckIn').value;
+  const co = document.getElementById('hCheckOut').value;
+  const r = state.rooms.find(x => x.id === id);
+  const preview = document.getElementById('reservationPreview');
+  if (!r || !ci || !co) {
+    preview.innerHTML = '<span class="text-muted">Completa los datos para ver el resumen.</span>';
+    return;
+  }
+  if (new Date(co) <= new Date(ci)) {
+    preview.innerHTML = '<div class="alert alert-warning mb-0 py-2 small">La fecha de salida debe ser posterior al check-in.</div>';
+    return;
+  }
+  const n = noches(ci, co);
+  const total = n * r.tarifa;
+  preview.innerHTML = `
+    <div class="row-line d-flex justify-content-between py-1"><span>Habitación</span><strong>${r.numero} — ${r.tipo}</strong></div>
+    <div class="row-line d-flex justify-content-between py-1"><span>Check-in</span><strong>${fmtDate(ci)}</strong></div>
+    <div class="row-line d-flex justify-content-between py-1"><span>Check-out previsto</span><strong>${fmtDate(co)}</strong></div>
+    <div class="row-line d-flex justify-content-between py-1"><span>Noches</span><strong>${n}</strong></div>
+    <div class="row-line d-flex justify-content-between py-1"><span>Tarifa/noche</span><strong>${COP.format(r.tarifa)}</strong></div>
+    <hr class="my-2">
+    <div class="d-flex justify-content-between"><span>Subtotal estimado</span><strong style="color:var(--brand);font-size:1.2rem">${COP.format(total)}</strong></div>
+    <div class="form-text">No incluye cargos extras que se agreguen durante la estadía.</div>
+  `;
+}
+['hRoom','hCheckIn','hCheckOut'].forEach(id =>
+  document.getElementById(id).addEventListener('change', () => { updateRoomInfo(); updateReservationPreview(); })
+);
+
+document.getElementById('formCheckin').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const roomId = parseInt(document.getElementById('hRoom').value);
+  const r = state.rooms.find(x => x.id === roomId);
+  if (!r) { toast('Selecciona una habitación', 'danger'); return; }
+
+  const ci = document.getElementById('hCheckIn').value;
+  const co = document.getElementById('hCheckOut').value;
+  if (new Date(co) <= new Date(ci)) { toast('La salida debe ser posterior al check-in', 'danger'); return; }
+
+  const personas = parseInt(document.getElementById('hPersonas').value);
+  if (personas > r.capacidad) {
+    toast(`La habitación ${r.numero} tiene capacidad para ${r.capacidad} personas`, 'warning', 'exclamation-triangle-fill');
+    return;
+  }
+
+  const stay = {
+    id: state.nextStayId++,
+    roomId: r.id,
+    huesped: {
+      nombre: document.getElementById('hNombre').value.trim(),
+      tipoDoc: document.getElementById('hTipoDoc').value,
+      documento: document.getElementById('hDocumento').value.trim(),
+      telefono: document.getElementById('hTelefono').value.trim(),
+      email: document.getElementById('hEmail').value.trim(),
+      procedencia: document.getElementById('hProcedencia').value.trim()
+    },
+    personas,
+    checkIn: ci,
+    checkOutEsperado: co,
+    tarifaNoche: r.tarifa,
+    extras: [],
+    observaciones: document.getElementById('hObs').value.trim(),
+    createdAt: new Date().toISOString()
+  };
+  state.stays.push(stay);
+  r.estado = 'ocupada';
+  await saveState();
+
+  document.getElementById('lastCheckinTicket').innerHTML = renderCheckinReceipt(stay, r);
+  toast(`Check-in confirmado: ${stay.huesped.nombre} en hab. ${r.numero}`, 'success');
+  prepareCheckin();
+});
+
+function renderCheckinReceipt(s, r) {
+  const n = noches(s.checkIn, s.checkOutEsperado);
+  return `
+    <div class="receipt">
+      <div class="text-center mb-3">
+        <h3 class="mb-0">🛎️ CONFIRMACIÓN</h3>
+        <div class="text-muted small">${state.hotel.nombre}</div>
+      </div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Reserva #</span><strong>${String(s.id).padStart(5,'0')}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Huésped</span><strong>${s.huesped.nombre}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Documento</span><strong>${s.huesped.tipoDoc} ${s.huesped.documento}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Habitación</span><strong>${r.numero} — ${r.tipo}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Check-in</span><strong>${fmtDate(s.checkIn)}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Salida prevista</span><strong>${fmtDate(s.checkOutEsperado)}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Noches</span><strong>${n}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Subtotal</span><strong>${COP.format(n * r.tarifa)}</strong></div>
+      <div class="text-center mt-3 text-muted small">¡Bienvenido(a) a ${state.hotel.nombre}!</div>
+    </div>`;
+}
+
+/* ============================================================
+   CHECK-OUT
+   ============================================================ */
+function prepareCheckout() {
+  document.getElementById('searchCheckout').value = '';
+  document.getElementById('checkoutPanel').innerHTML = '';
+  renderCheckoutResults();
+}
+document.getElementById('searchCheckout').addEventListener('input', renderCheckoutResults);
+
+function renderCheckoutResults() {
+  const q = document.getElementById('searchCheckout').value.toLowerCase().trim();
+  let list = state.stays;
+  if (q) {
+    list = list.filter(s => {
+      const r = state.rooms.find(x => x.id === s.roomId);
+      return (r && r.numero.toLowerCase().includes(q))
+        || s.huesped.nombre.toLowerCase().includes(q)
+        || s.huesped.documento.toLowerCase().includes(q);
+    });
+  }
+  list = list.sort((a,b) => a.checkOutEsperado.localeCompare(b.checkOutEsperado));
+  const div = document.getElementById('checkoutResults');
+  if (list.length === 0) {
+    div.innerHTML = `<div class="alert alert-warning mb-0 py-2 small">No hay estadías ${q ? 'que coincidan' : 'activas'}</div>`;
+    return;
+  }
+  div.innerHTML = list.map(s => {
+    const r = state.rooms.find(x => x.id === s.roomId);
+    return `
+      <button type="button" class="btn btn-outline-primary w-100 text-start mb-2" onclick="seleccionarCheckout(${s.id})">
+        <div class="d-flex justify-content-between align-items-center">
+          <span><strong>Hab. ${r ? r.numero : '?'}</strong> · ${s.huesped.nombre}</span>
+          <small class="text-muted">${fmtDate(s.checkIn)} → ${fmtDate(s.checkOutEsperado)}</small>
+        </div>
+      </button>`;
+  }).join('');
+}
+
+window.seleccionarCheckout = function(stayId) {
+  const s = state.stays.find(x => x.id === stayId);
+  if (!s) return;
+  const r = state.rooms.find(x => x.id === s.roomId);
+  const today = todayISO();
+  const n = noches(s.checkIn, today);
+  const subtotal = n * s.tarifaNoche;
+  const extrasTotal = (s.extras || []).reduce((a,e) => a + e.valor, 0);
+  const total = subtotal + extrasTotal;
+
+  const extrasOptions = state.extras.map(e =>
+    `<button type="button" class="btn btn-sm btn-outline-secondary me-1 mb-1" onclick="agregarExtra(${s.id}, ${e.id})">+ ${e.concepto} (${COP.format(e.valor)})</button>`
+  ).join('');
+
+  const extrasList = (s.extras || []).length === 0
+    ? '<div class="text-muted small text-center py-2">Sin cargos extras</div>'
+    : (s.extras.map((e, idx) => `
+        <div class="extra-row">
+          <span>${e.concepto}</span>
+          <span><strong>${COP.format(e.valor)}</strong> <button class="btn btn-sm btn-link text-danger p-0 ms-2" onclick="quitarExtra(${s.id}, ${idx})"><i class="bi bi-x-lg"></i></button></span>
+        </div>`).join(''));
+
+  document.getElementById('checkoutPanel').innerHTML = `
+    <div class="card-soft p-4 mb-3">
+      <h5 class="mb-3"><i class="bi bi-person-fill me-2" style="color:var(--brand)"></i>Cargos extras</h5>
+      <div class="mb-3">${extrasOptions}</div>
+      <div class="extras-list">${extrasList}</div>
+    </div>
+
+    <div class="receipt">
+      <div class="text-center mb-3">
+        <h3 class="mb-0">💰 LIQUIDACIÓN</h3>
+        <div class="text-muted small">${state.hotel.nombre} · Reserva #${String(s.id).padStart(5,'0')}</div>
+      </div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Huésped</span><strong>${s.huesped.nombre}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Documento</span><strong>${s.huesped.tipoDoc} ${s.huesped.documento}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Habitación</span><strong>${r.numero} — ${r.tipo}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Check-in</span><strong>${fmtDate(s.checkIn)}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Check-out</span><strong>${fmtDate(today)}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Noches</span><strong>${n}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Tarifa/noche</span><strong>${COP.format(s.tarifaNoche)}</strong></div>
+      <div class="row-line d-flex justify-content-between py-1"><span>Subtotal alojamiento</span><strong>${COP.format(subtotal)}</strong></div>
+      ${extrasTotal > 0 ? `<div class="row-line d-flex justify-content-between py-1"><span>Cargos extras</span><strong>${COP.format(extrasTotal)}</strong></div>` : ''}
+      <div class="row-line total d-flex justify-content-between"><span>TOTAL A PAGAR</span><span>${COP.format(total)}</span></div>
+      <div class="d-grid gap-2 mt-3">
+        <button class="btn btn-accent btn-lg" onclick="confirmarCheckout(${s.id})">
+          <i class="bi bi-cash"></i> Cobrar y registrar check-out
+        </button>
+        <button class="btn btn-link text-muted" onclick="document.getElementById('checkoutPanel').innerHTML=''">Cancelar</button>
+      </div>
+    </div>`;
+};
+
+window.agregarExtra = async function(stayId, extraId) {
+  const s = state.stays.find(x => x.id === stayId);
+  const e = state.extras.find(x => x.id === extraId);
+  if (!s || !e) return;
+  s.extras = s.extras || [];
+  s.extras.push({ concepto: e.concepto, valor: e.valor });
+  await saveState();
+  seleccionarCheckout(stayId);
+};
+window.quitarExtra = async function(stayId, idx) {
+  const s = state.stays.find(x => x.id === stayId);
+  if (!s) return;
+  s.extras.splice(idx, 1);
+  await saveState();
+  seleccionarCheckout(stayId);
+};
+
+window.confirmarCheckout = async function(stayId) {
+  const idx = state.stays.findIndex(x => x.id === stayId);
+  if (idx < 0) return;
+  const s = state.stays[idx];
+  const r = state.rooms.find(x => x.id === s.roomId);
+  const checkOut = todayISO();
+  const n = noches(s.checkIn, checkOut);
+  const subtotal = n * s.tarifaNoche;
+  const extrasTotal = (s.extras || []).reduce((a,e) => a + e.valor, 0);
+  const total = subtotal + extrasTotal;
+
+  state.history.unshift({
+    id: s.id,
+    huesped: s.huesped,
+    personas: s.personas,
+    roomId: r.id, roomNumero: r.numero, roomTipo: r.tipo,
+    checkIn: s.checkIn, checkOut,
+    noches: n, tarifaNoche: s.tarifaNoche,
+    subtotal, extrasTotal, total,
+    extras: [...(s.extras || [])],
+    observaciones: s.observaciones
+  });
+  state.stays.splice(idx, 1);
+  r.estado = 'limpieza';
+  await saveState();
+
+  document.getElementById('checkoutPanel').innerHTML = `
+    <div class="alert alert-success">
+      <h5 class="mb-2"><i class="bi bi-check-circle-fill"></i> Check-out completado</h5>
+      <p class="mb-1"><strong>${s.huesped.nombre}</strong> · Hab. ${r.numero}</p>
+      <p class="mb-0">Total cobrado: <strong>${COP.format(total)}</strong></p>
+      <hr><div class="small text-muted">La habitación ${r.numero} pasa a estado "En limpieza".</div>
+    </div>`;
+  document.getElementById('searchCheckout').value = '';
+  renderCheckoutResults();
+  toast(`Check-out de ${s.huesped.nombre} · ${COP.format(total)}`, 'success');
+};
+
+/* ============================================================
+   HUÉSPEDES ACTIVOS
+   ============================================================ */
+function renderGuests() {
+  const q = (document.getElementById('filterGuests').value || '').toLowerCase().trim();
+  let list = [...state.stays];
+  if (q) {
+    list = list.filter(s => {
+      const r = state.rooms.find(x => x.id === s.roomId);
+      return s.huesped.nombre.toLowerCase().includes(q)
+        || s.huesped.documento.toLowerCase().includes(q)
+        || (r && r.numero.toLowerCase().includes(q));
+    });
+  }
+  list.sort((a,b) => a.checkOutEsperado.localeCompare(b.checkOutEsperado));
+
+  document.getElementById('guestsCount').textContent =
+    `${state.stays.length} estadía${state.stays.length === 1 ? '' : 's'} activa${state.stays.length === 1 ? '' : 's'}`;
+
+  const c = document.getElementById('guestsTable');
+  if (list.length === 0) {
+    c.innerHTML = `<div class="card-soft p-5 empty-state">
+      <i class="bi bi-people"></i>
+      <h5 class="mt-2">Sin huéspedes activos</h5>
+      <button class="btn btn-brand mt-2" data-go="checkin"><i class="bi bi-plus-lg"></i> Nuevo check-in</button>
+    </div>`;
+    return;
+  }
+  c.innerHTML = `
+    <div class="table-responsive">
+      <table class="table table-modern table-hover mb-0">
+        <thead><tr>
+          <th>Huésped</th><th>Documento</th><th>Hab.</th><th>Personas</th>
+          <th>Check-in</th><th>Salida prevista</th><th>Noches</th><th class="text-end">Acción</th>
+        </tr></thead>
+        <tbody>
+          ${list.map(s => {
+            const r = state.rooms.find(x => x.id === s.roomId);
+            const n = noches(s.checkIn, s.checkOutEsperado);
+            const today = todayISO();
+            const overdue = today > s.checkOutEsperado;
+            return `<tr>
+              <td><strong>${s.huesped.nombre}</strong>${s.huesped.procedencia ? `<br><small class="text-muted">${s.huesped.procedencia}</small>` : ''}</td>
+              <td><span class="doc-badge">${s.huesped.tipoDoc} ${s.huesped.documento}</span></td>
+              <td><strong>${r ? r.numero : '?'}</strong><br><small class="text-muted">${r ? r.tipo : ''}</small></td>
+              <td>${s.personas}</td>
+              <td>${fmtDate(s.checkIn)}</td>
+              <td class="${overdue ? 'text-danger fw-bold' : ''}">${fmtDate(s.checkOutEsperado)}${overdue ? ' ⚠️' : ''}</td>
+              <td>${n}</td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-accent" onclick="goTo('checkout'); setTimeout(()=>seleccionarCheckout(${s.id}), 80)">
+                  <i class="bi bi-box-arrow-right"></i> Check-out
+                </button>
+              </td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+document.getElementById('filterGuests').addEventListener('input', renderGuests);
+
+/* ============================================================
+   HISTORIAL
+   ============================================================ */
+function getHistFiltered() {
+  const p = document.getElementById('filterHistPeriod').value;
+  let list = [...state.history];
+  if (p === 'today') list = list.filter(h => isToday(h.checkOut));
+  else if (p === 'week') list = list.filter(h => lastNDays(h.checkOut, 7));
+  else if (p === 'month') list = list.filter(h => isThisMonth(h.checkOut));
+  return list;
+}
+function renderHistorial() {
+  const list = getHistFiltered();
+  const total = list.reduce((a,h) => a + h.total, 0);
+  document.getElementById('historialCount').textContent =
+    `${list.length} estadía${list.length === 1 ? '' : 's'} facturada${list.length === 1 ? '' : 's'} · ${COP.format(total)}`;
+  const c = document.getElementById('historialTable');
+  if (list.length === 0) {
+    c.innerHTML = `<div class="card-soft p-5 empty-state">
+      <i class="bi bi-clock-history"></i>
+      <h5 class="mt-2">Sin estadías en este período</h5>
+      <p>Cambia el filtro o registra un check-out</p>
+    </div>`;
+    return;
+  }
+  c.innerHTML = `
+    <div class="table-responsive">
+      <table class="table table-modern table-hover mb-0">
+        <thead><tr>
+          <th>Huésped</th><th>Hab.</th><th>Check-in</th><th>Check-out</th>
+          <th>Noches</th><th>Extras</th><th class="text-end">Total</th>
+        </tr></thead>
+        <tbody>
+          ${list.map(h => `<tr>
+            <td><strong>${h.huesped.nombre}</strong><br><small class="text-muted">${h.huesped.tipoDoc} ${h.huesped.documento}</small></td>
+            <td><strong>${h.roomNumero}</strong> <small class="text-muted">${h.roomTipo}</small></td>
+            <td class="small">${fmtDate(h.checkIn)}</td>
+            <td class="small">${fmtDate(h.checkOut)}</td>
+            <td>${h.noches}</td>
+            <td>${h.extrasTotal > 0 ? COP.format(h.extrasTotal) : '—'}</td>
+            <td class="text-end"><strong class="text-success">${COP.format(h.total)}</strong></td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+document.getElementById('filterHistPeriod').addEventListener('change', renderHistorial);
+
+document.getElementById('btnExportCsv').addEventListener('click', () => {
+  const list = getHistFiltered();
+  if (!list.length) { toast('No hay datos para exportar', 'warning'); return; }
+  const headers = ['Reserva','Huésped','Documento','Habitación','Tipo','CheckIn','CheckOut','Noches','TarifaNoche','Subtotal','Extras','Total'];
+  const rows = list.map(h => [
+    h.id, h.huesped.nombre, `${h.huesped.tipoDoc} ${h.huesped.documento}`,
+    h.roomNumero, h.roomTipo, h.checkIn, h.checkOut,
+    h.noches, h.tarifaNoche, h.subtotal, h.extrasTotal, h.total
+  ]);
+  const csv = [headers, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `historial-hospedacol-${todayISO()}.csv`;
+  a.click(); URL.revokeObjectURL(url);
+  toast('CSV exportado', 'success', 'download');
+});
+
+/* ============================================================
+   CONFIGURACIÓN
+   ============================================================ */
+function renderConfig() {
+  // Rooms table
+  document.getElementById('configRoomsTable').innerHTML = state.rooms.length
+    ? state.rooms.sort((a,b) => a.numero.localeCompare(b.numero,'es',{numeric:true})).map(r => `
+        <tr>
+          <td><strong>${r.numero}</strong></td>
+          <td>${r.tipo}</td>
+          <td>${r.capacidad}</td>
+          <td>${COP.format(r.tarifa)}</td>
+          <td><small class="text-muted">${STATE_INFO[r.estado].label}</small></td>
+          <td class="text-end"><button class="btn btn-sm btn-outline-secondary" onclick="editRoom(${r.id})"><i class="bi bi-pencil"></i></button></td>
+        </tr>`).join('')
+    : '<tr><td colspan="6" class="text-center text-muted py-3">Sin habitaciones</td></tr>';
+
+  // Extras table
+  document.getElementById('configExtrasTable').innerHTML = state.extras.length
+    ? state.extras.map(e => `
+        <tr>
+          <td>${e.concepto}</td>
+          <td>${COP.format(e.valor)}</td>
+          <td class="text-end"><button class="btn btn-sm btn-outline-secondary" onclick="editExtra(${e.id})"><i class="bi bi-pencil"></i></button></td>
+        </tr>`).join('')
+    : '<tr><td colspan="3" class="text-center text-muted py-3">Sin cargos extras</td></tr>';
+
+  // Hotel info
+  document.getElementById('hotelNombre').value = state.hotel.nombre || '';
+  document.getElementById('hotelDir').value    = state.hotel.direccion || '';
+  document.getElementById('hotelCiudad').value = state.hotel.ciudad || '';
+  document.getElementById('hotelTel').value    = state.hotel.telefono || '';
+}
+
+document.getElementById('formHotelInfo').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  state.hotel = {
+    nombre: document.getElementById('hotelNombre').value.trim(),
+    direccion: document.getElementById('hotelDir').value.trim(),
+    ciudad: document.getElementById('hotelCiudad').value.trim(),
+    telefono: document.getElementById('hotelTel').value.trim()
+  };
+  await saveState();
+  toast('Datos del hostal actualizados', 'success');
+});
+
+const roomModal = new bootstrap.Modal(document.getElementById('roomModal'));
+document.getElementById('btnAddRoom').addEventListener('click', () => {
+  document.getElementById('roomModalTitle').textContent = 'Nueva habitación';
+  document.getElementById('formRoom').reset();
+  document.getElementById('rId').value = '';
+  document.getElementById('btnDeleteRoom').style.display = 'none';
+  roomModal.show();
+});
+window.editRoom = function(id) {
+  const r = state.rooms.find(x => x.id === id);
+  if (!r) return;
+  document.getElementById('roomModalTitle').textContent = `Habitación ${r.numero}`;
+  document.getElementById('rId').value = r.id;
+  document.getElementById('rNumero').value = r.numero;
+  document.getElementById('rTipo').value = r.tipo;
+  document.getElementById('rCap').value = r.capacidad;
+  document.getElementById('rTarifa').value = r.tarifa;
+  document.getElementById('rEstado').value = r.estado === 'ocupada' ? 'disponible' : r.estado;
+  document.getElementById('btnDeleteRoom').style.display = r.estado === 'ocupada' ? 'none' : 'inline';
+  roomModal.show();
+};
+document.getElementById('formRoom').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('rId').value;
+  const data = {
+    numero: document.getElementById('rNumero').value.trim(),
+    tipo: document.getElementById('rTipo').value.trim(),
+    capacidad: parseInt(document.getElementById('rCap').value),
+    tarifa: parseInt(document.getElementById('rTarifa').value),
+    estado: document.getElementById('rEstado').value
+  };
+  if (id) {
+    const r = state.rooms.find(x => x.id === parseInt(id));
+    if (r.estado === 'ocupada' && data.estado !== 'ocupada') data.estado = 'ocupada';
+    Object.assign(r, data);
+  } else {
+    if (state.rooms.some(x => x.numero === data.numero)) {
+      toast('Ya existe una habitación con ese número', 'danger'); return;
+    }
+    state.rooms.push({ id: state.nextRoomId++, ...data });
+  }
+  await saveState();
+  roomModal.hide();
+  renderConfig();
+  toast('Habitación guardada', 'success');
+});
+document.getElementById('btnDeleteRoom').addEventListener('click', async () => {
+  const id = parseInt(document.getElementById('rId').value);
+  const r = state.rooms.find(x => x.id === id);
+  if (!r) return;
+  if (r.estado === 'ocupada') { toast('No se puede eliminar una habitación ocupada', 'danger'); return; }
+  if (!confirm(`¿Eliminar la habitación ${r.numero}?`)) return;
+  state.rooms = state.rooms.filter(x => x.id !== id);
+  await saveState();
+  roomModal.hide();
+  renderConfig();
+  toast('Habitación eliminada', 'info');
+});
+
+const extraModal = new bootstrap.Modal(document.getElementById('extraModal'));
+document.getElementById('btnAddExtra').addEventListener('click', () => {
+  document.getElementById('formExtra').reset();
+  document.getElementById('eId').value = '';
+  document.getElementById('btnDeleteExtra').style.display = 'none';
+  extraModal.show();
+});
+window.editExtra = function(id) {
+  const e = state.extras.find(x => x.id === id);
+  if (!e) return;
+  document.getElementById('eId').value = e.id;
+  document.getElementById('eConcepto').value = e.concepto;
+  document.getElementById('eValor').value = e.valor;
+  document.getElementById('btnDeleteExtra').style.display = 'inline';
+  extraModal.show();
+};
+document.getElementById('formExtra').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('eId').value;
+  const data = {
+    concepto: document.getElementById('eConcepto').value.trim(),
+    valor: parseInt(document.getElementById('eValor').value)
+  };
+  if (id) {
+    const ex = state.extras.find(x => x.id === parseInt(id));
+    Object.assign(ex, data);
+  } else {
+    state.extras.push({ id: state.nextExtraId++, ...data });
+  }
+  await saveState();
+  extraModal.hide();
+  renderConfig();
+  toast('Cargo guardado', 'success');
+});
+document.getElementById('btnDeleteExtra').addEventListener('click', async () => {
+  const id = parseInt(document.getElementById('eId').value);
+  if (!confirm('¿Eliminar este cargo?')) return;
+  state.extras = state.extras.filter(x => x.id !== id);
+  await saveState();
+  extraModal.hide();
+  renderConfig();
+});
+
+document.getElementById('btnReset').addEventListener('click', async () => {
+  if (!confirm('¿Restablecer todos los datos? Esto borrará estadías activas e historial.')) return;
+  state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  seedDemoData();
+  await saveState();
+  toast('Datos restablecidos con ejemplos', 'info');
+  goTo('dashboard');
+});
+
+/* ============================================================
+   DATOS DEMO
+   ============================================================ */
+function seedDemoData() {
+  const tipos = [
+    { tipo: 'Sencilla', cap: 1, tarifa: 90000 },
+    { tipo: 'Doble',    cap: 2, tarifa: 140000 },
+    { tipo: 'Triple',   cap: 3, tarifa: 180000 },
+    { tipo: 'Familiar', cap: 4, tarifa: 220000 },
+    { tipo: 'Suite',    cap: 2, tarifa: 280000 }
+  ];
+  const layout = ['101','102','103','104','201','202','203','204','205','301','302','303'];
+  state.rooms = layout.map((num, i) => {
+    const def = tipos[i % tipos.length];
+    return { id: state.nextRoomId++, numero: num, tipo: def.tipo, capacidad: def.cap, tarifa: def.tarifa, estado: 'disponible' };
+  });
+  // forzar variedad
+  state.rooms[5].estado = 'limpieza';
+  state.rooms[10].estado = 'mantenimiento';
+
+  // Estadías activas
+  const huespedes = [
+    { nombre: 'María Fernanda Gómez', tipoDoc:'CC', documento:'1098765432', telefono:'+57 301 234 5678', email:'maria@example.com', procedencia:'Bogotá' },
+    { nombre: 'Carlos Andrés Rojas', tipoDoc:'CC', documento:'80123456',  telefono:'+57 312 987 1234', email:'carlos@example.com', procedencia:'Medellín' },
+    { nombre: 'Sophie Dubois',       tipoDoc:'PA', documento:'FR9123456', telefono:'+33 6 12 34 56 78', email:'sophie@example.com', procedencia:'París, Francia' },
+    { nombre: 'Andrea Lozano Villa', tipoDoc:'CC', documento:'1023456789', telefono:'+57 315 555 0011', email:'andrea@example.com', procedencia:'Cali' }
+  ];
+  const targetRooms = [0, 2, 4, 7]; // ocupar varias
+  huespedes.forEach((h, i) => {
+    const room = state.rooms[targetRooms[i]];
+    const ci = addDaysISO(todayISO(), -[2,1,3,1][i]);
+    const co = addDaysISO(todayISO(), [2,1,3,0][i]);
+    state.stays.push({
+      id: state.nextStayId++,
+      roomId: room.id, huesped: h, personas: room.capacidad === 1 ? 1 : 2,
+      checkIn: ci, checkOutEsperado: co, tarifaNoche: room.tarifa,
+      extras: i === 1 ? [{concepto:'Desayuno',valor:12000},{concepto:'Parqueadero',valor:10000}] : [],
+      observaciones: '', createdAt: new Date().toISOString()
+    });
+    room.estado = 'ocupada';
+  });
+
+  // Historial
+  const past = [
+    { off: 1,  noches: 2, t: 0, h: { nombre:'Juan Pablo Mejía', tipoDoc:'CC', documento:'72145678', telefono:'+57 311 000 0001', email:'juan@x.com', procedencia:'Cartagena' }, extras: [{concepto:'Desayuno',valor:12000}] },
+    { off: 2,  noches: 1, t: 1, h: { nombre:'Laura Marcela Ríos', tipoDoc:'CC', documento:'52987123', telefono:'+57 311 000 0002', email:'laura@x.com', procedencia:'Bogotá' }, extras: [] },
+    { off: 4,  noches: 3, t: 3, h: { nombre:'James Wilson', tipoDoc:'PA', documento:'UK887766', telefono:'+44 20 7946 0123', email:'jwilson@x.com', procedencia:'Londres, UK' }, extras: [{concepto:'Lavandería',valor:18000},{concepto:'Desayuno',valor:12000}] },
+    { off: 6,  noches: 2, t: 4, h: { nombre:'Diego Martínez', tipoDoc:'CC', documento:'1098234567', telefono:'+57 311 000 0004', email:'diego@x.com', procedencia:'Bucaramanga' }, extras: [] },
+    { off: 9,  noches: 1, t: 1, h: { nombre:'Catalina Suárez', tipoDoc:'CC', documento:'52111222', telefono:'+57 311 000 0005', email:'cata@x.com', procedencia:'Pereira' }, extras: [] },
+    { off: 12, noches: 4, t: 2, h: { nombre:'Roberto Higuera', tipoDoc:'CC', documento:'80778899', telefono:'+57 311 000 0006', email:'rh@x.com', procedencia:'Cali' }, extras: [{concepto:'Frigobar',valor:8000}] }
+  ];
+  past.forEach(p => {
+    const room = state.rooms[p.t];
+    const co = addDaysISO(todayISO(), -p.off);
+    const ci = addDaysISO(co, -p.noches);
+    const subtotal = p.noches * room.tarifa;
+    const extrasTotal = p.extras.reduce((a,e) => a + e.valor, 0);
+    state.history.push({
+      id: state.nextStayId++,
+      huesped: p.h, personas: 1,
+      roomId: room.id, roomNumero: room.numero, roomTipo: room.tipo,
+      checkIn: ci, checkOut: co, noches: p.noches, tarifaNoche: room.tarifa,
+      subtotal, extrasTotal, total: subtotal + extrasTotal, extras: p.extras, observaciones: ''
+    });
+  });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(async function init() {
+  const loaded = await loadState();
+  if (!loaded || state.rooms.length === 0) {
+    seedDemoData();
+    await saveState();
+  }
+  renderDashboard();
+  // Refresco periódico de vistas dinámicas
+  setInterval(() => {
+    const v = document.querySelector('.view.active');
+    if (!v) return;
+    if (v.id === 'view-dashboard')    renderDashboard();
+    if (v.id === 'view-habitaciones') renderRoomsGrid();
+    if (v.id === 'view-huespedes')    renderGuests();
+  }, 60000);
+})();
+</script>
+</body>
+</html>

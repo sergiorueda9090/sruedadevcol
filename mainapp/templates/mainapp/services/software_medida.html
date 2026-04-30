@@ -97,6 +97,42 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       MVPs en vivo — ejemplos de software a la medida ya construido.
+       Cada tarjeta abre el detalle con iframe del demo + beneficios.
+  ============================================================ -->
+  <section id="mvps" class="api-section api-mvps">
+    <div class="container">
+      <div class="text-center mb-5">
+        <p class="section-tag">Ejemplos en Vivo</p>
+        <h2 class="section-title">Software a la medida <span class="accent">que ya está corriendo.</span></h2>
+        <p class="section-subtitle">Tres MVPs pensados para problemas reales en Colombia. Entra, haz clic, navega — son demos interactivos, no capturas.</p>
+      </div>
+
+      <div class="api-card-grid">
+        {% for mvp in mvps %}
+        <a href="{% url 'mainapp:mvp_detail' slug=mvp.slug %}" class="api-card mvp-card text-decoration-none">
+          <div class="mvp-card-header">
+            <span class="project-category-badge">{{ mvp.category }}</span>
+            <span class="project-live-badge"><span class="live-dot"></span> Demo en vivo</span>
+          </div>
+          <h4 class="mt-3">{{ mvp.title }}</h4>
+          <p class="mvp-tagline accent">{{ mvp.tagline }}</p>
+          <p>{{ mvp.short_desc }}</p>
+          <div class="mvp-highlights mt-3">
+            {% for h in mvp.highlights %}
+              <span class="tech-pill"><i class="bi bi-check2 me-1"></i>{{ h }}</span>
+            {% endfor %}
+          </div>
+          <div class="mvp-card-footer mt-3">
+            <span class="mvp-link-cue">Ver cómo funciona <i class="bi bi-arrow-right ms-1"></i></span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
   <section class="api-section api-process">
     <div class="container">
       <div class="text-center mb-5">

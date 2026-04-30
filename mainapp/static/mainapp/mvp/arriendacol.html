@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ArriendaCol — Gestión Inmobiliaria</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --brand:        #0d4f4f;
+      --brand-dark:   #062f2f;
+      --brand-light:  #e6f0f0;
+      --accent:       #c9a14a;
+      --accent-dark:  #a8842f;
+      --ink:          #1a1a1a;
+      --muted:        #6c757d;
+      --bg:           #f8f7f4;
+      --card-shadow:  0 1px 3px rgba(13,79,79,.06), 0 4px 12px rgba(13,79,79,.04);
+
+      --st-ok:    #2e7d4f;
+      --st-warn:  #d6a417;
+      --st-bad:   #c0392b;
+      --st-info:  #3a86c5;
+      --st-gray:  #6c757d;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink);
+    }
+
+    /* ---------- Layout ---------- */
+    .app { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 260px;
+      background: linear-gradient(180deg, var(--brand) 0%, var(--brand-dark) 100%);
+      color: #fff;
+      padding: 1.25rem 0;
+      position: sticky; top: 0; height: 100vh;
+      flex-shrink: 0;
+    }
+    .brand {
+      padding: 0 1.25rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; gap: .65rem;
+    }
+    .brand .logo {
+      width: 38px; height: 38px;
+      background: var(--accent); color: var(--brand-dark);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.15rem;
+    }
+    .brand h1 { font-size: 1.05rem; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+    .brand small { color: rgba(255,255,255,.65); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+
+    .nav-list { list-style: none; padding: 1rem .75rem; margin: 0; }
+    .nav-list li { margin-bottom: 2px; }
+    .nav-list a {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .65rem .85rem;
+      color: rgba(255,255,255,.85);
+      text-decoration: none; border-radius: 8px;
+      font-size: .92rem;
+      transition: background .15s, color .15s;
+    }
+    .nav-list a:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .nav-list a.active { background: rgba(201,161,74,.2); color: #fff; font-weight: 600; border-left: 3px solid var(--accent); padding-left: .6rem; }
+    .nav-list i { width: 18px; text-align: center; }
+
+    .main { flex: 1; padding: 2rem 2.25rem; min-width: 0; }
+    @media (max-width: 768px) {
+      .app { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: static; }
+      .nav-list { display: flex; overflow-x: auto; padding: .75rem; }
+      .nav-list li { margin: 0 4px 0 0; flex-shrink: 0; }
+      .main { padding: 1.25rem; }
+    }
+
+    /* ---------- Header ---------- */
+    .page-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .page-header h2 { font-size: 1.55rem; font-weight: 700; margin: 0; letter-spacing: -.02em; }
+    .page-header .subtitle { color: var(--muted); font-size: .9rem; margin-top: .15rem; }
+
+    /* ---------- Cards / KPIs ---------- */
+    .card-soft {
+      background: #fff; border: none; border-radius: 14px;
+      box-shadow: var(--card-shadow);
+    }
+    .kpi {
+      background: #fff; border-radius: 14px; padding: 1.25rem;
+      box-shadow: var(--card-shadow);
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .kpi .icon-box {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .kpi .label { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+    .kpi .value { font-size: 1.55rem; font-weight: 700; margin-top: .15rem; }
+    .kpi .extra { font-size: .8rem; color: var(--muted); margin-top: .15rem; }
+
+    .kpi.kpi-teal  .icon-box { background: var(--brand-light); color: var(--brand); }
+    .kpi.kpi-gold  .icon-box { background: #f7efd9; color: var(--accent-dark); }
+    .kpi.kpi-green .icon-box { background: #e3f1ea; color: var(--st-ok); }
+    .kpi.kpi-red   .icon-box { background: #fbe5e2; color: var(--st-bad); }
+
+    /* ---------- Section visibility ---------- */
+    .view { display: none; }
+    .view.active { display: block; animation: fade .25s ease; }
+    @keyframes fade { from { opacity: 0; transform: translateY(4px);} to { opacity: 1; transform: none;} }
+
+    /* ---------- Forms ---------- */
+    .form-label { font-weight: 600; font-size: .88rem; }
+
+    /* ---------- Tables ---------- */
+    .table-modern { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: var(--card-shadow); }
+    .table-modern thead { background: #f8f9fa; }
+    .table-modern thead th {
+      font-size: .75rem; text-transform: uppercase; letter-spacing: .06em;
+      color: var(--muted); font-weight: 600; padding: .85rem 1rem; border: none;
+    }
+    .table-modern tbody td { padding: .85rem 1rem; vertical-align: middle; border-color: #f1f3f5; }
+
+    /* ---------- Property cards ---------- */
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .prop-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.1rem;
+      box-shadow: var(--card-shadow);
+      border-left: 4px solid var(--st-gray);
+      transition: transform .15s, box-shadow .15s;
+      cursor: pointer;
+      position: relative;
+    }
+    .prop-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(13,79,79,.12); }
+    .prop-card.estado-disponible    { border-left-color: var(--st-ok); }
+    .prop-card.estado-arrendado     { border-left-color: var(--st-info); }
+    .prop-card.estado-mantenimiento { border-left-color: var(--st-warn); }
+    .prop-codigo {
+      display: inline-block;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      background: var(--brand-light); color: var(--brand);
+      padding: .15rem .55rem; border-radius: 6px;
+      font-size: .75rem; font-weight: 700; letter-spacing: .05em;
+    }
+    .prop-tipo { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-top: .35rem; }
+    .prop-direccion { font-weight: 700; font-size: 1.05rem; line-height: 1.3; margin-top: .25rem; }
+    .prop-meta { font-size: .85rem; color: var(--muted); margin-top: .65rem; display: flex; flex-wrap: wrap; gap: .9rem; }
+    .prop-meta i { color: var(--brand); }
+    .prop-canon { font-size: 1.15rem; font-weight: 700; color: var(--ink); margin-top: .65rem; }
+    .prop-canon small { font-weight: 400; color: var(--muted); font-size: .8rem; }
+    .estado-badge {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+      padding: .2rem .55rem; border-radius: 20px;
+    }
+    .estado-disponible    .estado-badge { background: #e3f1ea; color: var(--st-ok); }
+    .estado-arrendado     .estado-badge { background: #e3edf7; color: var(--st-info); }
+    .estado-mantenimiento .estado-badge { background: #fcf3d4; color: #8a6d10; }
+
+    /* ---------- Mora indicators ---------- */
+    .mora-pill {
+      display: inline-block;
+      font-size: .8rem; font-weight: 700;
+      padding: .2rem .65rem; border-radius: 20px;
+    }
+    .mora-pill.al-dia { background: #e3f1ea; color: var(--st-ok); }
+    .mora-pill.mora   { background: #fbe5e2; color: var(--st-bad); }
+    .mora-pill.proximo { background: #fcf3d4; color: #8a6d10; }
+
+    /* ---------- Buttons ---------- */
+    .btn-brand { background: var(--brand); color: #fff; border-color: var(--brand); }
+    .btn-brand:hover { background: var(--brand-dark); color: #fff; border-color: var(--brand-dark); }
+    .btn-accent { background: var(--accent); color: #1a1a1a; border-color: var(--accent); font-weight: 600; }
+    .btn-accent:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+
+    /* ---------- Receipt ---------- */
+    .receipt {
+      background: #fff;
+      border: 2px dashed #d0c9b8; border-radius: 14px;
+      padding: 1.5rem;
+    }
+    .receipt h3 { font-family: system-ui, sans-serif; }
+    .receipt .row-line {
+      display: flex; justify-content: space-between;
+      padding: .35rem 0; border-bottom: 1px dotted #d0c9b8;
+    }
+    .receipt .total {
+      font-size: 1.4rem; font-weight: 800; color: var(--brand);
+      padding-top: .75rem; margin-top: .5rem; border-top: 2px solid var(--brand);
+    }
+
+    /* ---------- Account statement ---------- */
+    .month-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 120px;
+      gap: 1rem; align-items: center;
+      padding: .75rem 1rem;
+      border-bottom: 1px solid #f1f3f5;
+      background: #fff;
+    }
+    .month-row:hover { background: #fafbfb; }
+    .month-row .month { font-weight: 600; }
+    .month-row .status-pago { font-weight: 600; }
+    .month-row.pagado .status-pago { color: var(--st-ok); }
+    .month-row.pendiente .status-pago { color: var(--st-warn); }
+    .month-row.vencido .status-pago { color: var(--st-bad); }
+
+    /* ---------- Empty state ---------- */
+    .empty-state { text-align: center; padding: 3rem 1rem; color: var(--muted); }
+    .empty-state i { font-size: 3rem; opacity: .35; }
+    .toast-container { z-index: 1080; }
+
+    /* ---------- Print ---------- */
+    @media print {
+      .sidebar, .page-header, .toast-container, .no-print { display: none !important; }
+      .main { padding: 0 !important; }
+      .receipt { border: 2px solid #333; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============== SIDEBAR ============== -->
+  <aside class="sidebar no-print">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <h1>ArriendaCol</h1>
+        <small>MVP v1.0</small>
+      </div>
+    </div>
+    <ul class="nav-list" id="navList">
+      <li><a href="#" data-view="dashboard" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+      <li><a href="#" data-view="propiedades"><i class="bi bi-houses-fill"></i> Propiedades</a></li>
+      <li><a href="#" data-view="inquilinos"><i class="bi bi-people-fill"></i> Inquilinos</a></li>
+      <li><a href="#" data-view="contratos"><i class="bi bi-file-earmark-text-fill"></i> Contratos</a></li>
+      <li><a href="#" data-view="cartera"><i class="bi bi-cash-coin"></i> Cartera y pagos</a></li>
+      <li><a href="#" data-view="config"><i class="bi bi-gear-fill"></i> Configuración</a></li>
+    </ul>
+  </aside>
+
+  <!-- ============== MAIN ============== -->
+  <main class="main">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section class="view active" id="view-dashboard">
+      <div class="page-header">
+        <div>
+          <h2>Dashboard</h2>
+          <div class="subtitle" id="dashboardDate"></div>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary" data-go="contratos"><i class="bi bi-file-earmark-plus"></i> Nuevo contrato</button>
+          <button class="btn btn-brand" data-go="cartera"><i class="bi bi-cash"></i> Registrar pago</button>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-6 col-xl-3">
+          <div class="kpi kpi-teal">
+            <div class="icon-box"><i class="bi bi-houses"></i></div>
+            <div>
+              <div class="label">Propiedades</div>
+              <div class="value" id="kpiProps">0</div>
+              <div class="extra" id="kpiPropsExtra">0 arrendadas</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="kpi kpi-green">
+            <div class="icon-box"><i class="bi bi-graph-up-arrow"></i></div>
+            <div>
+              <div class="label">Ocupación</div>
+              <div class="value" id="kpiOcc">0%</div>
+              <div class="extra" id="kpiOccExtra">Promedio</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="kpi kpi-gold">
+            <div class="icon-box"><i class="bi bi-cash-stack"></i></div>
+            <div>
+              <div class="label">Recaudo del mes</div>
+              <div class="value" id="kpiRecaudo">$0</div>
+              <div class="extra" id="kpiRecaudoExtra">de $0 esperados</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="kpi kpi-red">
+            <div class="icon-box"><i class="bi bi-exclamation-triangle-fill"></i></div>
+            <div>
+              <div class="label">Cartera vencida</div>
+              <div class="value" id="kpiCartera">$0</div>
+              <div class="extra" id="kpiCarteraExtra">0 contratos en mora</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-lg-7">
+          <div class="card-soft p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="mb-0"><i class="bi bi-exclamation-circle me-2 text-danger"></i>Inquilinos en mora</h5>
+              <a href="#" data-go="cartera" class="small text-decoration-none">Ver cartera completa →</a>
+            </div>
+            <div id="overdueList"></div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card-soft p-4 h-100">
+            <h5 class="mb-3"><i class="bi bi-calendar-event me-2" style="color:var(--accent-dark)"></i>Contratos por vencer</h5>
+            <div id="expiringList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROPIEDADES ===== -->
+    <section class="view" id="view-propiedades">
+      <div class="page-header">
+        <div>
+          <h2>Propiedades</h2>
+          <div class="subtitle" id="propsCount">0 propiedades</div>
+        </div>
+        <div class="d-flex gap-2">
+          <select class="form-select" id="filterPropEstado" style="max-width: 200px;">
+            <option value="all">Todos los estados</option>
+            <option value="disponible">Disponibles</option>
+            <option value="arrendado">Arrendadas</option>
+            <option value="mantenimiento">En mantenimiento</option>
+          </select>
+          <input type="text" class="form-control" id="filterPropSearch" placeholder="Buscar dirección o código…" style="max-width: 240px;" />
+          <button class="btn btn-brand" id="btnAddProp"><i class="bi bi-plus-lg"></i> Nueva propiedad</button>
+        </div>
+      </div>
+      <div class="props-grid" id="propsGrid"></div>
+    </section>
+
+    <!-- ===== INQUILINOS ===== -->
+    <section class="view" id="view-inquilinos">
+      <div class="page-header">
+        <div>
+          <h2>Inquilinos</h2>
+          <div class="subtitle" id="tenantsCount">0 inquilinos registrados</div>
+        </div>
+        <div class="d-flex gap-2">
+          <input type="text" class="form-control" id="filterTenantSearch" placeholder="Buscar nombre o documento…" style="max-width: 280px;" />
+          <button class="btn btn-brand" id="btnAddTenant"><i class="bi bi-plus-lg"></i> Nuevo inquilino</button>
+        </div>
+      </div>
+      <div id="tenantsTable"></div>
+    </section>
+
+    <!-- ===== CONTRATOS ===== -->
+    <section class="view" id="view-contratos">
+      <div id="contratoListWrap">
+        <div class="page-header">
+          <div>
+            <h2>Contratos</h2>
+            <div class="subtitle" id="contractsCount">0 contratos</div>
+          </div>
+          <div class="d-flex gap-2">
+            <select class="form-select" id="filterContrEstado" style="max-width: 180px;">
+              <option value="all">Todos</option>
+              <option value="activo" selected>Activos</option>
+              <option value="finalizado">Finalizados</option>
+              <option value="cancelado">Cancelados</option>
+            </select>
+            <button class="btn btn-brand" id="btnAddContract"><i class="bi bi-plus-lg"></i> Nuevo contrato</button>
+          </div>
+        </div>
+        <div id="contractsTable"></div>
+      </div>
+      <div id="contratoDetailWrap" style="display:none"></div>
+    </section>
+
+    <!-- ===== CARTERA ===== -->
+    <section class="view" id="view-cartera">
+      <div class="page-header">
+        <div>
+          <h2>Cartera y pagos</h2>
+          <div class="subtitle" id="carteraSubtitle">Estado de pagos por contrato activo</div>
+        </div>
+        <div class="d-flex gap-2">
+          <select class="form-select" id="filterCartera" style="max-width: 200px;">
+            <option value="all">Todos</option>
+            <option value="mora" selected>Solo en mora</option>
+            <option value="al-dia">Al día</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-4">
+          <div class="kpi kpi-green">
+            <div class="icon-box"><i class="bi bi-check-circle"></i></div>
+            <div>
+              <div class="label">Al día</div>
+              <div class="value" id="cartKpiOk">0</div>
+              <div class="extra">contratos al corriente</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="kpi kpi-red">
+            <div class="icon-box"><i class="bi bi-exclamation-triangle"></i></div>
+            <div>
+              <div class="label">En mora</div>
+              <div class="value" id="cartKpiMora">0</div>
+              <div class="extra" id="cartKpiMoraExtra">$0 pendientes</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="kpi kpi-gold">
+            <div class="icon-box"><i class="bi bi-calendar-month"></i></div>
+            <div>
+              <div class="label">Recaudo este mes</div>
+              <div class="value" id="cartKpiRecaudo">$0</div>
+              <div class="extra" id="cartKpiRecaudoExtra">de $0 esperados</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="carteraTable"></div>
+    </section>
+
+    <!-- ===== CONFIGURACIÓN ===== -->
+    <section class="view" id="view-config">
+      <div class="page-header">
+        <div>
+          <h2>Configuración</h2>
+          <div class="subtitle">Datos de la inmobiliaria y parámetros de cobro</div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="card-soft p-4 mb-4">
+            <h5 class="mb-3">Datos de la inmobiliaria</h5>
+            <form id="formAgency">
+              <div class="row g-3">
+                <div class="col-md-8">
+                  <label class="form-label">Nombre o razón social</label>
+                  <input type="text" class="form-control" id="agNombre" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">NIT</label>
+                  <input type="text" class="form-control" id="agNit" />
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="agDir" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Ciudad</label>
+                  <input type="text" class="form-control" id="agCiudad" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Teléfono</label>
+                  <input type="text" class="form-control" id="agTel" />
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" id="agEmail" />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-brand mt-3"><i class="bi bi-save"></i> Guardar</button>
+            </form>
+          </div>
+
+          <div class="card-soft p-4">
+            <h5 class="mb-3">Parámetros de cobro</h5>
+            <form id="formParams">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">% Mora mensual</label>
+                  <div class="input-group">
+                    <input type="number" class="form-control" id="parMora" step="0.1" min="0" max="10" />
+                    <span class="input-group-text">%</span>
+                  </div>
+                  <div class="form-text">Se aplica sobre el canon por cada mes vencido.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Días de gracia</label>
+                  <input type="number" class="form-control" id="parGracia" min="0" max="30" />
+                  <div class="form-text">Días después del día de pago sin mora.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">% Comisión administración</label>
+                  <div class="input-group">
+                    <input type="number" class="form-control" id="parComision" step="0.5" min="0" max="30" />
+                    <span class="input-group-text">%</span>
+                  </div>
+                  <div class="form-text">Comisión que cobra la inmobiliaria por la administración.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">% IPC anual</label>
+                  <div class="input-group">
+                    <input type="number" class="form-control" id="parIpc" step="0.1" min="0" max="20" />
+                    <span class="input-group-text">%</span>
+                  </div>
+                  <div class="form-text">Para aumentos anuales de canon.</div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-brand mt-3"><i class="bi bi-save"></i> Guardar parámetros</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="card-soft p-4">
+            <h6 class="text-muted text-uppercase small">Acciones</h6>
+            <button class="btn btn-outline-danger btn-sm w-100 mt-2" id="btnReset">
+              <i class="bi bi-arrow-counterclockwise"></i> Restablecer datos de demo
+            </button>
+            <div class="form-text mt-2">Borra propiedades, inquilinos, contratos y pagos. Vuelve a cargar el ejemplo.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============== MODALS ============== -->
+
+<!-- Property Modal -->
+<div class="modal fade" id="propModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form id="formProp">
+        <div class="modal-header">
+          <h5 class="modal-title" id="propModalTitle">Propiedad</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="pId" />
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label class="form-label">Código *</label>
+              <input type="text" class="form-control" id="pCodigo" required maxlength="15" placeholder="P001" />
+            </div>
+            <div class="col-md-5">
+              <label class="form-label">Tipo *</label>
+              <select class="form-select" id="pTipo" required>
+                <option value="Apartamento">Apartamento</option>
+                <option value="Casa">Casa</option>
+                <option value="Apartaestudio">Apartaestudio</option>
+                <option value="Local comercial">Local comercial</option>
+                <option value="Oficina">Oficina</option>
+                <option value="Bodega">Bodega</option>
+                <option value="Lote">Lote</option>
+                <option value="Finca">Finca</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Estrato</label>
+              <select class="form-select" id="pEstrato">
+                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                <option value="">N/A</option>
+              </select>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Dirección *</label>
+              <input type="text" class="form-control" id="pDir" required maxlength="120" placeholder="Cra 25 #34-56 Apto 502" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Barrio</label>
+              <input type="text" class="form-control" id="pBarrio" maxlength="60" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Ciudad</label>
+              <input type="text" class="form-control" id="pCiudad" maxlength="60" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Área (m²)</label>
+              <input type="number" class="form-control" id="pArea" min="0" step="1" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Habitaciones</label>
+              <input type="number" class="form-control" id="pHab" min="0" max="20" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Baños</label>
+              <input type="number" class="form-control" id="pBan" min="0" max="10" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Parqueaderos</label>
+              <input type="number" class="form-control" id="pParq" min="0" max="10" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Canon mensual *</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="pCanon" required min="0" step="10000" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Administración mensual</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="pAdmin" min="0" step="10000" value="0" />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Estado</label>
+              <select class="form-select" id="pEstado">
+                <option value="disponible">Disponible</option>
+                <option value="mantenimiento">En mantenimiento</option>
+              </select>
+              <div class="form-text">El estado "arrendado" se asigna automáticamente al crear un contrato activo.</div>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Notas</label>
+              <textarea class="form-control" id="pNotas" rows="2" maxlength="300"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link text-danger me-auto" id="btnDeleteProp">Eliminar</button>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-brand">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Tenant Modal -->
+<div class="modal fade" id="tenantModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form id="formTenant">
+        <div class="modal-header">
+          <h5 class="modal-title" id="tenantModalTitle">Inquilino</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="tId" />
+          <div class="row g-3">
+            <div class="col-md-12">
+              <label class="form-label">Nombre completo *</label>
+              <input type="text" class="form-control" id="tNombre" required maxlength="100" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Tipo doc. *</label>
+              <select class="form-select" id="tTipoDoc" required>
+                <option value="CC">CC</option>
+                <option value="CE">CE</option>
+                <option value="PA">Pasaporte</option>
+                <option value="NIT">NIT</option>
+              </select>
+            </div>
+            <div class="col-md-9">
+              <label class="form-label">Número documento *</label>
+              <input type="text" class="form-control" id="tDocumento" required maxlength="20" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" id="tTelefono" maxlength="20" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" id="tEmail" maxlength="60" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Ocupación</label>
+              <input type="text" class="form-control" id="tOcupacion" maxlength="60" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Ingresos mensuales</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="tIngresos" min="0" step="100000" />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Observaciones</label>
+              <textarea class="form-control" id="tObs" rows="2" maxlength="300"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link text-danger me-auto" id="btnDeleteTenant">Eliminar</button>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-brand">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Contract Modal -->
+<div class="modal fade" id="contractModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form id="formContract">
+        <div class="modal-header">
+          <h5 class="modal-title">Nuevo contrato de arrendamiento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Propiedad *</label>
+              <select class="form-select" id="cProp" required></select>
+              <div class="form-text" id="cPropInfo"></div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Inquilino *</label>
+              <select class="form-select" id="cTenant" required></select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Inicio *</label>
+              <input type="date" class="form-control" id="cInicio" required />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Fin *</label>
+              <input type="date" class="form-control" id="cFin" required />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Día de pago *</label>
+              <input type="number" class="form-control" id="cDiaPago" required min="1" max="28" value="5" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Canon mensual *</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="cCanon" required min="0" step="10000" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Administración</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="cAdmin" min="0" step="10000" value="0" />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Depósito / mes(es) anticipados</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="cDeposito" min="0" step="10000" value="0" />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <hr><h6 class="text-uppercase text-muted small">Codeudor (opcional)</h6>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Nombre codeudor</label>
+              <input type="text" class="form-control" id="cCodNombre" maxlength="100" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Documento</label>
+              <input type="text" class="form-control" id="cCodDoc" maxlength="20" />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Teléfono</label>
+              <input type="text" class="form-control" id="cCodTel" maxlength="20" />
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Cláusulas / observaciones</label>
+              <textarea class="form-control" id="cObs" rows="2" maxlength="500"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-brand">Crear contrato</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form id="formPayment">
+        <div class="modal-header">
+          <h5 class="modal-title">Registrar pago</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="payContractId" />
+          <div id="paymentContractInfo" class="alert alert-light mb-3"></div>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label">Mes pagado *</label>
+              <input type="month" class="form-control" id="payMes" required />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Fecha de pago *</label>
+              <input type="date" class="form-control" id="payFecha" required />
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Método</label>
+              <select class="form-select" id="payMetodo">
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+                <option value="Consignación">Consignación</option>
+                <option value="PSE">PSE</option>
+                <option value="Tarjeta">Tarjeta</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Canon</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="payCanon" required min="0" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Administración</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="payAdmin" min="0" value="0" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Mora calculada</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="payMora" min="0" value="0" />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Observaciones</label>
+              <input type="text" class="form-control" id="payObs" maxlength="200" />
+            </div>
+            <div class="col-md-12">
+              <div class="alert alert-success mb-0 py-2">
+                <strong>Total a registrar: <span id="payTotal">$0</span></strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-brand">Registrar pago</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Receipt Modal -->
+<div class="modal fade" id="receiptModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header no-print">
+        <h5 class="modal-title">Recibo de pago</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="receiptBody"></div>
+      <div class="modal-footer no-print">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-brand" onclick="window.print()"><i class="bi bi-printer"></i> Imprimir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toasts -->
+<div class="toast-container position-fixed top-0 end-0 p-3" id="toastContainer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ============================================================
+   ArriendaCol — MVP de Gestión Inmobiliaria
+   ============================================================ */
+
+const DEFAULT_STATE = {
+  agency: {
+    nombre: 'Inmobiliaria Vista Hermosa S.A.S.',
+    nit: '901234567-8',
+    direccion: 'Cra 27 #45-30 Of. 302',
+    ciudad: 'Bucaramanga',
+    telefono: '+57 607 645 0000',
+    email: 'contacto@vistahermosa.com'
+  },
+  params: {
+    moraPct: 1.5,        // % mensual sobre canon
+    diasGracia: 5,       // días después del día de pago sin mora
+    comisionPct: 8,      // % comisión administración
+    ipcPct: 6.5          // % IPC anual
+  },
+  properties: [],
+  tenants: [],
+  contracts: [],
+  payments: [],
+  nextPropId: 1,
+  nextTenantId: 1,
+  nextContractId: 1,
+  nextPaymentId: 1
+};
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+const STORAGE_KEY = 'arriendacol-state-v1';
+
+/* ---------- Persistencia ---------- */
+async function loadState() {
+  try {
+    if (window.storage) {
+      const r = await window.storage.get(STORAGE_KEY);
+      if (r && r.value) { state = JSON.parse(r.value); return true; }
+    }
+  } catch (e) {}
+  return false;
+}
+async function saveState() {
+  try {
+    if (window.storage) await window.storage.set(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) { console.warn('Storage no disponible', e); }
+}
+
+/* ---------- Utils ---------- */
+const COP = new Intl.NumberFormat('es-CO', { style:'currency', currency:'COP', maximumFractionDigits:0 });
+const fmtDate = iso => new Date(iso + (iso.length === 10 ? 'T00:00:00' : '')).toLocaleDateString('es-CO', { day:'2-digit', month:'short', year:'numeric' });
+const fmtMonth = ym => {
+  const [y,m] = ym.split('-');
+  return new Date(parseInt(y), parseInt(m)-1, 1).toLocaleDateString('es-CO', { month:'long', year:'numeric' });
+};
+const todayISO = () => new Date().toISOString().slice(0,10);
+const currentYM = () => { const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; };
+const ymToDate = ym => { const [y,m]=ym.split('-').map(Number); return new Date(y, m-1, 1); };
+const addMonthsYM = (ym, n) => {
+  const d = ymToDate(ym); d.setMonth(d.getMonth() + n);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+};
+function diffMonths(fromYM, toYM) {
+  const [yf,mf]=fromYM.split('-').map(Number);
+  const [yt,mt]=toYM.split('-').map(Number);
+  return (yt-yf)*12 + (mt-mf);
+}
+function daysUntil(iso) {
+  return Math.ceil((new Date(iso) - new Date(todayISO())) / 86400000);
+}
+
+function toast(msg, variant='success', icon='check-circle-fill') {
+  const id = 't' + Date.now();
+  const variants = { success:'text-bg-success', danger:'text-bg-danger', warning:'text-bg-warning', info:'text-bg-primary' };
+  document.getElementById('toastContainer').insertAdjacentHTML('beforeend', `
+    <div id="${id}" class="toast ${variants[variant]} border-0">
+      <div class="d-flex">
+        <div class="toast-body"><i class="bi bi-${icon} me-2"></i>${msg}</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>`);
+  const t = new bootstrap.Toast(document.getElementById(id), { delay: 3000 });
+  t.show();
+  document.getElementById(id).addEventListener('hidden.bs.toast', () => document.getElementById(id).remove());
+}
+
+/* ---------- Lógica de cartera ---------- */
+function activeContracts() {
+  return state.contracts.filter(c => c.estado === 'activo');
+}
+function paymentsForContract(cId) {
+  return state.payments.filter(p => p.contractId === cId);
+}
+function expectedMonths(contract, untilYM = currentYM()) {
+  const startYM = contract.fechaInicio.slice(0,7);
+  const endYM = (contract.fechaFin && contract.fechaFin.slice(0,7) < untilYM) ? contract.fechaFin.slice(0,7) : untilYM;
+  if (endYM < startYM) return [];
+  const months = [];
+  let cur = startYM;
+  while (cur <= endYM) {
+    months.push(cur);
+    cur = addMonthsYM(cur, 1);
+  }
+  return months;
+}
+function getCarteraStatus(contract) {
+  // Devuelve: { months: [{ ym, paid, payment, isOverdue }], totalPagado, totalEsperado, mesesAtrasados, montoMora }
+  const expected = expectedMonths(contract);
+  const pays = paymentsForContract(contract.id);
+  const today = todayISO();
+
+  const months = expected.map(ym => {
+    const payment = pays.find(p => p.mes === ym);
+    // Vencido: si el día actual ya pasó del día de pago + gracia para ese mes
+    const dueDate = `${ym}-${String(contract.diaPago).padStart(2,'0')}`;
+    const dueWithGrace = new Date(dueDate); dueWithGrace.setDate(dueWithGrace.getDate() + state.params.diasGracia);
+    const isOverdue = !payment && (new Date(today) > dueWithGrace);
+    return {
+      ym, paid: !!payment, payment, isOverdue,
+      isPending: !payment && !isOverdue
+    };
+  });
+
+  const totalPagado = pays.reduce((a,p) => a + p.total, 0);
+  const totalEsperado = expected.length * (contract.canon + (contract.administracion || 0));
+  const mesesAtrasados = months.filter(m => m.isOverdue).length;
+  const montoCanonAtrasado = mesesAtrasados * (contract.canon + (contract.administracion || 0));
+  const montoMora = months.filter(m => m.isOverdue).reduce((acc, m, idx, arr) => {
+    // Mora simple: % por mes vencido
+    const monthsLate = arr.length - idx; // el más viejo tiene más meses de mora
+    return acc + Math.round(contract.canon * (state.params.moraPct/100) * monthsLate);
+  }, 0);
+
+  return { months, totalPagado, totalEsperado, mesesAtrasados, montoCanonAtrasado, montoMora };
+}
+
+function calculateMoraForMonth(contract, ym) {
+  // Mora si ese mes ya está vencido
+  const due = new Date(`${ym}-${String(contract.diaPago).padStart(2,'0')}T00:00:00`);
+  due.setDate(due.getDate() + state.params.diasGracia);
+  const now = new Date(todayISO());
+  if (now <= due) return 0;
+  const monthsLate = Math.max(1, diffMonths(ym, currentYM()));
+  return Math.round(contract.canon * (state.params.moraPct/100) * monthsLate);
+}
+
+/* ---------- Navegación ---------- */
+function goTo(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  document.querySelectorAll('#navList a').forEach(a => a.classList.toggle('active', a.dataset.view === view));
+  if (view === 'dashboard')   renderDashboard();
+  if (view === 'propiedades') renderPropsGrid();
+  if (view === 'inquilinos')  renderTenants();
+  if (view === 'contratos')   { document.getElementById('contratoListWrap').style.display=''; document.getElementById('contratoDetailWrap').style.display='none'; renderContracts(); }
+  if (view === 'cartera')     renderCartera();
+  if (view === 'config')      renderConfig();
+}
+document.getElementById('navList').addEventListener('click', e => {
+  const a = e.target.closest('a[data-view]');
+  if (a) { e.preventDefault(); goTo(a.dataset.view); }
+});
+document.body.addEventListener('click', e => {
+  const btn = e.target.closest('[data-go]');
+  if (btn && !btn.matches('button[type="submit"]')) { e.preventDefault(); goTo(btn.dataset.go); }
+});
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+function renderDashboard() {
+  document.getElementById('dashboardDate').textContent =
+    new Date().toLocaleDateString('es-CO', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+  const total = state.properties.length;
+  const arrendadas = state.properties.filter(p => p.estado === 'arrendado').length;
+  const occ = total ? Math.round((arrendadas/total)*100) : 0;
+  document.getElementById('kpiProps').textContent = total;
+  document.getElementById('kpiPropsExtra').textContent = `${arrendadas} arrendada${arrendadas===1?'':'s'}`;
+  document.getElementById('kpiOcc').textContent = occ + '%';
+  document.getElementById('kpiOccExtra').textContent = `${arrendadas}/${total}`;
+
+  // Recaudo del mes
+  const ym = currentYM();
+  const paysMes = state.payments.filter(p => p.mes === ym);
+  const recaudo = paysMes.reduce((a,p) => a+p.total, 0);
+  const esperadoMes = activeContracts().reduce((a,c) => a + c.canon + (c.administracion||0), 0);
+  document.getElementById('kpiRecaudo').textContent = COP.format(recaudo);
+  document.getElementById('kpiRecaudoExtra').textContent = `de ${COP.format(esperadoMes)} esperados`;
+
+  // Cartera vencida
+  let totalMora = 0, contractsEnMora = 0;
+  activeContracts().forEach(c => {
+    const cs = getCarteraStatus(c);
+    if (cs.mesesAtrasados > 0) {
+      contractsEnMora++;
+      totalMora += cs.montoCanonAtrasado + cs.montoMora;
+    }
+  });
+  document.getElementById('kpiCartera').textContent = COP.format(totalMora);
+  document.getElementById('kpiCarteraExtra').textContent = `${contractsEnMora} contrato${contractsEnMora===1?'':'s'} en mora`;
+
+  // Lista de morosos
+  const morosos = activeContracts().map(c => ({c, cs: getCarteraStatus(c)}))
+    .filter(x => x.cs.mesesAtrasados > 0)
+    .sort((a,b) => b.cs.mesesAtrasados - a.cs.mesesAtrasados)
+    .slice(0,5);
+  const ol = document.getElementById('overdueList');
+  if (morosos.length === 0) {
+    ol.innerHTML = `<div class="empty-state"><i class="bi bi-check-circle"></i><p class="mt-2 mb-0">Toda la cartera al día</p></div>`;
+  } else {
+    ol.innerHTML = morosos.map(({c,cs}) => {
+      const t = state.tenants.find(t => t.id === c.tenantId);
+      const p = state.properties.find(p => p.id === c.propertyId);
+      return `<div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+        <div>
+          <strong>${t?t.nombre:'?'}</strong>
+          <div class="small text-muted">${p?p.codigo+' · '+p.direccion:''}</div>
+        </div>
+        <div class="text-end">
+          <div class="mora-pill mora">${cs.mesesAtrasados} mes${cs.mesesAtrasados===1?'':'es'}</div>
+          <div class="small text-muted mt-1">${COP.format(cs.montoCanonAtrasado + cs.montoMora)}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Contratos por vencer (próximos 60 días)
+  const expiring = activeContracts().filter(c => {
+    const d = daysUntil(c.fechaFin);
+    return d >= 0 && d <= 60;
+  }).sort((a,b) => a.fechaFin.localeCompare(b.fechaFin)).slice(0,5);
+  const el = document.getElementById('expiringList');
+  if (expiring.length === 0) {
+    el.innerHTML = `<div class="empty-state"><i class="bi bi-calendar-check"></i><p class="mt-2 mb-0">Sin vencimientos próximos</p></div>`;
+  } else {
+    el.innerHTML = expiring.map(c => {
+      const t = state.tenants.find(t => t.id === c.tenantId);
+      const p = state.properties.find(p => p.id === c.propertyId);
+      const d = daysUntil(c.fechaFin);
+      return `<div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+        <div>
+          <strong>${p?p.codigo:'?'}</strong> · ${t?t.nombre.split(' ').slice(0,2).join(' '):'?'}
+          <div class="small text-muted">Vence ${fmtDate(c.fechaFin)}</div>
+        </div>
+        <span class="mora-pill ${d<=30?'mora':'proximo'}">${d} día${d===1?'':'s'}</span>
+      </div>`;
+    }).join('');
+  }
+}
+
+/* ============================================================
+   PROPIEDADES
+   ============================================================ */
+function renderPropsGrid() {
+  const fEst = document.getElementById('filterPropEstado').value;
+  const fSearch = (document.getElementById('filterPropSearch').value || '').toLowerCase();
+  let list = [...state.properties];
+  if (fEst !== 'all') list = list.filter(p => p.estado === fEst);
+  if (fSearch) list = list.filter(p =>
+    p.codigo.toLowerCase().includes(fSearch) ||
+    p.direccion.toLowerCase().includes(fSearch) ||
+    (p.barrio||'').toLowerCase().includes(fSearch)
+  );
+  list.sort((a,b) => a.codigo.localeCompare(b.codigo));
+
+  document.getElementById('propsCount').textContent =
+    `${state.properties.length} propiedade${state.properties.length===1?'':'s'} · ${list.length} mostradas`;
+
+  const grid = document.getElementById('propsGrid');
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><i class="bi bi-houses"></i><p class="mt-2">Sin propiedades para mostrar</p></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p => {
+    const contract = state.contracts.find(c => c.propertyId === p.id && c.estado === 'activo');
+    const tenant = contract ? state.tenants.find(t => t.id === contract.tenantId) : null;
+    return `<div class="prop-card estado-${p.estado}" onclick="editProp(${p.id})">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <span class="prop-codigo">${p.codigo}</span>
+          <div class="prop-tipo">${p.tipo}${p.estrato?' · Estrato '+p.estrato:''}</div>
+        </div>
+        <span class="estado-badge">${p.estado === 'arrendado' ? 'Arrendado' : p.estado === 'mantenimiento' ? 'Mantenim.' : 'Disponible'}</span>
+      </div>
+      <div class="prop-direccion">${p.direccion}</div>
+      ${p.barrio?`<div class="text-muted small">${p.barrio}${p.ciudad?', '+p.ciudad:''}</div>`:''}
+      <div class="prop-meta">
+        ${p.habitaciones?`<span><i class="bi bi-door-closed"></i> ${p.habitaciones} hab</span>`:''}
+        ${p.banos?`<span><i class="bi bi-droplet"></i> ${p.banos} baños</span>`:''}
+        ${p.area?`<span><i class="bi bi-arrows-fullscreen"></i> ${p.area} m²</span>`:''}
+        ${p.parqueadero?`<span><i class="bi bi-p-square"></i> ${p.parqueadero}</span>`:''}
+      </div>
+      <div class="prop-canon">${COP.format(p.canon)} <small>/ mes</small></div>
+      ${tenant ? `<div class="mt-2 pt-2 border-top small"><i class="bi bi-person-fill text-success"></i> <strong>${tenant.nombre}</strong></div>` : ''}
+    </div>`;
+  }).join('');
+}
+['filterPropEstado','filterPropSearch'].forEach(id => document.getElementById(id).addEventListener('input', renderPropsGrid));
+
+const propModal = new bootstrap.Modal(document.getElementById('propModal'));
+document.getElementById('btnAddProp').addEventListener('click', () => openPropModal());
+function openPropModal(id) {
+  document.getElementById('formProp').reset();
+  document.getElementById('pId').value = '';
+  document.getElementById('btnDeleteProp').style.display = 'none';
+  if (id) {
+    const p = state.properties.find(x => x.id === id);
+    if (!p) return;
+    document.getElementById('propModalTitle').textContent = `Propiedad ${p.codigo}`;
+    document.getElementById('pId').value = p.id;
+    document.getElementById('pCodigo').value = p.codigo;
+    document.getElementById('pTipo').value = p.tipo;
+    document.getElementById('pEstrato').value = p.estrato||'';
+    document.getElementById('pDir').value = p.direccion;
+    document.getElementById('pBarrio').value = p.barrio||'';
+    document.getElementById('pCiudad').value = p.ciudad||'';
+    document.getElementById('pArea').value = p.area||'';
+    document.getElementById('pHab').value = p.habitaciones||'';
+    document.getElementById('pBan').value = p.banos||'';
+    document.getElementById('pParq').value = p.parqueadero||'';
+    document.getElementById('pCanon').value = p.canon;
+    document.getElementById('pAdmin').value = p.administracion||0;
+    document.getElementById('pEstado').value = p.estado === 'arrendado' ? 'disponible' : p.estado;
+    document.getElementById('pNotas').value = p.notas||'';
+    document.getElementById('btnDeleteProp').style.display = p.estado === 'arrendado' ? 'none' : 'inline';
+  } else {
+    document.getElementById('propModalTitle').textContent = 'Nueva propiedad';
+    document.getElementById('pCodigo').value = `P${String(state.nextPropId).padStart(3,'0')}`;
+  }
+  propModal.show();
+}
+window.editProp = openPropModal;
+
+document.getElementById('formProp').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('pId').value;
+  const data = {
+    codigo: document.getElementById('pCodigo').value.trim().toUpperCase(),
+    tipo: document.getElementById('pTipo').value,
+    estrato: document.getElementById('pEstrato').value || null,
+    direccion: document.getElementById('pDir').value.trim(),
+    barrio: document.getElementById('pBarrio').value.trim(),
+    ciudad: document.getElementById('pCiudad').value.trim(),
+    area: parseInt(document.getElementById('pArea').value) || null,
+    habitaciones: parseInt(document.getElementById('pHab').value) || null,
+    banos: parseInt(document.getElementById('pBan').value) || null,
+    parqueadero: parseInt(document.getElementById('pParq').value) || null,
+    canon: parseInt(document.getElementById('pCanon').value),
+    administracion: parseInt(document.getElementById('pAdmin').value) || 0,
+    estado: document.getElementById('pEstado').value,
+    notas: document.getElementById('pNotas').value.trim()
+  };
+  if (id) {
+    const p = state.properties.find(x => x.id === parseInt(id));
+    if (p.estado === 'arrendado') data.estado = 'arrendado';
+    Object.assign(p, data);
+  } else {
+    if (state.properties.some(x => x.codigo === data.codigo)) {
+      toast('Ya existe una propiedad con ese código', 'danger'); return;
+    }
+    state.properties.push({ id: state.nextPropId++, ...data });
+  }
+  await saveState();
+  propModal.hide();
+  renderPropsGrid();
+  toast('Propiedad guardada', 'success');
+});
+document.getElementById('btnDeleteProp').addEventListener('click', async () => {
+  const id = parseInt(document.getElementById('pId').value);
+  const p = state.properties.find(x => x.id === id);
+  if (!p) return;
+  if (p.estado === 'arrendado') { toast('No se puede eliminar una propiedad arrendada', 'danger'); return; }
+  if (!confirm(`¿Eliminar la propiedad ${p.codigo}?`)) return;
+  state.properties = state.properties.filter(x => x.id !== id);
+  await saveState();
+  propModal.hide();
+  renderPropsGrid();
+  toast('Propiedad eliminada', 'info');
+});
+
+/* ============================================================
+   INQUILINOS
+   ============================================================ */
+function renderTenants() {
+  const q = (document.getElementById('filterTenantSearch').value || '').toLowerCase();
+  let list = [...state.tenants];
+  if (q) list = list.filter(t => t.nombre.toLowerCase().includes(q) || t.documento.toLowerCase().includes(q));
+  list.sort((a,b) => a.nombre.localeCompare(b.nombre));
+
+  document.getElementById('tenantsCount').textContent = `${state.tenants.length} inquilino${state.tenants.length===1?'':'s'} registrado${state.tenants.length===1?'':'s'}`;
+
+  const c = document.getElementById('tenantsTable');
+  if (list.length === 0) {
+    c.innerHTML = `<div class="card-soft p-5 empty-state"><i class="bi bi-people"></i><h5 class="mt-2">Sin inquilinos</h5></div>`;
+    return;
+  }
+  c.innerHTML = `<div class="table-responsive">
+    <table class="table table-modern table-hover mb-0">
+      <thead><tr>
+        <th>Nombre</th><th>Documento</th><th>Teléfono</th><th>Email</th>
+        <th>Ocupación</th><th>Contrato activo</th><th class="text-end">Acción</th>
+      </tr></thead>
+      <tbody>${list.map(t => {
+        const c = state.contracts.find(x => x.tenantId === t.id && x.estado === 'activo');
+        const p = c ? state.properties.find(p => p.id === c.propertyId) : null;
+        return `<tr>
+          <td><strong>${t.nombre}</strong></td>
+          <td><span class="badge bg-light text-dark border">${t.tipoDoc} ${t.documento}</span></td>
+          <td>${t.telefono||'—'}</td>
+          <td class="small text-muted">${t.email||'—'}</td>
+          <td class="small">${t.ocupacion||'—'}</td>
+          <td>${c?`<span class="badge bg-info-subtle text-info">${p?p.codigo:''}</span>`:`<span class="text-muted small">Sin contrato</span>`}</td>
+          <td class="text-end"><button class="btn btn-sm btn-outline-secondary" onclick="editTenant(${t.id})"><i class="bi bi-pencil"></i></button></td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table></div>`;
+}
+document.getElementById('filterTenantSearch').addEventListener('input', renderTenants);
+
+const tenantModal = new bootstrap.Modal(document.getElementById('tenantModal'));
+document.getElementById('btnAddTenant').addEventListener('click', () => openTenantModal());
+function openTenantModal(id) {
+  document.getElementById('formTenant').reset();
+  document.getElementById('tId').value = '';
+  document.getElementById('btnDeleteTenant').style.display = 'none';
+  if (id) {
+    const t = state.tenants.find(x => x.id === id);
+    if (!t) return;
+    document.getElementById('tenantModalTitle').textContent = t.nombre;
+    document.getElementById('tId').value = t.id;
+    document.getElementById('tNombre').value = t.nombre;
+    document.getElementById('tTipoDoc').value = t.tipoDoc;
+    document.getElementById('tDocumento').value = t.documento;
+    document.getElementById('tTelefono').value = t.telefono||'';
+    document.getElementById('tEmail').value = t.email||'';
+    document.getElementById('tOcupacion').value = t.ocupacion||'';
+    document.getElementById('tIngresos').value = t.ingresos||'';
+    document.getElementById('tObs').value = t.observaciones||'';
+    const hasContract = state.contracts.some(c => c.tenantId === t.id && c.estado === 'activo');
+    document.getElementById('btnDeleteTenant').style.display = hasContract ? 'none' : 'inline';
+  } else {
+    document.getElementById('tenantModalTitle').textContent = 'Nuevo inquilino';
+  }
+  tenantModal.show();
+}
+window.editTenant = openTenantModal;
+
+document.getElementById('formTenant').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('tId').value;
+  const data = {
+    nombre: document.getElementById('tNombre').value.trim(),
+    tipoDoc: document.getElementById('tTipoDoc').value,
+    documento: document.getElementById('tDocumento').value.trim(),
+    telefono: document.getElementById('tTelefono').value.trim(),
+    email: document.getElementById('tEmail').value.trim(),
+    ocupacion: document.getElementById('tOcupacion').value.trim(),
+    ingresos: parseInt(document.getElementById('tIngresos').value) || null,
+    observaciones: document.getElementById('tObs').value.trim()
+  };
+  if (id) {
+    const t = state.tenants.find(x => x.id === parseInt(id));
+    Object.assign(t, data);
+  } else {
+    state.tenants.push({ id: state.nextTenantId++, ...data });
+  }
+  await saveState();
+  tenantModal.hide();
+  renderTenants();
+  toast('Inquilino guardado', 'success');
+});
+document.getElementById('btnDeleteTenant').addEventListener('click', async () => {
+  const id = parseInt(document.getElementById('tId').value);
+  const t = state.tenants.find(x => x.id === id);
+  if (!confirm(`¿Eliminar al inquilino ${t.nombre}?`)) return;
+  state.tenants = state.tenants.filter(x => x.id !== id);
+  await saveState();
+  tenantModal.hide();
+  renderTenants();
+  toast('Inquilino eliminado', 'info');
+});
+
+/* ============================================================
+   CONTRATOS
+   ============================================================ */
+function renderContracts() {
+  const f = document.getElementById('filterContrEstado').value;
+  let list = [...state.contracts];
+  if (f !== 'all') list = list.filter(c => c.estado === f);
+  list.sort((a,b) => b.fechaInicio.localeCompare(a.fechaInicio));
+
+  document.getElementById('contractsCount').textContent = `${list.length} contrato${list.length===1?'':'s'}`;
+
+  const c = document.getElementById('contractsTable');
+  if (list.length === 0) {
+    c.innerHTML = `<div class="card-soft p-5 empty-state"><i class="bi bi-file-earmark-text"></i><h5 class="mt-2">Sin contratos</h5></div>`;
+    return;
+  }
+  c.innerHTML = `<div class="table-responsive">
+    <table class="table table-modern table-hover mb-0">
+      <thead><tr>
+        <th>Propiedad</th><th>Inquilino</th><th>Inicio</th><th>Fin</th>
+        <th>Canon</th><th>Estado</th><th class="text-end">Acción</th>
+      </tr></thead>
+      <tbody>${list.map(ct => {
+        const p = state.properties.find(p => p.id === ct.propertyId);
+        const t = state.tenants.find(t => t.id === ct.tenantId);
+        const cs = ct.estado === 'activo' ? getCarteraStatus(ct) : null;
+        const moraBadge = cs && cs.mesesAtrasados > 0
+          ? `<span class="mora-pill mora ms-1">${cs.mesesAtrasados} en mora</span>` : '';
+        const estadoBadge = ct.estado === 'activo'
+          ? `<span class="mora-pill al-dia">Activo</span>${moraBadge}`
+          : `<span class="badge bg-secondary">${ct.estado}</span>`;
+        return `<tr>
+          <td><strong>${p?p.codigo:'?'}</strong><br><small class="text-muted">${p?p.direccion:''}</small></td>
+          <td>${t?t.nombre:'?'}<br><small class="text-muted">${t?t.tipoDoc+' '+t.documento:''}</small></td>
+          <td class="small">${fmtDate(ct.fechaInicio)}</td>
+          <td class="small">${fmtDate(ct.fechaFin)}</td>
+          <td><strong>${COP.format(ct.canon)}</strong></td>
+          <td>${estadoBadge}</td>
+          <td class="text-end">
+            <button class="btn btn-sm btn-outline-primary" onclick="verContrato(${ct.id})"><i class="bi bi-eye"></i> Ver</button>
+          </td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table></div>`;
+}
+document.getElementById('filterContrEstado').addEventListener('change', renderContracts);
+
+window.verContrato = function(id) {
+  const ct = state.contracts.find(x => x.id === id);
+  if (!ct) return;
+  const p = state.properties.find(p => p.id === ct.propertyId);
+  const t = state.tenants.find(t => t.id === ct.tenantId);
+  const cs = getCarteraStatus(ct);
+
+  document.getElementById('contratoListWrap').style.display = 'none';
+  document.getElementById('contratoDetailWrap').style.display = '';
+  document.getElementById('contratoDetailWrap').innerHTML = `
+    <div class="page-header">
+      <div>
+        <button class="btn btn-link p-0 text-decoration-none mb-2" onclick="goTo('contratos')"><i class="bi bi-arrow-left"></i> Volver a contratos</button>
+        <h2>Contrato #${String(ct.id).padStart(4,'0')}</h2>
+        <div class="subtitle">${p?p.codigo+' · '+p.direccion:''} · ${t?t.nombre:''}</div>
+      </div>
+      <div class="d-flex gap-2">
+        ${ct.estado === 'activo' ? `<button class="btn btn-accent" onclick="abrirPagoContrato(${ct.id})"><i class="bi bi-cash"></i> Registrar pago</button>` : ''}
+        ${ct.estado === 'activo' ? `<button class="btn btn-outline-danger" onclick="finalizarContrato(${ct.id})"><i class="bi bi-x-circle"></i> Finalizar</button>` : ''}
+      </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-3"><div class="kpi kpi-teal"><div class="icon-box"><i class="bi bi-calendar-range"></i></div><div><div class="label">Inicio</div><div class="value" style="font-size:1.2rem">${fmtDate(ct.fechaInicio)}</div><div class="extra">Fin: ${fmtDate(ct.fechaFin)}</div></div></div></div>
+      <div class="col-md-3"><div class="kpi kpi-gold"><div class="icon-box"><i class="bi bi-cash-stack"></i></div><div><div class="label">Canon</div><div class="value" style="font-size:1.2rem">${COP.format(ct.canon)}</div><div class="extra">${ct.administracion?'Admin: '+COP.format(ct.administracion):'Sin admin'}</div></div></div></div>
+      <div class="col-md-3"><div class="kpi ${cs.mesesAtrasados>0?'kpi-red':'kpi-green'}"><div class="icon-box"><i class="bi bi-${cs.mesesAtrasados>0?'exclamation-triangle':'check-circle'}"></i></div><div><div class="label">Estado</div><div class="value" style="font-size:1.2rem">${cs.mesesAtrasados>0?cs.mesesAtrasados+' mes(es)':'Al día'}</div><div class="extra">${cs.mesesAtrasados>0?COP.format(cs.montoCanonAtrasado+cs.montoMora)+' adeudados':'Sin pendientes'}</div></div></div></div>
+      <div class="col-md-3"><div class="kpi kpi-teal"><div class="icon-box"><i class="bi bi-graph-up"></i></div><div><div class="label">Recaudado</div><div class="value" style="font-size:1.2rem">${COP.format(cs.totalPagado)}</div><div class="extra">de ${COP.format(cs.totalEsperado)} esperados</div></div></div></div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-lg-7">
+        <div class="card-soft p-4">
+          <h5 class="mb-3">Estado de cuenta</h5>
+          <div>
+            ${cs.months.length === 0 ? '<div class="text-muted small">Sin meses registrados aún</div>' : ''}
+            ${cs.months.slice().reverse().map(m => {
+              const cls = m.paid ? 'pagado' : (m.isOverdue ? 'vencido' : 'pendiente');
+              const status = m.paid ? '✓ Pagado' : (m.isOverdue ? '⚠ Vencido' : 'Pendiente');
+              return `<div class="month-row ${cls}">
+                <div class="month">${fmtMonth(m.ym)}</div>
+                <div class="status-pago">${status}</div>
+                <div>${m.payment ? COP.format(m.payment.total) : COP.format(ct.canon + (ct.administracion||0))}</div>
+                <div class="text-end">
+                  ${m.payment
+                    ? `<button class="btn btn-sm btn-outline-secondary" onclick="verRecibo(${m.payment.id})"><i class="bi bi-receipt"></i></button>`
+                    : (ct.estado === 'activo' ? `<button class="btn btn-sm btn-brand" onclick="abrirPagoContrato(${ct.id}, '${m.ym}')">Pagar</button>` : '')}
+                </div>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card-soft p-4 mb-3">
+          <h6 class="text-uppercase text-muted small mb-3">Datos del inquilino</h6>
+          ${t ? `
+            <div class="mb-1"><strong>${t.nombre}</strong></div>
+            <div class="small text-muted">${t.tipoDoc} ${t.documento}</div>
+            ${t.telefono?`<div class="small"><i class="bi bi-telephone"></i> ${t.telefono}</div>`:''}
+            ${t.email?`<div class="small"><i class="bi bi-envelope"></i> ${t.email}</div>`:''}
+            ${t.ocupacion?`<div class="small mt-1">${t.ocupacion}</div>`:''}
+          ` : '<span class="text-muted">Inquilino no encontrado</span>'}
+        </div>
+        ${ct.codeudor && ct.codeudor.nombre ? `
+          <div class="card-soft p-4 mb-3">
+            <h6 class="text-uppercase text-muted small mb-3">Codeudor</h6>
+            <div><strong>${ct.codeudor.nombre}</strong></div>
+            ${ct.codeudor.documento?`<div class="small text-muted">${ct.codeudor.documento}</div>`:''}
+            ${ct.codeudor.telefono?`<div class="small"><i class="bi bi-telephone"></i> ${ct.codeudor.telefono}</div>`:''}
+          </div>` : ''}
+        <div class="card-soft p-4">
+          <h6 class="text-uppercase text-muted small mb-3">Detalles</h6>
+          <div class="row-line d-flex justify-content-between py-1"><span>Día de pago</span><strong>${ct.diaPago} de cada mes</strong></div>
+          <div class="row-line d-flex justify-content-between py-1"><span>Depósito</span><strong>${COP.format(ct.deposito||0)}</strong></div>
+          ${ct.observaciones?`<div class="mt-2 small text-muted">${ct.observaciones}</div>`:''}
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+window.finalizarContrato = async function(id) {
+  if (!confirm('¿Finalizar este contrato? La propiedad volverá a estado disponible.')) return;
+  const ct = state.contracts.find(x => x.id === id);
+  if (!ct) return;
+  ct.estado = 'finalizado';
+  ct.fechaFinalizacion = todayISO();
+  const p = state.properties.find(x => x.id === ct.propertyId);
+  if (p) p.estado = 'disponible';
+  await saveState();
+  toast('Contrato finalizado', 'info');
+  goTo('contratos');
+};
+
+const contractModal = new bootstrap.Modal(document.getElementById('contractModal'));
+document.getElementById('btnAddContract').addEventListener('click', () => {
+  document.getElementById('formContract').reset();
+  // Llenar selects
+  const propSel = document.getElementById('cProp');
+  const available = state.properties.filter(p => p.estado === 'disponible')
+    .sort((a,b) => a.codigo.localeCompare(b.codigo));
+  propSel.innerHTML = '<option value="">— Selecciona —</option>' +
+    available.map(p => `<option value="${p.id}" data-canon="${p.canon}" data-admin="${p.administracion||0}">${p.codigo} — ${p.tipo}, ${p.direccion} (${COP.format(p.canon)})</option>`).join('');
+  if (available.length === 0) {
+    toast('No hay propiedades disponibles. Registra una primero.', 'warning');
+    return;
+  }
+  const tenantSel = document.getElementById('cTenant');
+  if (state.tenants.length === 0) {
+    toast('No hay inquilinos registrados. Registra uno primero.', 'warning');
+    return;
+  }
+  tenantSel.innerHTML = '<option value="">— Selecciona —</option>' +
+    state.tenants.sort((a,b)=>a.nombre.localeCompare(b.nombre)).map(t => `<option value="${t.id}">${t.nombre} (${t.tipoDoc} ${t.documento})</option>`).join('');
+
+  document.getElementById('cInicio').value = todayISO();
+  const oneYear = new Date(); oneYear.setFullYear(oneYear.getFullYear()+1);
+  document.getElementById('cFin').value = oneYear.toISOString().slice(0,10);
+  contractModal.show();
+});
+
+document.getElementById('cProp').addEventListener('change', e => {
+  const opt = e.target.selectedOptions[0];
+  if (opt && opt.dataset.canon) {
+    document.getElementById('cCanon').value = opt.dataset.canon;
+    document.getElementById('cAdmin').value = opt.dataset.admin;
+    document.getElementById('cPropInfo').textContent = `Canon: ${COP.format(opt.dataset.canon)} · Admin: ${COP.format(opt.dataset.admin)}`;
+  } else {
+    document.getElementById('cPropInfo').textContent = '';
+  }
+});
+
+document.getElementById('formContract').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const propId = parseInt(document.getElementById('cProp').value);
+  const tenantId = parseInt(document.getElementById('cTenant').value);
+  const fechaInicio = document.getElementById('cInicio').value;
+  const fechaFin = document.getElementById('cFin').value;
+  if (new Date(fechaFin) <= new Date(fechaInicio)) { toast('La fecha fin debe ser posterior al inicio', 'danger'); return; }
+
+  const contract = {
+    id: state.nextContractId++,
+    propertyId: propId, tenantId,
+    fechaInicio, fechaFin,
+    canon: parseInt(document.getElementById('cCanon').value),
+    administracion: parseInt(document.getElementById('cAdmin').value) || 0,
+    deposito: parseInt(document.getElementById('cDeposito').value) || 0,
+    diaPago: parseInt(document.getElementById('cDiaPago').value),
+    estado: 'activo',
+    codeudor: {
+      nombre: document.getElementById('cCodNombre').value.trim(),
+      documento: document.getElementById('cCodDoc').value.trim(),
+      telefono: document.getElementById('cCodTel').value.trim()
+    },
+    observaciones: document.getElementById('cObs').value.trim(),
+    createdAt: new Date().toISOString()
+  };
+  state.contracts.push(contract);
+  const p = state.properties.find(x => x.id === propId);
+  if (p) p.estado = 'arrendado';
+  await saveState();
+  contractModal.hide();
+  renderContracts();
+  toast(`Contrato creado para ${p.codigo}`, 'success');
+});
+
+/* ============================================================
+   PAGOS / CARTERA
+   ============================================================ */
+function renderCartera() {
+  const filter = document.getElementById('filterCartera').value;
+  const ym = currentYM();
+
+  let okCount = 0, moraCount = 0, montoMora = 0;
+  const rows = activeContracts().map(c => {
+    const cs = getCarteraStatus(c);
+    if (cs.mesesAtrasados > 0) { moraCount++; montoMora += cs.montoCanonAtrasado + cs.montoMora; }
+    else okCount++;
+    return { c, cs };
+  });
+
+  // KPIs
+  document.getElementById('cartKpiOk').textContent = okCount;
+  document.getElementById('cartKpiMora').textContent = moraCount;
+  document.getElementById('cartKpiMoraExtra').textContent = `${COP.format(montoMora)} pendientes`;
+  const recaudo = state.payments.filter(p => p.mes === ym).reduce((a,p)=>a+p.total,0);
+  const esperado = activeContracts().reduce((a,c)=>a+c.canon+(c.administracion||0),0);
+  document.getElementById('cartKpiRecaudo').textContent = COP.format(recaudo);
+  document.getElementById('cartKpiRecaudoExtra').textContent = `de ${COP.format(esperado)} esperados`;
+
+  // Filtrar
+  let filtered = rows;
+  if (filter === 'mora') filtered = rows.filter(r => r.cs.mesesAtrasados > 0);
+  else if (filter === 'al-dia') filtered = rows.filter(r => r.cs.mesesAtrasados === 0);
+  filtered.sort((a,b) => b.cs.mesesAtrasados - a.cs.mesesAtrasados);
+
+  document.getElementById('carteraSubtitle').textContent = `${rows.length} contrato${rows.length===1?'':'s'} activo${rows.length===1?'':'s'} · ${filtered.length} mostrados`;
+
+  const c = document.getElementById('carteraTable');
+  if (filtered.length === 0) {
+    c.innerHTML = `<div class="card-soft p-5 empty-state"><i class="bi bi-cash"></i><h5 class="mt-2">Sin resultados</h5></div>`;
+    return;
+  }
+  c.innerHTML = `<div class="table-responsive">
+    <table class="table table-modern table-hover mb-0">
+      <thead><tr>
+        <th>Propiedad</th><th>Inquilino</th><th>Canon</th>
+        <th>Mes actual</th><th>Estado</th><th>Saldo pendiente</th><th class="text-end">Acción</th>
+      </tr></thead>
+      <tbody>${filtered.map(({c: ct, cs}) => {
+        const p = state.properties.find(p => p.id === ct.propertyId);
+        const t = state.tenants.find(t => t.id === ct.tenantId);
+        const mesActualPaid = cs.months.find(m => m.ym === ym);
+        const totalPendiente = cs.montoCanonAtrasado + cs.montoMora;
+        return `<tr>
+          <td><strong>${p?p.codigo:'?'}</strong><br><small class="text-muted">${p?p.direccion:''}</small></td>
+          <td>${t?t.nombre:'?'}<br><small class="text-muted">Día ${ct.diaPago}</small></td>
+          <td>${COP.format(ct.canon)}</td>
+          <td>${mesActualPaid && mesActualPaid.paid ? '<span class="text-success">✓ Pagado</span>' : '<span class="text-warning">Pendiente</span>'}</td>
+          <td>${cs.mesesAtrasados > 0
+            ? `<span class="mora-pill mora">${cs.mesesAtrasados} mes${cs.mesesAtrasados===1?'':'es'}</span>`
+            : `<span class="mora-pill al-dia">Al día</span>`}</td>
+          <td>${totalPendiente > 0 ? `<strong class="text-danger">${COP.format(totalPendiente)}</strong>` : '<span class="text-muted">—</span>'}</td>
+          <td class="text-end">
+            <button class="btn btn-sm btn-outline-primary me-1" onclick="verContrato(${ct.id})"><i class="bi bi-eye"></i></button>
+            <button class="btn btn-sm btn-accent" onclick="abrirPagoContrato(${ct.id})"><i class="bi bi-cash"></i> Pagar</button>
+          </td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table></div>`;
+}
+document.getElementById('filterCartera').addEventListener('change', renderCartera);
+
+const paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+window.abrirPagoContrato = function(contractId, ym) {
+  const c = state.contracts.find(x => x.id === contractId);
+  if (!c) return;
+  const p = state.properties.find(p => p.id === c.propertyId);
+  const t = state.tenants.find(t => t.id === c.tenantId);
+  const cs = getCarteraStatus(c);
+
+  // Sugerir el mes más antiguo en mora, o el actual
+  let suggestedYM = ym;
+  if (!suggestedYM) {
+    const overdueMonth = cs.months.find(m => m.isOverdue);
+    suggestedYM = overdueMonth ? overdueMonth.ym : currentYM();
+  }
+
+  document.getElementById('formPayment').reset();
+  document.getElementById('payContractId').value = c.id;
+  document.getElementById('payMes').value = suggestedYM;
+  document.getElementById('payFecha').value = todayISO();
+  document.getElementById('payCanon').value = c.canon;
+  document.getElementById('payAdmin').value = c.administracion || 0;
+  document.getElementById('payMora').value = calculateMoraForMonth(c, suggestedYM);
+  document.getElementById('paymentContractInfo').innerHTML = `
+    <div><strong>${p?p.codigo:''}</strong> · ${p?p.direccion:''}</div>
+    <div class="small text-muted">Inquilino: ${t?t.nombre:''} · Día de pago: ${c.diaPago} de cada mes</div>
+  `;
+  updatePayTotal();
+  paymentModal.show();
+};
+function updatePayTotal() {
+  const total = (parseInt(document.getElementById('payCanon').value)||0) +
+                (parseInt(document.getElementById('payAdmin').value)||0) +
+                (parseInt(document.getElementById('payMora').value)||0);
+  document.getElementById('payTotal').textContent = COP.format(total);
+}
+['payCanon','payAdmin','payMora'].forEach(id => document.getElementById(id).addEventListener('input', updatePayTotal));
+document.getElementById('payMes').addEventListener('change', e => {
+  const cId = parseInt(document.getElementById('payContractId').value);
+  const c = state.contracts.find(x => x.id === cId);
+  if (!c) return;
+  document.getElementById('payMora').value = calculateMoraForMonth(c, e.target.value);
+  updatePayTotal();
+});
+
+document.getElementById('formPayment').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const cId = parseInt(document.getElementById('payContractId').value);
+  const mes = document.getElementById('payMes').value;
+
+  // Verificar duplicado
+  if (state.payments.some(p => p.contractId === cId && p.mes === mes)) {
+    toast(`Ya existe un pago registrado para ${fmtMonth(mes)}`, 'warning');
+    return;
+  }
+
+  const canon = parseInt(document.getElementById('payCanon').value);
+  const admin = parseInt(document.getElementById('payAdmin').value) || 0;
+  const mora = parseInt(document.getElementById('payMora').value) || 0;
+  const total = canon + admin + mora;
+
+  const payment = {
+    id: state.nextPaymentId++,
+    contractId: cId, mes,
+    fechaPago: document.getElementById('payFecha').value,
+    valorCanon: canon, valorAdmin: admin, mora, total,
+    metodo: document.getElementById('payMetodo').value,
+    observaciones: document.getElementById('payObs').value.trim()
+  };
+  state.payments.push(payment);
+  await saveState();
+  paymentModal.hide();
+  renderCartera();
+  toast(`Pago registrado: ${COP.format(total)}`, 'success');
+  setTimeout(() => verRecibo(payment.id), 300);
+});
+
+/* ============================================================
+   RECIBO
+   ============================================================ */
+const receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
+window.verRecibo = function(payId) {
+  const pay = state.payments.find(x => x.id === payId);
+  if (!pay) return;
+  const ct = state.contracts.find(x => x.id === pay.contractId);
+  const p = state.properties.find(x => x.id === ct.propertyId);
+  const t = state.tenants.find(x => x.id === ct.tenantId);
+  const a = state.agency;
+
+  document.getElementById('receiptBody').innerHTML = `
+    <div class="receipt">
+      <div class="text-center mb-4 pb-3 border-bottom">
+        <h3 class="mb-1">${a.nombre}</h3>
+        <div class="small text-muted">NIT ${a.nit || ''} · ${a.direccion || ''}</div>
+        <div class="small text-muted">${a.ciudad || ''} · Tel ${a.telefono || ''}</div>
+        <h4 class="mt-3">RECIBO DE PAGO #${String(pay.id).padStart(5,'0')}</h4>
+      </div>
+      <div class="row-line"><span>Fecha</span><strong>${fmtDate(pay.fechaPago)}</strong></div>
+      <div class="row-line"><span>Recibí de</span><strong>${t?t.nombre:'?'}</strong></div>
+      <div class="row-line"><span>Documento</span><strong>${t?t.tipoDoc+' '+t.documento:'?'}</strong></div>
+      <div class="row-line"><span>Concepto</span><strong>Canon de arrendamiento ${fmtMonth(pay.mes)}</strong></div>
+      <div class="row-line"><span>Inmueble</span><strong>${p?p.direccion:'?'}</strong></div>
+      <div class="row-line"><span>Código</span><strong>${p?p.codigo:''}</strong></div>
+      <div class="row-line"><span>Método</span><strong>${pay.metodo}</strong></div>
+      <hr>
+      <div class="row-line"><span>Canon</span><strong>${COP.format(pay.valorCanon)}</strong></div>
+      ${pay.valorAdmin > 0 ? `<div class="row-line"><span>Administración</span><strong>${COP.format(pay.valorAdmin)}</strong></div>` : ''}
+      ${pay.mora > 0 ? `<div class="row-line"><span>Mora</span><strong>${COP.format(pay.mora)}</strong></div>` : ''}
+      <div class="row-line total"><span>TOTAL PAGADO</span><span>${COP.format(pay.total)}</span></div>
+      ${pay.observaciones ? `<div class="mt-3 small text-muted"><strong>Obs:</strong> ${pay.observaciones}</div>` : ''}
+      <div class="text-center mt-4 pt-3 border-top small text-muted">
+        Generado por ArriendaCol · ${new Date().toLocaleString('es-CO')}
+      </div>
+    </div>
+  `;
+  receiptModal.show();
+};
+
+/* ============================================================
+   CONFIGURACIÓN
+   ============================================================ */
+function renderConfig() {
+  document.getElementById('agNombre').value = state.agency.nombre || '';
+  document.getElementById('agNit').value = state.agency.nit || '';
+  document.getElementById('agDir').value = state.agency.direccion || '';
+  document.getElementById('agCiudad').value = state.agency.ciudad || '';
+  document.getElementById('agTel').value = state.agency.telefono || '';
+  document.getElementById('agEmail').value = state.agency.email || '';
+  document.getElementById('parMora').value = state.params.moraPct;
+  document.getElementById('parGracia').value = state.params.diasGracia;
+  document.getElementById('parComision').value = state.params.comisionPct;
+  document.getElementById('parIpc').value = state.params.ipcPct;
+}
+document.getElementById('formAgency').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  state.agency = {
+    nombre: document.getElementById('agNombre').value.trim(),
+    nit: document.getElementById('agNit').value.trim(),
+    direccion: document.getElementById('agDir').value.trim(),
+    ciudad: document.getElementById('agCiudad').value.trim(),
+    telefono: document.getElementById('agTel').value.trim(),
+    email: document.getElementById('agEmail').value.trim()
+  };
+  await saveState();
+  toast('Datos actualizados', 'success');
+});
+document.getElementById('formParams').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  state.params = {
+    moraPct: parseFloat(document.getElementById('parMora').value) || 0,
+    diasGracia: parseInt(document.getElementById('parGracia').value) || 0,
+    comisionPct: parseFloat(document.getElementById('parComision').value) || 0,
+    ipcPct: parseFloat(document.getElementById('parIpc').value) || 0
+  };
+  await saveState();
+  toast('Parámetros actualizados', 'success');
+});
+document.getElementById('btnReset').addEventListener('click', async () => {
+  if (!confirm('¿Restablecer todos los datos? Se borrarán propiedades, inquilinos, contratos y pagos.')) return;
+  state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  seedDemoData();
+  await saveState();
+  toast('Datos restablecidos con ejemplo', 'info');
+  goTo('dashboard');
+});
+
+/* ============================================================
+   DATOS DEMO
+   ============================================================ */
+function seedDemoData() {
+  // Propiedades
+  const props = [
+    { codigo:'P001', tipo:'Apartamento', estrato:'4', direccion:'Cra 27 #45-30 Apto 502', barrio:'Cabecera',     ciudad:'Bucaramanga', area:75,  habitaciones:2, banos:2, parqueadero:1, canon:1800000, administracion:280000 },
+    { codigo:'P002', tipo:'Apartamento', estrato:'3', direccion:'Calle 56 #28-10 Apto 301', barrio:'Sotomayor',  ciudad:'Bucaramanga', area:65,  habitaciones:2, banos:1, parqueadero:1, canon:1400000, administracion:220000 },
+    { codigo:'P003', tipo:'Casa',         estrato:'4', direccion:'Cra 33 #51-22',           barrio:'Cabecera',   ciudad:'Bucaramanga', area:180, habitaciones:4, banos:3, parqueadero:2, canon:3200000, administracion:0 },
+    { codigo:'P004', tipo:'Apartaestudio',estrato:'3', direccion:'Calle 35 #22-18 Apto 802',barrio:'San Francisco',ciudad:'Bucaramanga', area:38,  habitaciones:1, banos:1, parqueadero:0, canon:950000,  administracion:180000 },
+    { codigo:'P005', tipo:'Local comercial',estrato:'',direccion:'Cra 33 #44-15 Local 2',  barrio:'Centro',     ciudad:'Bucaramanga', area:55,  habitaciones:0, banos:1, parqueadero:0, canon:2200000, administracion:0 },
+    { codigo:'P006', tipo:'Apartamento', estrato:'5', direccion:'Cra 35 #50-77 Apto 1201',  barrio:'El Prado',   ciudad:'Bucaramanga', area:120, habitaciones:3, banos:3, parqueadero:2, canon:2700000, administracion:420000 },
+    { codigo:'P007', tipo:'Oficina',     estrato:'',  direccion:'Cra 27 #36-50 Of. 504',    barrio:'Centro',     ciudad:'Bucaramanga', area:45,  habitaciones:0, banos:1, parqueadero:1, canon:1500000, administracion:200000 },
+    { codigo:'P008', tipo:'Casa',         estrato:'3', direccion:'Calle 105 #23-40',         barrio:'Provenza',   ciudad:'Bucaramanga', area:140, habitaciones:3, banos:2, parqueadero:1, canon:1900000, administracion:0 },
+    { codigo:'P009', tipo:'Apartamento', estrato:'4', direccion:'Cra 28 #42-15 Apto 203',   barrio:'Cabecera',   ciudad:'Bucaramanga', area:80,  habitaciones:3, banos:2, parqueadero:1, canon:2100000, administracion:300000 },
+    { codigo:'P010', tipo:'Bodega',      estrato:'',  direccion:'Anillo Vial Floridablanca km 3', barrio:'Industrial', ciudad:'Floridablanca', area:300, habitaciones:0, banos:1, parqueadero:0, canon:3500000, administracion:0 }
+  ];
+  state.properties = props.map(p => ({ id: state.nextPropId++, ...p, estado: 'disponible', notas: '' }));
+
+  // Inquilinos
+  const tenants = [
+    { nombre:'María Fernanda Gómez Pérez', tipoDoc:'CC', documento:'1098765432', telefono:'+57 301 234 5678', email:'mariag@example.com', ocupacion:'Diseñadora gráfica', ingresos:4500000 },
+    { nombre:'Carlos Andrés Rojas Vega',   tipoDoc:'CC', documento:'80123456',   telefono:'+57 312 987 1234', email:'carlosr@example.com', ocupacion:'Ingeniero civil', ingresos:6800000 },
+    { nombre:'Sandra Milena Castillo',     tipoDoc:'CC', documento:'63782341',   telefono:'+57 315 444 5566', email:'sandra@example.com', ocupacion:'Médica', ingresos:8500000 },
+    { nombre:'Cafetería Los Andes S.A.S.', tipoDoc:'NIT',documento:'901456789-2',telefono:'+57 607 645 7788', email:'admin@losandes.com', ocupacion:'Empresa cafetería', ingresos:0 },
+    { nombre:'Diego Alejandro Martínez',   tipoDoc:'CC', documento:'1098234567', telefono:'+57 318 333 2211', email:'diegom@example.com', ocupacion:'Contador público', ingresos:5200000 },
+    { nombre:'Laura Marcela Ríos Patiño',  tipoDoc:'CC', documento:'52987123',   telefono:'+57 311 000 0002', email:'laurar@example.com', ocupacion:'Abogada', ingresos:7000000 },
+    { nombre:'Juan Pablo Mejía Salinas',   tipoDoc:'CC', documento:'72145678',   telefono:'+57 311 000 0001', email:'jpmejia@example.com', ocupacion:'Comerciante', ingresos:5500000 }
+  ];
+  state.tenants = tenants.map(t => ({ id: state.nextTenantId++, ...t, observaciones: '' }));
+
+  // Contratos: vincular propiedades 1-7 con inquilinos 1-7 (algunos)
+  const today = new Date();
+  const contractDefs = [
+    { propIdx: 0, tenantIdx: 0, mesesAtras: 8,  duracion: 12, dia: 5, mesesPagados: 'almostAll' },
+    { propIdx: 1, tenantIdx: 1, mesesAtras: 14, duracion: 24, dia: 3, mesesPagados: 'almostAll' },
+    { propIdx: 2, tenantIdx: 2, mesesAtras: 5,  duracion: 12, dia: 1, mesesPagados: 'all' },
+    { propIdx: 4, tenantIdx: 3, mesesAtras: 18, duracion: 24, dia: 5, mesesPagados: 'twoMissing' },
+    { propIdx: 5, tenantIdx: 4, mesesAtras: 3,  duracion: 12, dia: 10, mesesPagados: 'all' },
+    { propIdx: 6, tenantIdx: 5, mesesAtras: 11, duracion: 12, dia: 5, mesesPagados: 'oneMissing' }
+  ];
+
+  contractDefs.forEach(def => {
+    const prop = state.properties[def.propIdx];
+    const tenant = state.tenants[def.tenantIdx];
+    const inicio = new Date(today); inicio.setMonth(inicio.getMonth() - def.mesesAtras); inicio.setDate(def.dia);
+    const fin = new Date(inicio); fin.setMonth(fin.getMonth() + def.duracion);
+
+    const contract = {
+      id: state.nextContractId++,
+      propertyId: prop.id, tenantId: tenant.id,
+      fechaInicio: inicio.toISOString().slice(0,10),
+      fechaFin: fin.toISOString().slice(0,10),
+      canon: prop.canon, administracion: prop.administracion,
+      deposito: prop.canon, diaPago: def.dia,
+      estado: 'activo',
+      codeudor: def.tenantIdx === 3 ? null : { nombre: 'Codeudor Demo', documento: '12345678', telefono: '+57 300 000 0000' },
+      observaciones: '',
+      createdAt: new Date().toISOString()
+    };
+    state.contracts.push(contract);
+    prop.estado = 'arrendado';
+
+    // Pagos según patrón
+    const months = expectedMonths(contract);
+    let toPay = months.slice();
+    if (def.mesesPagados === 'twoMissing') toPay = months.slice(0, -2);          // 2 últimos sin pagar
+    else if (def.mesesPagados === 'oneMissing') toPay = months.slice(0, -1);     // 1 último sin pagar
+    else if (def.mesesPagados === 'almostAll') toPay = months.slice(0, -1);
+
+    toPay.forEach(ym => {
+      const fecha = new Date(`${ym}-${String(def.dia).padStart(2,'0')}T00:00:00`);
+      // Algunos pagos con leve atraso aleatorio
+      fecha.setDate(fecha.getDate() + Math.floor(Math.random() * 3));
+      state.payments.push({
+        id: state.nextPaymentId++,
+        contractId: contract.id, mes: ym,
+        fechaPago: fecha.toISOString().slice(0,10),
+        valorCanon: contract.canon,
+        valorAdmin: contract.administracion,
+        mora: 0,
+        total: contract.canon + contract.administracion,
+        metodo: ['Transferencia','Consignación','PSE','Efectivo'][Math.floor(Math.random()*4)],
+        observaciones: ''
+      });
+    });
+  });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(async function init() {
+  const loaded = await loadState();
+  if (!loaded || state.properties.length === 0) {
+    seedDemoData();
+    await saveState();
+  }
+  renderDashboard();
+  // Refresco cada minuto
+  setInterval(() => {
+    const v = document.querySelector('.view.active');
+    if (v && v.id === 'view-dashboard') renderDashboard();
+    if (v && v.id === 'view-cartera')   renderCartera();
+  }, 60000);
+})();
+</script>
+</body>
+</html>

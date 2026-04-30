@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digiturnos MVP - Sistema de Turnos Inteligente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #3730A3;
+            --primary-light: #818CF8;
+            --secondary: #06B6D4;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --dark: #0F172A;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-400: #94A3B8;
+            --gray-600: #475569;
+            --gray-800: #1E293B;
+        }
+
+        * { font-family: 'Inter', sans-serif; box-sizing: border-box; }
+        body { background: var(--gray-50); margin: 0; padding: 0; color: var(--dark); }
+
+        /* NAV */
+        .nav-prototype {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 12px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .brand-logo .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .demo-badge {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 8px;
+        }
+
+        .view-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+
+        .view-tab {
+            padding: 8px 16px;
+            border: 1px solid var(--gray-200);
+            background: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .view-tab:hover { background: var(--gray-50); border-color: var(--primary-light); }
+        .view-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .nav-actions { display: flex; gap: 8px; }
+
+        .btn-reset {
+            background: white;
+            border: 1px solid var(--gray-200);
+            color: var(--gray-600);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-reset:hover { background: var(--danger); color: white; border-color: var(--danger); }
+
+        .view-container { display: none; min-height: calc(100vh - 70px); }
+        .view-container.active { display: block; }
+
+        /* TOAST NOTIFICATIONS */
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast-msg {
+            background: white;
+            border-radius: 12px;
+            padding: 14px 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-left: 4px solid var(--primary);
+            min-width: 300px;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(120%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .toast-msg.success { border-left-color: var(--success); }
+        .toast-msg.warning { border-left-color: var(--warning); }
+        .toast-msg.info { border-left-color: var(--secondary); }
+
+        .toast-icon {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--gray-100);
+            color: var(--primary);
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .toast-msg.success .toast-icon { background: #DCFCE7; color: var(--success); }
+        .toast-msg.warning .toast-icon { background: #FEF3C7; color: var(--warning); }
+
+        .toast-content { flex: 1; }
+        .toast-title { font-weight: 600; font-size: 14px; margin: 0 0 2px; }
+        .toast-text { font-size: 13px; color: var(--gray-600); margin: 0; }
+
+        /* ============ VISTA 1: PANTALLA PÚBLICA (TV) ============ */
+        .public-display {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: white;
+            min-height: calc(100vh - 70px);
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            gap: 24px;
+        }
+
+        .display-header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .display-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .display-brand .logo-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+        }
+
+        .display-time {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--gray-400);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .current-turn-card {
+            background: rgba(79, 70, 229, 0.08);
+            border: 1px solid rgba(129, 140, 248, 0.3);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .current-turn-card.flashing {
+            animation: flash 1s ease-in-out 3;
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        @keyframes flash {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); background: rgba(16, 185, 129, 0.25); }
+        }
+
+        .current-turn-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(129,140,248,0.15) 0%, transparent 70%);
+            animation: pulse-bg 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-bg {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .current-turn-label {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .current-turn-number {
+            font-size: 180px;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #fff 0%, #C7D2FE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            position: relative;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .current-turn-module {
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+        }
+
+        .module-badge {
+            background: var(--primary);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 22px;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: var(--gray-400);
+            position: relative;
+        }
+
+        .empty-state-icon {
+            font-size: 80px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+        }
+
+        .upcoming-turns {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 28px;
+        }
+
+        .upcoming-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-400);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .upcoming-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 480px;
+            overflow-y: auto;
+        }
+
+        .upcoming-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 14px;
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .upcoming-item.priority {
+            background: rgba(239, 68, 68, 0.15);
+            border-left: 3px solid var(--danger);
+        }
+
+        .upcoming-number {
+            font-size: 26px;
+            font-weight: 700;
+            color: white;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .upcoming-module {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        .display-footer {
+            grid-column: 1 / -1;
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--gray-400);
+        }
+
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            flex: 1;
+            margin: 0 24px;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+            color: var(--primary-light);
+            font-weight: 500;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* ============ VISTA 2: KIOSCO ============ */
+        .kiosk-view {
+            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+            padding: 40px 20px;
+            min-height: calc(100vh - 70px);
+            position: relative;
+        }
+
+        .kiosk-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(79,70,229,0.15);
+        }
+
+        .kiosk-header { text-align: center; margin-bottom: 36px; }
+        .kiosk-greeting { font-size: 18px; color: var(--gray-600); margin-bottom: 8px; }
+        .kiosk-title { font-size: 32px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+        .kiosk-subtitle { font-size: 16px; color: var(--gray-600); }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 20px;
+            padding: 28px 22px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(79,70,229,0.18);
+        }
+
+        .service-card:active { transform: translateY(0); }
+
+        .service-icon {
+            width: 72px; height: 72px;
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 34px;
+            color: white;
+        }
+
+        .service-icon.bg-1 { background: linear-gradient(135deg, #4F46E5, #818CF8); }
+        .service-icon.bg-2 { background: linear-gradient(135deg, #06B6D4, #67E8F9); }
+        .service-icon.bg-3 { background: linear-gradient(135deg, #10B981, #6EE7B7); }
+        .service-icon.bg-4 { background: linear-gradient(135deg, #F59E0B, #FCD34D); }
+
+        .service-name { font-size: 18px; font-weight: 600; color: var(--dark); }
+        .service-desc { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+        .service-wait { font-size: 12px; color: var(--primary); font-weight: 500; display: flex; align-items: center; gap: 6px; }
+
+        .ticket-modal {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+            text-align: center;
+            min-width: 420px;
+            z-index: 100;
+        }
+
+        .ticket-modal.show {
+            display: block;
+            animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes scaleIn {
+            from { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .ticket-success-icon {
+            width: 72px; height: 72px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            font-size: 38px;
+            margin: 0 auto 16px;
+        }
+
+        .ticket-number-big {
+            font-size: 88px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin: 14px 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .ticket-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,0.5);
+            z-index: 99;
+        }
+        .ticket-modal-overlay.show { display: block; }
+
+        .priority-toggle {
+            margin-top: 24px;
+            padding: 14px 20px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .priority-toggle.active {
+            background: #FEE2E2;
+            border-color: var(--danger);
+        }
+
+        .priority-toggle-label {
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-switch {
+            width: 44px; height: 24px;
+            background: var(--gray-200);
+            border-radius: 100px;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 20px; height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px; left: 2px;
+            transition: all 0.2s;
+        }
+
+        .priority-toggle.active .toggle-switch {
+            background: var(--danger);
+        }
+
+        .priority-toggle.active .toggle-switch::after {
+            left: 22px;
+        }
+
+        /* ============ VISTA 3: OPERADOR ============ */
+        .operator-view {
+            padding: 28px 20px;
+            min-height: calc(100vh - 70px);
+            background: var(--gray-50);
+        }
+
+        .operator-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .operator-main-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .operator-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray-200);
+            margin-bottom: 28px;
+        }
+
+        .operator-info { display: flex; align-items: center; gap: 14px; }
+
+        .operator-avatar {
+            width: 52px; height: 52px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .operator-name { font-size: 17px; font-weight: 600; margin: 0; }
+        .operator-module { font-size: 13px; color: var(--gray-600); margin: 0; }
+
+        .module-selector {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-left: 12px;
+        }
+
+        .status-pill {
+            background: #DCFCE7;
+            color: #166534;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 8px; height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .current-turn-display { text-align: center; margin-bottom: 28px; }
+        .current-turn-display .label {
+            font-size: 13px;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .current-turn-display .number {
+            font-size: 86px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .current-turn-display .number.empty {
+            color: var(--gray-200);
+            font-size: 60px;
+        }
+
+        .turn-meta {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--gray-600);
+            flex-wrap: wrap;
+        }
+
+        .turn-meta strong { color: var(--dark); }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn-action {
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-action:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .btn-call {
+            background: var(--primary);
+            color: white;
+            font-size: 16px;
+        }
+
+        .btn-call:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-recall { background: var(--gray-100); color: var(--gray-800); }
+        .btn-recall:hover:not(:disabled) { background: var(--gray-200); }
+        .btn-transfer { background: #FEF3C7; color: #92400E; }
+        .btn-finish { background: #DCFCE7; color: #166534; }
+
+        .operator-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .stat-card .label { font-size: 12px; color: var(--gray-600); margin-bottom: 4px; }
+        .stat-card .value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .queue-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 18px;
+            grid-column: 1 / -1;
+        }
+
+        .queue-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .queue-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            min-height: 44px;
+        }
+
+        .queue-item {
+            background: var(--gray-100);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-weight: 600;
+            color: var(--gray-800);
+            font-size: 14px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .queue-item.priority { background: #FEE2E2; color: #991B1B; }
+
+        .queue-empty {
+            color: var(--gray-400);
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        /* ============ VISTA 4: DASHBOARD ============ */
+        .dashboard-view {
+            padding: 28px 20px;
+            min-height: calc(100vh - 70px);
+            background: var(--gray-50);
+        }
+
+        .dashboard-container { max-width: 1280px; margin: 0 auto; }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .dashboard-title { font-size: 26px; font-weight: 700; margin: 0; }
+        .dashboard-date { color: var(--gray-600); font-size: 13px; margin-top: 4px; }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .metric-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .metric-label { font-size: 12px; color: var(--gray-600); font-weight: 500; }
+
+        .metric-icon {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 14px;
+        }
+
+        .metric-icon.purple { background: #EEF2FF; color: var(--primary); }
+        .metric-icon.cyan { background: #ECFEFF; color: var(--secondary); }
+        .metric-icon.green { background: #DCFCE7; color: var(--success); }
+        .metric-icon.amber { background: #FEF3C7; color: var(--warning); }
+
+        .metric-value {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .dashboard-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .chart-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .chart-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+        .chart-subtitle { font-size: 12px; color: var(--gray-600); margin-bottom: 18px; }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 180px;
+            padding-top: 20px;
+        }
+
+        .bar-column { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+
+        .bar {
+            width: 100%;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 6px 6px 0 0;
+            transition: all 0.5s ease;
+            min-height: 4px;
+        }
+
+        .bar-label { font-size: 10px; color: var(--gray-600); }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background: var(--gray-50);
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .history-num {
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .history-time {
+            color: var(--gray-600);
+            font-size: 12px;
+        }
+
+        .history-status {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 100px;
+            font-weight: 500;
+        }
+
+        .history-status.attended { background: #DCFCE7; color: #166534; }
+        .history-status.waiting { background: #FEF3C7; color: #92400E; }
+
+        @media (max-width: 768px) {
+            .public-display { grid-template-columns: 1fr; }
+            .current-turn-number { font-size: 100px; }
+            .service-grid { grid-template-columns: 1fr; }
+            .operator-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .dashboard-row { grid-template-columns: 1fr; }
+            .action-buttons { grid-template-columns: 1fr 1fr; }
+            .ticket-modal { min-width: 320px; padding: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav-prototype">
+    <div class="brand-logo">
+        <div class="logo-icon"><i class="bi bi-ticket-perforated-fill"></i></div>
+        Digiturnos
+        <span class="demo-badge">MVP Demo</span>
+    </div>
+    <div class="view-tabs">
+        <button class="view-tab active" data-view="public"><i class="bi bi-tv"></i> Pantalla TV</button>
+        <button class="view-tab" data-view="kiosk"><i class="bi bi-tablet"></i> Kiosco</button>
+        <button class="view-tab" data-view="operator"><i class="bi bi-person-badge"></i> Operador</button>
+        <button class="view-tab" data-view="dashboard"><i class="bi bi-graph-up"></i> Dashboard</button>
+    </div>
+    <div class="nav-actions">
+        <button class="btn-reset" onclick="resetSystem()" title="Reiniciar demo">
+            <i class="bi bi-arrow-counterclockwise"></i> Reset
+        </button>
+    </div>
+</nav>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<div class="view-container active" id="view-public">
+    <div class="public-display">
+        <div class="display-header">
+            <div class="display-brand">
+                <div class="logo-icon"><i class="bi bi-ticket-perforated-fill"></i></div>
+                Digiturnos
+            </div>
+            <div class="display-time" id="liveClock">--:--:--</div>
+        </div>
+
+        <div class="current-turn-card" id="publicCurrentCard">
+            <div class="empty-state" id="publicEmptyState">
+                <div class="empty-state-icon"><i class="bi bi-hourglass"></i></div>
+                <div style="font-size: 24px; font-weight: 500;">Esperando turnos...</div>
+                <div style="font-size: 14px; margin-top: 8px;">Toma tu turno en el kiosco</div>
+            </div>
+            <div id="publicCurrentContent" style="display: none; position: relative;">
+                <div class="current-turn-label">Turno actual</div>
+                <div class="current-turn-number" id="publicCurrentNumber">---</div>
+                <div class="current-turn-module">
+                    <i class="bi bi-arrow-right-circle-fill"></i>
+                    <span class="module-badge" id="publicCurrentModule">Módulo 1</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="upcoming-turns">
+            <div class="upcoming-title">Próximos turnos</div>
+            <div class="upcoming-list" id="publicUpcomingList">
+                <div style="color: var(--gray-400); text-align: center; padding: 20px; font-size: 14px;">
+                    No hay turnos en espera
+                </div>
+            </div>
+        </div>
+
+        <div class="display-footer">
+            <span><i class="bi bi-people-fill"></i> <span id="publicWaiting">0</span> personas en espera</span>
+            <div class="marquee">
+                <span class="marquee-content">Bienvenido • Atendemos en orden de llegada • Gracias por su paciencia • Sistema Digiturnos by sruedadev.com</span>
+            </div>
+            <span><i class="bi bi-clock"></i> Espera promedio: <span id="publicAvgWait">5</span> min</span>
+        </div>
+    </div>
+</div>
+
+<div class="view-container" id="view-kiosk">
+    <div class="kiosk-view">
+        <div class="kiosk-container">
+            <div class="kiosk-header">
+                <p class="kiosk-greeting">Hola, bienvenido</p>
+                <h1 class="kiosk-title">¿Qué servicio necesitas?</h1>
+                <p class="kiosk-subtitle">Toca una opción para tomar tu turno</p>
+            </div>
+
+            <div class="service-grid">
+                <div class="service-card" onclick="generateTicket('A', 'Atención general', 1)">
+                    <div class="service-icon bg-1"><i class="bi bi-person-fill"></i></div>
+                    <div class="service-name">Atención general</div>
+                    <div class="service-desc">Consultas e información</div>
+                    <div class="service-wait"><i class="bi bi-clock"></i> Espera ~ 5 min</div>
+                </div>
+
+                <div class="service-card" onclick="generateTicket('B', 'Caja y pagos', 2)">
+                    <div class="service-icon bg-2"><i class="bi bi-cash-coin"></i></div>
+                    <div class="service-name">Caja y pagos</div>
+                    <div class="service-desc">Pagos y transacciones</div>
+                    <div class="service-wait"><i class="bi bi-clock"></i> Espera ~ 3 min</div>
+                </div>
+
+                <div class="service-card" onclick="generateTicket('C', 'Atención preferencial', 3)">
+                    <div class="service-icon bg-3"><i class="bi bi-heart-fill"></i></div>
+                    <div class="service-name">Atención preferencial</div>
+                    <div class="service-desc">Adultos mayores, embarazadas</div>
+                    <div class="service-wait"><i class="bi bi-clock"></i> Espera ~ 2 min</div>
+                </div>
+
+                <div class="service-card" onclick="generateTicket('D', 'Soporte técnico', 4)">
+                    <div class="service-icon bg-4"><i class="bi bi-tools"></i></div>
+                    <div class="service-name">Soporte técnico</div>
+                    <div class="service-desc">Reclamos y asistencia</div>
+                    <div class="service-wait"><i class="bi bi-clock"></i> Espera ~ 8 min</div>
+                </div>
+            </div>
+
+            <div class="priority-toggle" id="priorityToggle" onclick="togglePriority()">
+                <div class="priority-toggle-label">
+                    <i class="bi bi-star-fill" style="color: var(--danger);"></i>
+                    <span>Soy persona con prioridad (adulto mayor, embarazo, discapacidad)</span>
+                </div>
+                <div class="toggle-switch"></div>
+            </div>
+        </div>
+
+        <div class="ticket-modal-overlay" id="ticketOverlay" onclick="closeTicket()"></div>
+        <div class="ticket-modal" id="ticketModal">
+            <div class="ticket-success-icon"><i class="bi bi-check-lg"></i></div>
+            <p style="color: var(--gray-600); margin: 0; font-size: 15px;">Tu turno es</p>
+            <div class="ticket-number-big" id="ticketNumber">A-001</div>
+            <p style="font-size: 17px; font-weight: 600; margin: 0 0 6px;" id="ticketService">Atención general</p>
+            <p style="color: var(--gray-600); margin: 0 0 22px; font-size: 13px;">
+                <i class="bi bi-people"></i> <span id="ticketAhead">0</span> personas antes de ti
+            </p>
+            <button class="btn-call" style="padding: 12px 28px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px;" onclick="closeTicket()">
+                <i class="bi bi-printer"></i> Continuar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="view-container" id="view-operator">
+    <div class="operator-view">
+        <div class="operator-grid">
+            <div class="operator-main-card">
+                <div class="operator-header">
+                    <div class="operator-info">
+                        <div class="operator-avatar">SR</div>
+                        <div>
+                            <p class="operator-name">Sergio Rueda</p>
+                            <p class="operator-module">
+                                <i class="bi bi-display"></i> 
+                                <select class="module-selector" id="moduleSelect" onchange="updateOperatorModule()">
+                                    <option value="1">Módulo 1 - Atención general</option>
+                                    <option value="2">Módulo 2 - Caja y pagos</option>
+                                    <option value="3">Módulo 3 - Preferencial</option>
+                                    <option value="4">Módulo 4 - Soporte técnico</option>
+                                </select>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="status-pill">
+                        <span class="status-dot"></span>
+                        Disponible
+                    </div>
+                </div>
+
+                <div class="current-turn-display">
+                    <div class="label">Atendiendo ahora</div>
+                    <div class="number empty" id="opCurrentNumber">---</div>
+                    <div class="turn-meta" id="opMeta" style="display: none;">
+                        <div><i class="bi bi-clock"></i> Inicio: <strong id="opStartTime">--:--</strong></div>
+                        <div><i class="bi bi-stopwatch"></i> Tiempo: <strong id="elapsedTime">00:00:00</strong></div>
+                        <div><i class="bi bi-tag"></i> Servicio: <strong id="opServiceName">---</strong></div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-action btn-call" id="btnCallNext" onclick="callNextTurn()">
+                        <i class="bi bi-megaphone-fill"></i> Llamar siguiente
+                    </button>
+                    <button class="btn-action btn-recall" id="btnRecall" onclick="recallTurn()" disabled>
+                        <i class="bi bi-arrow-clockwise"></i> Re-llamar
+                    </button>
+                    <button class="btn-action btn-transfer" id="btnTransfer" onclick="transferTurn()" disabled>
+                        <i class="bi bi-arrow-left-right"></i> Transferir
+                    </button>
+                    <button class="btn-action btn-finish" id="btnFinish" onclick="finishTurn()" disabled>
+                        <i class="bi bi-check2-circle"></i> Finalizar
+                    </button>
+                </div>
+            </div>
+
+            <div class="operator-sidebar">
+                <div class="stat-card">
+                    <p class="label">Atendidos hoy</p>
+                    <p class="value" id="opAttended">0</p>
+                </div>
+                <div class="stat-card">
+                    <p class="label">Tiempo promedio</p>
+                    <p class="value" id="opAvgTime">--:--</p>
+                </div>
+                <div class="stat-card">
+                    <p class="label">En cola (mi servicio)</p>
+                    <p class="value" id="opQueueCount">0</p>
+                </div>
+            </div>
+
+            <div class="queue-card">
+                <div class="queue-title">
+                    <span><i class="bi bi-list-ol"></i> Cola actual</span>
+                    <span style="font-size: 12px; color: var(--gray-600); font-weight: 400;" id="queueLabel">Mostrando todos los servicios</span>
+                </div>
+                <div class="queue-list" id="opQueueList">
+                    <div class="queue-empty">No hay turnos en espera</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="view-container" id="view-dashboard">
+    <div class="dashboard-view">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <div>
+                    <h1 class="dashboard-title">Panel de control</h1>
+                    <p class="dashboard-date" id="dashboardDate">--</p>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Turnos atendidos</span>
+                        <div class="metric-icon purple"><i class="bi bi-check2-circle"></i></div>
+                    </div>
+                    <div class="metric-value" id="dashAttended">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Turnos generados</span>
+                        <div class="metric-icon cyan"><i class="bi bi-ticket"></i></div>
+                    </div>
+                    <div class="metric-value" id="dashGenerated">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">En espera ahora</span>
+                        <div class="metric-icon amber"><i class="bi bi-people-fill"></i></div>
+                    </div>
+                    <div class="metric-value" id="dashWaiting">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Tiempo promedio</span>
+                        <div class="metric-icon green"><i class="bi bi-stopwatch"></i></div>
+                    </div>
+                    <div class="metric-value" id="dashAvgTime">--:--</div>
+                </div>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="chart-card">
+                    <h3 class="chart-title">Turnos por servicio</h3>
+                    <p class="chart-subtitle">Distribución de demanda en tiempo real</p>
+                    <div class="bar-chart" id="serviceBarChart">
+                        <div class="bar-column"><div class="bar" id="barA" style="height: 4px"></div><span class="bar-label">General</span></div>
+                        <div class="bar-column"><div class="bar" id="barB" style="height: 4px"></div><span class="bar-label">Caja</span></div>
+                        <div class="bar-column"><div class="bar" id="barC" style="height: 4px"></div><span class="bar-label">Preferencial</span></div>
+                        <div class="bar-column"><div class="bar" id="barD" style="height: 4px"></div><span class="bar-label">Soporte</span></div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3 class="chart-title">Historial reciente</h3>
+                    <p class="chart-subtitle">Últimos 10 turnos</p>
+                    <div class="history-list" id="historyList">
+                        <div style="color: var(--gray-400); text-align: center; padding: 20px; font-size: 13px;">
+                            Sin actividad aún
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const STORAGE_KEY = 'digiturnos_state_v1';
+
+let state = loadState();
+
+function defaultState() {
+    return {
+        counters: { A: 0, B: 0, C: 0, D: 0 },
+        queue: [],
+        history: [],
+        currentByModule: {},
+        services: {
+            1: { prefix: 'A', name: 'Atención general' },
+            2: { prefix: 'B', name: 'Caja y pagos' },
+            3: { prefix: 'C', name: 'Atención preferencial' },
+            4: { prefix: 'D', name: 'Soporte técnico' }
+        },
+        currentOperatorModule: '1',
+        priorityNext: false,
+        attendedTimes: []
+    };
+}
+
+function loadState() {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            return { ...defaultState(), ...parsed };
+        }
+    } catch (e) { console.warn('Error loading state', e); }
+    return defaultState();
+}
+
+function saveState() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) { console.warn('Error saving state', e); }
+}
+
+function resetSystem() {
+    if (!confirm('¿Reiniciar todos los datos del demo?')) return;
+    state = defaultState();
+    saveState();
+    renderAll();
+    showToast('Sistema reiniciado', 'Todos los datos han sido limpiados', 'info');
+}
+
+const tabs = document.querySelectorAll('.view-tab');
+const views = document.querySelectorAll('.view-container');
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const target = tab.dataset.view;
+        tabs.forEach(t => t.classList.remove('active'));
+        views.forEach(v => v.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('view-' + target).classList.add('active');
+        renderAll();
+    });
+});
+
+function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    const clock = document.getElementById('liveClock');
+    if (clock) clock.textContent = `${h}:${m}:${s}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+function updateDashboardDate() {
+    const days = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const now = new Date();
+    const dateStr = `${days[now.getDay()]}, ${now.getDate()} de ${months[now.getMonth()]} de ${now.getFullYear()}`;
+    const el = document.getElementById('dashboardDate');
+    if (el) el.textContent = dateStr;
+}
+updateDashboardDate();
+
+function showToast(title, text, type = 'info') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `toast-msg ${type}`;
+    const icons = { success: 'check-lg', warning: 'exclamation-triangle', info: 'info-circle' };
+    toast.innerHTML = `
+        <div class="toast-icon"><i class="bi bi-${icons[type] || 'info-circle'}"></i></div>
+        <div class="toast-content">
+            <p class="toast-title">${title}</p>
+            <p class="toast-text">${text}</p>
+        </div>
+    `;
+    container.appendChild(toast);
+    setTimeout(() => {
+        toast.style.transition = 'all 0.3s';
+        toast.style.transform = 'translateX(120%)';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+}
+
+function togglePriority() {
+    state.priorityNext = !state.priorityNext;
+    document.getElementById('priorityToggle').classList.toggle('active', state.priorityNext);
+    saveState();
+}
+
+function generateTicket(prefix, serviceName, serviceId) {
+    state.counters[prefix]++;
+    const num = String(state.counters[prefix]).padStart(3, '0');
+    const ticketNum = `${prefix}-${num}`;
+    const isPriority = state.priorityNext;
+
+    const ticket = {
+        id: Date.now(),
+        number: ticketNum,
+        prefix: prefix,
+        service: serviceName,
+        serviceId: serviceId,
+        priority: isPriority,
+        createdAt: new Date().toISOString(),
+        status: 'waiting',
+        attendedAt: null,
+        moduleId: null
+    };
+
+    state.queue.push(ticket);
+
+    const ahead = state.queue.filter(t => 
+        t.serviceId === serviceId && t.id !== ticket.id
+    ).length;
+
+    document.getElementById('ticketNumber').textContent = ticketNum;
+    document.getElementById('ticketService').textContent = serviceName + (isPriority ? ' (Prioritario)' : '');
+    document.getElementById('ticketAhead').textContent = ahead;
+
+    document.getElementById('ticketModal').classList.add('show');
+    document.getElementById('ticketOverlay').classList.add('show');
+
+    state.priorityNext = false;
+    document.getElementById('priorityToggle').classList.remove('active');
+
+    saveState();
+    renderAll();
+
+    showToast('Nuevo turno generado', `${ticketNum} - ${serviceName}`, 'success');
+
+    playBeep(800, 100);
+}
+
+function closeTicket() {
+    document.getElementById('ticketModal').classList.remove('show');
+    document.getElementById('ticketOverlay').classList.remove('show');
+}
+
+function updateOperatorModule() {
+    const newModule = document.getElementById('moduleSelect').value;
+    state.currentOperatorModule = newModule;
+    saveState();
+    renderAll();
+}
+
+function callNextTurn() {
+    const moduleId = state.currentOperatorModule;
+    const service = state.services[moduleId];
+    if (!service) return;
+
+    const finishedTurn = state.currentByModule[moduleId];
+    if (finishedTurn) {
+        finishTurnInternal(false);
+    }
+
+    const queueForService = state.queue.filter(t => t.serviceId == moduleId);
+    const priorityFirst = queueForService.find(t => t.priority);
+    const next = priorityFirst || queueForService[0];
+
+    if (!next) {
+        showToast('Sin turnos', 'No hay turnos en cola para este servicio', 'warning');
+        return;
+    }
+
+    state.queue = state.queue.filter(t => t.id !== next.id);
+    next.status = 'attending';
+    next.attendedAt = new Date().toISOString();
+    next.moduleId = moduleId;
+    state.currentByModule[moduleId] = next;
+
+    saveState();
+    renderAll();
+
+    showToast('Turno llamado', `${next.number} → Módulo ${moduleId}`, 'success');
+    playBeep(1000, 200);
+
+    const card = document.getElementById('publicCurrentCard');
+    if (card) {
+        card.classList.remove('flashing');
+        void card.offsetWidth;
+        card.classList.add('flashing');
+        setTimeout(() => card.classList.remove('flashing'), 3000);
+    }
+}
+
+function recallTurn() {
+    const current = state.currentByModule[state.currentOperatorModule];
+    if (!current) return;
+    showToast('Turno re-llamado', `${current.number} → Módulo ${state.currentOperatorModule}`, 'info');
+    playBeep(1000, 200);
+    const card = document.getElementById('publicCurrentCard');
+    if (card) {
+        card.classList.remove('flashing');
+        void card.offsetWidth;
+        card.classList.add('flashing');
+    }
+}
+
+function transferTurn() {
+    const current = state.currentByModule[state.currentOperatorModule];
+    if (!current) return;
+    const newServiceId = prompt('¿A qué servicio transferir? (1=General, 2=Caja, 3=Preferencial, 4=Soporte)');
+    if (!newServiceId || !state.services[newServiceId]) return;
+    current.serviceId = parseInt(newServiceId);
+    current.service = state.services[newServiceId].name;
+    current.status = 'waiting';
+    state.queue.unshift(current);
+    delete state.currentByModule[state.currentOperatorModule];
+    saveState();
+    renderAll();
+    showToast('Turno transferido', `${current.number} → ${state.services[newServiceId].name}`, 'info');
+}
+
+function finishTurnInternal(showNotification = true) {
+    const moduleId = state.currentOperatorModule;
+    const current = state.currentByModule[moduleId];
+    if (!current) return;
+
+    const startTime = new Date(current.attendedAt);
+    const elapsed = Math.floor((Date.now() - startTime.getTime()) / 1000);
+    state.attendedTimes.push(elapsed);
+
+    current.status = 'attended';
+    current.finishedAt = new Date().toISOString();
+    current.duration = elapsed;
+    state.history.unshift(current);
+    if (state.history.length > 50) state.history = state.history.slice(0, 50);
+
+    delete state.currentByModule[moduleId];
+    saveState();
+
+    if (showNotification) {
+        showToast('Turno finalizado', `${current.number} atendido en ${formatTime(elapsed)}`, 'success');
+    }
+}
+
+function finishTurn() {
+    finishTurnInternal();
+    renderAll();
+}
+
+function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+function formatTimeFull(seconds) {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+function formatHHMM(isoStr) {
+    const d = new Date(isoStr);
+    return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+
+let audioCtx = null;
+function playBeep(freq, duration) {
+    try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.frequency.value = freq;
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration / 1000);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration / 1000);
+    } catch (e) {}
+}
+
+function renderPublicView() {
+    const modules = Object.keys(state.currentByModule);
+    const lastModule = modules[modules.length - 1];
+    const current = state.currentByModule[lastModule];
+
+    const emptyEl = document.getElementById('publicEmptyState');
+    const contentEl = document.getElementById('publicCurrentContent');
+
+    if (current) {
+        emptyEl.style.display = 'none';
+        contentEl.style.display = 'block';
+        document.getElementById('publicCurrentNumber').textContent = current.number;
+        document.getElementById('publicCurrentModule').textContent = `Módulo ${current.moduleId}`;
+    } else {
+        emptyEl.style.display = 'block';
+        contentEl.style.display = 'none';
+    }
+
+    const upcomingList = document.getElementById('publicUpcomingList');
+    const sortedQueue = [...state.queue].sort((a,b) => {
+        if (a.priority !== b.priority) return a.priority ? -1 : 1;
+        return a.id - b.id;
+    });
+
+    if (sortedQueue.length === 0) {
+        upcomingList.innerHTML = '<div style="color: var(--gray-400); text-align: center; padding: 20px; font-size: 14px;">No hay turnos en espera</div>';
+    } else {
+        upcomingList.innerHTML = sortedQueue.slice(0, 8).map(t => `
+            <div class="upcoming-item ${t.priority ? 'priority' : ''}">
+                <span class="upcoming-number">${t.number}</span>
+                <span class="upcoming-module">${t.service}${t.priority ? ' ⭐' : ''}</span>
+            </div>
+        `).join('');
+    }
+
+    document.getElementById('publicWaiting').textContent = state.queue.length;
+
+    const avg = state.attendedTimes.length 
+        ? Math.round(state.attendedTimes.reduce((a,b)=>a+b,0) / state.attendedTimes.length / 60)
+        : 5;
+    document.getElementById('publicAvgWait').textContent = avg;
+}
+
+function renderOperatorView() {
+    const moduleId = state.currentOperatorModule;
+    const moduleSelect = document.getElementById('moduleSelect');
+    if (moduleSelect) moduleSelect.value = moduleId;
+
+    const current = state.currentByModule[moduleId];
+    const numEl = document.getElementById('opCurrentNumber');
+    const metaEl = document.getElementById('opMeta');
+
+    if (current) {
+        numEl.textContent = current.number;
+        numEl.classList.remove('empty');
+        metaEl.style.display = 'flex';
+        document.getElementById('opStartTime').textContent = formatHHMM(current.attendedAt);
+        document.getElementById('opServiceName').textContent = current.service;
+
+        document.getElementById('btnRecall').disabled = false;
+        document.getElementById('btnTransfer').disabled = false;
+        document.getElementById('btnFinish').disabled = false;
+    } else {
+        numEl.textContent = '---';
+        numEl.classList.add('empty');
+        metaEl.style.display = 'none';
+        document.getElementById('btnRecall').disabled = true;
+        document.getElementById('btnTransfer').disabled = true;
+        document.getElementById('btnFinish').disabled = true;
+    }
+
+    const myQueue = state.queue.filter(t => t.serviceId == moduleId);
+    document.getElementById('opQueueCount').textContent = myQueue.length;
+
+    const totalAttended = state.history.filter(h => h.moduleId == moduleId).length;
+    document.getElementById('opAttended').textContent = totalAttended;
+
+    const myTimes = state.history.filter(h => h.moduleId == moduleId && h.duration).map(h => h.duration);
+    if (myTimes.length > 0) {
+        const avg = Math.round(myTimes.reduce((a,b)=>a+b,0) / myTimes.length);
+        document.getElementById('opAvgTime').textContent = formatTime(avg);
+    } else {
+        document.getElementById('opAvgTime').textContent = '--:--';
+    }
+
+    const queueList = document.getElementById('opQueueList');
+    const queueLabel = document.getElementById('queueLabel');
+    queueLabel.textContent = `${myQueue.length} turnos en mi servicio`;
+
+    if (myQueue.length === 0) {
+        queueList.innerHTML = '<div class="queue-empty">No hay turnos en espera</div>';
+    } else {
+        const sorted = [...myQueue].sort((a,b) => {
+            if (a.priority !== b.priority) return a.priority ? -1 : 1;
+            return a.id - b.id;
+        });
+        queueList.innerHTML = sorted.map(t => `
+            <div class="queue-item ${t.priority ? 'priority' : ''}">
+                ${t.priority ? '<i class="bi bi-star-fill"></i> ' : ''}${t.number}
+            </div>
+        `).join('');
+    }
+}
+
+function renderDashboardView() {
+    document.getElementById('dashAttended').textContent = state.history.length;
+    const totalGenerated = Object.values(state.counters).reduce((a,b)=>a+b, 0);
+    document.getElementById('dashGenerated').textContent = totalGenerated;
+    document.getElementById('dashWaiting').textContent = state.queue.length;
+
+    if (state.attendedTimes.length > 0) {
+        const avg = Math.round(state.attendedTimes.reduce((a,b)=>a+b,0) / state.attendedTimes.length);
+        document.getElementById('dashAvgTime').textContent = formatTime(avg);
+    } else {
+        document.getElementById('dashAvgTime').textContent = '--:--';
+    }
+
+    const counts = state.counters;
+    const max = Math.max(1, counts.A, counts.B, counts.C, counts.D);
+    ['A','B','C','D'].forEach(p => {
+        const bar = document.getElementById('bar' + p);
+        if (bar) {
+            const pct = (counts[p] / max) * 100;
+            bar.style.height = `${Math.max(4, pct)}%`;
+        }
+    });
+
+    const historyList = document.getElementById('historyList');
+    if (state.history.length === 0) {
+        historyList.innerHTML = '<div style="color: var(--gray-400); text-align: center; padding: 20px; font-size: 13px;">Sin actividad aún</div>';
+    } else {
+        historyList.innerHTML = state.history.slice(0, 10).map(h => `
+            <div class="history-item">
+                <span class="history-num">${h.number}</span>
+                <span class="history-time">${formatHHMM(h.attendedAt)}${h.duration ? ' · ' + formatTime(h.duration) : ''}</span>
+                <span class="history-status attended">Atendido</span>
+            </div>
+        `).join('');
+    }
+}
+
+function renderAll() {
+    renderPublicView();
+    renderOperatorView();
+    renderDashboardView();
+}
+
+let elapsedInterval = setInterval(() => {
+    const moduleId = state.currentOperatorModule;
+    const current = state.currentByModule[moduleId];
+    if (current) {
+        const elapsed = Math.floor((Date.now() - new Date(current.attendedAt).getTime()) / 1000);
+        const el = document.getElementById('elapsedTime');
+        if (el) el.textContent = formatTimeFull(elapsed);
+    }
+}, 1000);
+
+window.addEventListener('storage', (e) => {
+    if (e.key === STORAGE_KEY) {
+        state = loadState();
+        renderAll();
+    }
+});
+
+renderAll();
+</script>
+</body>
+</html>
