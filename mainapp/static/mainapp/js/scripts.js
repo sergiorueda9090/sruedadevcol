@@ -161,8 +161,9 @@
 
   // Determine cards visible based on viewport
   function getVisible() {
-    if (window.innerWidth >= 992) return 3;
-    if (window.innerWidth >= 576) return 2;
+    if (window.innerWidth >= 1280) return 4;
+    if (window.innerWidth >= 992)  return 3;
+    if (window.innerWidth >= 576)  return 2;
     return 1;
   }
 

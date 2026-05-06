@@ -52,7 +52,11 @@
       "Bash(C:/proyectos/sergio_es/env/Scripts/pip install *)",
       "Bash(python -c \"import django; django.setup\\(\\)\")",
       "Bash(env/Scripts/python manage.py check)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "Bash(mv C:/proyectos/sergio_es/mainapp/templates/mainapp/digiturnos.html C:/proyectos/sergio_es/mainapp/static/mainapp/projects/digiturnos.html)",
+      "Bash(mv C:/proyectos/sergio_es/mainapp/templates/mainapp/sernet.html C:/proyectos/sergio_es/mainapp/static/mainapp/projects/sernet.html)",
+      "Bash(mv C:/proyectos/sergio_es/mainapp/templates/mainapp/sernet-eco.html C:/proyectos/sergio_es/mainapp/static/mainapp/projects/sernet-eco.html)",
+      "Bash(python *)"
     ]
   }
 }

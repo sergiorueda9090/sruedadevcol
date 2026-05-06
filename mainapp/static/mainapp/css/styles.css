@@ -1091,6 +1091,42 @@ img { max-width: 100%; height: auto; }
 .pcard-title { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: .4rem; }
 .pcard-desc  { font-size: .825rem; color: var(--gray); margin: 0; line-height: 1.6; }
 
+/* Contador de proyectos arriba del carrusel */
+.portfolio-count {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-top: 1rem;
+  padding: .55rem 1.1rem;
+  background: rgba(88,196,255,.06);
+  border: 1px solid rgba(88,196,255,.18);
+  border-radius: 999px;
+  font-size: .85rem;
+  color: var(--gray-light);
+}
+.portfolio-count i { color: var(--green-dark); font-size: 1rem; }
+.portfolio-count strong { color: var(--white); font-family: var(--font-head); margin-right: .15rem; }
+
+/* CTA inferior del portafolio */
+.portfolio-footer-cta {
+  margin-top: 2.75rem;
+  padding-top: 2rem;
+  border-top: 1px dashed var(--border);
+}
+.portfolio-footer-text {
+  color: var(--gray);
+  font-size: .95rem;
+  margin-bottom: 1.1rem;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* En pantallas amplias se muestran 4 cards a la vez para ver más portafolio sin paginar */
+@media (min-width: 1280px) {
+  .portfolio-card { flex: 0 0 calc(25% - 1.125rem); }
+}
+
 /* ================================================================
    TESTIMONIALS
    ================================================================ */

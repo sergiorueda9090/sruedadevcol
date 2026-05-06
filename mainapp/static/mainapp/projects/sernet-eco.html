@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1B4332" />
+
+  <title>Sernet Telecomunicaciones | Software, Digiturno, Buscapersonas y Cámaras de seguridad</title>
+  <meta name="description" content="Sernet Telecomunicaciones: software a la medida, digiturno cero papel, buscapersonas para restaurantes (10/16/20/24 piezas, 98 canales), insumos de telecomunicaciones e instalación de cámaras de seguridad. Una empresa, todas las soluciones." />
+  <link rel="canonical" href="https://sernettelecomunicaciones.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sernet Telecomunicaciones | Soluciones inteligentes para tu negocio" />
+  <meta property="og:description" content="Software, digiturno, buscapersonas para restaurantes y cámaras de seguridad. Tecnología cero papel y amigable con el medio ambiente." />
+  <meta property="og:locale" content="es_CO" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Sernet Telecomunicaciones",
+    "url": "https://sernettelecomunicaciones.com",
+    "areaServed": "CO",
+    "description": "Software a la medida, digiturno, buscapersonas, insumos de telecomunicaciones y cámaras de seguridad."
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Fonts: Fraunces (display orgánica) + Manrope (body) + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- ============ Tailwind config: paleta eco-friendly ============ -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            moss: {
+              50:  '#F1F8F4',
+              100: '#D8F3DC',
+              200: '#B7E4C7',
+              300: '#95D5B2',
+              400: '#74C69D',
+              500: '#52B788',
+              600: '#40916C',
+              700: '#2D6A4F',  // primary verde bosque
+              800: '#1B4332',  // verde muy oscuro
+              900: '#081C15',
+            },
+            cream: '#FEFAE0',
+            sand:  '#E9EDC9',
+            olive: '#CCD5AE',
+            earth: '#BC6C25', // ámbar/tierra para acento cálido
+            'earth-soft': '#DDA15E',
+            paper: '#FAF8F1',
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['Manrope', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          boxShadow: {
+            'soft': '0 12px 30px rgba(27, 67, 50, 0.08)',
+            'leaf': '0 20px 50px rgba(45, 106, 79, 0.18)',
+            'deep': '0 30px 60px rgba(8, 28, 21, 0.4)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --moss-700: #2D6A4F;
+      --moss-800: #1B4332;
+      --moss-500: #52B788;
+      --cream: #FEFAE0;
+      --paper: #FAF8F1;
+      --earth: #BC6C25;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Manrope', system-ui, sans-serif;
+      color: #1B1B1B;
+      line-height: 1.6;
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+    }
+    .display-italic { font-style: italic; font-variation-settings: "SOFT" 100; }
+
+    /* === Buttons === */
+    .btn-primary {
+      background: var(--moss-700);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all .25s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover {
+      background: var(--moss-800);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(45, 106, 79, 0.3);
+    }
+    .btn-ghost-light {
+      border: 1.5px solid rgba(255,255,255,.25);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-ghost-light:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.5); }
+    .btn-outline-dark {
+      border: 1.5px solid var(--moss-800);
+      color: var(--moss-800);
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline-dark:hover { background: var(--moss-800); color: #fff; }
+
+    /* === Tag mono === */
+    .tag-mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--moss-700);
+    }
+
+    /* === Organic blob backgrounds === */
+    .blob-bg {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* Sutil patrón orgánico de fondo */
+    .leaf-pattern {
+      background-color: transparent;
+      background-image: radial-gradient(circle at 25% 25%, rgba(45, 106, 79, 0.04) 1px, transparent 2px),
+                        radial-gradient(circle at 75% 75%, rgba(45, 106, 79, 0.03) 1px, transparent 2px);
+      background-size: 32px 32px;
+    }
+
+    /* === Coaster pager (rediseñado en verde) === */
+    .pager-coaster {
+      width: 220px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, #2a4f3e 0%, #0a1f15 70%);
+      box-shadow:
+        inset 0 0 0 6px #1b4332,
+        inset 0 0 30px rgba(0,0,0,.6),
+        0 25px 60px rgba(8, 28, 21, 0.5);
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .pager-coaster::before {
+      content: '';
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      border: 2px solid rgba(82, 183, 136, 0.25);
+    }
+    .pager-leds { position: absolute; inset: 8px; border-radius: 50%; }
+    .pager-leds span {
+      position: absolute;
+      width: 10px; height: 10px;
+      background: var(--moss-500);
+      border-radius: 50%;
+      box-shadow: 0 0 14px var(--moss-500), 0 0 24px rgba(82, 183, 136, 0.6);
+      top: 50%; left: 50%;
+      transform-origin: 0 0;
+      animation: ledPulse 1.6s infinite ease-in-out;
+    }
+    @keyframes ledPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+    .pager-screen {
+      width: 70%; aspect-ratio: 1.6;
+      background: #0d2820;
+      border-radius: 14px;
+      display: grid; place-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--moss-500);
+      font-size: 28px;
+      font-weight: 600;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,.6);
+      letter-spacing: 0.1em;
+      position: relative;
+      z-index: 1;
+    }
+    .pager-screen::after {
+      content: 'CALL';
+      position: absolute;
+      bottom: -22px;
+      font-size: 10px;
+      letter-spacing: .3em;
+      color: rgba(255,255,255,.4);
+    }
+    .floaty { animation: floaty 6s ease-in-out infinite; }
+    .floaty-d { animation: floaty 7s ease-in-out infinite -2s; }
+    @keyframes floaty {
+      0%,100% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-14px) rotate(2deg); }
+    }
+
+    /* === Service card === */
+    .service-card {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 24px;
+      padding: 32px;
+      transition: all .35s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--moss-700), var(--moss-500));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(27, 67, 50, 0.12);
+      border-color: var(--moss-300, #95D5B2);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    /* === Product card === */
+    .product-card {
+      background: linear-gradient(160deg, #1b4332 0%, #081c15 100%);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all .35s;
+    }
+    .product-card::after {
+      content: '';
+      position: absolute;
+      top: -40%; right: -40%;
+      width: 80%; height: 80%;
+      background: radial-gradient(circle, rgba(82,183,136,.18) 0%, transparent 70%);
+      transition: transform .5s;
+    }
+    .product-card:hover {
+      border-color: rgba(82,183,136,.4);
+      transform: translateY(-6px);
+    }
+    .product-card:hover::after { transform: scale(1.3); }
+
+    /* === Sector pill === */
+    .sector-pill {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 16px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: all .25s;
+    }
+    .sector-pill:hover {
+      border-color: var(--moss-700);
+      background: var(--moss-700);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+    .sector-pill:hover .sector-icon { color: #fff; }
+
+    /* === Gallery === */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .8s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,28,21,.85) 0%, rgba(8,28,21,0) 60%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-item .gallery-overlay h4 { color: #fff; font-size: 1.25rem; }
+    .gallery-item .gallery-overlay p { color: rgba(255,255,255,.8); font-size: 0.875rem; margin-top: 4px; }
+
+    /* === Video card === */
+    .video-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      aspect-ratio: 16/10;
+      cursor: pointer;
+    }
+    .video-card .thumb {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform .5s;
+    }
+    .video-card:hover .thumb { transform: scale(1.05); }
+    .video-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(8,28,21,.1) 0%, rgba(8,28,21,.7) 100%);
+    }
+    .video-card .play-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 76px; height: 76px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.95);
+      color: var(--moss-700);
+      display: grid; place-items: center;
+      font-size: 22px;
+      transition: transform .3s, background .3s;
+      z-index: 2;
+      padding-left: 6px;
+    }
+    .video-card:hover .play-btn {
+      background: var(--moss-700);
+      color: #fff;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    .video-card .video-info {
+      position: absolute;
+      bottom: 20px; left: 20px; right: 20px;
+      color: #fff;
+      z-index: 2;
+    }
+
+    /* === Software showcase === */
+    .device-mockup {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 30px 70px rgba(8,28,21,0.35);
+    }
+    .device-mockup .device-bar {
+      background: #f3f4f6;
+      padding: 8px 12px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .device-mockup .device-bar span {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .phone-mockup {
+      width: 240px;
+      height: 480px;
+      background: #0a1f15;
+      border-radius: 32px;
+      padding: 8px;
+      box-shadow: 0 30px 60px rgba(0,0,0,.4);
+    }
+    .phone-mockup .phone-screen {
+      background: #fff;
+      border-radius: 26px;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .phone-notch {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 100px; height: 22px;
+      background: #0a1f15;
+      border-radius: 0 0 12px 12px;
+      z-index: 10;
+    }
+
+    /* === Portfolio thumbnails === */
+    .landing-thumb {
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      transition: all .35s;
+      position: relative;
+    }
+    .landing-thumb:hover {
+      transform: translateY(-6px) rotate(-1deg);
+      box-shadow: 0 25px 50px rgba(8,28,21,.18);
+    }
+    .landing-thumb .preview {
+      aspect-ratio: 4/3;
+      background-size: cover;
+      background-position: top center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* === Nav === */
+    .nav-link { transition: color .2s; position: relative; }
+    .nav-link:hover { color: var(--moss-500); }
+
+    /* === Form === */
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.05);
+      color: #fff;
+      transition: all .2s;
+      font-size: 15px;
+    }
+    .form-input::placeholder { color: rgba(255,255,255,.4); }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--moss-500);
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 0 0 4px rgba(82, 183, 136, 0.18);
+    }
+
+    /* === Marquee === */
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-track { animation: marquee 32s linear infinite; }
+
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* === Modal video === */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(8,28,21,.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center; justify-content: center;
+      z-index: 100;
+      padding: 24px;
+    }
+    .modal-backdrop.is-open { display: flex; }
+    .modal-content {
+      max-width: 900px; width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.95);
+      color: #1B4332;
+      display: grid; place-items: center;
+      cursor: pointer;
+      z-index: 5;
+      transition: transform .2s;
+    }
+    .modal-close:hover { transform: rotate(90deg); }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+      outline: 3px solid var(--moss-500);
+      outline-offset: 2px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body class="bg-paper text-moss-900">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-moss-700 focus:text-white focus:px-4 focus:py-2 focus:rounded">
+    Saltar al contenido
+  </a>
+
+  <!-- ======================================================== -->
+  <!-- 1. HEADER                                                -->
+  <!-- ======================================================== -->
+  <header id="header" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="header-inner" class="mt-4 rounded-2xl bg-moss-800/95 backdrop-blur-md border border-white/5 px-5 py-3 flex items-center justify-between transition-all">
+        <a href="#hero" class="flex items-center gap-2.5 text-white">
+          <span class="relative w-9 h-9 rounded-xl bg-moss-500 flex items-center justify-center">
+            <i class="fa-solid fa-leaf text-white text-sm"></i>
+            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-moss-300 animate-pulse"></span>
+          </span>
+          <span class="font-display font-bold text-xl tracking-tight">SERNET<span class="text-moss-500 italic">.</span></span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-6 text-sm font-medium text-white/80">
+          <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#software" class="nav-link">Software</a></li>
+          <li><a href="#buscapersonas" class="nav-link">Buscapersonas</a></li>
+          <li><a href="#camaras" class="nav-link">Cámaras</a></li>
+          <li><a href="#portfolio" class="nav-link">Portafolio</a></li>
+          <li><a href="#galeria" class="nav-link">Galería</a></li>
+        </ul>
+
+        <div class="flex items-center gap-2">
+          <a href="#contacto" class="hidden sm:inline-flex bg-moss-500 hover:bg-moss-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all">
+            Cotizar
+          </a>
+          <button id="menu-toggle" class="lg:hidden w-10 h-10 inline-flex items-center justify-center rounded-lg text-white hover:bg-white/10" aria-label="Abrir menú" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="lg:hidden hidden mt-2 rounded-2xl bg-moss-800/95 backdrop-blur-md border border-white/5 p-4">
+        <ul class="space-y-1 text-white/80">
+          <li><a href="#servicios" class="block px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white">Servicios</a></li>
+          <li><a href="#software" class="block px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white">Software</a></li>
+          <li><a href="#buscapersonas" class="block px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white">Buscapersonas</a></li>
+          <li><a href="#camaras" class="block px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white">Cámaras</a></li>
+          <li><a href="#portfolio" class="block px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white">Portafolio</a></li>
+          <li><a href="#galeria" class="block px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white">Galería</a></li>
+          <li><a href="#videos" class="block px-3 py-2.5 rounded-lg hover:bg-white/5 hover:text-white">Videos</a></li>
+          <li class="pt-2"><a href="#contacto" class="block bg-moss-500 hover:bg-moss-600 text-white font-semibold px-4 py-3 rounded-full text-center">Cotizar</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ======================================================== -->
+    <!-- 2. HERO                                                  -->
+    <!-- ======================================================== -->
+    <section id="hero" class="relative min-h-screen bg-moss-800 text-white overflow-hidden pt-32 pb-24">
+      <div class="absolute inset-0 leaf-pattern opacity-50" aria-hidden="true"></div>
+      <div class="blob-bg bg-moss-500" style="width:540px;height:540px;top:-160px;right:-100px;" aria-hidden="true"></div>
+      <div class="blob-bg bg-moss-400" style="width:380px;height:380px;bottom:-120px;left:-60px;opacity:.25;" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
+
+        <div class="lg:col-span-7" data-aos="fade-up">
+          <div class="inline-flex items-center gap-2 bg-moss-500/15 border border-moss-500/30 text-moss-200 text-xs font-semibold px-4 py-2 rounded-full mb-6">
+            <i class="fa-solid fa-leaf text-moss-300"></i>
+            Tecnología cero papel, amigable con el medio ambiente
+          </div>
+
+          <h1 class="font-display font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-[88px] leading-[0.95]">
+            Conectamos tu negocio
+            <span class="text-moss-300 display-italic font-normal">con la naturaleza</span>
+            de las cosas.
+          </h1>
+
+          <p class="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed">
+            Software a la medida, sistemas de digiturno, buscapersonas para restaurantes y cámaras de seguridad. Soluciones sostenibles que reducen papel, optimizan recursos y mejoran la experiencia de tus clientes.
+          </p>
+
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a href="#contacto" class="btn-primary !bg-moss-500 hover:!bg-moss-600">
+              Cotizar ahora <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#servicios" class="btn-ghost-light">
+              <i class="fa-solid fa-grip-vertical"></i> Ver servicios
+            </a>
+          </div>
+
+          <div class="mt-14 grid grid-cols-3 gap-6 max-w-xl">
+            <div>
+              <p class="stat-num text-4xl text-moss-300">+12</p>
+              <p class="text-xs text-white/55 mt-1 uppercase tracking-wider">Años de experiencia</p>
+            </div>
+            <div>
+              <p class="stat-num text-4xl text-moss-300">98</p>
+              <p class="text-xs text-white/55 mt-1 uppercase tracking-wider">Canales de radio</p>
+            </div>
+            <div>
+              <p class="stat-num text-4xl text-moss-300">0%</p>
+              <p class="text-xs text-white/55 mt-1 uppercase tracking-wider">Papel impreso</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 relative h-[460px] flex items-center justify-center">
+          <div class="pager-coaster floaty z-20" aria-hidden="true">
+            <div class="pager-leds">
+              <span style="transform: rotate(0deg) translate(96px); animation-delay:0s;"></span>
+              <span style="transform: rotate(45deg) translate(96px); animation-delay:.1s;"></span>
+              <span style="transform: rotate(90deg) translate(96px); animation-delay:.2s;"></span>
+              <span style="transform: rotate(135deg) translate(96px); animation-delay:.3s;"></span>
+              <span style="transform: rotate(180deg) translate(96px); animation-delay:.4s;"></span>
+              <span style="transform: rotate(225deg) translate(96px); animation-delay:.5s;"></span>
+              <span style="transform: rotate(270deg) translate(96px); animation-delay:.6s;"></span>
+              <span style="transform: rotate(315deg) translate(96px); animation-delay:.7s;"></span>
+            </div>
+            <div class="pager-screen">A-12</div>
+          </div>
+          <div class="pager-coaster floaty-d absolute right-2 top-8 scale-75 opacity-80 z-10" aria-hidden="true">
+            <div class="pager-screen text-xl">B-07</div>
+          </div>
+          <div class="pager-coaster absolute left-0 bottom-4 scale-[0.6] opacity-60" aria-hidden="true">
+            <div class="pager-screen text-base">C-23</div>
+          </div>
+
+          <div class="absolute top-4 right-0 bg-white/95 text-moss-900 rounded-2xl px-4 py-3 shadow-2xl flex items-center gap-3 z-30 max-w-[220px]" data-aos="fade-left" data-aos-delay="300">
+            <div class="w-10 h-10 rounded-xl bg-moss-100 text-moss-700 flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="text-xs leading-snug">
+              <p class="font-semibold">¡Tu pedido está listo!</p>
+              <p class="text-moss-700/70">Mesa 12 · Mesón Andino</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 3. MARQUEE                                               -->
+    <!-- ======================================================== -->
+    <section class="bg-moss-800 border-y border-white/5 overflow-hidden py-6">
+      <div class="flex marquee-track whitespace-nowrap text-white/30 font-display text-2xl gap-12">
+        <div class="flex items-center gap-12 px-6">
+          <span>Restaurantes</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Food Trucks</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Cafeterías</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Patios de comida</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Panaderías</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Casas de té</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Postres</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Comida rápida</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+        </div>
+        <div class="flex items-center gap-12 px-6" aria-hidden="true">
+          <span>Restaurantes</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Food Trucks</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Cafeterías</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Patios de comida</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Panaderías</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Casas de té</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Postres</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+          <span>Comida rápida</span><i class="fa-solid fa-leaf text-moss-500/60 text-base"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 4. SERVICIOS                                             -->
+    <!-- ======================================================== -->
+    <section id="servicios" class="bg-paper py-24 lg:py-32 relative">
+      <div class="absolute inset-0 leaf-pattern" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl" data-aos="fade-up">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-12 h-px bg-moss-700"></span>
+            <span class="tag-mono">/01 · Servicios</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-moss-900">
+            Cinco frentes, <span class="text-moss-700 display-italic font-normal">una sola</span> empresa.
+          </h2>
+          <p class="mt-5 text-moss-900/70 text-lg max-w-2xl">
+            Acompañamos a tu negocio desde el desarrollo del software hasta el último cable. Sin terceros, sin pelotear responsabilidades.
+          </p>
+        </div>
+
+        <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <article class="service-card lg:col-span-2 lg:row-span-2 flex flex-col" data-aos="fade-up">
+            <div class="flex items-start justify-between">
+              <div class="w-14 h-14 rounded-2xl bg-moss-800 text-moss-300 flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <span class="tag-mono">/01</span>
+            </div>
+            <h3 class="font-display text-3xl lg:text-4xl mt-8 text-moss-900">Software a la medida</h3>
+            <p class="mt-4 text-moss-900/70 max-w-md">
+              Aplicaciones web, móviles y de escritorio diseñadas exactamente para tu operación. Integramos con tu ERP, CRM o cualquier API. Stack moderno, código mantenible, entregas iterativas.
+            </p>
+            <ul class="mt-6 space-y-2 text-sm text-moss-900/80">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-500"></i> Web apps Django + React</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-500"></i> APIs REST y WebSockets</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-500"></i> Hosting en AWS / on-premise</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-500"></i> Mantenimiento y evolutivos</li>
+            </ul>
+            <a href="#software" class="mt-auto pt-8 inline-flex items-center gap-2 text-moss-900 font-semibold group">
+              Ver promoción de software
+              <span class="w-9 h-9 rounded-full bg-moss-800 text-white flex items-center justify-center group-hover:bg-moss-500 transition-colors">
+                <i class="fa-solid fa-arrow-right text-sm"></i>
+              </span>
+            </a>
+          </article>
+
+          <article class="service-card flex flex-col" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-start justify-between">
+              <div class="w-14 h-14 rounded-2xl bg-moss-800 text-moss-300 flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-list-ol"></i>
+              </div>
+              <span class="tag-mono">/02</span>
+            </div>
+            <h3 class="font-display text-2xl mt-6 text-moss-900">Sistema de Digiturno</h3>
+            <p class="mt-3 text-moss-900/70 text-sm">Filas digitales con notificaciones SMS / WhatsApp, panel de llamado, reportes y soporte multi-sucursal.</p>
+          </article>
+
+          <article class="service-card flex flex-col" data-aos="fade-up" data-aos-delay="150">
+            <div class="flex items-start justify-between">
+              <div class="w-14 h-14 rounded-2xl bg-moss-800 text-moss-300 flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-network-wired"></i>
+              </div>
+              <span class="tag-mono">/03</span>
+            </div>
+            <h3 class="font-display text-2xl mt-6 text-moss-900">Insumos de telecomunicaciones</h3>
+            <p class="mt-3 text-moss-900/70 text-sm">Cableado estructurado, racks, UPS, switches, patch panels, fibra y conectividad. Marca y stock disponible.</p>
+          </article>
+
+          <article class="service-card flex flex-col" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-start justify-between">
+              <div class="w-14 h-14 rounded-2xl bg-moss-500 text-white flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-bell-concierge"></i>
+              </div>
+              <span class="tag-mono">/04</span>
+            </div>
+            <h3 class="font-display text-2xl mt-6 text-moss-900">Buscapersonas para restaurantes</h3>
+            <p class="mt-3 text-moss-900/70 text-sm">Localizadores de invitados con vibración, intermitente y zumbador. Kits desde 10 hasta 24 piezas, 98 canales.</p>
+            <a href="#buscapersonas" class="mt-4 text-moss-700 font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">
+              Ver catálogo <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </article>
+
+          <article class="service-card flex flex-col" data-aos="fade-up" data-aos-delay="250">
+            <div class="flex items-start justify-between">
+              <div class="w-14 h-14 rounded-2xl bg-moss-800 text-moss-300 flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-video"></i>
+              </div>
+              <span class="tag-mono">/05</span>
+            </div>
+            <h3 class="font-display text-2xl mt-6 text-moss-900">Cámaras de seguridad</h3>
+            <p class="mt-3 text-moss-900/70 text-sm">Implementación de CCTV, IP, perimetral y videoanalítica con NVR/DVR y monitoreo remoto desde tu celular.</p>
+            <a href="#camaras" class="mt-4 text-moss-700 font-semibold text-sm inline-flex items-center gap-1 hover:gap-2 transition-all">
+              Conocer más <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 5. PROMOCIÓN DE SOFTWARE  (NUEVA)                        -->
+    <!-- ======================================================== -->
+    <section id="software" class="bg-cream py-24 lg:py-32 relative overflow-hidden">
+      <div class="blob-bg bg-moss-300" style="width:400px;height:400px;top:-80px;left:50%;opacity:.3;" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl" data-aos="fade-up">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-12 h-px bg-moss-700"></span>
+            <span class="tag-mono">/02 · Software propio</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-moss-900">
+            Software que <span class="text-moss-700 display-italic font-normal">trabaja por ti.</span>
+          </h2>
+          <p class="mt-5 text-moss-900/70 text-lg max-w-2xl">
+            Plataformas listas para implementar y soluciones a la medida que digitalizan tu operación, reducen el papel y te dan visibilidad en tiempo real.
+          </p>
+        </div>
+
+        <!-- Grid software showcase -->
+        <div class="mt-16 grid lg:grid-cols-12 gap-8 items-center">
+
+          <!-- Mockup grande del producto principal -->
+          <div class="lg:col-span-7 relative" data-aos="fade-right">
+            <!-- Laptop mockup -->
+            <div class="device-mockup bg-white">
+              <div class="device-bar">
+                <span class="bg-red-400"></span>
+                <span class="bg-yellow-400"></span>
+                <span class="bg-green-400"></span>
+                <span class="ml-3 text-xs text-gray-500 font-mono">app.sernet.com/digiturno</span>
+              </div>
+              <!-- Dashboard mock -->
+              <div class="aspect-[16/10] bg-gradient-to-br from-paper to-cream p-6">
+                <div class="grid grid-cols-3 gap-4 h-full">
+                  <!-- Sidebar -->
+                  <div class="col-span-1 bg-moss-800 rounded-xl p-4 text-white">
+                    <div class="flex items-center gap-2 mb-6">
+                      <div class="w-7 h-7 bg-moss-500 rounded-lg flex items-center justify-center text-xs"><i class="fa-solid fa-leaf"></i></div>
+                      <span class="font-bold text-sm">SERNET</span>
+                    </div>
+                    <div class="space-y-2 text-xs">
+                      <div class="bg-moss-500/20 px-3 py-2 rounded-lg flex items-center gap-2"><i class="fa-solid fa-gauge w-4"></i> Dashboard</div>
+                      <div class="px-3 py-2 text-white/60 flex items-center gap-2"><i class="fa-solid fa-users w-4"></i> Turnos</div>
+                      <div class="px-3 py-2 text-white/60 flex items-center gap-2"><i class="fa-solid fa-chart-line w-4"></i> Reportes</div>
+                      <div class="px-3 py-2 text-white/60 flex items-center gap-2"><i class="fa-solid fa-cog w-4"></i> Ajustes</div>
+                    </div>
+                  </div>
+                  <!-- Main panel -->
+                  <div class="col-span-2 space-y-3">
+                    <!-- Stats row -->
+                    <div class="grid grid-cols-3 gap-3">
+                      <div class="bg-white border border-moss-100 rounded-xl p-3">
+                        <p class="text-[9px] text-gray-500 uppercase tracking-wide">Turnos hoy</p>
+                        <p class="font-display text-2xl font-bold text-moss-700">248</p>
+                        <p class="text-[9px] text-moss-500">↑ 12%</p>
+                      </div>
+                      <div class="bg-white border border-moss-100 rounded-xl p-3">
+                        <p class="text-[9px] text-gray-500 uppercase tracking-wide">Espera media</p>
+                        <p class="font-display text-2xl font-bold text-moss-700">4:32</p>
+                        <p class="text-[9px] text-moss-500">min</p>
+                      </div>
+                      <div class="bg-moss-700 text-white rounded-xl p-3">
+                        <p class="text-[9px] text-white/70 uppercase tracking-wide">Activos</p>
+                        <p class="font-display text-2xl font-bold">17</p>
+                        <p class="text-[9px] text-moss-300">en atención</p>
+                      </div>
+                    </div>
+                    <!-- Chart -->
+                    <div class="bg-white border border-moss-100 rounded-xl p-3 h-24 relative">
+                      <p class="text-[9px] text-gray-500 uppercase tracking-wide mb-1">Flujo semanal</p>
+                      <svg viewBox="0 0 200 50" class="w-full h-12">
+                        <path d="M0,40 L25,30 L50,35 L75,20 L100,25 L125,15 L150,18 L175,8 L200,12" stroke="#2D6A4F" stroke-width="2" fill="none"/>
+                        <path d="M0,40 L25,30 L50,35 L75,20 L100,25 L125,15 L150,18 L175,8 L200,12 L200,50 L0,50 Z" fill="url(#gradMoss)" opacity="0.3"/>
+                        <defs>
+                          <linearGradient id="gradMoss" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#52B788"/>
+                            <stop offset="100%" stop-color="#52B788" stop-opacity="0"/>
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                    <!-- Recent items -->
+                    <div class="bg-white border border-moss-100 rounded-xl p-3 space-y-2">
+                      <div class="flex items-center gap-2 text-[10px]">
+                        <span class="w-6 h-6 bg-moss-100 text-moss-700 rounded-md flex items-center justify-center font-bold">A12</span>
+                        <span class="flex-1">María González</span>
+                        <span class="text-moss-500 font-semibold">En atención</span>
+                      </div>
+                      <div class="flex items-center gap-2 text-[10px]">
+                        <span class="w-6 h-6 bg-gray-100 text-gray-600 rounded-md flex items-center justify-center font-bold">B07</span>
+                        <span class="flex-1">Carlos Pérez</span>
+                        <span class="text-gray-400">Esperando</span>
+                      </div>
+                      <div class="flex items-center gap-2 text-[10px]">
+                        <span class="w-6 h-6 bg-gray-100 text-gray-600 rounded-md flex items-center justify-center font-bold">C23</span>
+                        <span class="flex-1">Laura Ruiz</span>
+                        <span class="text-gray-400">Esperando</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phone overlay -->
+            <div class="hidden md:block absolute -right-4 -bottom-12 z-10">
+              <div class="phone-mockup">
+                <div class="phone-notch"></div>
+                <div class="phone-screen p-4 pt-8">
+                  <p class="text-[10px] text-moss-700 font-mono">SERNET MÓVIL</p>
+                  <h4 class="font-display text-lg font-bold text-moss-900 mt-1">Tu turno</h4>
+                  <div class="mt-4 bg-moss-50 rounded-2xl p-4 text-center">
+                    <p class="text-[9px] text-moss-700/60 uppercase tracking-wide">Tu número</p>
+                    <p class="font-display text-5xl font-bold text-moss-700">A-12</p>
+                    <p class="text-xs text-moss-700/70 mt-2">Faltan ~5 min</p>
+                  </div>
+                  <div class="mt-3 space-y-2">
+                    <div class="bg-white border border-gray-100 rounded-lg p-2 text-[10px]">
+                      <p class="font-semibold text-moss-900">Asesoría financiera</p>
+                      <p class="text-gray-500">Mesón Andino · Centro</p>
+                    </div>
+                    <div class="bg-moss-700 text-white rounded-lg p-2 text-[10px] flex items-center gap-2">
+                      <i class="fa-brands fa-whatsapp"></i> Avísame por WhatsApp
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Texto / features -->
+          <div class="lg:col-span-5 space-y-6 lg:pl-6" data-aos="fade-left">
+            <div>
+              <h3 class="font-display text-3xl font-bold text-moss-900">Plataformas listas para tu negocio</h3>
+              <p class="mt-3 text-moss-900/70">Productos que llevan años puliendo su funcionalidad. Empieza hoy mismo y escala cuando necesites.</p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex gap-4 p-4 bg-white border border-moss-100 rounded-2xl hover:border-moss-300 transition-all">
+                <div class="w-12 h-12 rounded-xl bg-moss-100 text-moss-700 flex items-center justify-center flex-shrink-0">
+                  <i class="fa-solid fa-list-ol"></i>
+                </div>
+                <div>
+                  <h4 class="font-display font-bold text-moss-900">Digiturno SaaS</h4>
+                  <p class="text-sm text-moss-900/70 mt-1">Filas digitales, notificaciones multicanal y dashboards en tiempo real.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4 p-4 bg-white border border-moss-100 rounded-2xl hover:border-moss-300 transition-all">
+                <div class="w-12 h-12 rounded-xl bg-moss-100 text-moss-700 flex items-center justify-center flex-shrink-0">
+                  <i class="fa-solid fa-cash-register"></i>
+                </div>
+                <div>
+                  <h4 class="font-display font-bold text-moss-900">POS Restaurantes</h4>
+                  <p class="text-sm text-moss-900/70 mt-1">Punto de venta integrado con tu sistema de buscapersonas.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4 p-4 bg-white border border-moss-100 rounded-2xl hover:border-moss-300 transition-all">
+                <div class="w-12 h-12 rounded-xl bg-moss-100 text-moss-700 flex items-center justify-center flex-shrink-0">
+                  <i class="fa-solid fa-puzzle-piece"></i>
+                </div>
+                <div>
+                  <h4 class="font-display font-bold text-moss-900">Desarrollo a la medida</h4>
+                  <p class="text-sm text-moss-900/70 mt-1">¿Necesitas algo único? Nuestro equipo lo construye desde cero.</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="#contacto" class="btn-primary mt-2">
+              Quiero una demo <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 6. CATÁLOGO BUSCAPERSONAS                                -->
+    <!-- ======================================================== -->
+    <section id="buscapersonas" class="bg-moss-800 text-white py-24 lg:py-32 relative overflow-hidden">
+      <div class="absolute inset-0 leaf-pattern opacity-30" aria-hidden="true"></div>
+      <div class="blob-bg bg-moss-500" style="width:400px;height:400px;top:50%;right:-100px;transform:translateY(-50%);" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 items-end">
+          <div class="lg:col-span-8" data-aos="fade-up">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="w-12 h-px bg-moss-500"></span>
+              <span class="tag-mono text-moss-300">/03 · Producto estrella</span>
+            </div>
+            <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold">
+              Buscapersonas para restaurantes.<br/>
+              <span class="text-moss-300 display-italic font-normal">Pide. Espera. Vibra.</span>
+            </h2>
+          </div>
+          <div class="lg:col-span-4 text-white/70" data-aos="fade-up" data-aos-delay="100">
+            <p>Sistemas de localización inalámbricos para que tus invitados esperen donde quieran. Desde food trucks hasta patios de comida con flujo alto.</p>
+          </div>
+        </div>
+
+        <div class="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/10" data-aos="fade-up">
+          <div class="bg-moss-800 p-6"><p class="text-3xl font-display font-bold text-moss-300">98</p><p class="text-sm text-white/60 mt-1">Canales independientes</p></div>
+          <div class="bg-moss-800 p-6"><p class="text-3xl font-display font-bold text-moss-300">3 modos</p><p class="text-sm text-white/60 mt-1">Vibración + LED + zumbador</p></div>
+          <div class="bg-moss-800 p-6"><p class="text-3xl font-display font-bold text-moss-300">~300m</p><p class="text-sm text-white/60 mt-1">Alcance en línea de vista</p></div>
+          <div class="bg-moss-800 p-6"><p class="text-3xl font-display font-bold text-moss-300">USB-C</p><p class="text-sm text-white/60 mt-1">Carga simultánea en base</p></div>
+        </div>
+
+        <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <article class="product-card" data-aos="fade-up" data-aos-delay="50">
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-6">
+                <span class="tag-mono text-moss-300">SP-10</span>
+                <span class="bg-moss-500/15 text-moss-300 text-xs font-semibold px-3 py-1 rounded-full">Compacto</span>
+              </div>
+              <div class="flex justify-center my-6"><div class="pager-coaster scale-[0.55]"><div class="pager-screen">10</div></div></div>
+              <h3 class="font-display text-2xl font-bold mt-4">Kit de 10 piezas</h3>
+              <p class="text-white/60 text-sm mt-2">10 localizadores de invitados con zumbadores de distanciamiento social. 98 canales, vibración, intermitente y zumbador.</p>
+              <ul class="mt-5 space-y-2 text-sm text-white/70">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Para food trucks</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Base cargadora</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Transmisor 1 ud.</li>
+              </ul>
+              <a href="#contacto" class="mt-6 inline-flex w-full justify-center items-center gap-2 bg-white text-moss-900 hover:bg-moss-500 hover:text-white font-semibold px-4 py-3 rounded-full text-sm transition-all">Cotizar <i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+          </article>
+
+          <article class="product-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-6">
+                <span class="tag-mono text-moss-300">SP-16</span>
+                <span class="bg-moss-500/15 text-moss-300 text-xs font-semibold px-3 py-1 rounded-full">Estándar</span>
+              </div>
+              <div class="flex justify-center my-6"><div class="pager-coaster scale-[0.55]"><div class="pager-screen">16</div></div></div>
+              <h3 class="font-display text-2xl font-bold mt-4">Kit de 16 piezas</h3>
+              <p class="text-white/60 text-sm mt-2">16 localizadores con zumbadores y modo distanciamiento social. Pensado para restaurantes con flujo medio.</p>
+              <ul class="mt-5 space-y-2 text-sm text-white/70">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Restaurantes medianos</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Base apilable</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Transmisor 1 ud.</li>
+              </ul>
+              <a href="#contacto" class="mt-6 inline-flex w-full justify-center items-center gap-2 bg-white text-moss-900 hover:bg-moss-500 hover:text-white font-semibold px-4 py-3 rounded-full text-sm transition-all">Cotizar <i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+          </article>
+
+          <article class="product-card !border-moss-500/40 ring-1 ring-moss-500/30" data-aos="fade-up" data-aos-delay="150">
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-6">
+                <span class="tag-mono text-moss-300">SP-20</span>
+                <span class="bg-moss-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Más vendido</span>
+              </div>
+              <div class="flex justify-center my-6"><div class="pager-coaster scale-[0.55]"><div class="pager-screen">20</div></div></div>
+              <h3 class="font-display text-2xl font-bold mt-4">Sistema de 20 piezas</h3>
+              <p class="text-white/60 text-sm mt-2">Recordatorio de vibración para tienda de comida rápida, cafetería, postre, panadería, casa de té y food truck.</p>
+              <ul class="mt-5 space-y-2 text-sm text-white/70">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Operación intensiva</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Vibración prolongada</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Garantía extendida</li>
+              </ul>
+              <a href="#contacto" class="mt-6 inline-flex w-full justify-center items-center gap-2 bg-moss-500 hover:bg-moss-600 text-white font-semibold px-4 py-3 rounded-full text-sm transition-all">Cotizar <i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+          </article>
+
+          <article class="product-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-6">
+                <span class="tag-mono text-moss-300">SP-24</span>
+                <span class="bg-moss-500/15 text-moss-300 text-xs font-semibold px-3 py-1 rounded-full">Pro</span>
+              </div>
+              <div class="flex justify-center my-6"><div class="pager-coaster scale-[0.55]"><div class="pager-screen">24</div></div></div>
+              <h3 class="font-display text-2xl font-bold mt-4">Kit de 24 piezas</h3>
+              <p class="text-white/60 text-sm mt-2">24 localizadores con vibración, intermitente y zumbador. Ideal para patios de comida y cadenas con alta rotación.</p>
+              <ul class="mt-5 space-y-2 text-sm text-white/70">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Patios de comida</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Multi-transmisor</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-moss-300 text-xs"></i> Soporte premium</li>
+              </ul>
+              <a href="#contacto" class="mt-6 inline-flex w-full justify-center items-center gap-2 bg-white text-moss-900 hover:bg-moss-500 hover:text-white font-semibold px-4 py-3 rounded-full text-sm transition-all">Cotizar <i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 7. CÁMARAS DE SEGURIDAD                                  -->
+    <!-- ======================================================== -->
+    <section id="camaras" class="bg-paper py-24 lg:py-32 relative overflow-hidden">
+      <div class="absolute inset-0 leaf-pattern" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div data-aos="fade-right">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="w-12 h-px bg-moss-700"></span>
+              <span class="tag-mono">/04 · Cámaras de seguridad</span>
+            </div>
+            <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-moss-900">
+              Mira tu negocio<br/>
+              <span class="text-moss-700 display-italic font-normal">desde donde estés.</span>
+            </h2>
+            <p class="mt-6 text-moss-900/70 text-lg">
+              Diseñamos, suministramos e instalamos sistemas CCTV e IP. Te dejamos viendo tus cámaras desde el celular el mismo día de la instalación.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+            <div class="bg-white border border-moss-100 rounded-2xl p-5 shadow-soft">
+              <i class="fa-solid fa-shield text-moss-700 text-xl"></i>
+              <h4 class="font-display text-lg font-bold mt-3 text-moss-900">CCTV y IP</h4>
+              <p class="text-sm text-moss-900/70 mt-1">Análoga HD o full IP con PoE. Hasta 4K.</p>
+            </div>
+            <div class="bg-white border border-moss-100 rounded-2xl p-5 shadow-soft">
+              <i class="fa-solid fa-hard-drive text-moss-700 text-xl"></i>
+              <h4 class="font-display text-lg font-bold mt-3 text-moss-900">DVR / NVR</h4>
+              <p class="text-sm text-moss-900/70 mt-1">Grabación local + respaldo en la nube.</p>
+            </div>
+            <div class="bg-white border border-moss-100 rounded-2xl p-5 shadow-soft">
+              <i class="fa-solid fa-eye text-moss-700 text-xl"></i>
+              <h4 class="font-display text-lg font-bold mt-3 text-moss-900">Videoanalítica</h4>
+              <p class="text-sm text-moss-900/70 mt-1">Detección de movimiento, conteo y alertas.</p>
+            </div>
+            <div class="bg-moss-700 text-white rounded-2xl p-5 shadow-soft">
+              <i class="fa-solid fa-tools text-moss-300 text-xl"></i>
+              <h4 class="font-display text-lg font-bold mt-3">Mantenimiento</h4>
+              <p class="text-sm text-white/80 mt-1">Soporte, repuestos y limpieza preventiva.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Galería de instalaciones de cámaras -->
+        <div class="mt-12">
+          <h3 class="font-display text-2xl font-bold text-moss-900 mb-6" data-aos="fade-up">
+            Algunas de nuestras instalaciones
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="gallery-item aspect-square" data-aos="fade-up" data-aos-delay="50">
+              <!-- REEMPLAZAR_FOTO_REAL -->
+              <img src="https://picsum.photos/seed/camara1/600/600" alt="Cámara IP exterior" loading="lazy" />
+              <div class="gallery-overlay">
+                <h4>Cámara IP exterior</h4>
+                <p>Restaurante · Bogotá</p>
+              </div>
+            </div>
+            <div class="gallery-item aspect-square" data-aos="fade-up" data-aos-delay="100">
+              <img src="https://picsum.photos/seed/camara2/600/600" alt="Cableado estructurado" loading="lazy" />
+              <div class="gallery-overlay">
+                <h4>NVR + cableado</h4>
+                <p>Centro comercial · Cajicá</p>
+              </div>
+            </div>
+            <div class="gallery-item aspect-square" data-aos="fade-up" data-aos-delay="150">
+              <img src="https://picsum.photos/seed/camara3/600/600" alt="Cámara domo interior" loading="lazy" />
+              <div class="gallery-overlay">
+                <h4>Domo PTZ interior</h4>
+                <p>Bodega · Bucaramanga</p>
+              </div>
+            </div>
+            <div class="gallery-item aspect-square" data-aos="fade-up" data-aos-delay="200">
+              <img src="https://picsum.photos/seed/camara4/600/600" alt="Monitoreo en tiempo real" loading="lazy" />
+              <div class="gallery-overlay">
+                <h4>Centro de monitoreo</h4>
+                <p>Cadena de tiendas</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-10" data-aos="fade-up">
+            <a href="#contacto" class="btn-primary">
+              Solicitar visita técnica <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 8. PORTFOLIO DE LANDING PAGES (NUEVA)                   -->
+    <!-- ======================================================== -->
+    <section id="portfolio" class="bg-cream py-24 lg:py-32 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl" data-aos="fade-up">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-12 h-px bg-moss-700"></span>
+            <span class="tag-mono">/05 · Trabajos realizados</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-moss-900">
+            Landing pages que ya<br/>
+            <span class="text-moss-700 display-italic font-normal">están convirtiendo.</span>
+          </h2>
+          <p class="mt-5 text-moss-900/70 text-lg max-w-2xl">
+            Una muestra de los sitios web que hemos construido para nuestros clientes. Diseño a medida, optimizados para conversión y SEO.
+          </p>
+        </div>
+
+        <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <a href="#" class="landing-thumb" data-aos="fade-up" data-aos-delay="50">
+            <div class="preview" style="background-image: linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%);">
+              <!-- Mini mockup de landing 1 -->
+              <div class="absolute inset-0 p-4">
+                <div class="bg-white/10 backdrop-blur rounded-md h-3 w-1/3 mb-3"></div>
+                <div class="bg-white/95 rounded-lg p-3 mt-8">
+                  <div class="bg-moss-700/20 h-2 w-2/3 rounded mb-2"></div>
+                  <div class="bg-moss-700/40 h-3 w-3/4 rounded mb-2"></div>
+                  <div class="bg-moss-700/40 h-3 w-1/2 rounded mb-3"></div>
+                  <div class="bg-moss-700 h-4 w-20 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 flex items-center justify-between">
+              <div>
+                <p class="text-xs text-moss-700 font-mono uppercase tracking-wider">Restaurante</p>
+                <h3 class="font-display text-lg font-bold text-moss-900">Mesón Andino</h3>
+              </div>
+              <span class="w-10 h-10 rounded-full bg-moss-100 text-moss-700 flex items-center justify-center group-hover:bg-moss-700 group-hover:text-white transition-colors">
+                <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+              </span>
+            </div>
+          </a>
+
+          <a href="#" class="landing-thumb" data-aos="fade-up" data-aos-delay="100">
+            <div class="preview" style="background-image: linear-gradient(135deg, #BC6C25 0%, #DDA15E 100%);">
+              <div class="absolute inset-0 p-4">
+                <div class="bg-white/95 rounded-md h-3 w-1/4 mb-3"></div>
+                <div class="grid grid-cols-2 gap-2 mt-6">
+                  <div class="bg-white/95 rounded-lg p-2 h-16"></div>
+                  <div class="bg-white/30 rounded-lg p-2"></div>
+                </div>
+                <div class="bg-white/50 h-2 mt-3 w-full rounded"></div>
+              </div>
+            </div>
+            <div class="p-5 flex items-center justify-between">
+              <div>
+                <p class="text-xs text-moss-700 font-mono uppercase tracking-wider">Panadería</p>
+                <h3 class="font-display text-lg font-bold text-moss-900">Pan de la Sabana</h3>
+              </div>
+              <span class="w-10 h-10 rounded-full bg-moss-100 text-moss-700 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></span>
+            </div>
+          </a>
+
+          <a href="#" class="landing-thumb" data-aos="fade-up" data-aos-delay="150">
+            <div class="preview" style="background-image: linear-gradient(135deg, #52B788 0%, #95D5B2 100%);">
+              <div class="absolute inset-0 p-4">
+                <div class="bg-moss-900/30 rounded-md h-3 w-1/3 mb-3"></div>
+                <div class="bg-white/95 rounded-xl p-3 mt-6">
+                  <div class="bg-moss-700/30 h-8 w-8 rounded-full mb-2"></div>
+                  <div class="bg-moss-700/30 h-2 w-full rounded mb-1"></div>
+                  <div class="bg-moss-700/30 h-2 w-3/4 rounded"></div>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 flex items-center justify-between">
+              <div>
+                <p class="text-xs text-moss-700 font-mono uppercase tracking-wider">Clínica</p>
+                <h3 class="font-display text-lg font-bold text-moss-900">Vital Centro Médico</h3>
+              </div>
+              <span class="w-10 h-10 rounded-full bg-moss-100 text-moss-700 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></span>
+            </div>
+          </a>
+
+          <a href="#" class="landing-thumb" data-aos="fade-up" data-aos-delay="200">
+            <div class="preview" style="background-image: linear-gradient(135deg, #081C15 0%, #1B4332 100%);">
+              <div class="absolute inset-0 p-4">
+                <div class="flex justify-between items-start">
+                  <div class="bg-moss-500 rounded h-3 w-12"></div>
+                  <div class="flex gap-1">
+                    <div class="bg-white/40 h-2 w-6 rounded"></div>
+                    <div class="bg-white/40 h-2 w-6 rounded"></div>
+                  </div>
+                </div>
+                <div class="mt-8">
+                  <div class="bg-white h-4 w-3/4 rounded mb-2"></div>
+                  <div class="bg-white/60 h-2 w-1/2 rounded mb-3"></div>
+                  <div class="bg-moss-500 h-5 w-16 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 flex items-center justify-between">
+              <div>
+                <p class="text-xs text-moss-700 font-mono uppercase tracking-wider">Logística</p>
+                <h3 class="font-display text-lg font-bold text-moss-900">TransAndina Cargo</h3>
+              </div>
+              <span class="w-10 h-10 rounded-full bg-moss-100 text-moss-700 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></span>
+            </div>
+          </a>
+
+          <a href="#" class="landing-thumb" data-aos="fade-up" data-aos-delay="250">
+            <div class="preview" style="background-image: linear-gradient(135deg, #FEFAE0 0%, #E9EDC9 100%);">
+              <div class="absolute inset-0 p-4">
+                <div class="bg-moss-900 rounded h-3 w-1/4 mb-3"></div>
+                <div class="grid grid-cols-3 gap-1 mt-4">
+                  <div class="bg-moss-700/80 rounded h-12"></div>
+                  <div class="bg-moss-500/60 rounded h-12"></div>
+                  <div class="bg-earth/60 rounded h-12"></div>
+                </div>
+                <div class="bg-moss-900 h-2 mt-3 w-1/2 rounded"></div>
+              </div>
+            </div>
+            <div class="p-5 flex items-center justify-between">
+              <div>
+                <p class="text-xs text-moss-700 font-mono uppercase tracking-wider">Auto-escuela</p>
+                <h3 class="font-display text-lg font-bold text-moss-900">CONDUESPOL</h3>
+              </div>
+              <span class="w-10 h-10 rounded-full bg-moss-100 text-moss-700 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></span>
+            </div>
+          </a>
+
+          <a href="#" class="landing-thumb" data-aos="fade-up" data-aos-delay="300">
+            <div class="preview" style="background-image: linear-gradient(135deg, #2D6A4F 0%, #74C69D 100%);">
+              <div class="absolute inset-0 p-4">
+                <div class="flex items-center gap-2">
+                  <div class="bg-white rounded-full w-6 h-6"></div>
+                  <div class="bg-white/80 h-2 w-12 rounded"></div>
+                </div>
+                <div class="bg-white/95 rounded-xl p-3 mt-6">
+                  <div class="bg-moss-700/40 h-2 w-1/3 rounded mb-2"></div>
+                  <div class="bg-moss-700 h-5 w-2/3 rounded mb-3"></div>
+                  <div class="grid grid-cols-2 gap-1">
+                    <div class="bg-moss-100 h-4 rounded"></div>
+                    <div class="bg-moss-100 h-4 rounded"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 flex items-center justify-between">
+              <div>
+                <p class="text-xs text-moss-700 font-mono uppercase tracking-wider">E-commerce</p>
+                <h3 class="font-display text-lg font-bold text-moss-900">PideLibre.com</h3>
+              </div>
+              <span class="w-10 h-10 rounded-full bg-moss-100 text-moss-700 flex items-center justify-center"><i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></span>
+            </div>
+          </a>
+        </div>
+
+        <div class="mt-12 text-center" data-aos="fade-up">
+          <p class="text-moss-900/70">¿Quieres tu propia landing page?</p>
+          <a href="#contacto" class="mt-3 btn-primary">
+            Hablemos de tu proyecto <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 9. GALERÍA DE IMÁGENES (NUEVA)                          -->
+    <!-- ======================================================== -->
+    <section id="galeria" class="bg-paper py-24 lg:py-32 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl" data-aos="fade-up">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-12 h-px bg-moss-700"></span>
+            <span class="tag-mono">/06 · Galería</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-moss-900">
+            Nuestro trabajo<br/>
+            <span class="text-moss-700 display-italic font-normal">en imágenes.</span>
+          </h2>
+          <p class="mt-5 text-moss-900/70 text-lg max-w-2xl">
+            Instalaciones, productos y momentos de nuestro equipo en campo.
+          </p>
+        </div>
+
+        <!-- Grid bento masonry -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[200px] gap-4" data-aos="fade-up">
+          <!-- REEMPLAZAR_FOTOS_REALES -->
+          <div class="gallery-item col-span-2 row-span-2">
+            <img src="https://picsum.photos/seed/galeria1/800/800" alt="Instalación de cámaras IP" loading="lazy" />
+            <div class="gallery-overlay">
+              <h4>Instalación CCTV</h4>
+              <p>Restaurante La Estancia</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/galeria2/400/400" alt="Buscapersonas en uso" loading="lazy" />
+            <div class="gallery-overlay">
+              <h4>Buscapersonas</h4>
+              <p>Patio de comidas</p>
+            </div>
+          </div>
+          <div class="gallery-item row-span-2">
+            <img src="https://picsum.photos/seed/galeria3/400/800" alt="Rack de servidores" loading="lazy" />
+            <div class="gallery-overlay">
+              <h4>Rack de comunicaciones</h4>
+              <p>Centro de datos</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/galeria4/400/400" alt="Cableado estructurado" loading="lazy" />
+            <div class="gallery-overlay">
+              <h4>Cableado UTP cat6</h4>
+              <p>Oficina corporativa</p>
+            </div>
+          </div>
+          <div class="gallery-item col-span-2">
+            <img src="https://picsum.photos/seed/galeria5/800/400" alt="Equipo Sernet" loading="lazy" />
+            <div class="gallery-overlay">
+              <h4>Nuestro equipo</h4>
+              <p>Soporte técnico en sitio</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/galeria6/400/400" alt="Pantalla de digiturno" loading="lazy" />
+            <div class="gallery-overlay">
+              <h4>Pantalla de turno</h4>
+              <p>Clínica Vital</p>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <img src="https://picsum.photos/seed/galeria7/400/400" alt="Cámara dome" loading="lazy" />
+            <div class="gallery-overlay">
+              <h4>Cámara domo PTZ</h4>
+              <p>Bodega industrial</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 10. VIDEOS (NUEVA)                                       -->
+    <!-- ======================================================== -->
+    <section id="videos" class="bg-moss-800 text-white py-24 lg:py-32 relative overflow-hidden">
+      <div class="absolute inset-0 leaf-pattern opacity-30" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl" data-aos="fade-up">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-12 h-px bg-moss-500"></span>
+            <span class="tag-mono text-moss-300">/07 · Videos</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold">
+            Mira cómo<br/>
+            <span class="text-moss-300 display-italic font-normal">trabajamos.</span>
+          </h2>
+          <p class="mt-5 text-white/70 text-lg max-w-2xl">
+            Demostraciones de producto, casos de éxito y procesos de instalación reales.
+          </p>
+        </div>
+
+        <div class="mt-16 grid md:grid-cols-3 gap-6">
+
+          <button type="button" class="video-card group" data-video-id="dQw4w9WgXcQ" data-aos="fade-up" data-aos-delay="50">
+            <!-- REEMPLAZAR_THUMB y data-video-id por video real de YouTube -->
+            <div class="thumb" style="background-image: url('https://picsum.photos/seed/video1/800/500');"></div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+            <div class="video-info">
+              <p class="text-xs text-moss-300 font-mono uppercase tracking-wider">Demo de producto</p>
+              <h3 class="font-display text-xl font-bold mt-1">Buscapersonas en acción</h3>
+              <p class="text-sm text-white/80 mt-1">02:14 · Cómo funciona el sistema</p>
+            </div>
+          </button>
+
+          <button type="button" class="video-card group" data-video-id="dQw4w9WgXcQ" data-aos="fade-up" data-aos-delay="120">
+            <div class="thumb" style="background-image: url('https://picsum.photos/seed/video2/800/500');"></div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+            <div class="video-info">
+              <p class="text-xs text-moss-300 font-mono uppercase tracking-wider">Caso de éxito</p>
+              <h3 class="font-display text-xl font-bold mt-1">Restaurante reduce filas en 40%</h3>
+              <p class="text-sm text-white/80 mt-1">03:48 · Testimonio de cliente</p>
+            </div>
+          </button>
+
+          <button type="button" class="video-card group" data-video-id="dQw4w9WgXcQ" data-aos="fade-up" data-aos-delay="190">
+            <div class="thumb" style="background-image: url('https://picsum.photos/seed/video3/800/500');"></div>
+            <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+            <div class="video-info">
+              <p class="text-xs text-moss-300 font-mono uppercase tracking-wider">Tutorial</p>
+              <h3 class="font-display text-xl font-bold mt-1">Instalación de cámaras IP</h3>
+              <p class="text-sm text-white/80 mt-1">05:22 · Paso a paso</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal video -->
+    <div id="video-modal" class="modal-backdrop" role="dialog" aria-modal="true">
+      <div class="modal-content">
+        <button class="modal-close" id="video-close" aria-label="Cerrar video">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <iframe id="video-iframe" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- 11. CÓMO FUNCIONA (proceso 3 pasos)                      -->
+    <!-- ======================================================== -->
+    <section class="bg-paper py-24 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl" data-aos="fade-up">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-12 h-px bg-moss-700"></span>
+            <span class="tag-mono">/08 · Cómo funciona</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-moss-900">
+            Tres pasos. <br />
+            <span class="text-moss-700 display-italic font-normal">Cero filas en tu local.</span>
+          </h2>
+        </div>
+
+        <div class="mt-16 grid md:grid-cols-3 gap-8">
+          <div class="relative" data-aos="fade-up">
+            <span class="font-display text-[120px] font-bold text-moss-200 leading-none">1</span>
+            <div class="-mt-12 relative">
+              <div class="w-14 h-14 rounded-2xl bg-moss-800 text-moss-300 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-utensils"></i>
+              </div>
+              <h3 class="font-display text-2xl font-bold mt-5 text-moss-900">Pide y entrega un coaster</h3>
+              <p class="mt-3 text-moss-900/70">El cliente ordena en caja y recibe un localizador. Lo lleva consigo a la mesa, terraza o cualquier zona del local.</p>
+            </div>
+          </div>
+          <div class="relative" data-aos="fade-up" data-aos-delay="100">
+            <span class="font-display text-[120px] font-bold text-moss-200 leading-none">2</span>
+            <div class="-mt-12 relative">
+              <div class="w-14 h-14 rounded-2xl bg-moss-800 text-moss-300 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-tower-broadcast"></i>
+              </div>
+              <h3 class="font-display text-2xl font-bold mt-5 text-moss-900">Llama desde la base</h3>
+              <p class="mt-3 text-moss-900/70">Cuando el pedido está listo, presionas el número en el transmisor. La señal llega en milisegundos por radio en uno de los 98 canales.</p>
+            </div>
+          </div>
+          <div class="relative" data-aos="fade-up" data-aos-delay="200">
+            <span class="font-display text-[120px] font-bold text-moss-200 leading-none">3</span>
+            <div class="-mt-12 relative">
+              <div class="w-14 h-14 rounded-2xl bg-moss-500 text-white flex items-center justify-center text-xl">
+                <i class="fa-solid fa-bell"></i>
+              </div>
+              <h3 class="font-display text-2xl font-bold mt-5 text-moss-900">Vibra, parpadea, zumba</h3>
+              <p class="mt-3 text-moss-900/70">El coaster activa los tres modos a la vez. Tu invitado regresa a recoger su orden sin gritar nombres ni perder turno.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 12. SECTORES                                             -->
+    <!-- ======================================================== -->
+    <section id="sectores" class="bg-cream py-24 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl" data-aos="fade-up">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-12 h-px bg-moss-700"></span>
+            <span class="tag-mono">/09 · Sectores</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-moss-900">
+            Para todo negocio<br/>donde alguien <span class="text-moss-700 display-italic font-normal">espera ser atendido.</span>
+          </h2>
+        </div>
+
+        <div class="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div class="sector-pill" data-aos="fade-up" data-aos-delay="50"><i class="fa-solid fa-utensils text-2xl text-moss-700 sector-icon"></i><p class="mt-3 font-display font-semibold">Restaurantes</p></div>
+          <div class="sector-pill" data-aos="fade-up" data-aos-delay="80"><i class="fa-solid fa-burger text-2xl text-moss-700 sector-icon"></i><p class="mt-3 font-display font-semibold">Comida rápida</p></div>
+          <div class="sector-pill" data-aos="fade-up" data-aos-delay="110"><i class="fa-solid fa-truck-fast text-2xl text-moss-700 sector-icon"></i><p class="mt-3 font-display font-semibold">Food trucks</p></div>
+          <div class="sector-pill" data-aos="fade-up" data-aos-delay="140"><i class="fa-solid fa-mug-hot text-2xl text-moss-700 sector-icon"></i><p class="mt-3 font-display font-semibold">Cafeterías</p></div>
+          <div class="sector-pill" data-aos="fade-up" data-aos-delay="170"><i class="fa-solid fa-bread-slice text-2xl text-moss-700 sector-icon"></i><p class="mt-3 font-display font-semibold">Panaderías</p></div>
+          <div class="sector-pill" data-aos="fade-up" data-aos-delay="200"><i class="fa-solid fa-cake-candles text-2xl text-moss-700 sector-icon"></i><p class="mt-3 font-display font-semibold">Postres</p></div>
+          <div class="sector-pill" data-aos="fade-up" data-aos-delay="230"><i class="fa-solid fa-mug-saucer text-2xl text-moss-700 sector-icon"></i><p class="mt-3 font-display font-semibold">Casas de té</p></div>
+          <div class="sector-pill" data-aos="fade-up" data-aos-delay="260"><i class="fa-solid fa-shop text-2xl text-moss-700 sector-icon"></i><p class="mt-3 font-display font-semibold">Patios de comida</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 13. POR QUÉ NOSOTROS                                     -->
+    <!-- ======================================================== -->
+    <section id="nosotros" class="bg-moss-800 text-white py-24 lg:py-32 relative overflow-hidden">
+      <div class="absolute inset-0 leaf-pattern opacity-30" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl" data-aos="fade-up">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-12 h-px bg-moss-500"></span>
+            <span class="tag-mono text-moss-300">/10 · Por qué Sernet</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold">
+            Una empresa que <span class="text-moss-300 display-italic font-normal">fabrica, vende e instala.</span>
+          </h2>
+          <p class="mt-6 text-white/70 text-lg">
+            No somos solo distribuidores ni solo consultores: integramos el hardware, el software y el soporte. Una sola factura, un solo responsable.
+          </p>
+        </div>
+
+        <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="border-l-2 border-moss-500 pl-6" data-aos="fade-up">
+            <p class="font-display text-5xl font-bold text-moss-300">+12</p>
+            <p class="text-white/70 mt-2">Años entregando proyectos llave en mano en telecomunicaciones.</p>
+          </div>
+          <div class="border-l-2 border-moss-500 pl-6" data-aos="fade-up" data-aos-delay="100">
+            <p class="font-display text-5xl font-bold text-moss-300">100%</p>
+            <p class="text-white/70 mt-2">Soporte propio, no terciarizado. Hablas con quien instaló.</p>
+          </div>
+          <div class="border-l-2 border-moss-500 pl-6" data-aos="fade-up" data-aos-delay="200">
+            <p class="font-display text-5xl font-bold text-moss-300">48h</p>
+            <p class="text-white/70 mt-2">Tiempo promedio de respuesta para garantías y mantenimientos.</p>
+          </div>
+          <div class="border-l-2 border-moss-500 pl-6" data-aos="fade-up" data-aos-delay="300">
+            <p class="font-display text-5xl font-bold text-moss-300">+200</p>
+            <p class="text-white/70 mt-2">Negocios atendidos en restaurantes, comercios y oficinas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 14. CTA / CONTACTO                                       -->
+    <!-- ======================================================== -->
+    <section id="contacto" class="bg-gradient-to-b from-moss-800 to-moss-900 text-white py-24 lg:py-32 relative overflow-hidden">
+      <div class="blob-bg bg-moss-500" style="width:600px;height:600px;top:-200px;left:50%;transform:translateX(-50%);opacity:.18;" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+          <span class="tag-mono text-moss-300">/11 · Cotizaciones</span>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mt-4">
+            Cuéntanos <span class="display-italic font-normal text-moss-300">qué necesitas.</span>
+          </h2>
+          <p class="mt-5 text-white/70 text-lg">Te respondemos en menos de 24 horas hábiles con propuesta y cronograma.</p>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-5 gap-8">
+          <div class="lg:col-span-2 space-y-4" data-aos="fade-right">
+            <a href="https://wa.me/573000000000?text=Hola%20Sernet%2C%20quiero%20una%20cotizaci%C3%B3n"
+               target="_blank" rel="noopener"
+               class="block bg-gradient-to-br from-green-500 to-green-700 rounded-2xl p-6 hover:from-green-400 hover:to-green-600 transition-all">
+              <i class="fa-brands fa-whatsapp text-3xl"></i>
+              <h3 class="font-display text-2xl font-bold mt-3">WhatsApp directo</h3>
+              <p class="text-white/85 text-sm mt-1">Conversa con un asesor real ahora mismo.</p>
+              <p class="font-mono text-sm mt-4">+57 300 000 0000</p>
+            </a>
+
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+              <i class="fa-solid fa-envelope text-moss-300 text-2xl"></i>
+              <h3 class="font-display text-xl font-bold mt-3">Correo</h3>
+              <p class="text-white/65 text-sm mt-1">Para propuestas formales y RFP.</p>
+              <a href="mailto:contacto@sernettelecomunicaciones.com" class="text-moss-300 hover:underline text-sm mt-3 inline-block break-all">contacto@sernettelecomunicaciones.com</a>
+            </div>
+
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+              <i class="fa-solid fa-location-dot text-moss-300 text-2xl"></i>
+              <h3 class="font-display text-xl font-bold mt-3">Visítanos</h3>
+              <p class="text-white/65 text-sm mt-1">Colombia · Cobertura nacional para instalaciones.</p>
+            </div>
+          </div>
+
+          <form class="lg:col-span-3 bg-white/5 border border-white/10 rounded-3xl p-8 lg:p-10 backdrop-blur-sm"
+                data-aos="fade-left"
+                onsubmit="event.preventDefault(); alert('Formulario de demostración. Conectar a backend (Formspree, n8n o endpoint propio).');">
+            <h3 class="font-display text-2xl font-bold">Solicita tu cotización</h3>
+
+            <div class="mt-6 grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-2">Nombre *</label>
+                <input type="text" required class="form-input" placeholder="Tu nombre" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-2">Empresa</label>
+                <input type="text" class="form-input" placeholder="Tu empresa" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-2">Correo *</label>
+                <input type="email" required class="form-input" placeholder="tucorreo@empresa.com" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-2">Teléfono</label>
+                <input type="tel" class="form-input" placeholder="+57 ..." />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-2">Servicio de interés</label>
+              <select class="form-input">
+                <option value="" class="bg-moss-900">Selecciona uno...</option>
+                <option class="bg-moss-900">Software a la medida</option>
+                <option class="bg-moss-900">Sistema de Digiturno</option>
+                <option class="bg-moss-900">Insumos de telecomunicaciones</option>
+                <option class="bg-moss-900">Buscapersonas (10 piezas)</option>
+                <option class="bg-moss-900">Buscapersonas (16 piezas)</option>
+                <option class="bg-moss-900">Buscapersonas (20 piezas)</option>
+                <option class="bg-moss-900">Buscapersonas (24 piezas)</option>
+                <option class="bg-moss-900">Cámaras de seguridad</option>
+                <option class="bg-moss-900">Landing page / sitio web</option>
+              </select>
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-2">Mensaje</label>
+              <textarea rows="4" class="form-input" placeholder="Cuéntanos sobre tu negocio, ubicación y volumen de operación..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary w-full justify-center mt-6 !bg-moss-500 hover:!bg-moss-600">
+              Enviar solicitud <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- 15. FOOTER                                               -->
+  <!-- ======================================================== -->
+  <footer class="bg-moss-900 text-white/70 pt-20 pb-8 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5">
+          <a href="#hero" class="flex items-center gap-2.5 text-white">
+            <span class="relative w-9 h-9 rounded-xl bg-moss-500 flex items-center justify-center">
+              <i class="fa-solid fa-leaf text-white text-sm"></i>
+            </span>
+            <span class="font-display font-bold text-xl tracking-tight">SERNET<span class="text-moss-500 italic">.</span></span>
+          </a>
+          <p class="font-display text-2xl mt-6 leading-tight max-w-md text-white/80">
+            Conectamos personas, sistemas y negocios con tecnología <span class="text-moss-300 display-italic">sostenible que simplemente funciona</span>.
+          </p>
+
+          <div class="mt-8 flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-moss-500 flex items-center justify-center transition-colors" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-moss-500 flex items-center justify-center transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-moss-500 flex items-center justify-center transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://wa.me/573000000000" target="_blank" rel="noopener" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-green-500 flex items-center justify-center transition-colors" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="text-white font-display font-semibold mb-5 text-sm uppercase tracking-wider">Servicios</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#software" class="hover:text-moss-300">Software a medida</a></li>
+            <li><a href="#servicios" class="hover:text-moss-300">Digiturno</a></li>
+            <li><a href="#servicios" class="hover:text-moss-300">Insumos telecom</a></li>
+            <li><a href="#buscapersonas" class="hover:text-moss-300">Buscapersonas</a></li>
+            <li><a href="#camaras" class="hover:text-moss-300">Cámaras seguridad</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2">
+          <h4 class="text-white font-display font-semibold mb-5 text-sm uppercase tracking-wider">Empresa</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#portfolio" class="hover:text-moss-300">Portafolio</a></li>
+            <li><a href="#galeria" class="hover:text-moss-300">Galería</a></li>
+            <li><a href="#videos" class="hover:text-moss-300">Videos</a></li>
+            <li><a href="#sectores" class="hover:text-moss-300">Sectores</a></li>
+            <li><a href="#nosotros" class="hover:text-moss-300">Nosotros</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3">
+          <h4 class="text-white font-display font-semibold mb-5 text-sm uppercase tracking-wider">Contacto</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex gap-3"><i class="fa-solid fa-phone text-moss-300 mt-1"></i> <a href="tel:+573000000000" class="hover:text-white">+57 300 000 0000</a></li>
+            <li class="flex gap-3"><i class="fa-solid fa-envelope text-moss-300 mt-1"></i> <a href="mailto:contacto@sernettelecomunicaciones.com" class="hover:text-white break-all">contacto@sernettelecomunicaciones.com</a></li>
+            <li class="flex gap-3"><i class="fa-solid fa-globe text-moss-300 mt-1"></i> <a href="https://sernettelecomunicaciones.com" class="hover:text-white">sernettelecomunicaciones.com</a></li>
+            <li class="flex gap-3"><i class="fa-solid fa-location-dot text-moss-300 mt-1"></i> Colombia</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-16 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        <p class="text-white/50">© 2026 Sernet Telecomunicaciones. Todos los derechos reservados.</p>
+        <div class="flex gap-5 text-white/50">
+          <a href="#" class="hover:text-white">Política de privacidad</a>
+          <a href="#" class="hover:text-white">Términos y condiciones</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/573000000000" target="_blank" rel="noopener"
+     class="fixed bottom-6 right-6 z-30 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white text-2xl flex items-center justify-center shadow-2xl transition-transform hover:scale-110"
+     aria-label="WhatsApp Sernet">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 80 });
+
+    // Menú móvil
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle?.addEventListener('click', () => {
+      const hidden = mobileMenu.classList.toggle('hidden');
+      menuToggle.setAttribute('aria-expanded', String(!hidden));
+      menuToggle.querySelector('i').className = hidden ? 'fa-solid fa-bars' : 'fa-solid fa-xmark';
+    });
+    mobileMenu?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.querySelector('i').className = 'fa-solid fa-bars';
+      });
+    });
+
+    // Header scroll
+    const headerInner = document.getElementById('header-inner');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        headerInner.classList.add('shadow-2xl', 'border-white/10');
+      } else {
+        headerInner.classList.remove('shadow-2xl', 'border-white/10');
+      }
+    });
+
+    // Modal de videos
+    const videoModal = document.getElementById('video-modal');
+    const videoIframe = document.getElementById('video-iframe');
+    const videoClose = document.getElementById('video-close');
+
+    document.querySelectorAll('.video-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.dataset.videoId;
+        videoIframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+        videoModal.classList.add('is-open');
+      });
+    });
+
+    function closeVideoModal() {
+      videoModal.classList.remove('is-open');
+      videoIframe.src = '';
+    }
+
+    videoClose.addEventListener('click', closeVideoModal);
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) closeVideoModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && videoModal.classList.contains('is-open')) closeVideoModal();
+    });
+  </script>
+
+  <!-- ============================================================
+       NOTAS PARA REEMPLAZO ANTES DE PRODUCCIÓN
+       ============================================================
+       1. LOGO: ícono leaf + texto "SERNET" es placeholder.
+       2. WHATSAPP/CORREO/TEL: +57 300 000 0000 y correo placeholder.
+       3. GALERÍA / CÁMARAS: las imágenes vienen de picsum.photos
+          (placeholder). Reemplazar por fotos reales del trabajo.
+          Buscar comentarios con "REEMPLAZAR_FOTO_REAL" o
+          "REEMPLAZAR_FOTOS_REALES".
+       4. VIDEOS: cada .video-card tiene data-video-id="dQw4w9WgXcQ".
+          Cambiar por el ID real de YouTube de cada video y la imagen
+          de su thumbnail (style="background-image:...").
+       5. PORTFOLIO LANDINGS: los thumbnails son mockups CSS. Para
+          producción ideal usar screenshots reales de los sitios y
+          enlazar el `href` al sitio en producción.
+       6. SOFTWARE MOCKUP: el dashboard del laptop y el phone son
+          construcciones CSS. Reemplazar por screenshots reales del
+          producto cuando esté disponible.
+       7. STATS reales (años, clientes, etc.).
+       8. FORMULARIO: alert() de demo. Conectar a backend.
+       9. TAILWIND CDN: para producción, generar build optimizado.
+  ============================================================ -->
+
+</body>
+</html>

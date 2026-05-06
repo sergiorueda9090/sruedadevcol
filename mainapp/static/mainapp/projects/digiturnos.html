@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0056B3" />
+
+  <!-- ============ SEO ============ -->
+  <title>Digiturnos | Sistema de turnos digitales inteligente para tu negocio</title>
+  <meta name="description" content="Descubre cómo Digiturnos conecta a bancos, clínicas y entidades públicas con clientes por medio de turnos digitales, notificaciones multicanal y analítica en tiempo real." />
+  <meta name="keywords" content="digiturnos, sistema de turnos, turnos digitales, fila virtual, atención al cliente, software cero papel, Colombia, Latinoamérica" />
+  <meta name="author" content="111 Labs" />
+  <link rel="canonical" href="https://digiturnos.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Digiturnos | Sistema de turnos digitales inteligente" />
+  <meta property="og:description" content="Administra módulos desde cualquier dispositivo, envía avisos por WhatsApp, SMS o llamadas y recibe predicciones de tiempo en segundos." />
+  <meta property="og:url" content="https://digiturnos.com/" />
+  <meta property="og:image" content="https://digiturnos.com/og-image.jpg" />
+  <meta property="og:locale" content="es_CO" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Digiturnos | Sistema de turnos digitales inteligente" />
+  <meta name="twitter:description" content="Turnos digitales, notificaciones multicanal y analítica en tiempo real para bancos, clínicas, oficinas públicas, comercios y universidades." />
+
+  <!-- Schema.org Organization + Product -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "111 Labs",
+        "url": "https://111labs.net",
+        "logo": "https://digiturnos.com/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+57-301-489-3414",
+          "contactType": "customer service",
+          "email": "contacto@111labs.net",
+          "areaServed": "CO",
+          "availableLanguage": ["Spanish"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle 23 # 6-184",
+          "addressLocality": "Cajicá",
+          "addressRegion": "Cundinamarca",
+          "addressCountry": "CO"
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "Digiturnos",
+        "description": "Sistema de turnos digitales inteligente con notificaciones multicanal y analítica en tiempo real.",
+        "brand": { "@type": "Brand", "name": "Digiturnos" },
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "COP",
+          "lowPrice": "299000",
+          "highPrice": "1499000",
+          "offerCount": "3"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind CSS (CDN para prototipo. En producción: compilar con tailwind.config.js) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- AOS animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- ============ Tailwind config con tokens de marca ============ -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0056B3',
+            secondary: '#00A0E9',
+            deep: '#003366',
+            navy: '#1E3A8A',
+            'accent-soft': '#BFDBFE',
+            'bg-tint': '#E6F7FF',
+            success: '#22C55E',
+            'success-soft': '#86EFAC',
+            error: '#DC2626',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '0 2px 8px rgba(0,0,0,0.05)',
+            'card-hover': '0 12px 28px rgba(0,0,0,0.08)',
+            cta: '0 10px 30px rgba(0, 86, 179, 0.25)',
+          },
+          backgroundImage: {
+            'brand-gradient': 'linear-gradient(135deg, #0056B3 0%, #00A0E9 100%)',
+            'deep-gradient': 'linear-gradient(135deg, #0056B3 0%, #003366 100%)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- ============ Estilos base / overrides ============ -->
+  <style>
+    :root {
+      --color-primary: #0056B3;
+      --color-secondary: #00A0E9;
+      --color-deep: #003366;
+      --color-navy: #1E3A8A;
+      --color-accent-soft: #BFDBFE;
+      --color-bg-tint: #E6F7FF;
+      --color-success: #22C55E;
+      --color-success-soft: #86EFAC;
+      --color-error: #DC2626;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #1F2937;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Tipografía base */
+    h1, h2, h3, h4 { letter-spacing: -0.02em; }
+
+    /* Botón primario */
+    .btn-primary {
+      background: var(--color-primary);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 200ms ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background: var(--color-deep);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0, 86, 179, 0.3);
+    }
+
+    /* Botón outline */
+    .btn-outline {
+      border: 1.5px solid var(--color-primary);
+      color: var(--color-primary);
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 200ms ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: var(--color-bg-tint);
+    }
+
+    /* Card */
+    .card {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      padding: 28px;
+      transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+      border-color: #BFDBFE;
+    }
+
+    /* Icono circular */
+    .icon-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--color-bg-tint);
+      color: var(--color-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    /* Hero blob decorativo */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Grid de fondo decorativo del hero */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0, 86, 179, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 86, 179, 0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    }
+
+    /* Tarjeta "Turno digital" del hero */
+    .ticket-card {
+      box-shadow: 0 25px 60px rgba(0, 86, 179, 0.18);
+      animation: floatY 6s ease-in-out infinite;
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Underline animado para nav */
+    .nav-link {
+      position: relative;
+      transition: color 200ms;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -6px;
+      width: 0; height: 2px;
+      background: var(--color-primary);
+      transition: width 250ms ease;
+    }
+    .nav-link:hover { color: var(--color-primary); }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Logos en escala de grises */
+    .logo-mark {
+      filter: grayscale(100%);
+      opacity: 0.55;
+      transition: filter 250ms ease, opacity 250ms ease;
+    }
+    .logo-mark:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+
+    /* Plan destacado */
+    .plan-featured {
+      border: 2px solid var(--color-primary);
+      box-shadow: 0 20px 40px rgba(0, 86, 179, 0.15);
+      transform: scale(1.02);
+    }
+
+    /* Inputs del form */
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid #D1D5DB;
+      background: #fff;
+      transition: border-color 200ms, box-shadow 200ms;
+      font-size: 15px;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.12);
+    }
+
+    /* Móvil: oculta animación pesada del ticket */
+    @media (max-width: 768px) {
+      .ticket-card { animation: none; }
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* Focus visible accesible */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--color-secondary);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800">
+
+  <!-- Skip to content (accesibilidad) -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded">
+    Saltar al contenido
+  </a>
+
+  <!-- ====================================================== -->
+  <!-- 1. HEADER / NAVEGACIÓN STICKY                          -->
+  <!-- ====================================================== -->
+  <header id="header" class="sticky top-0 z-40 bg-white/85 backdrop-blur-md border-b border-gray-200">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between" aria-label="Navegación principal">
+
+      <!-- Logo (REEMPLAZAR por SVG/PNG real del cliente) -->
+      <a href="#hero" class="flex items-center gap-2 group">
+        <span class="w-9 h-9 rounded-lg bg-brand-gradient flex items-center justify-center text-white shadow-md">
+          <i class="fa-solid fa-ticket"></i>
+        </span>
+        <span class="text-xl font-bold text-deep tracking-tight">
+          Digi<span class="text-primary">turnos</span>
+        </span>
+      </a>
+
+      <!-- Menú desktop -->
+      <ul class="hidden lg:flex items-center gap-7 text-[15px] font-medium text-gray-700">
+        <li><a href="#digiturno" class="nav-link">Digiturno</a></li>
+        <li><a href="#beneficios" class="nav-link">Beneficios</a></li>
+        <li><a href="#cobertura" class="nav-link">Cobertura</a></li>
+        <li><a href="#planes" class="nav-link">Planes</a></li>
+        <li><a href="#calculadora" class="nav-link">Cotizaciones</a></li>
+        <li><a href="#como-funciona" class="nav-link">¿Cómo funciona?</a></li>
+        <li><a href="#demos" class="nav-link">Demos</a></li>
+        <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+
+      <!-- CTA login + hamburguesa -->
+      <div class="flex items-center gap-3">
+        <a href="#login" class="hidden md:inline-flex btn-outline !py-2 !px-5 text-sm">
+          <i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión
+        </a>
+        <button id="menu-toggle" class="lg:hidden w-10 h-10 inline-flex items-center justify-center rounded-lg text-deep hover:bg-bg-tint" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menú móvil -->
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-200 bg-white">
+      <ul class="px-4 py-4 space-y-1 text-gray-700 font-medium">
+        <li><a href="#digiturno" class="block px-3 py-2 rounded-md hover:bg-bg-tint">Digiturno</a></li>
+        <li><a href="#beneficios" class="block px-3 py-2 rounded-md hover:bg-bg-tint">Beneficios</a></li>
+        <li><a href="#cobertura" class="block px-3 py-2 rounded-md hover:bg-bg-tint">Cobertura</a></li>
+        <li><a href="#planes" class="block px-3 py-2 rounded-md hover:bg-bg-tint">Planes</a></li>
+        <li><a href="#calculadora" class="block px-3 py-2 rounded-md hover:bg-bg-tint">Cotizaciones</a></li>
+        <li><a href="#como-funciona" class="block px-3 py-2 rounded-md hover:bg-bg-tint">¿Cómo funciona?</a></li>
+        <li><a href="#demos" class="block px-3 py-2 rounded-md hover:bg-bg-tint">Demos</a></li>
+        <li><a href="#contacto" class="block px-3 py-2 rounded-md hover:bg-bg-tint">Contacto</a></li>
+        <li class="pt-3"><a href="#login" class="btn-primary w-full justify-center"><i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ====================================================== -->
+    <!-- 2. HERO                                                -->
+    <!-- ====================================================== -->
+    <section id="hero" class="relative overflow-hidden bg-gradient-to-b from-bg-tint to-white">
+      <!-- Decoración de fondo -->
+      <div class="absolute inset-0 grid-bg" aria-hidden="true"></div>
+      <div class="blob bg-secondary" style="width:340px; height:340px; top:-80px; right:-80px;" aria-hidden="true"></div>
+      <div class="blob bg-primary" style="width:280px; height:280px; bottom:-100px; left:-100px;" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 lg:pt-24 lg:pb-32 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+
+        <!-- Texto -->
+        <div data-aos="fade-up">
+          <!-- Badge -->
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur border border-accent-soft text-secondary text-sm font-medium shadow-sm">
+            <i class="fa-solid fa-circle-check"></i>
+            Software cero papel y amigable con el medio ambiente
+          </span>
+
+          <h1 class="mt-6 text-4xl sm:text-5xl lg:text-[56px] font-bold text-gray-900 leading-[1.1]">
+            Digiturnos es un sistema de
+            <span class="bg-brand-gradient bg-clip-text text-transparent">turnos inteligente</span>
+            para tu negocio
+          </h1>
+
+          <p class="mt-6 text-lg text-gray-600 max-w-xl">
+            Administra módulos desde cualquier dispositivo, envía avisos por WhatsApp, SMS o llamadas y recibe predicciones de tiempo en segundos para brindar un servicio internacionalmente consistente.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#contacto" class="btn-primary shadow-cta">
+              <i class="fa-solid fa-calendar-check"></i> Solicitar demo
+            </a>
+            <a href="#como-funciona" class="btn-outline">
+              <i class="fa-solid fa-circle-play"></i> Ver cómo funciona
+            </a>
+          </div>
+
+          <!-- Trust indicators -->
+          <div class="mt-10 flex flex-wrap items-center gap-6 text-sm text-gray-500">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-shield-halved text-primary"></i>
+              <span>Datos cifrados</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-globe-americas text-primary"></i>
+              <span>Cobertura LATAM</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-bolt text-primary"></i>
+              <span>Implementación en días</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mockup ticket -->
+        <div class="relative" data-aos="fade-left" data-aos-delay="150">
+          <!-- Tarjeta principal -->
+          <div class="ticket-card relative mx-auto max-w-sm bg-white rounded-2xl border border-gray-200 overflow-hidden">
+            <!-- Banda superior -->
+            <div class="bg-brand-gradient text-white px-6 py-4 flex items-center justify-between">
+              <div>
+                <p class="text-xs uppercase tracking-widest opacity-90">Turno Digital</p>
+                <p class="font-semibold">Sucursal Centro</p>
+              </div>
+              <i class="fa-solid fa-ticket text-2xl opacity-90"></i>
+            </div>
+
+            <!-- Cuerpo -->
+            <div class="px-6 py-6 space-y-4">
+              <div>
+                <p class="text-xs text-gray-500 uppercase tracking-wider">Cliente</p>
+                <p class="text-base font-semibold text-gray-900">María González</p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-500 uppercase tracking-wider">Servicio</p>
+                <p class="text-base text-gray-700">Asesoría financiera</p>
+              </div>
+
+              <!-- Número grande -->
+              <div class="bg-bg-tint rounded-xl p-5 flex items-center justify-between">
+                <div>
+                  <p class="text-xs text-gray-500 uppercase tracking-wider">Número</p>
+                  <p class="text-4xl font-bold text-primary">A-12</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-xs text-gray-500 uppercase tracking-wider">Tiempo estimado</p>
+                  <p class="text-lg font-semibold text-deep">5 min</p>
+                </div>
+              </div>
+
+              <!-- QR -->
+              <div class="flex items-center gap-4 pt-2 border-t border-gray-100">
+                <!-- QR decorativo SVG -->
+                <div class="w-16 h-16 rounded-lg bg-white border border-gray-200 grid grid-cols-7 grid-rows-7 gap-[1px] p-1.5" aria-hidden="true">
+                  <!-- Patrón aleatorio QR-like -->
+                  <span class="bg-deep rounded-[1px]"></span><span></span><span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span><span></span><span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span>
+                  <span class="bg-deep rounded-[1px]"></span><span></span><span></span><span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span><span></span><span class="bg-deep rounded-[1px]"></span>
+                  <span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span><span></span><span></span><span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span><span></span>
+                  <span></span><span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span><span></span><span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span>
+                  <span class="bg-deep rounded-[1px]"></span><span></span><span class="bg-deep rounded-[1px]"></span><span></span><span class="bg-deep rounded-[1px]"></span><span></span><span class="bg-deep rounded-[1px]"></span>
+                  <span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span><span></span><span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span><span></span>
+                  <span></span><span class="bg-deep rounded-[1px]"></span><span class="bg-deep rounded-[1px]"></span><span></span><span class="bg-deep rounded-[1px]"></span><span></span><span class="bg-deep rounded-[1px]"></span>
+                </div>
+                <p class="text-xs text-gray-500 leading-relaxed">
+                  Escanea el código QR para seguimiento en tiempo real
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Badge flotante: notificación WhatsApp -->
+          <div class="hidden sm:flex absolute -left-6 bottom-10 bg-white rounded-xl shadow-card-hover border border-gray-200 px-4 py-3 items-center gap-3 max-w-[230px]">
+            <div class="w-9 h-9 rounded-full bg-success/10 text-success flex items-center justify-center flex-shrink-0">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="text-xs">
+              <p class="font-semibold text-gray-900">Aviso enviado</p>
+              <p class="text-gray-500">Faltan 2 turnos para tu atención</p>
+            </div>
+          </div>
+
+          <!-- Badge flotante: predicción IA -->
+          <div class="hidden sm:flex absolute -right-4 top-6 bg-white rounded-xl shadow-card-hover border border-gray-200 px-4 py-3 items-center gap-3 max-w-[210px]">
+            <div class="w-9 h-9 rounded-full bg-bg-tint text-secondary flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <div class="text-xs">
+              <p class="font-semibold text-gray-900">Predicción IA</p>
+              <p class="text-gray-500">Espera estimada: 5 min</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 3. APRENDE TODO SOBRE DIGITURNO                        -->
+    <!-- ====================================================== -->
+    <section id="digiturno" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+          <span class="text-sm font-semibold text-secondary uppercase tracking-wider">Conoce el producto</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-semibold text-gray-900">
+            Aprende todo sobre Digiturno
+          </h2>
+          <p class="mt-4 text-gray-600">
+            Hemos consolidado los contenidos clave para que entiendas en minutos qué hace nuestro sistema, en qué se diferencia y cómo puede transformar la atención de tu negocio.
+          </p>
+        </div>
+
+        <div class="mt-14 grid md:grid-cols-2 gap-6 lg:gap-8">
+          <!-- Card 1 -->
+          <article class="card flex flex-col" data-aos="fade-up" data-aos-delay="50">
+            <div class="icon-circle"><i class="fa-solid fa-circle-info"></i></div>
+            <h3 class="mt-5 text-xl font-semibold text-gray-900">¿Qué es Digiturno?</h3>
+            <p class="mt-3 text-gray-600 flex-1">
+              La definición esencial del producto, sus pilares y por qué se diferencia frente a un sistema de turnos tradicional. Ideal si vas a presentarlo a un comité o tomador de decisión.
+            </p>
+            <a href="#guia" class="mt-6 inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
+              Leer guía completa <i class="fa-solid fa-arrow-right text-sm"></i>
+            </a>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="card flex flex-col" data-aos="fade-up" data-aos-delay="120">
+            <div class="icon-circle"><i class="fa-solid fa-scale-balanced"></i></div>
+            <h3 class="mt-5 text-xl font-semibold text-gray-900">Digiturno vs Digiturnos</h3>
+            <p class="mt-3 text-gray-600 flex-1">
+              ¿Confundido con la diferencia entre nuestro turnero clásico y la nueva versión SaaS? En esta comparativa verás funcionalidades, alcance y ROI estimado de cada uno.
+            </p>
+            <a href="#comparativa" class="mt-6 inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
+              Ver comparativa <i class="fa-solid fa-arrow-right text-sm"></i>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 4. DIGITURNOS PARA CADA NECESIDAD                      -->
+    <!-- ====================================================== -->
+    <section id="cobertura" class="py-20 lg:py-28 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+          <span class="text-sm font-semibold text-secondary uppercase tracking-wider">Cobertura · Beneficios · Planes · Proceso</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-semibold text-gray-900">
+            Digiturnos para cada necesidad
+          </h2>
+          <p class="mt-4 text-gray-600">
+            Encuentra rápido la información que estás buscando: dónde operamos, qué beneficios obtienes, cómo se cobra y cómo se implementa en tu organización.
+          </p>
+        </div>
+
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Cobertura -->
+          <article class="card text-center" data-aos="fade-up" data-aos-delay="50">
+            <div class="icon-circle mx-auto"><i class="fa-solid fa-globe-americas"></i></div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900">Cobertura</h3>
+            <p class="mt-2 text-sm text-gray-600">Presencia en Colombia y despliegue internacional.</p>
+            <a href="#cobertura-mapa" class="mt-4 inline-flex items-center gap-1 text-secondary font-semibold text-sm hover:gap-2 transition-all">
+              Ver cobertura completa <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </article>
+
+          <!-- Beneficios -->
+          <article class="card text-center" id="beneficios" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-circle mx-auto"><i class="fa-solid fa-chart-line"></i></div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900">Beneficios</h3>
+            <p class="mt-2 text-sm text-gray-600">Resultados tangibles para tu operación.</p>
+            <a href="#beneficios-detalle" class="mt-4 inline-flex items-center gap-1 text-secondary font-semibold text-sm hover:gap-2 transition-all">
+              Ver beneficios <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </article>
+
+          <!-- Planes -->
+          <article class="card text-center" data-aos="fade-up" data-aos-delay="150">
+            <div class="icon-circle mx-auto"><i class="fa-solid fa-tags"></i></div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900">Planes</h3>
+            <p class="mt-2 text-sm text-gray-600">Modelos flexibles y calculadora interactiva.</p>
+            <a href="#planes" class="mt-4 inline-flex items-center gap-1 text-secondary font-semibold text-sm hover:gap-2 transition-all">
+              Explorar planes <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </article>
+
+          <!-- Cómo funciona -->
+          <article class="card text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-circle mx-auto"><i class="fa-solid fa-gears"></i></div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900">¿Cómo funciona?</h3>
+            <p class="mt-2 text-sm text-gray-600">Implementación paso a paso.</p>
+            <a href="#como-funciona" class="mt-4 inline-flex items-center gap-1 text-secondary font-semibold text-sm hover:gap-2 transition-all">
+              Ver proceso completo <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 5. CARACTERÍSTICAS CLAVE                               -->
+    <!-- ====================================================== -->
+    <section id="como-funciona" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+          <span class="text-sm font-semibold text-secondary uppercase tracking-wider">Características clave</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-semibold text-gray-900">
+            Todo lo que necesitas para una atención fluida
+          </h2>
+          <p class="mt-4 text-gray-600">
+            Una plataforma diseñada para reducir filas, optimizar tu personal y mejorar la experiencia del cliente desde el primer minuto.
+          </p>
+        </div>
+
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <!-- Feature 1 -->
+          <article class="card" data-aos="fade-up" data-aos-delay="50">
+            <div class="icon-circle"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900">Multidispositivo</h3>
+            <p class="mt-2 text-gray-600">Administra módulos desde cualquier dispositivo: tablet, kiosko, celular o panel web.</p>
+          </article>
+
+          <!-- Feature 2 -->
+          <article class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-circle"><i class="fa-solid fa-comments"></i></div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900">Notificaciones multicanal</h3>
+            <p class="mt-2 text-gray-600">Avisos automáticos por WhatsApp, SMS y llamadas para que el cliente no pierda su turno.</p>
+          </article>
+
+          <!-- Feature 3 -->
+          <article class="card" data-aos="fade-up" data-aos-delay="150">
+            <div class="icon-circle"><i class="fa-solid fa-brain"></i></div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900">IA y predicciones</h3>
+            <p class="mt-2 text-gray-600">Tiempos estimados en segundos basados en histórico real y demanda actual de cada sucursal.</p>
+          </article>
+
+          <!-- Feature 4 -->
+          <article class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-circle"><i class="fa-solid fa-leaf"></i></div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900">Cero papel</h3>
+            <p class="mt-2 text-gray-600">100% digital y sostenible. Reduce desperdicio de fichas, tinta e impresoras térmicas.</p>
+          </article>
+
+          <!-- Feature 5 -->
+          <article class="card" data-aos="fade-up" data-aos-delay="250">
+            <div class="icon-circle"><i class="fa-solid fa-chart-pie"></i></div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900">Analítica en tiempo real</h3>
+            <p class="mt-2 text-gray-600">Dashboards con métricas operativas, KPIs por agente y tiempos promedio de atención.</p>
+          </article>
+
+          <!-- Feature 6 -->
+          <article class="card" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-circle"><i class="fa-solid fa-earth-americas"></i></div>
+            <h3 class="mt-5 text-lg font-semibold text-gray-900">Cobertura internacional</h3>
+            <p class="mt-2 text-gray-600">Estándares y multilenguaje consistentes para operar en toda Latinoamérica.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 6. SOLUCIÓN PARA DIVERSOS SECTORES                     -->
+    <!-- ====================================================== -->
+    <section id="sectores" class="py-20 lg:py-28 bg-bg-tint relative overflow-hidden">
+      <div class="absolute inset-0 grid-bg opacity-60" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+          <span class="text-sm font-semibold text-primary uppercase tracking-wider">Casos de uso</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-semibold text-gray-900">
+            Solución para diversos sectores
+          </h2>
+          <p class="mt-4 text-gray-600">
+            Adaptamos Digiturnos a las particularidades regulatorias y operativas de cada industria. Estos son los sectores donde más impacto generamos.
+          </p>
+        </div>
+
+        <div class="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+          <!-- Bancos -->
+          <button type="button" data-sector="bancos" class="sector-card card !p-6 text-center hover:!border-primary group" data-aos="fade-up" data-aos-delay="50">
+            <div class="w-14 h-14 mx-auto rounded-xl bg-brand-gradient text-white flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <h3 class="mt-4 font-semibold text-gray-900">Bancos</h3>
+            <p class="text-xs text-gray-500 mt-1">Caja, asesoría, créditos</p>
+          </button>
+
+          <!-- Clínicas -->
+          <button type="button" data-sector="clinicas" class="sector-card card !p-6 text-center hover:!border-primary group" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-14 h-14 mx-auto rounded-xl bg-brand-gradient text-white flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-stethoscope"></i>
+            </div>
+            <h3 class="mt-4 font-semibold text-gray-900">Clínicas</h3>
+            <p class="text-xs text-gray-500 mt-1">Consultas, laboratorio</p>
+          </button>
+
+          <!-- Oficinas públicas -->
+          <button type="button" data-sector="publicas" class="sector-card card !p-6 text-center hover:!border-primary group" data-aos="fade-up" data-aos-delay="150">
+            <div class="w-14 h-14 mx-auto rounded-xl bg-brand-gradient text-white flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-landmark"></i>
+            </div>
+            <h3 class="mt-4 font-semibold text-gray-900">Oficinas públicas</h3>
+            <p class="text-xs text-gray-500 mt-1">Trámites, atención</p>
+          </button>
+
+          <!-- Comercios -->
+          <button type="button" data-sector="comercios" class="sector-card card !p-6 text-center hover:!border-primary group" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-14 h-14 mx-auto rounded-xl bg-brand-gradient text-white flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+            <h3 class="mt-4 font-semibold text-gray-900">Comercios</h3>
+            <p class="text-xs text-gray-500 mt-1">Retail, postventa</p>
+          </button>
+
+          <!-- Universidades -->
+          <button type="button" data-sector="universidades" class="sector-card card !p-6 text-center hover:!border-primary group" data-aos="fade-up" data-aos-delay="250">
+            <div class="w-14 h-14 mx-auto rounded-xl bg-brand-gradient text-white flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h3 class="mt-4 font-semibold text-gray-900">Universidades</h3>
+            <p class="text-xs text-gray-500 mt-1">Registro, bienestar</p>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal de sectores -->
+    <div id="sector-modal" class="hidden fixed inset-0 z-50 items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="sector-modal-title">
+      <div class="absolute inset-0 bg-black/50" data-close-modal></div>
+      <div class="relative bg-white rounded-2xl max-w-lg w-full p-8 shadow-2xl">
+        <button class="absolute top-4 right-4 w-9 h-9 rounded-full hover:bg-gray-100 text-gray-500" data-close-modal aria-label="Cerrar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div id="sector-modal-icon" class="icon-circle"><i class="fa-solid fa-building-columns"></i></div>
+        <h3 id="sector-modal-title" class="mt-4 text-2xl font-semibold text-gray-900">Caso de uso</h3>
+        <p id="sector-modal-desc" class="mt-3 text-gray-600">Descripción del caso de uso.</p>
+        <a href="#contacto" class="btn-primary mt-6">Hablar con un especialista <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- 7. PLANES                                              -->
+    <!-- ====================================================== -->
+    <section id="planes" class="py-20 lg:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+          <span class="text-sm font-semibold text-secondary uppercase tracking-wider">Planes</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-semibold text-gray-900">
+            Modelos flexibles para cada operación
+          </h2>
+          <p class="mt-4 text-gray-600">
+            Comienza pequeño, escala cuando lo necesites. Todos los planes incluyen actualizaciones, soporte técnico y acceso al panel analítico.
+          </p>
+        </div>
+
+        <div class="mt-14 grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+          <!-- Plan Esencial -->
+          <article class="card flex flex-col" data-aos="fade-up" data-aos-delay="50">
+            <h3 class="text-sm font-semibold text-secondary uppercase tracking-wider">Esencial</h3>
+            <div class="mt-3 flex items-baseline gap-1">
+              <span class="text-4xl font-bold text-gray-900">$299.000</span>
+              <span class="text-gray-500 text-sm">COP / mes</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-600">Para 1 sucursal con flujo bajo a medio.</p>
+
+            <ul class="mt-6 space-y-3 text-sm text-gray-700 flex-1">
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Hasta 2 módulos de atención</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Notificaciones SMS</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Panel web básico</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Soporte por correo</li>
+            </ul>
+
+            <a href="#contacto" class="btn-outline mt-8 justify-center">Empezar ahora</a>
+          </article>
+
+          <!-- Plan Profesional (destacado) -->
+          <article class="card plan-featured flex flex-col relative" data-aos="fade-up" data-aos-delay="100">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+              Más popular
+            </span>
+            <h3 class="text-sm font-semibold text-primary uppercase tracking-wider">Profesional</h3>
+            <div class="mt-3 flex items-baseline gap-1">
+              <span class="text-4xl font-bold text-gray-900">$699.000</span>
+              <span class="text-gray-500 text-sm">COP / mes</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-600">Para multisucursal con notificaciones avanzadas.</p>
+
+            <ul class="mt-6 space-y-3 text-sm text-gray-700 flex-1">
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Hasta 6 módulos por sucursal</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> WhatsApp + SMS + llamadas</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Predicciones con IA</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Dashboards y exportes</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Soporte prioritario</li>
+            </ul>
+
+            <a href="#contacto" class="btn-primary mt-8 justify-center">Solicitar demo</a>
+          </article>
+
+          <!-- Plan Enterprise -->
+          <article class="card flex flex-col" data-aos="fade-up" data-aos-delay="150">
+            <h3 class="text-sm font-semibold text-secondary uppercase tracking-wider">Enterprise</h3>
+            <div class="mt-3 flex items-baseline gap-1">
+              <span class="text-4xl font-bold text-gray-900">A medida</span>
+            </div>
+            <p class="mt-3 text-sm text-gray-600">Para grandes redes y operaciones internacionales.</p>
+
+            <ul class="mt-6 space-y-3 text-sm text-gray-700 flex-1">
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Módulos y sucursales ilimitados</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Integraciones con CRM/ERP</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> SLA y soporte 24/7</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Despliegue dedicado</li>
+              <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-1"></i> Cumplimiento normativo</li>
+            </ul>
+
+            <a href="#contacto" class="btn-outline mt-8 justify-center">Hablar con ventas</a>
+          </article>
+        </div>
+
+        <div class="mt-12 text-center" data-aos="fade-up">
+          <a href="#calculadora" class="btn-primary shadow-cta">
+            <i class="fa-solid fa-calculator"></i> Genera tu cotización
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 8. TESTIMONIOS Y LOGOS                                 -->
+    <!-- ====================================================== -->
+    <section id="demos" class="py-20 lg:py-28 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Logos -->
+        <div class="text-center" data-aos="fade-up">
+          <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+            Empresas que ya confían en Digiturnos
+          </p>
+          <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-items-center">
+            <!-- REEMPLAZAR por logos reales del cliente -->
+            <div class="logo-mark text-2xl font-bold text-gray-700 tracking-tight">BancoSur</div>
+            <div class="logo-mark text-xl font-extrabold text-gray-700">CLINICRED</div>
+            <div class="logo-mark text-2xl font-serif italic text-gray-700">Universia</div>
+            <div class="logo-mark text-xl font-bold text-gray-700">★ AltoMall</div>
+            <div class="logo-mark text-xl font-bold text-gray-700">Andes Corp</div>
+            <div class="logo-mark text-xl font-black text-gray-700 uppercase">SANARES</div>
+          </div>
+        </div>
+
+        <!-- Testimonios -->
+        <div class="mt-20 grid md:grid-cols-3 gap-6 lg:gap-8">
+          <article class="card" data-aos="fade-up" data-aos-delay="50">
+            <i class="fa-solid fa-quote-left text-secondary text-2xl"></i>
+            <p class="mt-4 text-gray-700 leading-relaxed">
+              Reducimos los tiempos de espera en sucursal en un 38% en el primer trimestre. La integración con WhatsApp fue clave para nuestros clientes.
+            </p>
+            <div class="mt-6 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-bg-tint flex items-center justify-center text-primary font-semibold">CR</div>
+              <div>
+                <p class="font-semibold text-gray-900">Camila Rojas</p>
+                <p class="text-sm text-gray-500">Gerente de Operaciones · BancoSur</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-aos="fade-up" data-aos-delay="120">
+            <i class="fa-solid fa-quote-left text-secondary text-2xl"></i>
+            <p class="mt-4 text-gray-700 leading-relaxed">
+              El equipo médico ahora se enfoca en el paciente, no en gritar números. Los pacientes llegan más relajados gracias a las predicciones de tiempo.
+            </p>
+            <div class="mt-6 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-bg-tint flex items-center justify-center text-primary font-semibold">JM</div>
+              <div>
+                <p class="font-semibold text-gray-900">Dr. Julián Mendoza</p>
+                <p class="text-sm text-gray-500">Director Médico · CLINICRED</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-aos="fade-up" data-aos-delay="190">
+            <i class="fa-solid fa-quote-left text-secondary text-2xl"></i>
+            <p class="mt-4 text-gray-700 leading-relaxed">
+              Atendemos 4 oficinas con un único panel central. Los reportes diarios nos permiten tomar decisiones de personal con datos reales.
+            </p>
+            <div class="mt-6 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-bg-tint flex items-center justify-center text-primary font-semibold">AS</div>
+              <div>
+                <p class="font-semibold text-gray-900">Andrea Sánchez</p>
+                <p class="text-sm text-gray-500">Coord. Atención Ciudadana · Alcaldía</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================== -->
+    <!-- 9. CTA FINAL                                           -->
+    <!-- ====================================================== -->
+    <section id="contacto" class="py-20 lg:py-28 bg-deep-gradient text-white relative overflow-hidden">
+      <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-secondary/20 blur-3xl" aria-hidden="true"></div>
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-primary/30 blur-3xl" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight">
+            ¿Listo para optimizar tu atención al cliente con Digiturnos?
+          </h2>
+          <p class="mt-4 text-accent-soft text-lg">
+            Agenda una demo personalizada o escríbenos por WhatsApp. Te respondemos en menos de 24 horas hábiles.
+          </p>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-2 gap-8 lg:gap-12">
+
+          <!-- WhatsApp -->
+          <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 lg:p-10" data-aos="fade-right">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-success flex items-center justify-center text-white text-2xl">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold">Comunícate por WhatsApp</h3>
+                <p class="text-accent-soft text-sm">Atención de lunes a sábado</p>
+              </div>
+            </div>
+
+            <ul class="mt-6 space-y-3 text-accent-soft">
+              <li class="flex items-start gap-3"><i class="fa-solid fa-bolt text-success-soft mt-1"></i> Respuesta ágil de un asesor real</li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-comments text-success-soft mt-1"></i> Canal centralizado y trazable</li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-shield-halved text-success-soft mt-1"></i> Información protegida y confidencial</li>
+            </ul>
+
+            <a href="https://wa.me/573014893414?text=Hola%2C%20quiero%20una%20demo%20de%20Digiturnos"
+               target="_blank" rel="noopener"
+               class="mt-8 inline-flex items-center gap-2 bg-success hover:bg-green-600 text-white font-semibold px-7 py-3 rounded-lg transition-colors shadow-lg">
+              <i class="fa-brands fa-whatsapp text-xl"></i> Escribir por WhatsApp
+            </a>
+          </div>
+
+          <!-- Formulario -->
+          <div class="bg-white text-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl" data-aos="fade-left">
+            <h3 class="text-xl font-semibold text-gray-900">Contáctanos directamente</h3>
+            <p class="text-gray-600 text-sm mt-1">Cuéntanos sobre tu operación y te enviaremos una propuesta.</p>
+
+            <form class="mt-6 grid gap-4" onsubmit="event.preventDefault(); alert('Formulario de demostración. Conecta tu backend o servicio (Formspree, n8n, etc.)');">
+              <div>
+                <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                <input id="nombre" name="nombre" type="text" required class="form-input" placeholder="Tu nombre completo" />
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="empresa" class="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
+                  <input id="empresa" name="empresa" type="text" class="form-input" placeholder="Tu empresa" />
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo</label>
+                  <input id="email" name="email" type="email" required class="form-input" placeholder="tucorreo@empresa.com" />
+                </div>
+              </div>
+              <div>
+                <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="4" class="form-input" placeholder="Cuéntanos cuántas sucursales y módulos manejas..."></textarea>
+              </div>
+              <button type="submit" class="btn-primary justify-center w-full">
+                Enviar solicitud <i class="fa-solid fa-paper-plane"></i>
+              </button>
+              <p class="text-xs text-gray-500 text-center">Al enviar aceptas nuestra <a href="#" class="text-primary underline">política de privacidad</a>.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================== -->
+  <!-- 10. FOOTER                                             -->
+  <!-- ====================================================== -->
+  <footer class="bg-deep text-accent-soft pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <!-- Marca -->
+        <div>
+          <a href="#hero" class="flex items-center gap-2 text-white">
+            <span class="w-9 h-9 rounded-lg bg-brand-gradient flex items-center justify-center shadow-md">
+              <i class="fa-solid fa-ticket text-white"></i>
+            </span>
+            <span class="text-xl font-bold tracking-tight">Digi<span class="text-secondary">turnos</span></span>
+          </a>
+          <p class="mt-4 text-sm leading-relaxed">
+            Sistema de turnos digitales inteligente. Un producto de <span class="text-white font-semibold">111 Labs</span>.
+          </p>
+          <div class="mt-5 flex gap-3">
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Enlaces rápidos -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Enlaces rápidos</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#digiturno" class="hover:text-white transition-colors">Digiturno</a></li>
+            <li><a href="#beneficios" class="hover:text-white transition-colors">Beneficios</a></li>
+            <li><a href="#cobertura" class="hover:text-white transition-colors">Cobertura</a></li>
+            <li><a href="#planes" class="hover:text-white transition-colors">Planes</a></li>
+            <li><a href="#como-funciona" class="hover:text-white transition-colors">Cómo funciona</a></li>
+          </ul>
+        </div>
+
+        <!-- Soluciones -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Soluciones</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#sectores" class="hover:text-white transition-colors">Bancos</a></li>
+            <li><a href="#sectores" class="hover:text-white transition-colors">Clínicas</a></li>
+            <li><a href="#sectores" class="hover:text-white transition-colors">Oficinas públicas</a></li>
+            <li><a href="#sectores" class="hover:text-white transition-colors">Comercios</a></li>
+            <li><a href="#sectores" class="hover:text-white transition-colors">Universidades</a></li>
+          </ul>
+        </div>
+
+        <!-- Contacto -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Contacto</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex gap-3"><i class="fa-solid fa-location-dot text-secondary mt-1"></i> Calle 23 # 6-184, Cajicá, Cundinamarca</li>
+            <li class="flex gap-3"><i class="fa-solid fa-phone text-secondary mt-1"></i> <a href="tel:+573014893414" class="hover:text-white">+57 301 489 3414</a></li>
+            <li class="flex gap-3"><i class="fa-solid fa-envelope text-secondary mt-1"></i> <a href="mailto:contacto@111labs.net" class="hover:text-white">contacto@111labs.net</a></li>
+            <li class="flex gap-3 items-center text-success-soft">
+              <i class="fa-brands fa-whatsapp text-success"></i>
+              <a href="https://wa.me/573014893414" target="_blank" rel="noopener" class="hover:text-white">¿Prefieres WhatsApp?</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Línea inferior -->
+      <div class="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+        <p>© 2026 Digiturnos · 111 Labs. Todos los derechos reservados.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-white transition-colors">Política de privacidad</a>
+          <a href="#" class="hover:text-white transition-colors">Términos y condiciones</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/573014893414" target="_blank" rel="noopener"
+     class="fixed bottom-6 right-6 z-30 w-14 h-14 rounded-full bg-success hover:bg-green-600 text-white text-2xl flex items-center justify-center shadow-2xl transition-transform hover:scale-110"
+     aria-label="Escribir por WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- ====================================================== -->
+  <!-- SCRIPTS                                                -->
+  <!-- ====================================================== -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // AOS init
+    AOS.init({
+      duration: 700,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 80,
+    });
+
+    // Menú móvil toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle?.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      menuToggle.setAttribute('aria-expanded', String(!isHidden));
+      menuToggle.querySelector('i').className = isHidden ? 'fa-solid fa-bars text-xl' : 'fa-solid fa-xmark text-xl';
+    });
+    // Cerrar menú al hacer click en un enlace
+    mobileMenu?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.querySelector('i').className = 'fa-solid fa-bars text-xl';
+      });
+    });
+
+    // Modal de sectores
+    const sectorData = {
+      bancos: {
+        icon: 'fa-building-columns',
+        title: 'Bancos',
+        desc: 'Optimiza la atención en cajas, asesoría comercial y créditos. Reduce abandonos en sucursal y cumple con tiempos máximos de servicio regulatorios.',
+      },
+      clinicas: {
+        icon: 'fa-stethoscope',
+        title: 'Clínicas y centros médicos',
+        desc: 'Ordena consultas externas, laboratorio y farmacia. Notifica al paciente por WhatsApp para que llegue exactamente cuando lo necesitas.',
+      },
+      publicas: {
+        icon: 'fa-landmark',
+        title: 'Oficinas públicas',
+        desc: 'Atiende trámites ciudadanos con transparencia. Mide tiempos por funcionario y exporta reportes para entes de control.',
+      },
+      comercios: {
+        icon: 'fa-bag-shopping',
+        title: 'Comercios y retail',
+        desc: 'Gestiona postventa, garantías y devoluciones sin filas visibles. Mejora la experiencia del comprador y evita aglomeraciones.',
+      },
+      universidades: {
+        icon: 'fa-graduation-cap',
+        title: 'Universidades',
+        desc: 'Registro académico, bienestar universitario y financiero coordinados desde una sola plataforma. Atiende a tus estudiantes con eficiencia.',
+      },
+    };
+
+    const modal = document.getElementById('sector-modal');
+    const modalIcon = document.getElementById('sector-modal-icon');
+    const modalTitle = document.getElementById('sector-modal-title');
+    const modalDesc = document.getElementById('sector-modal-desc');
+
+    document.querySelectorAll('.sector-card').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const data = sectorData[btn.dataset.sector];
+        if (!data) return;
+        modalIcon.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+        modalTitle.textContent = data.title;
+        modalDesc.textContent = data.desc;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+    });
+
+    document.querySelectorAll('[data-close-modal]').forEach(el => {
+      el.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    });
+
+    // Header sombra al hacer scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 8) {
+        header.classList.add('shadow-md');
+      } else {
+        header.classList.remove('shadow-md');
+      }
+    });
+  </script>
+
+  <!-- =================================================================
+       NOTAS PARA EL DESARROLLADOR (REEMPLAZAR ANTES DE PRODUCCIÓN)
+       ================================================================= 
+       1. LOGOS: el logo del header/footer es un placeholder con icono FA.
+          Reemplazar por SVG/PNG real del cliente en .max-w-7xl > a.
+       2. LOGOS DE CLIENTES (sección 8): hoy son texto. Cambiar por <img>.
+       3. FORMULARIO: el submit es un alert(). Conectar a backend real
+          (Formspree, n8n, endpoint Django, etc.).
+       4. WHATSAPP: el número está hardcoded a +57 301 489 3414. Cambiar
+          en hero, CTA, footer, y botón flotante si aplica.
+       5. TAILWIND: este archivo usa Tailwind por CDN para preview rápido.
+          Para producción, generar build optimizado con tailwind.config.js
+          (los tokens ya están definidos en el script de la cabecera).
+       6. IMÁGENES OG: reemplazar https://digiturnos.com/og-image.jpg.
+       7. SCHEMA: ajustar precios, URLs y datos legales reales.
+       8. SITEMAP/ROBOTS: generarlos a nivel de servidor o build.
+  ================================================================== -->
+
+</body>
+</html>
