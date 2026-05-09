@@ -31,9 +31,14 @@ Two Django apps, both registered in `sergio/settings.py`:
 - **`mainapp`** — every public-facing page, the portfolio, lead capture, SEO endpoints, legal pages. Routed at `/` (see `mainapp/urls.py`).
 - **`meta`** — the Meta (Facebook) Conversions API server-side endpoint. Routed at `/api/track-lead/`.
 
-### Portfolio is static Python, not a DB model
+### Portfolio and MVPs are static Python, not DB models
 
-`mainapp/projects.py` defines `PROJECTS` (a list of dicts) and `PROJECTS_BY_SLUG`. `views.project_detail` looks up by slug and 404s on miss; `views.sitemap_xml` iterates the same list to emit `<url>` entries. Each project's `html_file` points at a fully self-contained demo HTML under `mainapp/static/mainapp/projects/<slug>.html` that the detail page renders inside an `<iframe>`. **To add a portfolio entry: append a dict to `PROJECTS`, drop the demo HTML in `static/mainapp/projects/`, drop a thumbnail in `static/mainapp/img/projects/`** — no model migration needed. The file's docstring is explicit that this is intentional; only promote to a Django model when a non-developer needs to edit it.
+Two parallel catalogs follow the exact same pattern, both intentionally kept as Python lists rather than Django models (their docstrings spell out the intent — only promote to a model when a non-developer needs to edit them):
+
+- **`mainapp/projects.py`** — `PROJECTS` + `PROJECTS_BY_SLUG`, surfaced at `/projects/<slug>/` via `views.project_detail`. Demo HTMLs at `static/mainapp/projects/<slug>.html`, thumbnails at `static/mainapp/img/projects/`.
+- **`mainapp/mvps.py`** — `MVPS` + `MVPS_BY_SLUG`, surfaced at `/software-a-la-medida/mvp/<slug>/` via `views.mvp_detail`. Demo HTMLs at `static/mainapp/mvp/<slug>.html`. The MVP dicts are richer (screens, benefits, use_cases, how_it_works, faqs) because the detail template renders all those sections; mirror an existing entry's shape when adding one.
+
+Both detail templates render the demo HTML inside an `<iframe>`. Both lists are iterated by `views.sitemap_xml`, so adding an entry to either catalog automatically picks it up — no sitemap edit needed for new portfolio/MVP entries (only for new top-level pages). **To add an entry**: append a dict to the relevant list, drop the demo HTML in the matching `static/` subfolder, point `image` at a thumbnail in `static/mainapp/img/projects/`. No migration needed.
 
 ### Lead funnel & conversion tracking
 
@@ -54,7 +59,7 @@ The lead flow is split across browser + server because Google Ads and Meta need 
 
 ### URL surface
 
-`mainapp/urls.py` is the canonical map of public routes — service landings (`/landing-pages/`, `/tiendas-online/`, `/software-a-la-medida/`, `/services/api-development/`, `/services/custom-software-ai/`), `/experiencia/`, `/presencia-digital/`, `/projects/<slug>/`, the lead/contacto/gracias triple, legal pages, and `/robots.txt` + `/sitemap.xml` served from views (not staticfiles). When adding a new public page, also add it to `views.sitemap_xml`.
+`mainapp/urls.py` is the canonical map of public routes — service landings (`/landing-pages/`, `/tiendas-online/`, `/software-a-la-medida/`, `/services/api-development/`, `/services/custom-software-ai/`), `/experiencia/`, `/presencia-digital/`, the two slug-driven detail routes (`/projects/<slug>/`, `/software-a-la-medida/mvp/<slug>/`), the lead/contacto/gracias triple, legal pages, and `/robots.txt` + `/sitemap.xml` served from views (not staticfiles). When adding a **new top-level page**, also add it to the static `urls` list inside `views.sitemap_xml` (new entries to `PROJECTS` / `MVPS` are picked up automatically by the loops below it).
 
 ### Database
 

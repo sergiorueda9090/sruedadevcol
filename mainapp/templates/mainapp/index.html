@@ -1,10 +1,12 @@
 {% extends "mainapp/base.html" %}
 {% load static %}
 
-{% block title %}Contrata un Desarrollador Fullstack Freelance en Colombia | sruedadev{% endblock %}
-{% block meta_description %}En sruedadev construimos sitios web de alta conversión, software a la medida, APIs e integraciones con IA. 30+ proyectos entregados. Asesoría gratis de 15 min.{% endblock %}
-{% block og_title %}Contrata un Desarrollador Fullstack Freelance en Colombia | sruedadev{% endblock %}
-{% block og_description %}Desarrollador freelance desde Colombia construyendo sitios web, software a la medida, APIs e integraciones con IA. 30+ proyectos entregados. Asesoría gratis de 15 min.{% endblock %}
+{% block title %}Sruedadev.com | Software, E-commerce y Landing Pages para empresas{% endblock %}
+{% block meta_description %}Sruedadev.com — software a la medida, tiendas e-commerce, landing pages, APIs e integraciones con IA para empresas en Colombia y LATAM. 30+ proyectos entregados.{% endblock %}
+{% block og_title %}Sruedadev.com | Software, E-commerce y Landing Pages para empresas{% endblock %}
+{% block og_description %}Sruedadev.com construye software a la medida, tiendas e-commerce, landing pages, APIs e integraciones con IA. Implementación rápida, soporte directo, foco en resultados.{% endblock %}
+
+{% block body_class %}home-corporate{% endblock %}
 
 {% block extra_jsonld %}
 <script type="application/ld+json">
@@ -14,23 +16,23 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Trabajas con clientes en Colombia y otros países?",
+      "name": "¿Sruedadev trabaja con clientes en Colombia y otros países?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sí. Trabajo 100% remoto con clientes en Colombia, Latinoamérica y Estados Unidos. Comunicación en español (también inglés si lo prefieres) y facturación en pesos o USD."
+        "text": "Sí. Sruedadev opera 100% remoto con clientes en Colombia, Latinoamérica y Estados Unidos. Comunicación en español (también inglés si lo prefieres) y facturación en pesos o USD."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Qué tipo de proyectos construyes?",
+      "name": "¿Qué tipo de proyectos construye Sruedadev?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Landing pages, tiendas e-commerce, sitios web corporativos, software interno a la medida, APIs REST y GraphQL, integraciones con terceros y funciones de IA dentro de productos existentes."
+        "text": "Landing pages, tiendas e-commerce, sitios corporativos, software interno a la medida, APIs REST y GraphQL, integraciones con terceros y funciones de IA dentro de productos existentes."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Qué tan rápido puedes empezar?",
+      "name": "¿Qué tan rápido puede empezar Sruedadev?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "La mayoría de los proyectos arrancan dentro de una semana luego de la primera llamada. Las landing pages sencillas se entregan en 7 días; los proyectos de software a la medida se definen en 1-2 semanas."
@@ -42,811 +44,655 @@
 {% endblock %}
 
 {% block content %}
+
   <!-- ============================================================
-       HERO
+       1. HERO
   ============================================================ -->
-  <section id="home" class="hero-section">
-    <div class="hero-bg-shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-      <div class="shape shape-3"></div>
-    </div>
+  <section id="home" class="hc-hero">
+    <div class="hc-grid-pattern" aria-hidden="true"></div>
+    <div class="hc-blob hc-blob-secondary" style="width:520px; height:520px; top:-160px; right:-120px;" aria-hidden="true"></div>
+    <div class="hc-blob hc-blob-primary" style="width:380px; height:380px; bottom:-120px; left:-60px; opacity:.30;" aria-hidden="true"></div>
 
-    <!-- ============================================================
-         FONDO: GALAXIA DE ESTRELLAS
-    ============================================================ -->
-    <div class="hero-galaxy" aria-hidden="true">
-      <div class="galaxy-stars stars-a"></div>
-      <div class="galaxy-stars stars-b"></div>
-      <div class="galaxy-stars stars-c"></div>
-      <div class="galaxy-dust"></div>
-    </div>
+    <div class="hc-container">
+      <div class="hc-hero-grid">
 
-    <div class="container">
-      <div class="row align-items-center min-vh-100 py-5">
+        <div data-aos="fade-up">
+          <span class="hc-hero-badge">
+            <i class="fa-solid fa-circle-check"></i>
+            Software corporativo · Implementación ágil · Soporte directo
+          </span>
 
-        <!-- Izquierda -->
-        <div class="col-lg-6 hero-text" data-reveal="left">
-          <p class="hero-greeting"><span class="accent">Hola,</span> <span class="wave">&#128075;</span></p>
-          <h1 class="hero-name">Soy <span class="accent-name">Sergio Rueda.</span></h1>
-          <h2 class="hero-title">Desarrollador <span class="teal-text">Fullstack</span></h2>
-          <p class="hero-description">
-            Soy un <strong>desarrollador freelance desde Colombia</strong> con amplia experiencia
-            construyendo soluciones tecnológicas para empresas — desde landing pages de alta conversión
-            hasta APIs robustas, plataformas e-commerce completas y automatización en la nube.
-            Independiente, práctico y 100% remoto para clientes en todo el mundo.
+          <h1>
+            Construimos software para empresas
+            <span class="accent-italic">que crecen.</span>
+          </h1>
+
+          <p class="hc-hero-lead">
+            En Sruedadev.com diseñamos, desarrollamos y desplegamos software a la medida, tiendas e-commerce, landing pages de alta conversión, APIs e integraciones con IA. Todo bajo un mismo equipo, con comunicación directa y entregas en semanas, no meses.
           </p>
-          <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary-custom me-3">
-              Contrátame <i class="bi bi-arrow-right ms-1"></i>
+
+          <div class="hc-hero-actions">
+            <a href="#contact" class="hc-btn hc-btn-secondary">
+              Solicitar propuesta <i class="fa-solid fa-arrow-right"></i>
             </a>
-            <a href="#portfolio" class="btn btn-outline-custom">Ver Trabajos</a>
-          </div>
-        </div>
-
-        <!-- Derecha — foto + íconos flotantes -->
-        <div class="col-lg-6 hero-visual d-flex justify-content-center mt-5 mt-lg-0" data-reveal="right">
-          <div class="hero-photo-wrapper">
-            <div class="photo-ring"></div>
-            <div class="hero-photo-circle">
-              <img src="{% static 'mainapp/img/sergio_main.jpg' %}" alt="Sergio Rueda — desarrollador fullstack freelance" class="hero-photo-img" fetchpriority="high" decoding="async">
-            </div>
-            <!-- Íconos flotantes -->
-            <div class="floating-icon fi-python">
-              <i class="bi bi-filetype-py"></i>
-              <span>Python</span>
-            </div>
-            <div class="floating-icon fi-react">
-              <i class="bi bi-display"></i>
-              <span>React</span>
-            </div>
-            <div class="floating-icon fi-django">
-              <i class="bi bi-server"></i>
-              <span>Django</span>
-            </div>
-            <div class="floating-icon fi-aws">
-              <i class="bi bi-cloud-fill"></i>
-              <span>AWS</span>
-            </div>
-            <!-- Badge -->
-            <div class="hero-badge">
-              <i class="bi bi-patch-check-fill badge-icon"></i>
-              <div class="badge-content">
-                <span class="badge-number">30+</span>
-                <span class="badge-label">Proyectos Entregados</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <a href="#stats" class="scroll-hint">
-      <i class="bi bi-chevron-double-down"></i>
-    </a>
-  </section>
-
-  <!-- ============================================================
-       STATS BAR
-  ============================================================ -->
-  <section id="stats" class="stats-section">
-    <div class="container">
-      <div class="row g-4 text-center">
-        <div class="col-6 col-md-3" data-reveal="up">
-          <div class="stat-item">
-            <div class="stat-number-wrap">
-              <span class="stat-number" data-count="11">0</span><span class="stat-suffix">+</span>
-            </div>
-            <p class="stat-label">Años de Experiencia</p>
-          </div>
-        </div>
-        <div class="col-6 col-md-3" data-reveal="up" data-delay="100">
-          <div class="stat-item">
-            <div class="stat-number-wrap">
-              <span class="stat-number" data-count="30">0</span><span class="stat-suffix">+</span>
-            </div>
-            <p class="stat-label">Proyectos Entregados</p>
-          </div>
-        </div>
-        <div class="col-6 col-md-3" data-reveal="up" data-delay="200">
-          <div class="stat-item">
-            <div class="stat-number-wrap">
-              <span class="stat-number" data-count="100">0</span><span class="stat-suffix">%</span>
-            </div>
-            <p class="stat-label">Satisfacción del Cliente</p>
-          </div>
-        </div>
-        <div class="col-6 col-md-3" data-reveal="up" data-delay="300">
-          <div class="stat-item">
-            <div class="stat-number-wrap">
-              <span class="stat-number" data-count="16">0</span><span class="stat-suffix">+</span>
-            </div>
-            <p class="stat-label">Landing Pages Construidas</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SOBRE MÍ
-  ============================================================ -->
-  <section id="about" class="about-section section-padding">
-    <div class="container">
-      <div class="row align-items-center g-5">
-
-        <!-- Foto -->
-        <div class="col-lg-5" data-reveal="left">
-          <div class="about-photo-wrapper">
-            <div class="about-photo-frame">
-              <img src="{% static 'mainapp/img/settup.jpg' %}" alt="Mi setup de desarrollo remoto" class="about-photo-img" loading="lazy" decoding="async">
-            </div>
-            <div class="about-exp-badge">
-              <span class="aeb-num">11+</span>
-              <span class="aeb-text">Años de<br>Experiencia</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Contenido -->
-        <div class="col-lg-7" data-reveal="right">
-          <p class="section-tag">Sobre Mí</p>
-          <h2 class="section-title">Mi <span class="accent">Ventaja</span></h2>
-          <p class="about-description">
-            Soy <strong>Sergio Rueda</strong>, un
-            <strong>desarrollador fullstack freelance desde Colombia</strong> con amplia experiencia
-            práctica entregando soluciones tecnológicas para empresas de todos los tamaños. Como freelance
-            independiente me muevo rápido, me comunico directamente y entrego software que genera
-            resultados reales de negocio — sin agencias ni intermediarios. Me especializo en backends
-            Python/Django, frontends React, APIs RESTful y despliegues en la nube con AWS, trabajando
-            100% remoto con clientes en Colombia y el resto del mundo.
-          </p>
-          <p class="about-description">
-            Desde landing pages de alta conversión hasta plataformas e-commerce complejas con pasarelas
-            de pago integradas (Stripe, PayPal, Mercado Pago), aporto profundidad técnica y una mentalidad
-            enfocada en el negocio a cada proyecto — un freelance, una misión: entregar software que
-            funciona.
-          </p>
-          <!-- Barras de habilidades -->
-          <div class="skill-bars mt-4">
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span class="skill-name">Python</span>
-                <span class="skill-pct">90%</span>
-              </div>
-              <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span class="skill-name">Django / DRF</span>
-                <span class="skill-pct">95%</span>
-              </div>
-              <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span class="skill-name">React / Next.js</span>
-                <span class="skill-pct">85%</span>
-              </div>
-              <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span class="skill-name">AWS / Nube</span>
-                <span class="skill-pct">80%</span>
-              </div>
-              <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span class="skill-name">Node.js / Express</span>
-                <span class="skill-pct">75%</span>
-              </div>
-              <div class="skill-track"><div class="skill-fill" data-width="75"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span class="skill-name">PostgreSQL / MySQL</span>
-                <span class="skill-pct">85%</span>
-              </div>
-              <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SERVICIOS
-  ============================================================ -->
-  <section id="services" class="services-section section-padding">
-    <div class="container">
-      <div class="text-center mb-5" data-reveal="up">
-        <p class="section-tag">Qué Hago</p>
-        <h2 class="section-title">Servicios <span class="accent">Populares</span></h2>
-        <p class="section-subtitle">Soluciones tecnológicas de extremo a extremo, adaptadas a los objetivos de tu negocio.</p>
-      </div>
-
-      <ul class="nav services-tabs justify-content-center mb-5" id="servicesTabs" role="tablist" data-reveal="up">
-        <li class="nav-item" role="presentation">
-          <button class="services-tab-btn active" id="dev-tab" data-bs-toggle="tab"
-            data-bs-target="#dev" type="button" role="tab">
-            <i class="bi bi-code-slash me-2"></i>Desarrollo
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="services-tab-btn" id="design-tab" data-bs-toggle="tab"
-            data-bs-target="#design" type="button" role="tab">
-            <i class="bi bi-palette me-2"></i>Diseño
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="services-tab-btn" id="integration-tab" data-bs-toggle="tab"
-            data-bs-target="#integration" type="button" role="tab">
-            <i class="bi bi-plug me-2"></i>Integración
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="services-tab-btn" id="ai-tab" data-bs-toggle="tab"
-            data-bs-target="#ai" type="button" role="tab">
-            <i class="bi bi-robot me-2"></i>Inteligencia Artificial
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="services-tab-btn" id="presence-tab" data-bs-toggle="tab"
-            data-bs-target="#presence" type="button" role="tab">
-            <i class="bi bi-stars me-2"></i>Presencia Digital
-          </button>
-        </li>
-      </ul>
-
-      <div class="tab-content" id="servicesTabContent">
-
-        <!-- Desarrollo -->
-        <div class="tab-pane fade show active" id="dev" role="tabpanel">
-          <div class="row g-4">
-            <div class="col-md-4" data-reveal="up">
-              <div class="service-card">
-                <div class="service-icon-wrap green-glow">
-                  <i class="bi bi-window-fullscreen"></i>
-                </div>
-                <h4 class="service-card-title">Landing Pages</h4>
-                <p class="service-card-text">Landing pages de alta conversión diseñadas para convertir visitantes en clientes. Optimizadas para SEO, mobile-first y ultra rápidas.</p>
-                <a href="{% url 'mainapp:landing_pages' %}" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4" data-reveal="up" data-delay="100">
-              <div class="service-card">
-                <div class="service-icon-wrap teal-glow">
-                  <i class="bi bi-cart4"></i>
-                </div>
-                <h4 class="service-card-title">Tiendas E-commerce</h4>
-                <p class="service-card-text">Tiendas en línea completas con gestión de productos, carrito, checkout e integración con pasarelas de pago como Stripe y PayPal.</p>
-                <a href="{% url 'mainapp:tiendas_online' %}" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4" data-reveal="up" data-delay="200">
-              <div class="service-card">
-                <div class="service-icon-wrap purple-glow">
-                  <i class="bi bi-code-slash"></i>
-                </div>
-                <h4 class="service-card-title">Software a la Medida</h4>
-                <p class="service-card-text">Sistemas internos, automatización de procesos, ERPs, CRMs y aplicaciones web a la medida construidas con Django, Python y AWS.</p>
-                <a href="{% url 'mainapp:software_medida' %}" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Diseño -->
-        <div class="tab-pane fade" id="design" role="tabpanel">
-          <div class="row g-4">
-            <div class="col-md-4" data-reveal="up">
-              <div class="service-card">
-                <div class="service-icon-wrap green-glow">
-                  <i class="bi bi-layout-wtf"></i>
-                </div>
-                <h4 class="service-card-title">Diseño UI/UX</h4>
-                <p class="service-card-text">Interfaces intuitivas construidas sobre principios sólidos de UX. Estética limpia y moderna que guía a los usuarios hacia tus objetivos de conversión.</p>
-                <a href="#contact" class="service-link">Empezar <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4" data-reveal="up" data-delay="100">
-              <div class="service-card">
-                <div class="service-icon-wrap teal-glow">
-                  <i class="bi bi-phone"></i>
-                </div>
-                <h4 class="service-card-title">Diseño Responsivo</h4>
-                <p class="service-card-text">Cada pixel se adapta perfectamente — desde monitores grandes hasta las pantallas más pequeñas de un smartphone. Mobile-first, siempre.</p>
-                <a href="#contact" class="service-link">Empezar <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4" data-reveal="up" data-delay="200">
-              <div class="service-card">
-                <div class="service-icon-wrap purple-glow">
-                  <i class="bi bi-speedometer2"></i>
-                </div>
-                <h4 class="service-card-title">Optimización de Rendimiento</h4>
-                <p class="service-card-text">Ajuste de Core Web Vitals, optimización de imágenes, estrategias de caché y configuración de CDN para que tu sitio vuele.</p>
-                <a href="#contact" class="service-link">Empezar <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Integración -->
-        <div class="tab-pane fade" id="integration" role="tabpanel">
-          <div class="row g-4">
-            <div class="col-md-4" data-reveal="up">
-              <div class="service-card">
-                <div class="service-icon-wrap green-glow">
-                  <i class="bi bi-hdd-network"></i>
-                </div>
-                <h4 class="service-card-title">Desarrollo de APIs REST</h4>
-                <p class="service-card-text">APIs REST escalables y bien documentadas, construidas con Django REST Framework o Node.js — listas para web, móvil y terceros.</p>
-                <a href="{% url 'mainapp:api_services' %}" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4" data-reveal="up" data-delay="100">
-              <div class="service-card">
-                <div class="service-icon-wrap teal-glow">
-                  <i class="bi bi-credit-card-2-front"></i>
-                </div>
-                <h4 class="service-card-title">Pasarelas de Pago</h4>
-                <p class="service-card-text">Integración con Stripe, PayPal y Mercado Pago — flujos de pago seguros y compatibles con PCI, adaptados para Colombia y el mercado internacional.</p>
-                <a href="#contact" class="service-link">Empezar <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4" data-reveal="up" data-delay="200">
-              <div class="service-card">
-                <div class="service-icon-wrap purple-glow">
-                  <i class="bi bi-cloud-arrow-up"></i>
-                </div>
-                <h4 class="service-card-title">Despliegue en la Nube</h4>
-                <p class="service-card-text">EC2, RDS, S3, CloudFront — infraestructura AWS lista para producción, con pipelines CI/CD, SSL y auto-escalado.</p>
-                <a href="#contact" class="service-link">Empezar <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Inteligencia Artificial -->
-        <div class="tab-pane fade" id="ai" role="tabpanel">
-          <div class="row g-4">
-            <div class="col-md-4" data-reveal="up">
-              <div class="service-card">
-                <div class="service-icon-wrap green-glow">
-                  <i class="bi bi-chat-dots"></i>
-                </div>
-                <h4 class="service-card-title">Bots con IA</h4>
-                <p class="service-card-text">Chatbots y asistentes virtuales a la medida, impulsados por LLMs — integrados en tu sitio web, WhatsApp, Slack o cualquier plataforma que usen tus clientes.</p>
-                <a href="{% url 'mainapp:software_ai_services' %}" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4" data-reveal="up" data-delay="100">
-              <div class="service-card">
-                <div class="service-icon-wrap teal-glow">
-                  <i class="bi bi-diagram-3"></i>
-                </div>
-                <h4 class="service-card-title">Flujos con IA</h4>
-                <p class="service-card-text">Flujos inteligentes que conectan tus herramientas y fuentes de datos — desde calificación de leads hasta generación de contenido, orquestados con agentes de IA.</p>
-                <a href="{% url 'mainapp:software_ai_services' %}" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-4" data-reveal="up" data-delay="200">
-              <div class="service-card">
-                <div class="service-icon-wrap purple-glow">
-                  <i class="bi bi-gear-wide-connected"></i>
-                </div>
-                <h4 class="service-card-title">Automatización</h4>
-                <p class="service-card-text">Automatización de procesos end-to-end con IA — correos, captura de datos, reportes y tareas repetitivas eliminadas para que tu equipo se enfoque en lo importante.</p>
-                <a href="{% url 'mainapp:software_ai_services' %}" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Presencia Digital — Los 4 pilares -->
-        <div class="tab-pane fade" id="presence" role="tabpanel">
-          <div class="text-center mb-4" data-reveal="up">
-            <p class="section-subtitle mb-0">Los <span class="accent">4 pilares</span> que todo negocio necesita online — listos en un día.</p>
-          </div>
-          <div class="row g-4">
-            <div class="col-md-6 col-lg-3" data-reveal="up">
-              <div class="service-card">
-                <div class="service-icon-wrap green-glow">
-                  <i class="bi bi-globe2"></i>
-                </div>
-                <h4 class="service-card-title">Dominio propio</h4>
-                <p class="service-card-text">Tu "dirección postal digital": <code>tuempresa.com</code>. Corto, memorable y profesional. Compra y configuración DNS incluidas.</p>
-                <a href="{% url 'mainapp:presencia_digital' %}#pilares" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-3" data-reveal="up" data-delay="100">
-              <div class="service-card">
-                <div class="service-icon-wrap teal-glow">
-                  <i class="bi bi-envelope-at-fill"></i>
-                </div>
-                <h4 class="service-card-title">Correo con dominio</h4>
-                <p class="service-card-text">Cuentas profesionales tipo <code>contacto@tuempresa.com</code> con Google Workspace o Microsoft 365. Genera confianza inmediata.</p>
-                <a href="{% url 'mainapp:presencia_digital' %}#pilares" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-3" data-reveal="up" data-delay="200">
-              <div class="service-card">
-                <div class="service-icon-wrap purple-glow">
-                  <i class="bi bi-vcard-fill"></i>
-                </div>
-                <h4 class="service-card-title">Firma profesional</h4>
-                <p class="service-card-text">Tarjeta de presentación digital al final de cada correo: logo, datos, redes sociales y tagline. Refuerza tu marca en cada envío.</p>
-                <a href="{% url 'mainapp:presencia_digital' %}#pilares" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-3" data-reveal="up" data-delay="300">
-              <div class="service-card">
-                <div class="service-icon-wrap green-glow">
-                  <i class="bi bi-geo-alt-fill"></i>
-                </div>
-                <h4 class="service-card-title">Google Business Profile</h4>
-                <p class="service-card-text">Aparece en Google Maps y búsquedas locales tipo "cerca de mí". Gratis y con el mejor retorno sobre inversión que existe.</p>
-                <a href="{% url 'mainapp:presencia_digital' %}#pilares" class="service-link">Saber más <i class="bi bi-arrow-right ms-1"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-4" data-reveal="up">
-            <a href="{% url 'mainapp:presencia_digital' %}" class="btn btn-outline-custom">
-              Ver guía completa <i class="bi bi-arrow-right ms-1"></i>
+            <a href="#services" class="hc-btn hc-btn-outline-light">
+              <i class="fa-solid fa-grip"></i> Ver servicios
             </a>
           </div>
-        </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       PRECIOS
-  ============================================================ -->
-  <section id="pricing" class="pricing-section section-padding">
-    <div class="container">
-      <div class="text-center mb-5" data-reveal="up">
-        <p class="section-tag">Inversión</p>
-        <h2 class="section-title">Planes de <span class="accent">Precios</span></h2>
-        <p class="section-subtitle">Precios transparentes y justos por trabajo de calidad.</p>
-      </div>
-
-      <div class="row g-4 justify-content-center">
-
-        <!-- Landing Page -->
-        <div class="col-lg-3 col-md-6" data-reveal="left">
-          <div class="pricing-card pricing-highlighted pricing-teal">
-            <div class="pricing-badge-label">Mejor Opción</div>
-            <div class="pricing-icon-wrap">
-              <i class="bi bi-window-fullscreen"></i>
+          <div class="hc-hero-stats">
+            <div>
+              <p class="stat-num">+30</p>
+              <p class="stat-label">Proyectos entregados</p>
             </div>
-            <h4 class="pricing-plan-name">Landing Page</h4>
-            <div class="pricing-price">
-              <span class="price-was">Antes $1.500.000</span>
-              <span class="price-amount-custom">Ahora $800.000</span>
-              <span class="price-period">COP / proyecto</span>
+            <div>
+              <p class="stat-num">+11</p>
+              <p class="stat-label">Años de experiencia</p>
             </div>
-            <p class="pricing-tagline">Perfecta para negocios que necesitan una presencia online profesional rápido.</p>
-            <ul class="pricing-features">
-              <li><i class="bi bi-check-circle-fill"></i>Diseño responsivo (móvil + escritorio)</li>
-              <li><i class="bi bi-check-circle-fill"></i>Botón flotante de WhatsApp</li>
-              <li><i class="bi bi-check-circle-fill"></i>SEO on-page</li>
-              <li><i class="bi bi-check-circle-fill"></i>Configuración de Google Analytics</li>
-              <li><i class="bi bi-check-circle-fill"></i>Formulario de contacto / captura de leads</li>
-              <li><i class="bi bi-check-circle-fill"></i>Certificado SSL</li>
-              <li><i class="bi bi-check-circle-fill"></i>1 mes de soporte gratis</li>
-              <li class="disabled"><i class="bi bi-x-circle"></i>Blog / CMS</li>
-              <li class="disabled"><i class="bi bi-x-circle"></i>Pasarela de pago</li>
-            </ul>
-            <a href="#contact" class="btn pricing-btn">Empezar</a>
+            <div>
+              <p class="stat-num">100%</p>
+              <p class="stat-label">Remoto · LATAM &amp; US</p>
+            </div>
           </div>
         </div>
 
-        <!-- Corporativo — Recomendado -->
-        <div class="col-lg-3 col-md-6" data-reveal="up">
-          <div class="pricing-card pricing-highlighted pricing-green">
-            <div class="pricing-badge-label">Recomendado</div>
-            <div class="pricing-icon-wrap">
-              <i class="bi bi-building"></i>
+        <div class="hc-hero-visual" data-aos="fade-left" data-aos-delay="150">
+          <div class="hc-ticket">
+            <div class="ticket-head">
+              <div>
+                <p class="label">Proyecto</p>
+                <p class="branch">Sprint 03 · Live</p>
+              </div>
+              <i class="fa-solid fa-bolt-lightning" style="font-size:1.4rem;"></i>
             </div>
-            <h4 class="pricing-plan-name">Sitio Corporativo</h4>
-            <div class="pricing-price">
-              <span class="price-amount-custom">Cotización a la medida</span>
-            </div>
-            <p class="pricing-tagline">Solución multipágina construida alrededor de tu marca y objetivos de negocio.</p>
-            <ul class="pricing-features">
-              <li><i class="bi bi-check-circle-fill"></i>Hasta 10 páginas personalizadas</li>
-              <li><i class="bi bi-check-circle-fill"></i>CMS (edición de contenido fácil)</li>
-              <li><i class="bi bi-check-circle-fill"></i>Módulo de blog</li>
-              <li><i class="bi bi-check-circle-fill"></i>Páginas de equipo y servicios</li>
-              <li><i class="bi bi-check-circle-fill"></i>SEO avanzado + sitemap</li>
-              <li><i class="bi bi-check-circle-fill"></i>SSL + configuración de dominio</li>
-              <li><i class="bi bi-check-circle-fill"></i>3 meses de soporte gratis</li>
-              <li><i class="bi bi-check-circle-fill"></i>Optimización de rendimiento</li>
-              <li><i class="bi bi-check-circle-fill"></i>Despliegue en AWS / nube</li>
-            </ul>
-            <a href="#contact" class="btn pricing-btn">Solicitar Cotización</a>
-          </div>
-        </div>
-
-        <!-- E-commerce -->
-        <div class="col-lg-3 col-md-6" data-reveal="right">
-          <div class="pricing-card pricing-highlighted pricing-purple">
-            <div class="pricing-badge-label">Paquete Completo</div>
-            <div class="pricing-icon-wrap">
-              <i class="bi bi-cart4"></i>
-            </div>
-            <h4 class="pricing-plan-name">Tienda E-commerce</h4>
-            <div class="pricing-price">
-              <span class="price-was">Antes $4.800.000</span>
-              <span class="price-amount-custom">Ahora $2.800.000</span>
-              <span class="price-period">COP / proyecto</span>
-            </div>
-            <p class="pricing-tagline">Tienda en línea completa lista para recibir pagos desde el día uno.</p>
-            <ul class="pricing-features">
-              <li><i class="bi bi-check-circle-fill"></i>Productos ilimitados</li>
-              <li><i class="bi bi-check-circle-fill"></i>Stripe / PayPal / Mercado Pago</li>
-              <li><i class="bi bi-check-circle-fill"></i>Gestión de inventario</li>
-              <li><i class="bi bi-check-circle-fill"></i>Panel de seguimiento de pedidos</li>
-              <li><i class="bi bi-check-circle-fill"></i>Cuentas e inicio de sesión de clientes</li>
-              <li><i class="bi bi-check-circle-fill"></i>Reseñas y calificaciones</li>
-              <li><i class="bi bi-check-circle-fill"></i>Sistema de descuentos y cupones</li>
-              <li><i class="bi bi-check-circle-fill"></i>3 meses de soporte gratis</li>
-              <li><i class="bi bi-check-circle-fill"></i>Despliegue en AWS</li>
-            </ul>
-            <a href="#contact" class="btn pricing-btn">Empezar</a>
-          </div>
-        </div>
-
-        <!-- Software a la medida -->
-        <div class="col-lg-3 col-md-6" data-reveal="right" data-delay="100">
-          <div class="pricing-card pricing-highlighted pricing-cyan">
-            <div class="pricing-badge-label">Empresarial</div>
-            <div class="pricing-icon-wrap">
-              <i class="bi bi-cpu"></i>
-            </div>
-            <h4 class="pricing-plan-name">Software a la Medida</h4>
-            <div class="pricing-price">
-              <span class="price-amount-custom">Cotización a la medida</span>
-            </div>
-            <p class="pricing-tagline">Soluciones de software hechas a tu medida para resolver los retos únicos de tu negocio.</p>
-            <ul class="pricing-features">
-              <li><i class="bi bi-check-circle-fill"></i>Análisis de requisitos</li>
-              <li><i class="bi bi-check-circle-fill"></i>Diseño de arquitectura personalizada</li>
-              <li><i class="bi bi-check-circle-fill"></i>Desarrollo fullstack</li>
-              <li><i class="bi bi-check-circle-fill"></i>Diseño y optimización de base de datos</li>
-              <li><i class="bi bi-check-circle-fill"></i>APIs REST / GraphQL</li>
-              <li><i class="bi bi-check-circle-fill"></i>Integraciones con terceros</li>
-              <li><i class="bi bi-check-circle-fill"></i>Pruebas y QA</li>
-              <li><i class="bi bi-check-circle-fill"></i>Despliegue en la nube y CI/CD</li>
-              <li><i class="bi bi-check-circle-fill"></i>Plan de mantenimiento continuo</li>
-            </ul>
-            <a href="{% url 'mainapp:software_ai_services' %}" class="btn pricing-btn">Solicitar Cotización</a>
-          </div>
-        </div>
-
-      </div>
-
-      <p class="pricing-note text-center mt-4" data-reveal="up">
-        <i class="bi bi-info-circle me-1 teal-text"></i>
-        Todos los precios son punto de partida. La cotización final depende del alcance y los requisitos.
-        <a href="#contact" class="accent">Hablemos →</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       PORTAFOLIO
-  ============================================================ -->
-  <section id="portfolio" class="portfolio-section section-padding">
-    <div class="container">
-      <div class="text-center mb-5" data-reveal="up">
-        <p class="section-tag">Mi Trabajo</p>
-        <h2 class="section-title">Proyectos <span class="accent">Recientes</span></h2>
-        <p class="section-subtitle">Una selección de proyectos entregados con cuidado, oficio y código.</p>
-        <div class="portfolio-count" aria-label="Proyectos en el portafolio">
-          <i class="bi bi-collection-play-fill"></i>
-          <span><strong>{{ projects|length }}+</strong> proyectos entregados · landings, e-commerce, software a la medida</span>
-        </div>
-      </div>
-
-      <div class="portfolio-carousel-wrapper" data-reveal="up">
-        <div class="portfolio-track-container">
-          <div class="portfolio-track" id="portfolioTrack">
-
-            {% for project in projects %}
-            <div class="portfolio-card">
-              <div class="pcard-image">
-                <img src="{% static project.image %}" alt="{{ project.title }} — {{ project.short_desc }}" class="pcard-img" loading="lazy" decoding="async">
-                <div class="pcard-overlay">
-                  <a href="{% url 'mainapp:project_detail' project.slug %}" class="pcard-view-btn">Ver Proyecto <i class="bi bi-arrow-up-right ms-1"></i></a>
+            <div class="ticket-body">
+              <div class="row-block">
+                <small>Cliente</small>
+                <p style="font-weight:700; color:var(--hc-ink-900);">Mesón Andino S.A.S.</p>
+              </div>
+              <div class="row-block">
+                <small>Servicio</small>
+                <p>Software a la medida + APIs</p>
+              </div>
+              <div class="number-card">
+                <div>
+                  <small>Estado</small>
+                  <span class="number">98%</span>
+                </div>
+                <div style="text-align:right;">
+                  <small>Entrega</small>
+                  <span class="eta">3 días</span>
                 </div>
               </div>
-              <div class="pcard-body">
-                <span class="pcard-category">{{ project.category }}</span>
-                <h5 class="pcard-title">{{ project.title }}</h5>
-                <p class="pcard-desc">{{ project.short_desc }}</p>
-              </div>
             </div>
-            {% endfor %}
+          </div>
 
-          </div><!-- /track -->
+          <div class="hc-hero-floater is-tl" data-aos="fade-left" data-aos-delay="300">
+            <div class="floater-icon is-success"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="floater-text"><strong>Cliente notificado</strong><span>Demo lista para review</span></div>
+          </div>
+
+          <div class="hc-hero-floater is-bl" data-aos="fade-right" data-aos-delay="400">
+            <div class="floater-icon is-secondary"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <div class="floater-text"><strong>Build #128</strong><span>Deploy a producción</span></div>
+          </div>
         </div>
 
-        <button class="carousel-arrow arrow-prev" id="portfolioPrev" aria-label="Anterior">
-          <i class="bi bi-chevron-left"></i>
-        </button>
-        <button class="carousel-arrow arrow-next" id="portfolioNext" aria-label="Siguiente">
-          <i class="bi bi-chevron-right"></i>
-        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. MARQUEE — sectores e industrias
+  ============================================================ -->
+  <section class="hc-marquee" aria-hidden="true">
+    <div class="hc-marquee-track">
+      <div>
+        <span>Restaurantes</span><i class="fa-solid fa-circle"></i>
+        <span>Retail &amp; E-commerce</span><i class="fa-solid fa-circle"></i>
+        <span>Salud &amp; Clínicas</span><i class="fa-solid fa-circle"></i>
+        <span>Fintech</span><i class="fa-solid fa-circle"></i>
+        <span>Logística</span><i class="fa-solid fa-circle"></i>
+        <span>Educación</span><i class="fa-solid fa-circle"></i>
+        <span>Inmobiliario</span><i class="fa-solid fa-circle"></i>
+        <span>Manufactura</span><i class="fa-solid fa-circle"></i>
+      </div>
+      <div>
+        <span>Restaurantes</span><i class="fa-solid fa-circle"></i>
+        <span>Retail &amp; E-commerce</span><i class="fa-solid fa-circle"></i>
+        <span>Salud &amp; Clínicas</span><i class="fa-solid fa-circle"></i>
+        <span>Fintech</span><i class="fa-solid fa-circle"></i>
+        <span>Logística</span><i class="fa-solid fa-circle"></i>
+        <span>Educación</span><i class="fa-solid fa-circle"></i>
+        <span>Inmobiliario</span><i class="fa-solid fa-circle"></i>
+        <span>Manufactura</span><i class="fa-solid fa-circle"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. SERVICIOS — bento grid con los 5 pilares
+  ============================================================ -->
+  <section id="services" class="section-hc is-paper">
+    <div class="hc-grid-pattern" aria-hidden="true"></div>
+
+    <div class="hc-container" style="position:relative; z-index:1;">
+      <div data-aos="fade-up" style="max-width:48rem;">
+        <span class="hc-eyebrow"><span class="hc-tag-mono">/01 · Servicios</span></span>
+        <h2 class="hc-h-display">
+          Cinco frentes, <span class="accent-italic">una sola</span> empresa.
+        </h2>
+        <p class="hc-lead">
+          Acompañamos cada proyecto desde la primera línea de código hasta el despliegue en producción. Sin agencias intermedias, sin pelotear responsabilidades.
+        </p>
       </div>
 
-      <div class="carousel-dots mt-4" id="portfolioDots"></div>
+      <div class="hc-services-grid">
 
-      <div class="portfolio-footer-cta text-center" data-reveal="up">
-        <p class="portfolio-footer-text">¿Tu industria no aparece? He entregado proyectos en salud, fintech, retail, educación, viajes y más.</p>
-        <a href="#contact" class="btn btn-primary-custom">
-          <i class="bi bi-chat-dots-fill me-2"></i>Cuéntame tu proyecto
+        <a href="{% url 'mainapp:software_medida' %}" class="hc-service-card is-feature" data-aos="fade-up">
+          <div class="service-head">
+            <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+            <span class="hc-tag-mono">/01 · Desarrollo</span>
+          </div>
+          <h3>Desarrollo de software</h3>
+          <p>Aplicaciones web, móviles y de escritorio diseñadas exactamente para tu operación. Stack moderno (Python/Django, React, Node), código mantenible, entregas iterativas e integraciones con tu ERP, CRM o cualquier API existente.</p>
+          <ul class="service-list">
+            <li><i class="fa-solid fa-check"></i> Web apps fullstack Django + React</li>
+            <li><i class="fa-solid fa-check"></i> Tiendas e-commerce con pasarelas de pago</li>
+            <li><i class="fa-solid fa-check"></i> Landing pages de alta conversión</li>
+            <li><i class="fa-solid fa-check"></i> Hosting AWS / on-premise &amp; CI/CD</li>
+          </ul>
+          <span class="service-cta">
+            Ver casos de software
+            <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </span>
+        </a>
+
+        <a href="#contact" class="hc-service-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-head">
+            <div class="service-icon"><i class="fa-solid fa-palette"></i></div>
+            <span class="hc-tag-mono">/02 · Diseño</span>
+          </div>
+          <h3>Diseño UI/UX</h3>
+          <p>Interfaces que guían al usuario hacia tus objetivos de conversión. Diseño responsive mobile-first y optimización de Core Web Vitals para que tu sitio cargue en menos de 2 segundos.</p>
+          <span class="service-cta">
+            Empezar
+            <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </span>
+        </a>
+
+        <a href="{% url 'mainapp:api_services' %}" class="hc-service-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="service-head">
+            <div class="service-icon"><i class="fa-solid fa-network-wired"></i></div>
+            <span class="hc-tag-mono">/03 · Integración</span>
+          </div>
+          <h3>APIs e Integración</h3>
+          <p>APIs REST y GraphQL bien documentadas, integración con Stripe, PayPal, Mercado Pago, ERPs/CRMs y despliegues en AWS con SSL, auto-escalado y pipelines CI/CD listos para producción.</p>
+          <span class="service-cta">
+            Ver capacidades
+            <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </span>
+        </a>
+
+        <a href="{% url 'mainapp:software_ai_services' %}" class="hc-service-card is-highlight" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-head">
+            <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
+            <span class="hc-tag-mono">/04 · IA</span>
+          </div>
+          <h3>Inteligencia Artificial</h3>
+          <p>Chatbots con LLMs, agentes de IA orquestados, automatización end-to-end de procesos repetitivos: emails, calificación de leads, generación de contenido y reportes.</p>
+          <span class="service-cta">
+            Conocer más
+            <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </span>
+        </a>
+
+        <a href="{% url 'mainapp:presencia_digital' %}" class="hc-service-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="service-head">
+            <div class="service-icon"><i class="fa-solid fa-stars"></i></div>
+            <span class="hc-tag-mono">/05 · Fundamentos</span>
+          </div>
+          <h3>Presencia Digital</h3>
+          <p>Los 4 pilares que todo negocio necesita online: dominio propio, correo profesional, firma con marca y Google Business Profile. Listos en un día.</p>
+          <span class="service-cta">
+            Ver guía
+            <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. SOFTWARE SHOWCASE — mockup dashboard
+  ============================================================ -->
+  <section id="software" class="section-hc is-cream">
+    <div class="hc-blob hc-blob-secondary" style="width:400px; height:400px; top:-80px; left:50%; opacity:.20;" aria-hidden="true"></div>
+
+    <div class="hc-container" style="position:relative; z-index:1;">
+      <div data-aos="fade-up" style="max-width:48rem;">
+        <span class="hc-eyebrow"><span class="hc-tag-mono">/02 · Plataforma</span></span>
+        <h2 class="hc-h-display">
+          Software que <span class="accent-italic">trabaja por ti.</span>
+        </h2>
+        <p class="hc-lead">
+          Productos listos para implementar y soluciones a la medida que digitalizan tu operación, eliminan tareas manuales y te dan visibilidad en tiempo real desde cualquier dispositivo.
+        </p>
+      </div>
+
+      <div class="hc-showcase-grid">
+
+        <div data-aos="fade-right">
+          <div class="hc-mockup">
+            <div class="mock-bar">
+              <span class="dot r"></span>
+              <span class="dot y"></span>
+              <span class="dot g"></span>
+              <span class="url">app.sruedadev.com/dashboard</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-side">
+                <div class="side-brand">
+                  <span class="mark"><i class="fa-solid fa-code"></i></span>
+                  <span>SRUEDADEV</span>
+                </div>
+                <div class="side-link active"><i class="fa-solid fa-gauge" style="width:14px;"></i> Dashboard</div>
+                <div class="side-link"><i class="fa-solid fa-users" style="width:14px;"></i> Usuarios</div>
+                <div class="side-link"><i class="fa-solid fa-chart-line" style="width:14px;"></i> Reportes</div>
+                <div class="side-link"><i class="fa-solid fa-gear" style="width:14px;"></i> Ajustes</div>
+              </div>
+              <div class="mock-main">
+                <div class="mock-stats">
+                  <div class="mock-stat">
+                    <p class="stat-label-mini">Ventas hoy</p>
+                    <p class="stat-value">$2.4M</p>
+                    <p class="stat-trend">↑ 12%</p>
+                  </div>
+                  <div class="mock-stat">
+                    <p class="stat-label-mini">Tasa conv.</p>
+                    <p class="stat-value">3.8%</p>
+                    <p class="stat-trend">↑ 0.4pp</p>
+                  </div>
+                  <div class="mock-stat is-primary">
+                    <p class="stat-label-mini">Activos</p>
+                    <p class="stat-value">128</p>
+                    <p class="stat-trend">en sesión</p>
+                  </div>
+                </div>
+                <div class="mock-chart">
+                  <p class="mock-chart-label">Flujo semanal</p>
+                  <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="hcGradLine" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#00A0E9"/>
+                        <stop offset="100%" stop-color="#00A0E9" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0,40 L25,30 L50,35 L75,20 L100,25 L125,15 L150,18 L175,8 L200,12 L200,50 L0,50 Z" fill="url(#hcGradLine)" opacity="0.25"/>
+                    <path d="M0,40 L25,30 L50,35 L75,20 L100,25 L125,15 L150,18 L175,8 L200,12" stroke="#0056B3" stroke-width="2" fill="none"/>
+                  </svg>
+                </div>
+                <div class="mock-list">
+                  <div class="mock-list-row active">
+                    <span class="badge">A12</span>
+                    <span style="flex:1;">Mesón Andino · Sprint 3</span>
+                    <span class="status">En revisión</span>
+                  </div>
+                  <div class="mock-list-row">
+                    <span class="badge">B07</span>
+                    <span style="flex:1;">Pan de la Sabana · Landing</span>
+                    <span class="status">Producción</span>
+                  </div>
+                  <div class="mock-list-row">
+                    <span class="badge">C23</span>
+                    <span style="flex:1;">Vital Centro Médico · API</span>
+                    <span class="status">QA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-left">
+          <h3 style="font-family:var(--hc-font-display); font-weight:700; font-size:1.75rem; color:var(--hc-ink-900); margin-bottom:.75rem;">
+            Plataformas listas para tu negocio
+          </h3>
+          <p style="color:var(--hc-ink-600); margin-bottom:1.5rem;">
+            Productos que llevan años puliendo su funcionalidad. Empieza hoy mismo y escala cuando lo necesites — sin re-arquitectar todo en el camino.
+          </p>
+
+          <div class="hc-feature-list">
+            <div class="hc-feature-row">
+              <div class="feature-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+              <div>
+                <h4>E-commerce con pasarelas de pago</h4>
+                <p>Tienda online completa con Stripe, PayPal y Mercado Pago, gestión de inventario y panel de pedidos.</p>
+              </div>
+            </div>
+
+            <div class="hc-feature-row">
+              <div class="feature-icon"><i class="fa-solid fa-window-maximize"></i></div>
+              <div>
+                <h4>Landing pages de alta conversión</h4>
+                <p>Optimizadas para Google Ads y Meta Ads, con captura de leads, integración WhatsApp y SEO on-page.</p>
+              </div>
+            </div>
+
+            <div class="hc-feature-row">
+              <div class="feature-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+              <div>
+                <h4>Software a la medida</h4>
+                <p>¿Necesitas algo único? Construimos desde cero, integramos con tus sistemas y desplegamos en AWS.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="hc-btn hc-btn-primary" style="margin-top:1.5rem;">
+            Solicitar demo <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. PORTAFOLIO — proyectos recientes (carrusel via grid)
+  ============================================================ -->
+  <section id="portfolio" class="section-hc is-paper">
+    <div class="hc-container">
+      <div data-aos="fade-up" style="max-width:48rem;">
+        <span class="hc-eyebrow"><span class="hc-tag-mono">/03 · Trabajos realizados</span></span>
+        <h2 class="hc-h-display">
+          Proyectos que ya<br/>
+          <span class="accent-italic">están en producción.</span>
+        </h2>
+        <p class="hc-lead">
+          Una muestra de los productos digitales que hemos construido para clientes en LATAM y Estados Unidos. {{ projects|length }}+ entregados, desde landing pages hasta plataformas SaaS completas.
+        </p>
+      </div>
+
+      <div class="hc-portfolio-grid">
+        {% for project in projects %}
+        <a href="{% url 'mainapp:project_detail' project.slug %}" class="hc-port-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:50 }}">
+          <img src="{% static project.image %}" alt="{{ project.title }} — {{ project.short_desc }}" class="port-img" loading="lazy" decoding="async">
+          <div class="port-meta">
+            <div>
+              <span class="cat">{{ project.category }}</span>
+              <h3>{{ project.title }}</h3>
+            </div>
+            <span class="port-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <div style="text-align:center; margin-top:3rem;" data-aos="fade-up">
+        <p style="color:var(--hc-ink-600); margin-bottom:1rem;">¿Tu industria no aparece? Hemos entregado en salud, fintech, retail, educación, viajes y más.</p>
+        <a href="#contact" class="hc-btn hc-btn-primary">
+          Cuéntanos tu proyecto <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       TESTIMONIOS
+       6. PROCESO — 3 pasos
   ============================================================ -->
-  <section id="testimonials" class="testimonials-section section-padding">
-    <div class="container">
-      <div class="text-center mb-5" data-reveal="up">
-        <p class="section-tag">Opiniones de Clientes</p>
-        <h2 class="section-title">Qué Dicen los <span class="accent">Clientes</span></h2>
-        <p class="section-subtitle">Palabras reales de clientes reales que confiaron en mí para su presencia digital.</p>
+  <section id="how-it-works" class="section-hc is-cream">
+    <div class="hc-container">
+      <div data-aos="fade-up" style="max-width:48rem;">
+        <span class="hc-eyebrow"><span class="hc-tag-mono">/04 · Cómo trabajamos</span></span>
+        <h2 class="hc-h-display">
+          Tres pasos.<br/>
+          <span class="accent-italic">De la idea a producción.</span>
+        </h2>
       </div>
 
-      <div class="testimonials-slider-wrapper" data-reveal="up">
-        <div class="testimonials-track-container">
-          <div class="testimonials-track" id="testimonialsTrack">
-
-            <div class="testimonial-slide">
-              <div class="testimonial-card">
-                <div class="testimonial-quote-icon"><i class="bi bi-quote"></i></div>
-                <p class="testimonial-text">"Sergio transformó por completo nuestra presencia online. Las reservas de citas subieron un 300% dentro del primer mes del lanzamiento del nuevo sitio. Entregó a tiempo, comunicó con claridad y el resultado superó lo que imaginábamos."</p>
-                <div class="testimonial-stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <div class="testimonial-author">
-                  <div class="author-avatar" style="background:linear-gradient(135deg,#0891b2,#06b6d4);">MG</div>
-                  <div class="author-info">
-                    <h6 class="author-name">María González</h6>
-                    <span class="author-role">CEO — DentalSmile</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="testimonial-slide">
-              <div class="testimonial-card">
-                <div class="testimonial-quote-icon"><i class="bi bi-quote"></i></div>
-                <p class="testimonial-text">"Profesional, rápido y enfocado en resultados. Sergio construyó la landing page de nuestro gimnasio en menos de 2 semanas. El diseño es exactamente lo que queríamos — atrevido y enérgico. Las inscripciones se duplicaron en los primeros dos meses."</p>
-                <div class="testimonial-stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <div class="testimonial-author">
-                  <div class="author-avatar" style="background:linear-gradient(135deg,#9f1239,#dc2626);">CH</div>
-                  <div class="author-info">
-                    <h6 class="author-name">Carlos Herrera</h6>
-                    <span class="author-role">Director — IronForge Gym</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="testimonial-slide">
-              <div class="testimonial-card">
-                <div class="testimonial-quote-icon"><i class="bi bi-quote"></i></div>
-                <p class="testimonial-text">"Nuestras ventas e-commerce se triplicaron en los 3 meses siguientes al lanzamiento. Sergio se encargó de todo — diseño, desarrollo, pasarela de pago e incluso capacitó a nuestro equipo. Una verdadera solución integral."</p>
-                <div class="testimonial-stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-                </div>
-                <div class="testimonial-author">
-                  <div class="author-avatar" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);">LM</div>
-                  <div class="author-info">
-                    <h6 class="author-name">Laura Martínez</h6>
-                    <span class="author-role">Fundadora — Lumiere Botanica</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="testimonial-slide">
-              <div class="testimonial-card">
-                <div class="testimonial-quote-icon"><i class="bi bi-quote"></i></div>
-                <p class="testimonial-text">"Excelentes habilidades técnicas y gran comunicación durante todo el proyecto. Construyó nuestra API desde cero, totalmente documentada, y lleva más de un año funcionando sin fallas en producción. Lo contrataría de nuevo sin dudarlo."</p>
-                <div class="testimonial-stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <div class="testimonial-author">
-                  <div class="author-avatar" style="background:linear-gradient(135deg,#78350f,#b45309);">AQ</div>
-                  <div class="author-info">
-                    <h6 class="author-name">Andrés Quintero</h6>
-                    <span class="author-role">CTO — BrasakFire Digital</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="testimonial-slide">
-              <div class="testimonial-card">
-                <div class="testimonial-quote-icon"><i class="bi bi-quote"></i></div>
-                <p class="testimonial-text">"El sitio corporativo que Sergio construyó ha elevado nuestra marca y nos ha posicionado como líderes del sector en el espacio digital. Elegante, profesional y perfectamente alineado con nuestra visión. Totalmente recomendado."</p>
-                <div class="testimonial-stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <div class="testimonial-author">
-                  <div class="author-avatar" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);">PD</div>
-                  <div class="author-info">
-                    <h6 class="author-name">Patricia Díaz</h6>
-                    <span class="author-role">CEO — Altavista Constructora</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /track -->
+      <div class="hc-process-grid">
+        <div class="hc-process-step" data-aos="fade-up">
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <div class="step-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+            <h3>Llamada de descubrimiento</h3>
+            <p>Conversación de 30 minutos para entender tu negocio, los objetivos del proyecto y los sistemas que ya tienes en producción. Salimos con un alcance claro y un cronograma realista.</p>
+          </div>
         </div>
 
-        <button class="carousel-arrow t-arrow-prev" id="testPrev" aria-label="Testimonio anterior">
-          <i class="bi bi-chevron-left"></i>
-        </button>
-        <button class="carousel-arrow t-arrow-next" id="testNext" aria-label="Testimonio siguiente">
-          <i class="bi bi-chevron-right"></i>
-        </button>
-      </div>
+        <div class="hc-process-step" data-aos="fade-up" data-aos-delay="100">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <div class="step-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+            <h3>Diseño + desarrollo iterativo</h3>
+            <p>Sprints de 1 a 2 semanas con entregas demo en vivo. Tú revisas, comentas y aprobamos juntos cada hito antes de avanzar. Sin sorpresas en la entrega final.</p>
+          </div>
+        </div>
 
-      <div class="carousel-dots mt-4" id="testDots"></div>
+        <div class="hc-process-step" data-aos="fade-up" data-aos-delay="200">
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <div class="step-icon"><i class="fa-solid fa-rocket"></i></div>
+            <h3>Despliegue y soporte</h3>
+            <p>Lanzamos a producción en AWS, configuramos monitoreo y dominios, y acompañamos las primeras semanas de operación. Mantenimiento opcional disponible mes a mes.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ============================================================
-       CONTACTO
+       7. SECTORES — industrias atendidas
   ============================================================ -->
-  <section id="contact" class="contact-section section-padding">
-    <div class="container">
-      <div class="contact-cta-box" data-reveal="up">
-        <div class="row align-items-center">
-          <div class="col-lg-7 mb-4 mb-lg-0">
-            <p class="section-tag">¿Listo para Empezar?</p>
-            <h2 class="contact-cta-title">Trabajemos <span class="accent">juntos.</span></h2>
-            <p class="contact-cta-desc">¿Tienes un proyecto en mente? Envíame un mensaje y construyamos algo grandioso. Normalmente respondo dentro de las primeras 24 horas.</p>
-            <div class="contact-info-items">
-              <div class="contact-info-item">
-                <i class="bi bi-telephone-fill teal-text"></i>
-                <a href="tel:+573506240534">+57 350 624 0534</a>
-              </div>
-              <div class="contact-info-item">
-                <i class="bi bi-envelope-fill teal-text"></i>
-                <a href="mailto:hello@sruedadev.com">hello@sruedadev.com</a>
-              </div>
-              <div class="contact-info-item">
-                <i class="bi bi-geo-alt-fill teal-text"></i>
-                <span>Bucaramanga, Colombia</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-5 text-center">
-            <a href="https://wa.me/573506240534?text=Hola%20Sergio!%20Vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto."
-               target="_blank" rel="noopener" class="btn btn-whatsapp d-block">
-              <i class="bi bi-whatsapp me-2"></i>Escribir por WhatsApp
-            </a>
-          </div>
+  <section id="sectores" class="section-hc is-paper">
+    <div class="hc-container">
+      <div data-aos="fade-up" style="max-width:48rem;">
+        <span class="hc-eyebrow"><span class="hc-tag-mono">/05 · Industrias</span></span>
+        <h2 class="hc-h-display">
+          Para empresas que<br/>
+          <span class="accent-italic">venden, atienden y crecen.</span>
+        </h2>
+      </div>
+
+      <div class="hc-sectors-grid">
+        <div class="hc-sector-pill" data-aos="fade-up" data-aos-delay="50"><i class="fa-solid fa-utensils"></i><p>Restaurantes</p></div>
+        <div class="hc-sector-pill" data-aos="fade-up" data-aos-delay="80"><i class="fa-solid fa-cart-shopping"></i><p>Retail &amp; E-commerce</p></div>
+        <div class="hc-sector-pill" data-aos="fade-up" data-aos-delay="110"><i class="fa-solid fa-stethoscope"></i><p>Salud &amp; Clínicas</p></div>
+        <div class="hc-sector-pill" data-aos="fade-up" data-aos-delay="140"><i class="fa-solid fa-coins"></i><p>Fintech</p></div>
+        <div class="hc-sector-pill" data-aos="fade-up" data-aos-delay="170"><i class="fa-solid fa-truck-fast"></i><p>Logística</p></div>
+        <div class="hc-sector-pill" data-aos="fade-up" data-aos-delay="200"><i class="fa-solid fa-graduation-cap"></i><p>Educación</p></div>
+        <div class="hc-sector-pill" data-aos="fade-up" data-aos-delay="230"><i class="fa-solid fa-building"></i><p>Inmobiliario</p></div>
+        <div class="hc-sector-pill" data-aos="fade-up" data-aos-delay="260"><i class="fa-solid fa-industry"></i><p>Manufactura</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       8. POR QUÉ NOSOTROS — sección dark con métricas
+  ============================================================ -->
+  <section id="about" class="section-hc is-deep is-dark">
+    <div class="hc-grid-pattern" aria-hidden="true"></div>
+    <div class="hc-blob hc-blob-secondary" style="width:480px; height:480px; top:50%; right:-120px; transform:translateY(-50%); opacity:.30;" aria-hidden="true"></div>
+
+    <div class="hc-container" style="position:relative; z-index:1;">
+      <div data-aos="fade-up" style="max-width:48rem;">
+        <span class="hc-eyebrow"><span class="hc-tag-mono">/06 · Por qué Sruedadev</span></span>
+        <h2 class="hc-h-display">
+          Un equipo que <span class="accent-italic">diseña, desarrolla y despliega.</span>
+        </h2>
+        <p class="hc-lead">
+          No somos una agencia que delega ni un freelance suelto: integramos diseño, ingeniería de software, devops y soporte. Una sola interlocución, un solo responsable de extremo a extremo.
+        </p>
+      </div>
+
+      <div class="hc-why-grid">
+        <div class="hc-why-card" data-aos="fade-up">
+          <p class="why-num">+11</p>
+          <p>Años entregando productos digitales en producción para empresas de LATAM y EE. UU.</p>
+        </div>
+        <div class="hc-why-card" data-aos="fade-up" data-aos-delay="100">
+          <p class="why-num">100%</p>
+          <p>Equipo propio. Hablas con quien diseña, programa y despliega. Cero terciarización.</p>
+        </div>
+        <div class="hc-why-card" data-aos="fade-up" data-aos-delay="200">
+          <p class="why-num">24h</p>
+          <p>Tiempo promedio de respuesta para soportes, evolutivos y consultas durante el proyecto.</p>
+        </div>
+        <div class="hc-why-card" data-aos="fade-up" data-aos-delay="300">
+          <p class="why-num">+30</p>
+          <p>Productos digitales construidos: SaaS, e-commerce, landing pages y APIs en producción.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ============================================================
+       9. TESTIMONIOS
+  ============================================================ -->
+  <section id="testimonials" class="section-hc is-paper">
+    <div class="hc-container">
+      <div data-aos="fade-up" style="max-width:48rem;">
+        <span class="hc-eyebrow"><span class="hc-tag-mono">/07 · Testimonios</span></span>
+        <h2 class="hc-h-display">
+          Lo que dicen las<br/>
+          <span class="accent-italic">empresas que confían en Sruedadev.</span>
+        </h2>
+      </div>
+
+      <div class="hc-testimonials-grid">
+
+        <article class="hc-testimonial-card" data-aos="fade-up">
+          <i class="fa-solid fa-quote-left quote-mark"></i>
+          <p class="quote">"Sruedadev transformó por completo nuestra presencia online. Las reservas de citas subieron un 300% dentro del primer mes del lanzamiento. Entregaron a tiempo, comunicaron con claridad y el resultado superó lo que imaginábamos."</p>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="author">
+            <div class="avatar" style="background:linear-gradient(135deg,#0056B3,#00A0E9);">MG</div>
+            <div>
+              <p class="name">María González</p>
+              <p class="role">CEO — DentalSmile</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="hc-testimonial-card" data-aos="fade-up" data-aos-delay="100">
+          <i class="fa-solid fa-quote-left quote-mark"></i>
+          <p class="quote">"Profesional, rápido y enfocado en resultados. El equipo de Sruedadev construyó la landing page de nuestro gimnasio en menos de 2 semanas. El diseño es exactamente lo que queríamos. Las inscripciones se duplicaron en los primeros dos meses."</p>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="author">
+            <div class="avatar" style="background:linear-gradient(135deg,#003366,#0056B3);">CH</div>
+            <div>
+              <p class="name">Carlos Herrera</p>
+              <p class="role">Director — IronForge Gym</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="hc-testimonial-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="fa-solid fa-quote-left quote-mark"></i>
+          <p class="quote">"Nuestras ventas e-commerce se triplicaron en los 3 meses siguientes al lanzamiento. Sruedadev se encargó de todo: diseño, desarrollo, pasarela de pago e incluso capacitación al equipo. Una verdadera solución integral."</p>
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+          <div class="author">
+            <div class="avatar" style="background:linear-gradient(135deg,#0056B3,#003366);">LM</div>
+            <div>
+              <p class="name">Laura Martínez</p>
+              <p class="role">Fundadora — Lumiere Botanica</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       10. CTA / CONTACTO
+  ============================================================ -->
+  <section id="contact" class="section-hc is-deep is-dark">
+    <div class="hc-blob hc-blob-secondary" style="width:600px; height:600px; top:-200px; left:50%; transform:translateX(-50%); opacity:.18;" aria-hidden="true"></div>
+
+    <div class="hc-container" style="position:relative; z-index:1;">
+      <div style="text-align:center; max-width:48rem; margin:0 auto;" data-aos="fade-up">
+        <span class="hc-tag-mono">/08 · Cotizaciones</span>
+        <h2 class="hc-h-display" style="margin-top:1rem;">
+          Cuéntanos <span class="accent-italic">qué necesitas.</span>
+        </h2>
+        <p class="hc-lead" style="margin-left:auto; margin-right:auto;">
+          Te respondemos en menos de 24 horas hábiles con propuesta y cronograma. Asesoría inicial sin compromiso.
+        </p>
+      </div>
+
+      <div class="hc-cta-grid">
+
+        <div class="hc-cta-side" data-aos="fade-right">
+          <a href="https://wa.me/{{ WHATSAPP_NUMBER }}?text=Hola%20Sruedadev%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20mi%20proyecto"
+             target="_blank" rel="noopener"
+             class="hc-cta-card-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <h3>WhatsApp directo</h3>
+            <p>Conversa con un asesor real ahora mismo. Atención de lunes a sábado.</p>
+            <p class="phone">+57 {{ WHATSAPP_NUMBER|slice:"2:" }}</p>
+          </a>
+
+          <div class="hc-cta-card-info">
+            <i class="fa-solid fa-envelope"></i>
+            <h3>Correo</h3>
+            <p>Para propuestas formales, RFP o briefs detallados.</p>
+            <a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>
+          </div>
+
+          <div class="hc-cta-card-info">
+            <i class="fa-solid fa-location-dot"></i>
+            <h3>Cobertura</h3>
+            <p>Colombia · Latinoamérica · Estados Unidos. 100% remoto.</p>
+          </div>
+        </div>
+
+        <form class="hc-cta-form-card lead-capture-form" id="leadFormHero" method="post" action="{% url 'mainapp:lead_submit' %}" data-aos="fade-left">
+          {% csrf_token %}
+          <h3>Solicita tu propuesta</h3>
+          <p class="sub">Completa estos datos y te enviamos una cotización a la medida.</p>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="leadHeroName">Nombre *</label>
+              <input id="leadHeroName" type="text" name="name" required class="form-input lead-input" placeholder="Tu nombre completo" />
+            </div>
+            <div class="field">
+              <label for="leadHeroBusiness">Empresa *</label>
+              <input id="leadHeroBusiness" type="text" name="business" required class="form-input lead-input" placeholder="Tu empresa" />
+            </div>
+            <div class="field">
+              <label for="leadHeroPhone">WhatsApp *</label>
+              <input id="leadHeroPhone" type="tel" name="phone" required class="form-input lead-input" placeholder="+57 ..." />
+            </div>
+            <div class="field">
+              <label for="leadHeroService">Servicio *</label>
+              <select id="leadHeroService" name="service" required class="form-input lead-input lead-select">
+                <option value="" disabled selected>Selecciona un servicio</option>
+                <option value="Desarrollo">Desarrollo de software</option>
+                <option value="Diseño">Diseño UI/UX</option>
+                <option value="Integración">APIs e integración</option>
+                <option value="Inteligencia Artificial">Inteligencia Artificial</option>
+                <option value="Presencia Digital">Presencia Digital</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <input type="hidden" name="source" value="hero_cta_form" />
+          <label class="consent">
+            <input type="checkbox" required />
+            <span>He leído y acepto la <a href="{% url 'mainapp:privacidad' %}" target="_blank" rel="noopener">Política de Privacidad</a>.</span>
+          </label>
+
+          <button type="submit" class="hc-btn hc-btn-secondary">
+            Enviar propuesta <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
 {% endblock %}
