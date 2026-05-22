@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<!--
+=======================================================================
+  LANDING PAGE · HACIENDA CAMELIA — FINCA DE EVENTOS
+  Estilo: claro, calido, romantico · borgoña/vino + terracota + marfil
+  Stack: Bootstrap 5.3 · jQuery 3.7 · AOS · Swiper · GLightbox · FA6
+  Desarrollada por sruedadev.com — Santander, Colombia
+  Guia de personalizacion al final del archivo.
+=======================================================================
+-->
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ================= SEO LOCAL ================= -->
+  <title>Hacienda Camelia · Finca de Eventos en Floridablanca, Santander | Matrimonios, Quinces y Grados</title>
+  <meta name="description" content="Finca de eventos en Floridablanca, Santander. Jardin de rosas, capilla y plan B techado para matrimonios, quinces y grados. Reserva tu fecha por WhatsApp.">
+  <meta name="keywords" content="finca de eventos Floridablanca, salon de eventos Santander, finca para matrimonios Bucaramanga, centro de eventos Floridablanca, finca para quinces, finca para grados Santander">
+  <meta name="author" content="Hacienda Camelia">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.haciendacamelia.co/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="business.business">
+  <meta property="og:title" content="Hacienda Camelia · Finca de Eventos en Floridablanca, Santander">
+  <meta property="og:description" content="Donde florece tu mejor historia. Finca de eventos con jardin de rosas, capilla y salon vitral.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80">
+  <meta property="og:url" content="https://www.haciendacamelia.co/">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Hacienda Camelia">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hacienda Camelia · Finca de Eventos en Floridablanca">
+  <meta name="twitter:description" content="Finca de eventos en Floridablanca, Santander. Reserva tu fecha por WhatsApp.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80">
+
+  <!-- Favicon emoji (fallback SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌹</text></svg>">
+
+  <!-- Schema.org JSON-LD tipo EventVenue -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EventVenue",
+    "name": "Hacienda Camelia — Finca de Eventos",
+    "description": "Finca de eventos en Floridablanca, Santander, para matrimonios, quinces, grados y eventos corporativos.",
+    "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80",
+    "url": "https://www.haciendacamelia.co/",
+    "telephone": "+57 607 648 7700",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Km 5 Via Helechales",
+      "addressLocality": "Floridablanca",
+      "addressRegion": "Santander",
+      "postalCode": "681003",
+      "addressCountry": "CO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 7.0610,
+      "longitude": -73.0860
+    },
+    "openingHours": "Mo-Su 08:00-18:00",
+    "areaServed": ["Bucaramanga", "Floridablanca", "Giron", "Piedecuesta"],
+    "maximumAttendeeCapacity": 500
+  }
+  </script>
+
+  <!-- ================= LIBRERIAS CDN ================= -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Cormorant Garamond (display elegante) + Mulish (cuerpo limpio) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- ================= ESTILOS PROPIOS ================= -->
+  <style>
+    /* ===== VARIABLES DE MARCA (editar colores aqui) ===== */
+    :root {
+      --vino:        #8A3A48;   /* borgoña calido — color de marca principal */
+      --vino-d:      #6B2C38;   /* vino oscuro — hover / footer */
+      --vino-l:      #F5E9EA;   /* rosa muy palido — fondos suaves */
+      --terracota:   #CC7A5C;   /* terracota arcilla — color de marca secundario */
+      --terracota-d: #B5654A;   /* terracota oscuro */
+      --crema:       #FBF6F0;   /* marfil calido — fondo base */
+      --carbon:      #3A2A2C;   /* marron oscuro calido — textos */
+      --gris:        #897B78;   /* taupe — textos secundarios */
+      --blanco:      #FFFFFF;
+
+      --radius:      18px;
+      --sombra:      0 18px 50px rgba(107,44,56,.13);
+      --sombra-sm:   0 8px 26px rgba(58,42,44,.09);
+      --trans:       .35s cubic-bezier(.22,.7,.3,1);
+      --sec-pad:     6.5rem;
+    }
+
+    /* ===== RESET / BASE ===== */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Mulish', sans-serif;
+      background: var(--crema);
+      color: var(--carbon);
+      overflow-x: hidden;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1,h2,h3,h4,h5,.serif {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600; line-height: 1.12; letter-spacing: .005em;
+    }
+    .section-title { font-size: clamp(2.6rem, 5.2vw, 4.3rem); }
+    a { text-decoration: none; transition: color var(--trans); }
+    img { max-width: 100%; display: block; }
+    section { padding: var(--sec-pad) 0; position: relative; }
+    ::selection { background: var(--vino); color: #fff; }
+
+    /* ===== UTILIDADES ===== */
+    .text-terracota { color: var(--terracota-d) !important; }
+    .text-vino { color: var(--vino) !important; }
+    .bg-vino { background: var(--vino); }
+    .bg-soft { background: var(--vino-l); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .55rem;
+      letter-spacing: .22em; text-transform: uppercase; font-size: .76rem;
+      font-weight: 700; color: var(--terracota-d); margin-bottom: 1rem;
+      font-family: 'Mulish', sans-serif;
+    }
+    .eyebrow i { font-size: .8rem; }
+    .lead-muted { color: var(--gris); font-size: 1.06rem; }
+    .divider { width: 56px; height: 2px; background: var(--terracota); margin: 1.1rem auto 1.5rem; }
+    .divider.start { margin-left: 0; }
+    .leaf-deco { position: absolute; color: var(--vino); opacity: .06; z-index: 0; pointer-events: none; }
+
+    /* ===== BOTONES ===== */
+    .btn-vino {
+      background: var(--vino); color: #fff; border: 1.5px solid var(--vino);
+      border-radius: 50px; padding: .9rem 2rem; font-weight: 600; font-size: .95rem;
+      transition: all var(--trans); display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-vino:hover { background: var(--vino-d); border-color: var(--vino-d); color: #fff; transform: translateY(-3px); box-shadow: 0 14px 30px rgba(138,58,72,.32); }
+    .btn-terracota {
+      background: var(--terracota); color: #fff; border: 1.5px solid var(--terracota);
+      border-radius: 50px; padding: .9rem 2rem; font-weight: 600; font-size: .95rem;
+      transition: all var(--trans); display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-terracota:hover { background: var(--terracota-d); border-color: var(--terracota-d); color: #fff; transform: translateY(-3px); }
+    .btn-outline-light-c {
+      background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.6);
+      border-radius: 50px; padding: .9rem 2rem; font-weight: 600;
+      transition: all var(--trans); display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-outline-light-c:hover { background: #fff; color: var(--vino); transform: translateY(-3px); }
+    .btn-outline-c {
+      background: transparent; color: var(--vino); border: 1.5px solid var(--vino);
+      border-radius: 50px; padding: .65rem 1.5rem; font-weight: 600; font-size: .88rem;
+      transition: all var(--trans); display: inline-flex; align-items: center; gap: .45rem;
+    }
+    .btn-outline-c:hover { background: var(--vino); color: #fff; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: var(--crema); z-index: 100000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-mark { font-family: 'Cormorant Garamond'; font-size: 2.2rem; color: var(--vino); font-weight: 600; }
+    .loader-mark i { color: var(--terracota); }
+    .loader-bar { width: 150px; height: 2px; background: rgba(138,58,72,.15); margin-top: 1rem; overflow: hidden; }
+    .loader-bar::after { content: ""; display: block; height: 100%; width: 40%; background: var(--terracota); animation: loaderRun 1s infinite; }
+    @keyframes loaderRun { 0%{transform:translateX(-100%);} 100%{transform:translateX(360%);} }
+
+    /* ===== NAVBAR ===== */
+    .topbar {
+      background: var(--vino); color: var(--crema); font-size: .8rem;
+      text-align: center; padding: .45rem 0; letter-spacing: .03em;
+    }
+    .topbar i { color: var(--terracota); }
+    .navbar {
+      transition: background var(--trans), padding var(--trans), box-shadow var(--trans);
+      padding: 1.05rem 0;
+    }
+    .navbar.transparent { background: transparent; }
+    .navbar.solid { background: var(--crema); box-shadow: var(--sombra-sm); padding: .6rem 0; }
+    .navbar-brand { font-family: 'Cormorant Garamond'; font-weight: 700; font-size: 1.7rem; letter-spacing: .01em; }
+    .navbar-brand .leaf { color: var(--terracota); }
+    .navbar.transparent .navbar-brand, .navbar.transparent .nav-link { color: #fff !important; }
+    .navbar.solid .navbar-brand, .navbar.solid .nav-link { color: var(--carbon) !important; }
+    .nav-link { font-weight: 500; font-size: .94rem; margin: 0 .35rem; position: relative; }
+    .nav-link::after {
+      content: ""; position: absolute; left: 0; bottom: 2px; width: 0; height: 1.5px;
+      background: var(--terracota); transition: width var(--trans);
+    }
+    .nav-link:hover::after { width: 100%; }
+    .navbar-toggler { border: none; }
+    .navbar.transparent .navbar-toggler i { color: #fff; }
+    .navbar.solid .navbar-toggler i { color: var(--carbon); }
+    .navbar-toggler:focus { box-shadow: none; }
+    .offcanvas { background: var(--crema); }
+    .offcanvas .nav-link { color: var(--carbon) !important; font-size: 1.1rem; padding: .6rem 0; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      text-align: center;
+      background:
+        linear-gradient(180deg, rgba(107,44,56,.5) 0%, rgba(107,44,56,.42) 50%, rgba(107,44,56,.8) 100%),
+        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1900&q=80') center/cover fixed;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 6rem); font-weight: 600;
+      margin-bottom: 1.2rem; text-shadow: 0 2px 24px rgba(0,0,0,.3);
+    }
+    .hero h1 .it { font-style: italic; color: #fff; }
+    .hero-sub { max-width: 620px; margin: 0 auto 2.1rem; font-size: 1.12rem; opacity: .94; }
+    .hero-sub strong { color: var(--terracota); font-weight: 600; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .55rem;
+      border: 1px solid rgba(255,255,255,.4); border-radius: 50px;
+      padding: .4rem 1.1rem; font-size: .76rem; letter-spacing: .14em;
+      text-transform: uppercase; margin-bottom: 1.7rem; font-weight: 600;
+    }
+    .hero-tag .pin { width: 7px; height: 7px; border-radius: 50%; background: var(--terracota); }
+    .scroll-ind {
+      position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+      color: #fff; font-size: 1.3rem; animation: bob 1.9s infinite;
+    }
+    @keyframes bob { 0%,100%{transform:translate(-50%,0);} 50%{transform:translate(-50%,12px);} }
+
+    /* ===== TRUST BAND ===== */
+    .trust { background: var(--vino); color: var(--crema); padding: 3rem 0; }
+    .trust-item i { font-size: 1.7rem; color: var(--terracota); margin-bottom: .55rem; }
+    .trust-num { font-family: 'Cormorant Garamond'; font-size: 2.9rem; font-weight: 600; line-height: 1; }
+    .trust-label { font-size: .9rem; opacity: .85; }
+
+    /* ===== BIENVENIDA ===== */
+    .welcome-imgs { position: relative; }
+    .welcome-imgs .w-main { width: 82%; border-radius: var(--radius); box-shadow: var(--sombra); }
+    .welcome-imgs .w-sub {
+      position: absolute; bottom: -34px; right: 0; width: 46%;
+      border: 7px solid var(--crema); border-radius: var(--radius); box-shadow: var(--sombra-sm);
+    }
+    .welcome-badge {
+      position: absolute; top: 18px; left: -14px; z-index: 3;
+      background: var(--terracota); color: #fff; border-radius: 50%;
+      width: 112px; height: 112px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      font-family: 'Cormorant Garamond'; box-shadow: var(--sombra-sm);
+    }
+    .welcome-badge .b-num { font-size: 2.1rem; font-weight: 700; line-height: 1; }
+    .welcome-badge .b-txt { font-size: .62rem; text-transform: uppercase; letter-spacing: .08em; font-family: 'Mulish'; font-weight: 600; }
+
+    /* ===== CARDS DE EVENTOS ===== */
+    .event-card {
+      background: var(--blanco); border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--sombra-sm); height: 100%; transition: transform var(--trans), box-shadow var(--trans);
+      border-top: 3px solid transparent;
+    }
+    .event-card:hover { transform: translateY(-8px); box-shadow: var(--sombra); border-top-color: var(--terracota); }
+    .event-card .img-wrap { position: relative; height: 240px; overflow: hidden; }
+    .event-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+    .event-card:hover .img-wrap img { transform: scale(1.1); }
+    .event-card .img-wrap::after {
+      content: ""; position: absolute; inset: 0;
+      background: rgba(138,58,72,0); transition: background var(--trans);
+    }
+    .event-card:hover .img-wrap::after { background: rgba(138,58,72,.28); }
+    .event-card .ev-ico {
+      position: absolute; bottom: -22px; left: 22px; z-index: 2;
+      width: 50px; height: 50px; border-radius: 14px; background: var(--blanco);
+      box-shadow: var(--sombra-sm); display: flex; align-items: center; justify-content: center;
+      color: var(--vino); font-size: 1.2rem;
+    }
+    .event-card .card-body { padding: 2.4rem 1.7rem 1.8rem; }
+    .event-card h4 { font-size: 1.7rem; margin-bottom: .35rem; }
+    .event-card p { color: var(--gris); font-size: .94rem; }
+
+    /* ===== ESPACIOS ===== */
+    .feature-list li {
+      list-style: none; padding: .5rem 0; display: flex; gap: .85rem; align-items: flex-start;
+    }
+    .feature-list li i {
+      color: var(--vino); background: var(--vino-l);
+      width: 36px; height: 36px; border-radius: 10px; flex: 0 0 36px;
+      display: flex; align-items: center; justify-content: center; margin-top: 2px;
+    }
+    .feature-list li strong { font-weight: 700; }
+    .space-frame { border-radius: var(--radius); box-shadow: var(--sombra); width: 100%; object-fit: cover; }
+    .space-stack { position: relative; }
+    .space-stack .s-2 {
+      position: absolute; bottom: -34px; left: -22px; width: 50%;
+      border: 7px solid var(--crema); border-radius: var(--radius);
+    }
+    .space-quote {
+      border-left: 3px solid var(--terracota); padding-left: 1.2rem;
+      font-family: 'Cormorant Garamond'; font-style: italic; font-size: 1.4rem; color: var(--vino);
+    }
+
+    /* ===== STATEMENT BAND ===== */
+    .statement { background: var(--vino-l); text-align: center; }
+    .statement p {
+      font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500;
+      font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.3; color: var(--vino);
+      max-width: 880px; margin: 0 auto;
+    }
+    .statement .qm { color: var(--terracota); }
+
+    /* ===== GALERIA ===== */
+    .filter-btn {
+      background: transparent; border: 1.5px solid rgba(58,42,44,.18); color: var(--gris);
+      border-radius: 50px; padding: .45rem 1.35rem; margin: .25rem; font-size: .87rem;
+      font-weight: 600; transition: all var(--trans);
+    }
+    .filter-btn:hover { color: var(--vino); border-color: var(--vino); }
+    .filter-btn.active { background: var(--vino); border-color: var(--vino); color: #fff; }
+    .gallery-item { transition: opacity .4s ease; }
+    .gallery-item.hide { display: none; }
+    .gallery-item a { display: block; border-radius: 14px; overflow: hidden; position: relative; }
+    .gallery-item img { width: 100%; height: 260px; object-fit: cover; transition: transform .6s ease; }
+    .gallery-item a::after {
+      content: "\f00e"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.5rem; background: rgba(107,44,56,0); opacity: 0; transition: all var(--trans);
+    }
+    .gallery-item a:hover::after { background: rgba(107,44,56,.5); opacity: 1; }
+    .gallery-item a:hover img { transform: scale(1.09); }
+    .gallery-item.extra { display: none; }
+    .gallery-item.extra.shown { display: block; }
+
+    /* ===== TESTIMONIOS ===== */
+    .testi-card {
+      background: var(--blanco); border-radius: var(--radius); padding: 2.3rem;
+      box-shadow: var(--sombra-sm); height: 100%;
+    }
+    .testi-card .qmark { font-family: 'Cormorant Garamond'; font-size: 4rem; color: var(--terracota); line-height: .4; }
+    .testi-card .stars { color: var(--terracota); font-size: .82rem; margin-bottom: .9rem; }
+    .testi-card .quote { color: var(--carbon); font-size: 1rem; margin: 1rem 0 1.4rem; }
+    .testi-foot { display: flex; align-items: center; gap: .9rem; }
+    .testi-foot img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--terracota); }
+    .testi-foot h5 { font-size: 1.3rem; margin: 0; }
+    .testi-foot span { color: var(--gris); font-size: .82rem; }
+    .swiper-testi { padding-bottom: 3.4rem; }
+    .swiper-pagination-bullet { background: var(--gris); }
+    .swiper-pagination-bullet-active { background: var(--vino); }
+
+    /* ===== FORMULARIO ===== */
+    .form-section { background: var(--vino); color: var(--crema); }
+    .form-section .eyebrow { color: var(--terracota); }
+    .form-section .section-title, .form-section .lead-muted { color: var(--crema); }
+    .reason-row { display: flex; gap: 1rem; margin-bottom: 1.3rem; }
+    .reason-row .r-ico {
+      flex: 0 0 46px; width: 46px; height: 46px; border-radius: 12px;
+      background: rgba(204,122,92,.22); border: 1px solid rgba(204,122,92,.45); color: var(--terracota);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .reason-row h5 { font-size: 1.3rem; margin-bottom: .1rem; color: #fff; }
+    .reason-row p { color: rgba(251,246,240,.78); font-size: .9rem; margin: 0; }
+    .form-box { background: var(--crema); border-radius: var(--radius); padding: 2.6rem; box-shadow: var(--sombra); }
+    .form-box h3 { color: var(--carbon); }
+    .form-label { font-weight: 600; font-size: .86rem; margin-bottom: .35rem; color: var(--carbon); }
+    .form-label .req { color: var(--terracota-d); }
+    .form-control, .form-select {
+      background: var(--blanco); border: 1.5px solid #e7dcd5; color: var(--carbon);
+      border-radius: 11px; padding: .72rem .9rem; font-size: .94rem;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--terracota); box-shadow: 0 0 0 .2rem rgba(204,122,92,.2);
+    }
+    .field-error { color: #b5462e; font-size: .79rem; margin-top: .25rem; display: none; }
+    .form-control.is-invalid, .form-select.is-invalid { border-color: #b5462e; background-image: none; }
+    .form-control.is-valid, .form-select.is-valid { border-color: var(--vino); background-image: none; }
+    .form-check-input:checked { background: var(--vino); border-color: var(--vino); }
+
+    /* ===== UBICACION ===== */
+    .map-frame { border: 0; width: 100%; height: 100%; min-height: 400px; border-radius: var(--radius); }
+    .loc-card { background: var(--vino-l); border-radius: var(--radius); padding: 2.4rem; height: 100%; }
+    .loc-item { display: flex; gap: .9rem; margin-bottom: 1.15rem; }
+    .loc-item i { color: var(--terracota-d); font-size: 1.05rem; width: 24px; flex: 0 0 24px; margin-top: 3px; }
+    .loc-item span { color: var(--gris); font-size: .95rem; }
+
+    /* ===== FAQ ===== */
+    .accordion-item { border: none; margin-bottom: .8rem; border-radius: 14px !important; overflow: hidden; box-shadow: var(--sombra-sm); }
+    .accordion-button {
+      font-family: 'Cormorant Garamond'; font-weight: 600; font-size: 1.4rem;
+      background: var(--blanco); color: var(--carbon); padding: 1.1rem 1.35rem;
+    }
+    .accordion-button:not(.collapsed) { background: var(--vino-l); color: var(--vino); box-shadow: none; }
+    .accordion-button:focus { box-shadow: none; }
+    .accordion-button::after {
+      background-image: none; content: "\2b"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+      color: var(--terracota-d); width: auto; height: auto; font-size: .9rem;
+    }
+    .accordion-button:not(.collapsed)::after { content: "\f068"; }
+    .accordion-body { color: var(--gris); padding: 0 1.35rem 1.35rem; }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--vino-d); color: rgba(251,246,240,.74); padding: 4.5rem 0 0; }
+    footer h5 { color: var(--crema); font-size: 1.4rem; margin-bottom: 1.1rem; }
+    footer .f-link { color: rgba(251,246,240,.74); display: block; padding: .3rem 0; font-size: .92rem; }
+    footer .f-link:hover { color: var(--terracota); }
+    .social-ic {
+      width: 42px; height: 42px; border-radius: 12px; background: rgba(255,255,255,.08);
+      display: inline-flex; align-items: center; justify-content: center; color: var(--crema);
+      margin-right: .5rem; transition: all var(--trans);
+    }
+    .social-ic:hover { background: var(--terracota); color: #fff; transform: translateY(-3px); }
+    .foot-bottom { border-top: 1px solid rgba(255,255,255,.1); margin-top: 3.5rem; padding: 1.5rem 0; font-size: .84rem; }
+    .foot-bottom a { color: var(--terracota); }
+    .open-priv { cursor: pointer; }
+
+    /* ===== FLOTANTES ===== */
+    .wa-float {
+      position: fixed; bottom: 22px; right: 22px; z-index: 9000;
+      width: 60px; height: 60px; border-radius: 50%; background: #25D366;
+      display: flex; align-items: center; justify-content: center; color: #fff;
+      font-size: 1.9rem; box-shadow: 0 6px 22px rgba(37,211,102,.45); transition: transform var(--trans);
+    }
+    .wa-float:hover { transform: scale(1.1); color: #fff; }
+    .wa-float::before {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background: #25D366; z-index: -1; animation: waPulse 2s infinite;
+    }
+    @keyframes waPulse { 0%{transform:scale(1);opacity:.6;} 100%{transform:scale(1.8);opacity:0;} }
+    .to-top {
+      position: fixed; bottom: 94px; right: 26px; z-index: 8500;
+      width: 48px; height: 48px; border-radius: 50%; background: var(--vino);
+      color: #fff; border: none; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all var(--trans);
+    }
+    .to-top.show { opacity: 1; visibility: visible; }
+    .to-top:hover { background: var(--terracota); }
+
+    /* ===== TOAST ===== */
+    .toast-ok {
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-130px);
+      background: var(--vino); color: #fff; padding: 1rem 1.6rem; border-radius: 50px;
+      box-shadow: var(--sombra); z-index: 99990; font-weight: 600;
+      transition: transform .5s cubic-bezier(.22,.7,.3,1);
+    }
+    .toast-ok.show { transform: translateX(-50%) translateY(0); }
+
+    /* ===== MODAL ===== */
+    .modal-priv .modal-content { border-radius: var(--radius); border: none; background: var(--crema); }
+    .modal-priv h6 { color: var(--vino); font-weight: 700; margin-top: 1.3rem; }
+    .modal-priv p, .modal-priv li { color: var(--gris); font-size: .92rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 991px) {
+      :root { --sec-pad: 4.2rem; }
+      .hero { background-attachment: scroll; }
+      .welcome-imgs .w-sub, .space-stack .s-2 { position: static; width: 100%; margin-top: 1rem; border: none; }
+      .welcome-imgs .w-main { width: 100%; }
+      .welcome-badge { top: 14px; left: 14px; }
+    }
+    @media (max-width: 575px) {
+      :root { --sec-pad: 3.4rem; }
+      .form-box { padding: 1.6rem; }
+      .trust-num { font-size: 2.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================= LOADER ================= -->
+<div id="loader">
+  <div class="loader-mark">Hacienda Camelia <i class="fa-solid fa-spa"></i></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+<div class="topbar">
+  <i class="fa-solid fa-spa me-2"></i>Agenda 2026 disponible — aparta tu fecha antes de que se ocupe
+</div>
+<nav class="navbar navbar-expand-lg fixed-top transparent">
+  <div class="container">
+    <a class="navbar-brand" href="#inicio">Hacienda<span class="leaf"> Camelia</span></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars fa-lg"></i>
+    </button>
+
+    <!-- Menu desktop -->
+    <div class="d-none d-lg-flex">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
+        <li class="nav-item"><a class="nav-link" href="#espacios">Espacios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonios">Testimonios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faqs">FAQs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ubicacion">Contacto</a></li>
+        <li class="nav-item ms-2"><a class="btn btn-terracota" style="padding:.6rem 1.5rem;font-size:.88rem" href="#reserva">Reservar fecha</a></li>
+      </ul>
+    </div>
+
+    <!-- Off-canvas mobile -->
+    <div class="offcanvas offcanvas-end d-lg-none" id="navMenu" tabindex="-1">
+      <div class="offcanvas-header">
+        <span class="navbar-brand" style="color:var(--carbon)">Hacienda<span class="leaf"> Camelia</span></span>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#inicio" data-bs-dismiss="offcanvas">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#eventos" data-bs-dismiss="offcanvas">Eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria" data-bs-dismiss="offcanvas">Galeria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#espacios" data-bs-dismiss="offcanvas">Espacios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonios" data-bs-dismiss="offcanvas">Testimonios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faqs" data-bs-dismiss="offcanvas">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ubicacion" data-bs-dismiss="offcanvas">Contacto</a></li>
+          <li class="nav-item mt-3"><a class="btn btn-vino w-100" href="#reserva" data-bs-dismiss="offcanvas">Reservar fecha</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="inicio">
+  <div class="container">
+    <div data-aos="fade-up">
+      <span class="hero-tag"><span class="pin"></span>Floridablanca · Santander</span>
+      <h1>Donde florece<br>tu mejor <span class="it">historia</span></h1>
+      <p class="hero-sub">
+        <strong>Hacienda Camelia</strong> es una finca de eventos rodeada de jardines de
+        rosas, a 20 minutos de Bucaramanga. El escenario perfecto para tu celebracion.
+      </p>
+      <div class="d-flex flex-wrap gap-3 justify-content-center">
+        <a href="#reserva" class="btn btn-terracota">Ver disponibilidad <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#galeria" class="btn btn-outline-light-c"><i class="fa-regular fa-images"></i> Ver galeria</a>
+      </div>
+    </div>
+  </div>
+  <a href="#trust" class="scroll-ind" aria-label="Bajar"><i class="fa-solid fa-chevron-down"></i></a>
+</header>
+
+<!-- ================= TRUST BAND ================= -->
+<section class="trust" id="trust" style="padding-top:3rem;padding-bottom:3rem">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up">
+        <i class="fa-solid fa-heart"></i>
+        <div class="trust-num"><span class="counter" data-target="18">0</span>+</div>
+        <div class="trust-label">Años de experiencia</div>
+      </div>
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-champagne-glasses"></i>
+        <div class="trust-num"><span class="counter" data-target="950">0</span>+</div>
+        <div class="trust-label">Eventos realizados</div>
+      </div>
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa-solid fa-users"></i>
+        <div class="trust-num">Hasta <span class="counter" data-target="500">0</span></div>
+        <div class="trust-label">Invitados por evento</div>
+      </div>
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa-solid fa-location-dot"></i>
+        <div class="trust-num">20 min</div>
+        <div class="trust-label">Desde Bucaramanga</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BIENVENIDA ================= -->
+<section id="bienvenida">
+  <i class="fa-solid fa-spa leaf-deco" style="font-size:14rem;top:30px;right:-30px;transform:rotate(20deg)"></i>
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="welcome-imgs">
+          <img class="w-main" loading="lazy" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80" alt="Jardin de la Hacienda Camelia, Floridablanca">
+          <img class="w-sub" loading="lazy" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt="Detalle de decoracion en Hacienda Camelia">
+          <div class="welcome-badge">
+            <span class="b-num">18</span>
+            <span class="b-txt">Años de<br>experiencia</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <span class="eyebrow"><i class="fa-solid fa-spa"></i> Bienvenidos</span>
+        <h2 class="section-title">Un jardin de rosas<br>para tu gran dia</h2>
+        <div class="divider start"></div>
+        <p class="lead-muted">
+          Durante casi dos decadas, Hacienda Camelia ha sido el escenario de matrimonios,
+          quinces y grados inolvidables. Jardines de rosas, una capilla romantica y un
+          equipo que cuida cada detalle como si fuera propio.
+        </p>
+        <p class="lead-muted">
+          Aqui no alquilas un salon: encuentras el lugar donde tu historia florece entre
+          color, luz y elegancia.
+        </p>
+        <a href="#espacios" class="btn btn-vino mt-2">Conoce nuestros espacios <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIPOS DE EVENTO ================= -->
+<section id="eventos" class="bg-soft">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-spa"></i> Lo que celebramos</span>
+      <h2 class="section-title">Cada ocasion, su escenario</h2>
+      <div class="divider"></div>
+      <p class="lead-muted mx-auto" style="max-width:600px">
+        Adaptamos cada espacio al evento que sueñas. Elige el tuyo y consulta
+        disponibilidad sin compromiso.
+      </p>
+    </div>
+
+    <div class="row g-4 mt-2">
+      <!-- Matrimonios -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up">
+        <article class="event-card">
+          <div class="img-wrap">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" alt="Matrimonio en Hacienda Camelia, Floridablanca">
+            <span class="ev-ico"><i class="fa-solid fa-ring"></i></span>
+          </div>
+          <div class="card-body">
+            <h4>Matrimonios</h4>
+            <p>Ceremonia en la capilla romantica y recepcion entre los jardines de rosas. Tu dia perfecto.</p>
+            <a href="#reserva" class="btn btn-outline-c">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+      <!-- Quinces -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <article class="event-card">
+          <div class="img-wrap">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80" alt="Fiesta de quince años en finca de eventos Santander">
+            <span class="ev-ico"><i class="fa-solid fa-crown"></i></span>
+          </div>
+          <div class="card-body">
+            <h4>Quinces</h4>
+            <p>Un escenario de ensueño para la fiesta: pista amplia, iluminacion calida y espacio para el vals.</p>
+            <a href="#reserva" class="btn btn-outline-c">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+      <!-- Grados -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <article class="event-card">
+          <div class="img-wrap">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80" alt="Celebracion de grado en finca de eventos Floridablanca">
+            <span class="ev-ico"><i class="fa-solid fa-graduation-cap"></i></span>
+          </div>
+          <div class="card-body">
+            <h4>Grados</h4>
+            <p>Celebra el logro con la familia y la promocion. Menus para grupos y ambiente alegre.</p>
+            <a href="#reserva" class="btn btn-outline-c">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+      <!-- Primeras comuniones -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up">
+        <article class="event-card">
+          <div class="img-wrap">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80" alt="Primera comunion celebrada en finca de eventos">
+            <span class="ev-ico"><i class="fa-solid fa-dove"></i></span>
+          </div>
+          <div class="card-body">
+            <h4>Primeras comuniones</h4>
+            <p>Un espacio luminoso y tranquilo para una celebracion familiar, con jardin para los niños.</p>
+            <a href="#reserva" class="btn btn-outline-c">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+      <!-- Cumpleaños -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <article class="event-card">
+          <div class="img-wrap">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=800&q=80" alt="Fiesta de cumpleaños en finca de eventos Santander">
+            <span class="ev-ico"><i class="fa-solid fa-cake-candles"></i></span>
+          </div>
+          <div class="card-body">
+            <h4>Cumpleaños</h4>
+            <p>Desde reuniones intimas hasta grandes fiestas, con descorche permitido y total libertad.</p>
+            <a href="#reserva" class="btn btn-outline-c">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+      <!-- Corporativos -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <article class="event-card">
+          <div class="img-wrap">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80" alt="Evento corporativo en centro de eventos Santander">
+            <span class="ev-ico"><i class="fa-solid fa-briefcase"></i></span>
+          </div>
+          <div class="card-body">
+            <h4>Eventos corporativos</h4>
+            <p>Integraciones, lanzamientos y fin de año con cocina equipada, parqueadero y plan B techado.</p>
+            <a href="#reserva" class="btn btn-outline-c">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ESPACIOS ================= -->
+<section id="espacios">
+  <div class="container">
+
+    <!-- Bloque 1 -->
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6" data-aos="fade-right">
+        <span class="eyebrow"><i class="fa-solid fa-spa"></i> Nuestros espacios</span>
+        <h2 class="section-title">Jardines que abrazan<br>tu celebracion</h2>
+        <div class="divider start"></div>
+        <p class="lead-muted">
+          Cada rincon de Hacienda Camelia esta diseñado para que tu evento fluya sin
+          contratiempos, llueva o haga sol.
+        </p>
+        <ul class="feature-list ps-0 mt-3">
+          <li><i class="fa-solid fa-church"></i><span><strong>Capilla romantica</strong> para ceremonias religiosas dentro de la hacienda.</span></li>
+          <li><i class="fa-solid fa-spa"></i><span><strong>Jardin de rosas</strong> con cientos de rosales y senderos para la sesion de fotos.</span></li>
+          <li><i class="fa-solid fa-fountain-water"></i><span><strong>Fuente central</strong> que da un marco unico a tu coctel de bienvenida.</span></li>
+        </ul>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="space-stack">
+          <img class="space-frame" style="height:380px" loading="lazy"
+               src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=900&q=80"
+               alt="Jardin de rosas y zona de ceremonia de Hacienda Camelia">
+          <img class="s-2" loading="lazy"
+               src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80"
+               alt="Detalle del jardin de Hacienda Camelia">
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloque 2 (alterna) -->
+    <div class="row g-5 align-items-center mt-5 pt-4 flex-lg-row-reverse">
+      <div class="col-lg-6" data-aos="fade-left">
+        <span class="eyebrow"><i class="fa-solid fa-spa"></i> Salon y comodidades</span>
+        <h2 class="section-title">Salon vitral<br>y plan B techado</h2>
+        <div class="divider start"></div>
+        <p class="lead-muted">
+          La lluvia nunca sera un problema. Nuestro salon vitral cubierto recibe hasta
+          500 invitados y se integra a los jardines sin perder la magia del entorno.
+        </p>
+        <ul class="feature-list ps-0 mt-3">
+          <li><i class="fa-solid fa-cloud-showers-heavy"></i><span><strong>Plan B techado</strong> que garantiza tu evento pase lo que pase.</span></li>
+          <li><i class="fa-solid fa-bed"></i><span><strong>Suite nupcial</strong> para que los novios descansen y se preparen el dia del evento.</span></li>
+          <li><i class="fa-solid fa-square-parking"></i><span><strong>Parqueadero privado</strong> con capacidad para 100 vehiculos.</span></li>
+          <li><i class="fa-solid fa-wine-glass"></i><span><strong>Descorche permitido</strong>: trae tu propio licor sin recargos ocultos.</span></li>
+        </ul>
+        <p class="space-quote mt-4">"Un lugar para celebrar, brillar y recordar para siempre."</p>
+        <a href="#reserva" class="btn btn-vino mt-3">Quiero reservar mi fecha <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="col-lg-6" data-aos="fade-right">
+        <img class="space-frame" style="height:440px" loading="lazy"
+             src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&q=80"
+             alt="Salon vitral de Hacienda Camelia preparado para un evento">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= STATEMENT BAND ================= -->
+<section class="statement" data-aos="fade-up">
+  <div class="container">
+    <p><span class="qm">&ldquo;</span>No vendemos un espacio. Cuidamos el dia que recordaras
+    el resto de tu vida.<span class="qm">&rdquo;</span></p>
+  </div>
+</section>
+
+<!-- ================= GALERIA ================= -->
+<section id="galeria">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-spa"></i> Galeria</span>
+      <h2 class="section-title">Momentos que florecieron aqui</h2>
+      <div class="divider"></div>
+      <p class="lead-muted mx-auto" style="max-width:600px">
+        Recorre algunos de los eventos celebrados en Hacienda Camelia. Haz click para verlos en grande.
+      </p>
+    </div>
+
+    <div class="text-center my-4" data-aos="fade-up">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="matrimonios">Matrimonios</button>
+      <button class="filter-btn" data-filter="quinces">Quinces</button>
+      <button class="filter-btn" data-filter="grados">Grados</button>
+      <button class="filter-btn" data-filter="corporativos">Corporativos</button>
+    </div>
+
+    <div class="row g-3" id="galleryGrid">
+      <div class="col-6 col-md-4 gallery-item" data-cat="matrimonios" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80" alt="Matrimonio en Hacienda Camelia"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="quinces" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80" alt="Quince años en Hacienda Camelia"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="grados" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=700&q=80" alt="Grado en Hacienda Camelia"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="corporativos" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=700&q=80" alt="Evento corporativo en Hacienda Camelia"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="matrimonios" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80" alt="Decoracion de matrimonio"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="matrimonios" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=700&q=80" alt="Ceremonia en el jardin"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="quinces" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=80" alt="Mesa decorada"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="grados" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=700&q=80" alt="Brindis de celebracion"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="corporativos" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=700&q=80" alt="Salon montado"></a>
+      </div>
+      <!-- Extra -->
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="matrimonios">
+        <a href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=80" alt="Recepcion de matrimonio"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="quinces">
+        <a href="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=700&q=80" alt="Decoracion floral"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="corporativos">
+        <a href="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=700&q=80" alt="Coctel corporativo"></a>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button id="loadMore" class="btn btn-outline-c">Ver mas fotos <i class="fa-solid fa-plus ms-1"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+<section id="testimonios" class="bg-soft">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-spa"></i> Testimonios</span>
+      <h2 class="section-title">Lo que dicen quienes ya celebraron</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="swiper swiper-testi mt-4" data-aos="fade-up">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">El jardin de rosas al atardecer dejo a todos los invitados sin palabras. La capilla fue justo lo que soñabamos para la ceremonia.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=160&q=80" alt="Paula Restrepo">
+              <div><h5>Paula Restrepo</h5><span>Matrimonio · Octubre 2025</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">Los quince de mi hija fueron un sueño. Llovio, pero el plan B techado nos dio total tranquilidad y ni se noto.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&q=80" alt="Adriana Vega">
+              <div><h5>Adriana Vega</h5><span>Quinces · Julio 2025</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">Organizamos la integracion de la empresa. Parqueadero amplio, comida excelente y un entorno hermoso que todos disfrutaron.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&q=80" alt="Camilo Herrera">
+              <div><h5>Camilo Herrera</h5><span>Corporativo · Diciembre 2025</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">La suite nupcial fue un detalle que marco la diferencia. Atencion calida e impecable de principio a fin.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=160&q=80" alt="Lina Gomez">
+              <div><h5>Lina Gomez</h5><span>Matrimonio · Marzo 2026</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMULARIO DE RESERVA ================= -->
+<section id="reserva" class="form-section">
+  <i class="fa-solid fa-spa leaf-deco" style="font-size:16rem;bottom:-40px;left:-50px;color:#fff;transform:rotate(-20deg)"></i>
+  <div class="container">
+    <div class="row g-5 align-items-center">
+
+      <!-- Izquierda -->
+      <div class="col-lg-5" data-aos="fade-right">
+        <span class="eyebrow"><i class="fa-solid fa-spa"></i> Reserva tu fecha</span>
+        <h2 class="section-title">Las mejores fechas<br>se agendan con tiempo</h2>
+        <div class="divider start"></div>
+        <p class="lead-muted mb-4">
+          Cuentanos sobre tu evento y un asesor te respondera por WhatsApp con disponibilidad
+          y paquetes. Sin compromiso.
+        </p>
+
+        <div class="reason-row">
+          <span class="r-ico"><i class="fa-solid fa-calendar-day"></i></span>
+          <div><h5>Un evento por dia</h5><p>Nos dedicamos por completo a tu celebracion.</p></div>
+        </div>
+        <div class="reason-row">
+          <span class="r-ico"><i class="fa-solid fa-tags"></i></span>
+          <div><h5>Tarifa anticipada</h5><p>Reservar con tiempo asegura precio y mas opciones de menu.</p></div>
+        </div>
+        <div class="reason-row">
+          <span class="r-ico"><i class="fa-solid fa-headset"></i></span>
+          <div><h5>Acompañamiento total</h5><p>Te guiamos desde la cotizacion hasta el dia del evento.</p></div>
+        </div>
+      </div>
+
+      <!-- Derecha: formulario -->
+      <div class="col-lg-7" data-aos="fade-left">
+        <div class="form-box">
+          <h3 class="mb-4" style="font-size:2rem">Consulta disponibilidad</h3>
+          <!-- Formulario sin backend: arma un mensaje y abre WhatsApp -->
+          <form id="reservaForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="f-nombre">Nombre completo <span class="req">*</span></label>
+                <input type="text" class="form-control" id="f-nombre" placeholder="Ej: Ana Gomez">
+                <div class="field-error" data-for="f-nombre">Por favor ingresa tu nombre.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-tel">Telefono / WhatsApp <span class="req">*</span></label>
+                <input type="tel" class="form-control" id="f-tel" placeholder="Ej: 3001234567">
+                <div class="field-error" data-for="f-tel">Ingresa un numero colombiano valido (10 digitos).</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-email">Email</label>
+                <input type="email" class="form-control" id="f-email" placeholder="tucorreo@ejemplo.com">
+                <div class="field-error" data-for="f-email">Revisa el formato del correo.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-tipo">Tipo de evento <span class="req">*</span></label>
+                <select class="form-select" id="f-tipo">
+                  <option value="">Selecciona...</option>
+                  <option>Matrimonio</option>
+                  <option>Quinces</option>
+                  <option>Grado</option>
+                  <option>Primera comunion</option>
+                  <option>Cumpleaños</option>
+                  <option>Evento corporativo</option>
+                  <option>Otro</option>
+                </select>
+                <div class="field-error" data-for="f-tipo">Selecciona el tipo de evento.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-fecha">Fecha tentativa</label>
+                <input type="date" class="form-control" id="f-fecha">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-invitados">No. estimado de invitados <span class="req">*</span></label>
+                <input type="number" class="form-control" id="f-invitados" min="20" max="500" placeholder="Ej: 130">
+                <div class="field-error" data-for="f-invitados">Indica un numero de invitados.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="f-mensaje">Mensaje (opcional)</label>
+                <textarea class="form-control" id="f-mensaje" rows="3" placeholder="Cuentanos algun detalle de tu evento..."></textarea>
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="f-acepto">
+                  <label class="form-check-label" style="font-size:.86rem" for="f-acepto">
+                    Acepto el tratamiento de mis datos segun la
+                    <a class="text-vino open-priv" style="font-weight:700">Politica de Privacidad (Ley 1581 de 2012)</a>.
+                  </label>
+                  <div class="field-error" data-for="f-acepto">Debes aceptar el tratamiento de datos.</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-vino w-100 justify-content-center">
+                  <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
+                </button>
+                <p class="text-center mt-2 mb-0" style="font-size:.8rem;color:var(--gris)">
+                  Al enviar se abrira WhatsApp con tu consulta lista para mandar.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= UBICACION ================= -->
+<section id="ubicacion">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-spa"></i> Como llegar</span>
+      <h2 class="section-title">Te esperamos en Floridablanca</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="row g-4 mt-2 align-items-stretch">
+      <div class="col-lg-7" data-aos="fade-right">
+        <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Floridablanca%20Santander%20Colombia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          title="Ubicacion de Hacienda Camelia en Floridablanca"></iframe>
+      </div>
+      <div class="col-lg-5" data-aos="fade-left">
+        <div class="loc-card">
+          <h3 style="font-size:1.9rem" class="mb-3">Hacienda Camelia</h3>
+          <div class="loc-item"><i class="fa-solid fa-location-dot"></i>
+            <span>Km 5 Via Helechales, Floridablanca, Santander.</span></div>
+          <div class="loc-item"><i class="fa-solid fa-route"></i>
+            <span>A 20 minutos del centro de Bucaramanga por via pavimentada.</span></div>
+          <div class="loc-item"><i class="fa-solid fa-phone"></i>
+            <span>(607) 648 7700</span></div>
+          <div class="loc-item"><i class="fa-brands fa-whatsapp"></i>
+            <span>+57 315 370 6558</span></div>
+          <div class="loc-item"><i class="fa-solid fa-clock"></i>
+            <span>Visitas con cita previa: Lunes a Domingo, 8:00 a.m. – 6:00 p.m.</span></div>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a class="btn btn-vino" style="padding:.6rem 1.4rem;font-size:.88rem" target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/?api=1&query=Floridablanca+Santander">
+              <i class="fa-solid fa-map-location-dot"></i> Google Maps</a>
+            <a class="btn btn-outline-c" target="_blank" rel="noopener"
+               href="https://waze.com/ul?q=Floridablanca%20Santander">
+              <i class="fa-brands fa-waze"></i> Waze</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faqs" class="bg-soft">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-spa"></i> Preguntas frecuentes</span>
+      <h2 class="section-title">Resolvemos tus dudas</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="row justify-content-center mt-2">
+      <div class="col-lg-9">
+        <div class="accordion" id="faqAcc" data-aos="fade-up">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">¿Permiten descorche?</button></h2>
+            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Si. Puedes traer tu propio licor sin recargos ocultos, lo que te ayuda a manejar mejor el presupuesto del evento.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">¿El alquiler incluye decoracion?</button></h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">El alquiler base incluye mobiliario, manteleria y montaje estandar. La decoracion tematica se cotiza aparte; trabajamos con decoradores aliados o puedes traer el tuyo.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">¿Hasta que hora puede durar el evento?</button></h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Los eventos pueden extenderse hasta las 2:00 a.m. Si necesitas mas tiempo, se acuerda una hora adicional con anticipacion.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">¿Que pasa si llueve el dia del evento?</button></h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Contamos con un salon vitral techado (plan B) con capacidad para 500 invitados. Tu evento esta garantizado pase lo que pase con el clima.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">¿Como reservo la fecha? ¿Cuanto es el anticipo?</button></h2>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">La fecha se aparta con un anticipo del 30% del valor total del paquete. El saldo se cancela una semana antes del evento. Escribenos por WhatsApp para iniciar.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">¿Tienen parqueadero?</button></h2>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Si, parqueadero privado y gratuito con capacidad para 100 vehiculos dentro de las instalaciones de la hacienda.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">¿Aceptan proveedores externos (DJ, catering)?</button></h2>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Si. Puedes traer tu propio DJ, grupo musical o catering. Tambien ofrecemos proveedores aliados de confianza si prefieres que organicemos todo.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">¿Cuales son las politicas de cancelacion?</button></h2>
+            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">El anticipo puede reprogramarse para una nueva fecha dentro de los 12 meses siguientes, sujeto a disponibilidad. Los detalles se entregan por escrito al firmar el contrato.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <span class="navbar-brand" style="color:var(--crema);font-size:1.8rem">Hacienda<span class="leaf"> Camelia</span></span>
+        <p class="mt-3" style="font-size:.92rem;max-width:300px">
+          Finca de eventos en Floridablanca, Santander. Donde florece tu mejor historia.
+        </p>
+        <div class="mt-3">
+          <a class="social-ic" href="https://instagram.com/hacienda.camelia" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="social-ic" href="https://facebook.com/haciendacameliaeventos" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="social-ic" href="https://wa.me/573153706558" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a class="social-ic" href="https://tiktok.com/@hacienda.camelia" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <h5>Explora</h5>
+        <a class="f-link" href="#inicio">Inicio</a>
+        <a class="f-link" href="#eventos">Eventos</a>
+        <a class="f-link" href="#galeria">Galeria</a>
+        <a class="f-link" href="#testimonios">Testimonios</a>
+        <a class="f-link" href="#reserva">Reservar fecha</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h5>Contacto</h5>
+        <a class="f-link"><i class="fa-solid fa-location-dot text-terracota me-2"></i>Km 5 Via Helechales, Floridablanca</a>
+        <a class="f-link" href="tel:+576076487700"><i class="fa-solid fa-phone text-terracota me-2"></i>(607) 648 7700</a>
+        <a class="f-link" href="https://wa.me/573153706558"><i class="fa-brands fa-whatsapp text-terracota me-2"></i>+57 315 370 6558</a>
+        <a class="f-link" href="mailto:hola@haciendacamelia.co"><i class="fa-solid fa-envelope text-terracota me-2"></i>hola@haciendacamelia.co</a>
+        <a class="f-link"><i class="fa-solid fa-clock text-terracota me-2"></i>Lun – Dom · 8am a 6pm</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h5>Legal</h5>
+        <p style="font-size:.9rem">Tratamos tus datos personales conforme a la Ley 1581 de 2012 de Colombia.</p>
+        <a class="btn btn-outline-light-c" style="padding:.55rem 1.3rem;font-size:.85rem">
+          <span class="open-priv">Politica de Privacidad</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-bottom text-center">
+      <p class="mb-1">&copy; <span id="year"></span> Hacienda Camelia — Finca de Eventos. Todos los derechos reservados. NIT: 901.XXX.XXX-X</p>
+      <p class="mb-0">Hecho con <span style="color:var(--terracota)">&hearts;</span> en Santander por
+        <a href="https://sruedadev.com" target="_blank" rel="noopener">sruedadev.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOTANTES ================= -->
+<a href="https://wa.me/573153706558?text=Hola%20Hacienda%20Camelia%2C%20quiero%20informacion%20para%20mi%20evento."
+   class="wa-float" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<button class="to-top" id="toTop" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ================= TOAST ================= -->
+<div class="toast-ok" id="toastOk"><i class="fa-solid fa-circle-check me-2"></i>¡Listo! Abriendo WhatsApp con tu consulta...</div>
+
+<!-- ================= MODAL POLITICA DE PRIVACIDAD (Ley 1581) ================= -->
+<div class="modal fade modal-priv" id="privModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title serif" style="font-size:1.6rem">Politica de Tratamiento de Datos Personales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p>En cumplimiento de la <strong style="color:var(--carbon)">Ley 1581 de 2012</strong> y el Decreto 1377 de 2013 de la
+        Republica de Colombia, Hacienda Camelia informa su politica de tratamiento de la informacion
+        de los titulares de datos personales.</p>
+
+        <h6>1. Responsable del tratamiento</h6>
+        <p>Hacienda Camelia — Finca de Eventos, ubicada en el Km 5 Via Helechales, Floridablanca,
+        Santander. Telefono (607) 648 7700. Correo: hola@haciendacamelia.co</p>
+
+        <h6>2. Finalidad del tratamiento</h6>
+        <p>Los datos personales recolectados a traves de este sitio web (nombre, telefono, correo y
+        detalles del evento) seran utilizados unicamente para: atender solicitudes de cotizacion y
+        disponibilidad, contactar al titular por WhatsApp, telefono o correo, enviar informacion
+        comercial sobre nuestros servicios y gestionar la reserva del evento.</p>
+
+        <h6>3. Derechos del titular</h6>
+        <p>Como titular de los datos, usted tiene derecho a:</p>
+        <ul>
+          <li>Conocer, actualizar y rectificar sus datos personales.</li>
+          <li>Solicitar prueba de la autorizacion otorgada.</li>
+          <li>Ser informado sobre el uso dado a sus datos personales.</li>
+          <li>Revocar la autorizacion y/o solicitar la supresion de los datos cuando no exista un
+          deber legal o contractual que lo impida.</li>
+          <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC).</li>
+        </ul>
+
+        <h6>4. Canales para ejercer sus derechos</h6>
+        <p>Para conocer, actualizar, rectificar, suprimir sus datos o revocar la autorizacion, el
+        titular puede comunicarse al correo <strong style="color:var(--carbon)">hola@haciendacamelia.co</strong>, al
+        WhatsApp <strong style="color:var(--carbon)">+57 315 370 6558</strong> o al telefono <strong style="color:var(--carbon)">(607) 648 7700</strong>.
+        Las solicitudes seran atendidas en los terminos establecidos por la ley.</p>
+
+        <h6>5. Vigencia</h6>
+        <p>Los datos seran conservados durante el tiempo necesario para cumplir las finalidades
+        descritas y mientras exista una relacion comercial o un deber legal de conservarlos.</p>
+
+        <p class="mt-3" style="font-size:.82rem">Ultima actualizacion: 2026.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-vino" style="padding:.6rem 1.5rem;font-size:.9rem" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= LIBRERIAS JS (al final, con defer) ================= -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+
+<!-- ================= JAVASCRIPT PROPIO ================= -->
+<script defer>
+window.addEventListener('DOMContentLoaded', function () {
+
+  /* ===== CONFIGURACION ===== */
+  const WHATSAPP_NUMERO = '573153706558';   // <-- numero del venue (pais + numero, sin "+")
+  const NOMBRE_VENUE    = 'Hacienda Camelia';
+
+  /* ===== LOADER ===== */
+  window.addEventListener('load', function () {
+    setTimeout(function () { document.getElementById('loader').classList.add('hidden'); }, 600);
+  });
+
+  /* ===== AOS ===== */
+  AOS.init({ duration: 850, once: true, offset: 90 });
+
+  /* ===== SWIPER (testimonios) ===== */
+  new Swiper('.swiper-testi', {
+    slidesPerView: 1, spaceBetween: 24, loop: true,
+    autoplay: { delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: { 768: { slidesPerView: 2 }, 992: { slidesPerView: 3 } }
+  });
+
+  /* ===== GLIGHTBOX ===== */
+  GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+
+  /* ===== jQuery ===== */
+  jQuery(function ($) {
+
+    /* --- Navbar transparente -> solida --- */
+    function navState() {
+      $('.navbar').toggleClass('solid', window.scrollY > 80)
+                  .toggleClass('transparent', window.scrollY <= 80);
+    }
+    navState();
+    $(window).on('scroll', navState);
+
+    /* --- Smooth scroll --- */
+    $('a[href^="#"]').on('click', function (e) {
+      const target = $(this.getAttribute('href'));
+      if (target.length) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: target.offset().top - 62 }, 600);
+      }
+    });
+
+    /* --- Boton volver arriba --- */
+    $(window).on('scroll', function () {
+      $('#toTop').toggleClass('show', window.scrollY > 600);
+    });
+    $('#toTop').on('click', function () { $('html, body').animate({ scrollTop: 0 }, 600); });
+
+    /* --- Counters animados --- */
+    let counted = false;
+    function runCounters() {
+      const band = $('#trust');
+      if (!counted && window.scrollY + window.innerHeight > band.offset().top + 60) {
+        counted = true;
+        $('.counter').each(function () {
+          const $el = $(this), target = +$el.data('target');
+          $({ n: 0 }).animate({ n: target }, {
+            duration: 1900,
+            step: function () { $el.text(Math.floor(this.n)); },
+            complete: function () { $el.text(target); }
+          });
+        });
+      }
+    }
+    runCounters();
+    $(window).on('scroll', runCounters);
+
+    /* --- Galeria con filtros --- */
+    $('.filter-btn').on('click', function () {
+      $('.filter-btn').removeClass('active');
+      $(this).addClass('active');
+      const cat = $(this).data('filter');
+      $('.gallery-item').each(function () {
+        const match = (cat === 'all' || $(this).data('cat') === cat);
+        const hiddenExtra = $(this).hasClass('extra') && !$(this).hasClass('shown');
+        if (match && !hiddenExtra) { $(this).stop().fadeIn(300).removeClass('hide'); }
+        else { $(this).stop().fadeOut(200).addClass('hide'); }
+      });
+    });
+
+    /* --- Galeria: Ver mas --- */
+    $('#loadMore').on('click', function () {
+      $('.gallery-item.extra').addClass('shown').hide().fadeIn(400);
+      $(this).fadeOut(200);
+    });
+
+    /* --- Validacion del formulario en tiempo real --- */
+    const $form = $('#reservaForm');
+    function showError($field, show) {
+      const id = $field.attr('id');
+      $('.field-error[data-for="' + id + '"]').toggle(show);
+      $field.toggleClass('is-invalid', show)
+            .toggleClass('is-valid', !show && $field.val().trim() !== '');
+    }
+    function validarCampo($field) {
+      const id = $field.attr('id'), val = $field.val().trim();
+      let ok = true;
+      if (id === 'f-nombre')    ok = val.length >= 3;
+      if (id === 'f-tel')       ok = /^3\d{9}$/.test(val.replace(/\s+/g, ''));
+      if (id === 'f-email')     ok = val === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if (id === 'f-tipo')      ok = val !== '';
+      if (id === 'f-invitados') ok = val !== '' && +val >= 20;
+      showError($field, !ok);
+      return ok;
+    }
+    $('#f-nombre, #f-tel, #f-email, #f-tipo, #f-invitados').on('input change blur', function () {
+      validarCampo($(this));
+    });
+
+    /* --- Envio: abre WhatsApp con mensaje pre-llenado --- */
+    $form.on('submit', function (e) {
+      e.preventDefault();
+      let valido = true;
+      $('#f-nombre, #f-tel, #f-tipo, #f-invitados').each(function () {
+        if (!validarCampo($(this))) valido = false;
+      });
+      if ($('#f-email').val().trim() !== '' && !validarCampo($('#f-email'))) valido = false;
+
+      const aceptado = $('#f-acepto').is(':checked');
+      $('.field-error[data-for="f-acepto"]').toggle(!aceptado);
+      if (!aceptado) valido = false;
+
+      if (!valido) {
+        $('html, body').animate({ scrollTop: $('#reserva').offset().top - 60 }, 400);
+        return;
+      }
+
+      const nombre    = $('#f-nombre').val().trim();
+      const tel       = $('#f-tel').val().trim();
+      const tipo      = $('#f-tipo').val();
+      const fecha     = $('#f-fecha').val() || 'por definir';
+      const invitados = $('#f-invitados').val();
+      const mensaje   = $('#f-mensaje').val().trim() || 'sin comentarios adicionales';
+
+      const texto =
+        'Hola ' + NOMBRE_VENUE + ', quiero consultar disponibilidad. ' +
+        'Mi nombre es ' + nombre + ', evento: ' + tipo + ', fecha tentativa: ' + fecha +
+        ', invitados: ' + invitados + '. Telefono: ' + tel + '. Mensaje: ' + mensaje;
+
+      const url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(texto);
+
+      const $toast = $('#toastOk');
+      $toast.addClass('show');
+      setTimeout(function () { $toast.removeClass('show'); }, 4000);
+
+      window.open(url, '_blank');
+      $form[0].reset();
+      $('.form-control, .form-select').removeClass('is-valid is-invalid');
+    });
+
+    /* --- Modal de privacidad --- */
+    $('.open-priv').on('click', function (e) {
+      e.preventDefault();
+      new bootstrap.Modal(document.getElementById('privModal')).show();
+    });
+
+    /* --- Año automatico --- */
+    $('#year').text(new Date().getFullYear());
+
+  }); // fin jQuery
+});
+</script>
+
+<!--
+=======================================================================
+  GUIA DE PERSONALIZACION  ·  Hacienda Camelia — Finca de Eventos
+=======================================================================
+
+  1. COLORES
+     Edita las variables en :root (inicio del <style>):
+       --vino (borgoña de marca), --terracota (acento de marca),
+       --crema (fondo), --carbon (texto).
+     Toda la pagina se actualiza automaticamente.
+
+  2. WHATSAPP
+     - JS: variable WHATSAPP_NUMERO (formato pais+numero, sin "+").
+     - Boton flotante .wa-float, footer y enlaces de contacto: atributo href.
+
+  3. TEXTOS / DATOS
+     Busca y reemplaza "Hacienda Camelia" por el nombre real del venue.
+     Actualiza direccion, telefonos, email, redes y NIT (footer + #ubicacion).
+
+  4. IMAGENES
+     Reemplaza las URLs de Unsplash por las fotos reales del venue
+     (hero -> background CSS .hero; bienvenida; cards de #eventos;
+     #espacios; galeria; testimonios). Conserva loading="lazy" y alt.
+
+  5. MAPA
+     En #ubicacion el <iframe> usa una busqueda generica de Google Maps.
+     Reemplaza el parametro q= por la direccion exacta del venue.
+     Igual en los botones de Google Maps y Waze.
+
+  6. SEO
+     Ajusta <title>, meta description, keywords, Open Graph y el JSON-LD
+     (coordenadas geo, telefono, direccion, capacidad).
+
+  7. GALERIA
+     Cada foto es un .gallery-item con data-cat (categoria del filtro).
+     Las marcadas con clase "extra" aparecen solo al dar "Ver mas".
+
+=======================================================================
+  SUPUESTOS ASUMIDOS (datos no entregados — rellenados de forma
+  razonable, confirmar con el cliente real):
+  - Nombre del venue: "Hacienda Camelia — Finca de Eventos"
+  - Ubicacion: Floridablanca, Santander (Km 5 Via Helechales)
+  - Capacidad: 70 a 500 invitados · 18 años · 950+ eventos
+  - Telefono fijo: (607) 648 7700
+  - WhatsApp: 573153706558 (placeholder — reemplazar por el real)
+  - Instagram: @hacienda.camelia · Facebook: /haciendacameliaeventos
+  - Email: hola@haciendacamelia.co · NIT: 901.XXX.XXX-X (placeholder)
+  - Coordenadas geo: aproximadas de Floridablanca (7.0610, -73.0860)
+  - Diferenciales (capilla romantica, jardin de rosas, fuente central,
+    salon vitral, suite nupcial, 100 parqueaderos) y politicas
+    comerciales: ejemplos tipicos del sector — confirmar con el cliente.
+=======================================================================
+-->
+</body>
+</html>

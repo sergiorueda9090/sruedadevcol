@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<!--
+=======================================================================
+  LANDING PAGE · AURORA — CASA DE EVENTOS
+  Estilo: oscuro, cinematografico, moderno · layout bento + reel de video
+  Stack: Bootstrap 5.3 · jQuery 3.7 · AOS · Swiper · GLightbox · FA6
+  Desarrollada por sruedadev.com — Santander, Colombia
+  Guia de personalizacion al final del archivo.
+=======================================================================
+-->
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ================= SEO LOCAL ================= -->
+  <title>Aurora · Casa de Eventos en Giron, Santander | Matrimonios, Quinces y Grados</title>
+  <meta name="description" content="Casa de eventos moderna en Giron, Santander. Terraza panoramica, domo de cristal y plan B cubierto para matrimonios, quinces y grados. Reserva por WhatsApp.">
+  <meta name="keywords" content="casa de eventos Giron, salon de eventos Santander, finca para matrimonios Bucaramanga, centro de eventos Floridablanca, salon para quinces Santander, finca para grados">
+  <meta name="author" content="Aurora Casa de Eventos">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.auroraeventos.co/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="business.business">
+  <meta property="og:title" content="Aurora · Casa de Eventos en Giron, Santander">
+  <meta property="og:description" content="Donde la luz convierte un dia en un recuerdo. Casa de eventos moderna con terraza panoramica y domo de cristal.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&q=80">
+  <meta property="og:url" content="https://www.auroraeventos.co/">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Aurora Casa de Eventos">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aurora · Casa de Eventos en Giron, Santander">
+  <meta name="twitter:description" content="Casa de eventos moderna en Giron, Santander. Reserva tu fecha por WhatsApp.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&q=80">
+
+  <!-- Favicon emoji (fallback SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
+
+  <!-- Schema.org JSON-LD tipo EventVenue -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EventVenue",
+    "name": "Aurora — Casa de Eventos",
+    "description": "Casa de eventos moderna en Giron, Santander, para matrimonios, quinces, grados y eventos corporativos.",
+    "image": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&q=80",
+    "url": "https://www.auroraeventos.co/",
+    "telephone": "+57 607 646 2200",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Km 4 Via Giron, Vereda El Cedro",
+      "addressLocality": "Giron",
+      "addressRegion": "Santander",
+      "postalCode": "681001",
+      "addressCountry": "CO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 7.0675,
+      "longitude": -73.1690
+    },
+    "openingHours": "Mo-Su 09:00-18:00",
+    "areaServed": ["Bucaramanga", "Floridablanca", "Giron", "Piedecuesta"],
+    "maximumAttendeeCapacity": 500
+  }
+  </script>
+
+  <!-- ================= LIBRERIAS CDN ================= -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Bricolage Grotesque (display moderno) + Inter (cuerpo) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- ================= ESTILOS PROPIOS ================= -->
+  <style>
+    /* ===== VARIABLES DE MARCA (editar colores aqui) ===== */
+    :root {
+      --ink:        #100F0D;   /* fondo principal (casi negro calido) */
+      --surface:    #1B1916;   /* superficies / cards */
+      --surface-2:  #24211C;   /* superficie elevada */
+      --bone:       #F2EDE4;   /* texto claro / crema */
+      --muted:      #9A9387;   /* texto secundario */
+      --ember:      #DB8B57;   /* acento terracota — color de marca */
+      --ember-d:    #C2754420; /* glow del acento */
+      --line:       rgba(242,237,228,.10); /* lineas / bordes sutiles */
+
+      --radius:     16px;
+      --trans:      .35s cubic-bezier(.2,.7,.3,1);
+      --sec-pad:    7rem;
+    }
+
+    /* ===== RESET / BASE ===== */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ink);
+      color: var(--bone);
+      overflow-x: hidden;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1,h2,h3,h4,h5,.display-font {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700; line-height: 1.05; letter-spacing: -.02em;
+    }
+    a { text-decoration: none; transition: color var(--trans); }
+    img { max-width: 100%; display: block; }
+    section { padding: var(--sec-pad) 0; position: relative; }
+    ::selection { background: var(--ember); color: var(--ink); }
+
+    /* ===== GRANO / TEXTURA GLOBAL (capa decorativa) ===== */
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ===== UTILIDADES ===== */
+    .text-ember { color: var(--ember) !important; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .55rem;
+      letter-spacing: .2em; text-transform: uppercase; font-size: .74rem;
+      font-weight: 600; color: var(--ember); margin-bottom: 1.1rem;
+    }
+    .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--ember); }
+    .section-title { font-size: clamp(2.3rem, 5vw, 4rem); }
+    .lead-muted { color: var(--muted); font-size: 1.05rem; max-width: 560px; }
+    .glow {
+      position: absolute; border-radius: 50%; filter: blur(120px);
+      background: var(--ember); opacity: .14; pointer-events: none; z-index: 0;
+    }
+
+    /* ===== BOTONES ===== */
+    .btn-ember {
+      background: var(--ember); color: var(--ink); border: 1.5px solid var(--ember);
+      border-radius: 50px; padding: .9rem 2rem; font-weight: 600; font-size: .95rem;
+      transition: all var(--trans); display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-ember:hover { background: transparent; color: var(--ember); transform: translateY(-3px); box-shadow: 0 14px 30px rgba(219,139,87,.25); }
+    .btn-ghost {
+      background: transparent; color: var(--bone); border: 1.5px solid var(--line);
+      border-radius: 50px; padding: .9rem 2rem; font-weight: 600; font-size: .95rem;
+      transition: all var(--trans); display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-ghost:hover { border-color: var(--bone); color: var(--bone); transform: translateY(-3px); }
+    .btn-sm-c { padding: .6rem 1.4rem; font-size: .88rem; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: var(--ink); z-index: 100000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-mark { font-family: 'Bricolage Grotesque'; font-size: 1.8rem; letter-spacing: .3em; text-transform: uppercase; }
+    .loader-bar { width: 150px; height: 2px; background: var(--line); margin-top: 1.1rem; overflow: hidden; }
+    .loader-bar::after { content: ""; display: block; height: 100%; width: 40%; background: var(--ember); animation: loaderRun 1s infinite; }
+    @keyframes loaderRun { 0%{transform:translateX(-100%);} 100%{transform:translateX(360%);} }
+
+    /* ===== NAVBAR ===== */
+    .topbar {
+      background: var(--ember); color: var(--ink); font-size: .8rem; font-weight: 500;
+      text-align: center; padding: .45rem 0; letter-spacing: .03em;
+    }
+    .navbar {
+      transition: background var(--trans), padding var(--trans), backdrop-filter var(--trans);
+      padding: 1.1rem 0; border-bottom: 1px solid transparent;
+    }
+    .navbar.solid {
+      background: rgba(16,15,13,.85); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line); padding: .65rem 0;
+    }
+    .navbar-brand {
+      font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 1.4rem;
+      color: var(--bone) !important; letter-spacing: -.01em;
+    }
+    .navbar-brand .dot { color: var(--ember); }
+    .nav-link {
+      color: var(--bone) !important; font-weight: 500; font-size: .92rem;
+      margin: 0 .3rem; position: relative; opacity: .82;
+    }
+    .nav-link:hover { opacity: 1; }
+    .nav-link::after {
+      content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1.5px;
+      background: var(--ember); transition: width var(--trans);
+    }
+    .nav-link:hover::after { width: 100%; }
+    .navbar-toggler { border: none; color: var(--bone); }
+    .navbar-toggler:focus { box-shadow: none; }
+    .offcanvas { background: var(--surface); color: var(--bone); }
+    .offcanvas .nav-link { font-size: 1.15rem; padding: .65rem 0; }
+    .offcanvas .btn-close { filter: invert(1); }
+
+    /* ===== HERO (cinematografico, asimetrico) ===== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: flex-end;
+      padding-bottom: 5rem; overflow: hidden;
+    }
+    .hero-media {
+      position: absolute; inset: 0; z-index: 0;
+      background: url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1900&q=80') center/cover;
+      animation: kenburns 22s ease-in-out infinite alternate;
+    }
+    @keyframes kenburns { 0%{transform:scale(1) translate(0,0);} 100%{transform:scale(1.14) translate(-2%,-1%);} }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(16,15,13,.55) 0%, rgba(16,15,13,.35) 45%, rgba(16,15,13,.96) 100%);
+    }
+    .hero .container { position: relative; z-index: 2; }
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 6.5rem); font-weight: 800;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 .em { color: var(--ember); font-style: italic; font-weight: 500; }
+    .hero-sub { color: var(--bone); max-width: 480px; font-size: 1.1rem; opacity: .9; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .6rem;
+      border: 1px solid var(--line); border-radius: 50px; padding: .4rem 1rem;
+      font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 1.6rem;
+    }
+    .hero-tag .pin { width: 7px; height: 7px; border-radius: 50%; background: var(--ember); animation: blink 2s infinite; }
+    @keyframes blink { 50%{opacity:.3;} }
+    .scroll-cue {
+      position: absolute; bottom: 28px; right: 6%; z-index: 2; color: var(--bone);
+      writing-mode: vertical-rl; font-size: .72rem; letter-spacing: .25em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .scroll-cue .ln { width: 1px; height: 50px; background: var(--ember); animation: cueLine 1.8s infinite; }
+    @keyframes cueLine { 0%,100%{transform:scaleY(.4);transform-origin:top;} 50%{transform:scaleY(1);} }
+
+    /* ===== MARQUEE ===== */
+    .marquee {
+      background: var(--ember); color: var(--ink); padding: .85rem 0; overflow: hidden;
+      border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    }
+    .marquee-track { display: flex; gap: 3rem; white-space: nowrap; animation: marquee 26s linear infinite; }
+    .marquee span { font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 3rem; }
+    .marquee i { font-size: .7rem; }
+    @keyframes marquee { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+    /* ===== MANIFIESTO ===== */
+    .manifesto-text { font-size: clamp(1.5rem, 3.2vw, 2.5rem); font-weight: 500; line-height: 1.3; }
+    .manifesto-text .hl { color: var(--ember); }
+    .manifesto-img {
+      border-radius: var(--radius); overflow: hidden; position: relative;
+    }
+    .manifesto-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ===== EXPERIENCIAS (lista editorial numerada) ===== */
+    .exp-row {
+      display: grid; grid-template-columns: 90px 1fr 280px auto;
+      gap: 1.5rem; align-items: center;
+      padding: 2rem 0; border-top: 1px solid var(--line);
+      transition: background var(--trans);
+    }
+    .exp-row:last-child { border-bottom: 1px solid var(--line); }
+    .exp-row:hover { background: var(--surface); }
+    .exp-num { font-family: 'Bricolage Grotesque'; font-size: 2rem; font-weight: 700; color: var(--ember); }
+    .exp-title { font-family: 'Bricolage Grotesque'; font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 700; }
+    .exp-desc { color: var(--muted); font-size: .95rem; }
+    .exp-thumb {
+      width: 100%; height: 90px; border-radius: 12px; object-fit: cover;
+      opacity: .35; transition: opacity var(--trans), transform var(--trans);
+    }
+    .exp-row:hover .exp-thumb { opacity: 1; transform: scale(1.04); }
+    .exp-cta {
+      width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid var(--line);
+      display: flex; align-items: center; justify-content: center; color: var(--bone);
+      transition: all var(--trans); flex: 0 0 52px;
+    }
+    .exp-row:hover .exp-cta { background: var(--ember); border-color: var(--ember); color: var(--ink); }
+
+    /* ===== SECCION VIDEO / EL REEL ===== */
+    .reel { background: var(--surface); }
+    .reel-feature {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      aspect-ratio: 16/9; cursor: pointer;
+    }
+    .reel-feature img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+    .reel-feature:hover img { transform: scale(1.05); }
+    .reel-feature::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(16,15,13,.1), rgba(16,15,13,.7));
+    }
+    .play-btn {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 3;
+      width: 92px; height: 92px; border-radius: 50%; background: var(--ember);
+      color: var(--ink); display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; transition: transform var(--trans);
+    }
+    .reel-feature:hover .play-btn { transform: translate(-50%,-50%) scale(1.1); }
+    .play-btn::before {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      border: 1px solid var(--ember); animation: waPulse 2.4s infinite;
+    }
+    .reel-caption {
+      position: absolute; bottom: 1.5rem; left: 1.7rem; z-index: 3;
+    }
+    .reel-caption h3 { font-size: 1.6rem; }
+    .reel-caption span { color: var(--muted); font-size: .85rem; }
+    /* tarjetas pequeñas de video */
+    .vthumb {
+      position: relative; border-radius: 12px; overflow: hidden; cursor: pointer;
+      aspect-ratio: 4/3;
+    }
+    .vthumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .vthumb:hover img { transform: scale(1.08); }
+    .vthumb::after {
+      content: ""; position: absolute; inset: 0; background: rgba(16,15,13,.35);
+      transition: background var(--trans);
+    }
+    .vthumb:hover::after { background: rgba(16,15,13,.1); }
+    .vthumb .vplay {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 3;
+      width: 48px; height: 48px; border-radius: 50%; background: rgba(242,237,228,.92);
+      color: var(--ink); display: flex; align-items: center; justify-content: center;
+    }
+    .vthumb .vlabel {
+      position: absolute; bottom: .7rem; left: .8rem; z-index: 3;
+      font-size: .82rem; font-weight: 600; color: var(--bone);
+    }
+
+    /* ===== ESPACIOS — BENTO GRID ===== */
+    .bento {
+      display: grid; gap: 14px;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 200px;
+    }
+    .bento-cell {
+      border-radius: var(--radius); overflow: hidden; position: relative;
+      border: 1px solid var(--line); background: var(--surface);
+    }
+    .bento-cell.img { padding: 0; }
+    .bento-cell.img img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+    .bento-cell.img:hover img { transform: scale(1.07); }
+    .bento-cell.img::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(16,15,13,.85));
+    }
+    .bento-cap { position: absolute; bottom: 1rem; left: 1.1rem; z-index: 2; }
+    .bento-cap h4 { font-size: 1.15rem; }
+    .bento-cap span { color: var(--muted); font-size: .8rem; }
+    .bento-cell.text { padding: 1.6rem; display: flex; flex-direction: column; justify-content: space-between; }
+    .bento-cell.text .b-ico {
+      width: 46px; height: 46px; border-radius: 12px; background: var(--ember-d);
+      border: 1px solid rgba(219,139,87,.3); color: var(--ember);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .bento-cell.text h4 { font-size: 1.2rem; margin-bottom: .3rem; }
+    .bento-cell.text p { color: var(--muted); font-size: .88rem; margin: 0; }
+    .bento-cell.accent { background: var(--ember); color: var(--ink); }
+    .bento-cell.accent .b-ico { background: rgba(16,15,13,.12); border-color: rgba(16,15,13,.2); color: var(--ink); }
+    .bento-cell.accent p { color: rgba(16,15,13,.7); }
+    /* posiciones desktop */
+    .c-1 { grid-column: span 2; grid-row: span 2; }
+    .c-2 { grid-column: span 2; grid-row: span 1; }
+    .c-3 { grid-column: span 1; grid-row: span 1; }
+    .c-4 { grid-column: span 1; grid-row: span 1; }
+    .c-5 { grid-column: span 2; grid-row: span 1; }
+    .c-6 { grid-column: span 2; grid-row: span 1; }
+
+    /* ===== STATS BAND ===== */
+    .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stat-num { font-family: 'Bricolage Grotesque'; font-size: clamp(2.6rem,5vw,4rem); font-weight: 800; color: var(--ember); line-height: 1; }
+    .stat-label { color: var(--muted); font-size: .9rem; margin-top: .4rem; }
+
+    /* ===== GALERIA ===== */
+    .filter-btn {
+      background: transparent; border: 1.5px solid var(--line); color: var(--muted);
+      border-radius: 50px; padding: .45rem 1.3rem; margin: .25rem; font-size: .85rem;
+      font-weight: 500; transition: all var(--trans);
+    }
+    .filter-btn:hover { color: var(--bone); border-color: var(--bone); }
+    .filter-btn.active { background: var(--ember); border-color: var(--ember); color: var(--ink); }
+    .gallery-item { transition: opacity .4s ease; }
+    .gallery-item.hide { display: none; }
+    .gallery-item a { display: block; border-radius: 12px; overflow: hidden; position: relative; }
+    .gallery-item img { width: 100%; height: 260px; object-fit: cover; transition: transform .6s ease; }
+    .gallery-item a::after {
+      content: "\f00e"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: var(--bone); font-size: 1.5rem; background: rgba(16,15,13,0); opacity: 0; transition: all var(--trans);
+    }
+    .gallery-item a:hover::after { background: rgba(16,15,13,.5); opacity: 1; }
+    .gallery-item a:hover img { transform: scale(1.09); }
+    .gallery-item.extra { display: none; }
+    .gallery-item.extra.shown { display: block; }
+
+    /* ===== TESTIMONIOS ===== */
+    .testi-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 2.2rem; height: 100%;
+    }
+    .testi-card .qmark { font-family: 'Bricolage Grotesque'; font-size: 3.5rem; color: var(--ember); line-height: .5; }
+    .testi-card .quote { color: var(--bone); font-size: 1rem; margin: 1rem 0 1.5rem; }
+    .testi-card .stars { color: var(--ember); font-size: .82rem; margin-bottom: 1rem; }
+    .testi-foot { display: flex; align-items: center; gap: .9rem; }
+    .testi-foot img { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; }
+    .testi-foot h5 { font-size: 1rem; margin: 0; }
+    .testi-foot span { color: var(--muted); font-size: .8rem; }
+    .swiper-testi { padding-bottom: 3.4rem; }
+    .swiper-pagination-bullet { background: var(--muted); }
+    .swiper-pagination-bullet-active { background: var(--ember); }
+
+    /* ===== FORMULARIO ===== */
+    .form-wrap {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 2.6rem;
+    }
+    .reason-row { display: flex; gap: 1rem; margin-bottom: 1.3rem; }
+    .reason-row .r-ico {
+      flex: 0 0 44px; width: 44px; height: 44px; border-radius: 12px;
+      background: var(--ember-d); border: 1px solid rgba(219,139,87,.3); color: var(--ember);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .reason-row h5 { font-size: 1.05rem; margin-bottom: .15rem; }
+    .reason-row p { color: var(--muted); font-size: .88rem; margin: 0; }
+    .form-label { font-weight: 500; font-size: .85rem; margin-bottom: .35rem; color: var(--bone); }
+    .form-label .req { color: var(--ember); }
+    .form-control, .form-select {
+      background: var(--ink); border: 1.5px solid var(--line); color: var(--bone);
+      border-radius: 10px; padding: .72rem .9rem; font-size: .92rem;
+    }
+    .form-control::placeholder { color: #5e594f; }
+    .form-control:focus, .form-select:focus {
+      background: var(--ink); color: var(--bone);
+      border-color: var(--ember); box-shadow: 0 0 0 .2rem rgba(219,139,87,.15);
+    }
+    .form-select option { background: var(--ink); }
+    .field-error { color: var(--ember); font-size: .78rem; margin-top: .25rem; display: none; }
+    .form-control.is-invalid, .form-select.is-invalid { border-color: #e0603f; background-image: none; }
+    .form-control.is-valid, .form-select.is-valid { border-color: var(--ember); background-image: none; }
+    .form-check-input { background: var(--ink); border-color: var(--line); }
+    .form-check-input:checked { background: var(--ember); border-color: var(--ember); }
+
+    /* ===== UBICACION ===== */
+    .map-frame { border: 0; width: 100%; height: 100%; min-height: 400px; border-radius: var(--radius); filter: grayscale(.4) invert(.9) hue-rotate(180deg); }
+    .loc-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 2.4rem; height: 100%; }
+    .loc-item { display: flex; gap: .9rem; margin-bottom: 1.15rem; }
+    .loc-item i { color: var(--ember); font-size: 1.05rem; width: 24px; flex: 0 0 24px; margin-top: 3px; }
+    .loc-item span { color: var(--muted); font-size: .94rem; }
+
+    /* ===== FAQ ===== */
+    .accordion-item { background: transparent; border: none; border-bottom: 1px solid var(--line); }
+    .accordion-button {
+      background: transparent; color: var(--bone);
+      font-family: 'Bricolage Grotesque'; font-weight: 600; font-size: 1.15rem;
+      padding: 1.4rem .2rem;
+    }
+    .accordion-button:not(.collapsed) { background: transparent; color: var(--ember); box-shadow: none; }
+    .accordion-button:focus { box-shadow: none; }
+    .accordion-button::after {
+      background-image: none; content: "\2b"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+      color: var(--ember); width: auto; height: auto; transition: transform var(--trans);
+    }
+    .accordion-button:not(.collapsed)::after { content: "\f068"; }
+    .accordion-body { color: var(--muted); padding: 0 .2rem 1.4rem; }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--surface); border-top: 1px solid var(--line); padding: 4.5rem 0 0; }
+    footer h5 { font-size: 1.1rem; margin-bottom: 1.2rem; }
+    footer .f-link { color: var(--muted); display: block; padding: .3rem 0; font-size: .92rem; }
+    footer .f-link:hover { color: var(--ember); }
+    .social-ic {
+      width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line);
+      display: inline-flex; align-items: center; justify-content: center; color: var(--bone);
+      margin-right: .5rem; transition: all var(--trans);
+    }
+    .social-ic:hover { background: var(--ember); border-color: var(--ember); color: var(--ink); transform: translateY(-3px); }
+    .foot-bottom { border-top: 1px solid var(--line); margin-top: 3.5rem; padding: 1.5rem 0; font-size: .84rem; color: var(--muted); }
+    .foot-bottom a { color: var(--ember); }
+    .open-priv { cursor: pointer; }
+
+    /* ===== FLOTANTES ===== */
+    .wa-float {
+      position: fixed; bottom: 22px; right: 22px; z-index: 9000;
+      width: 60px; height: 60px; border-radius: 50%; background: #25D366;
+      display: flex; align-items: center; justify-content: center; color: #fff;
+      font-size: 1.9rem; box-shadow: 0 6px 22px rgba(37,211,102,.45); transition: transform var(--trans);
+    }
+    .wa-float:hover { transform: scale(1.1); color: #fff; }
+    .wa-float::before {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background: #25D366; z-index: -1; animation: waPulse 2s infinite;
+    }
+    @keyframes waPulse { 0%{transform:scale(1);opacity:.65;} 100%{transform:scale(1.8);opacity:0;} }
+    .to-top {
+      position: fixed; bottom: 94px; right: 26px; z-index: 8500;
+      width: 48px; height: 48px; border-radius: 50%; background: var(--surface-2);
+      border: 1px solid var(--line); color: var(--bone);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all var(--trans);
+    }
+    .to-top.show { opacity: 1; visibility: visible; }
+    .to-top:hover { background: var(--ember); color: var(--ink); }
+
+    /* ===== TOAST ===== */
+    .toast-ok {
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-130px);
+      background: var(--ember); color: var(--ink); padding: 1rem 1.6rem; border-radius: 50px;
+      z-index: 99990; font-weight: 600; transition: transform .5s cubic-bezier(.2,.7,.3,1);
+    }
+    .toast-ok.show { transform: translateX(-50%) translateY(0); }
+
+    /* ===== MODAL ===== */
+    .modal-priv .modal-content {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); color: var(--bone);
+    }
+    .modal-priv .modal-header, .modal-priv .modal-footer { border-color: var(--line); }
+    .modal-priv .btn-close { filter: invert(1); }
+    .modal-priv h6 { color: var(--ember); margin-top: 1.3rem; }
+    .modal-priv p, .modal-priv li { color: var(--muted); font-size: .92rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 991px) {
+      :root { --sec-pad: 4.5rem; }
+      .hero-media { animation: none; }
+      .exp-row { grid-template-columns: 60px 1fr auto; }
+      .exp-thumb { display: none; }
+      .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+      .c-1,.c-2,.c-5,.c-6 { grid-column: span 2; }
+      .c-1 { grid-row: span 2; }
+      .c-3,.c-4 { grid-column: span 1; }
+      .scroll-cue { display: none; }
+    }
+    @media (max-width: 575px) {
+      :root { --sec-pad: 3.5rem; }
+      .form-wrap { padding: 1.6rem; }
+      .exp-row { grid-template-columns: 48px 1fr auto; gap: 1rem; }
+      .exp-num { font-size: 1.4rem; }
+      .play-btn { width: 70px; height: 70px; font-size: 1.4rem; }
+      .bento { grid-template-columns: 1fr; }
+      .c-1,.c-2,.c-3,.c-4,.c-5,.c-6 { grid-column: span 1; grid-row: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================= LOADER ================= -->
+<div id="loader">
+  <div class="loader-mark">Aurora</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+<div class="topbar">
+  <i class="fa-solid fa-star me-2"></i>Agenda 2026 abierta — aparta tu fecha antes de que se ocupe
+</div>
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#inicio">Aurora<span class="dot">.</span></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars-staggered fa-lg"></i>
+    </button>
+
+    <!-- Menu desktop -->
+    <div class="d-none d-lg-flex align-items-center">
+      <ul class="navbar-nav flex-row align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experiencias">Eventos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#reel">Video</a></li>
+        <li class="nav-item"><a class="nav-link" href="#espacios">Espacios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonios">Testimonios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faqs">FAQs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ubicacion">Contacto</a></li>
+        <li class="nav-item ms-3"><a class="btn btn-ember btn-sm-c" href="#reserva">Reservar fecha</a></li>
+      </ul>
+    </div>
+
+    <!-- Off-canvas mobile -->
+    <div class="offcanvas offcanvas-end d-lg-none" id="navMenu" tabindex="-1">
+      <div class="offcanvas-header">
+        <span class="navbar-brand">Aurora<span class="dot">.</span></span>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#inicio" data-bs-dismiss="offcanvas">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experiencias" data-bs-dismiss="offcanvas">Eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reel" data-bs-dismiss="offcanvas">Video</a></li>
+          <li class="nav-item"><a class="nav-link" href="#espacios" data-bs-dismiss="offcanvas">Espacios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria" data-bs-dismiss="offcanvas">Galeria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonios" data-bs-dismiss="offcanvas">Testimonios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faqs" data-bs-dismiss="offcanvas">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ubicacion" data-bs-dismiss="offcanvas">Contacto</a></li>
+          <li class="nav-item mt-3"><a class="btn btn-ember w-100" href="#reserva" data-bs-dismiss="offcanvas">Reservar fecha</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="inicio">
+  <!-- Fondo cinematografico con efecto Ken Burns. Para usar video real,
+       reemplaza este <div> por: <video class="hero-media" autoplay muted loop
+       playsinline poster="..."><source src="TU-VIDEO.mp4" type="video/mp4"></video> -->
+  <div class="hero-media"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9" data-aos="fade-up">
+        <span class="hero-tag"><span class="pin"></span>Giron · Santander</span>
+        <h1>Donde la luz<br>convierte un dia<br>en un <span class="em">recuerdo</span></h1>
+        <p class="hero-sub mb-4">
+          Aurora es una casa de eventos contemporanea: terraza panoramica,
+          domo de cristal y un equipo que cuida cada detalle de tu celebracion.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#reserva" class="btn btn-ember">Reservar mi fecha <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#reel" class="btn btn-ghost"><i class="fa-solid fa-play"></i> Ver el video</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#manifiesto" class="scroll-cue">Scroll <span class="ln"></span></a>
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Matrimonios <i class="fa-solid fa-circle"></i> Quinces <i class="fa-solid fa-circle"></i> Grados <i class="fa-solid fa-circle"></i> Corporativos <i class="fa-solid fa-circle"></i> Primeras comuniones <i class="fa-solid fa-circle"></i></span>
+    <span>Matrimonios <i class="fa-solid fa-circle"></i> Quinces <i class="fa-solid fa-circle"></i> Grados <i class="fa-solid fa-circle"></i> Corporativos <i class="fa-solid fa-circle"></i> Primeras comuniones <i class="fa-solid fa-circle"></i></span>
+  </div>
+</div>
+
+<!-- ================= MANIFIESTO ================= -->
+<section id="manifiesto">
+  <div class="glow" style="width:380px;height:380px;top:-100px;left:-120px"></div>
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-7" data-aos="fade-up">
+        <span class="eyebrow">Quienes somos</span>
+        <p class="manifesto-text">
+          No alquilamos un salon. Creamos el escenario donde tu historia
+          se vuelve <span class="hl">inolvidable</span> — con espacios
+          modernos a 15 minutos de Bucaramanga.
+        </p>
+      </div>
+      <div class="col-lg-5" data-aos="fade-left">
+        <div class="manifesto-img" style="height:340px">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80" alt="Celebracion nocturna en Aurora Casa de Eventos">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCIAS (lista editorial) ================= -->
+<section id="experiencias">
+  <div class="container">
+    <div class="row align-items-end mb-4">
+      <div class="col-md-7" data-aos="fade-up">
+        <span class="eyebrow">Lo que celebramos</span>
+        <h2 class="section-title">Una experiencia<br>para cada ocasion</h2>
+      </div>
+      <div class="col-md-5 text-md-end" data-aos="fade-up">
+        <p class="lead-muted ms-md-auto">Elige el tipo de evento y consulta disponibilidad sin compromiso. Cada celebracion se adapta a tu estilo.</p>
+      </div>
+    </div>
+
+    <!-- Fila 01 -->
+    <div class="exp-row" data-aos="fade-up">
+      <div class="exp-num">01</div>
+      <div>
+        <div class="exp-title">Matrimonios</div>
+        <div class="exp-desc">Ceremonia en terraza y recepcion bajo el domo de cristal. Tu dia, de principio a fin.</div>
+      </div>
+      <img class="exp-thumb" loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80" alt="Matrimonio en Aurora">
+      <a href="#reserva" class="exp-cta" aria-label="Consultar matrimonios"><i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <!-- Fila 02 -->
+    <div class="exp-row" data-aos="fade-up">
+      <div class="exp-num">02</div>
+      <div>
+        <div class="exp-title">Quinces</div>
+        <div class="exp-desc">Iluminacion de diseño, pista amplia y un escenario pensado para el vals.</div>
+      </div>
+      <img class="exp-thumb" loading="lazy" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&q=80" alt="Quince años en Aurora">
+      <a href="#reserva" class="exp-cta" aria-label="Consultar quinces"><i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <!-- Fila 03 -->
+    <div class="exp-row" data-aos="fade-up">
+      <div class="exp-num">03</div>
+      <div>
+        <div class="exp-title">Grados</div>
+        <div class="exp-desc">Celebra el logro con la promocion: menus para grupos y un ambiente alegre.</div>
+      </div>
+      <img class="exp-thumb" loading="lazy" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&q=80" alt="Grado en Aurora">
+      <a href="#reserva" class="exp-cta" aria-label="Consultar grados"><i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <!-- Fila 04 -->
+    <div class="exp-row" data-aos="fade-up">
+      <div class="exp-num">04</div>
+      <div>
+        <div class="exp-title">Corporativos</div>
+        <div class="exp-desc">Lanzamientos, integraciones y fin de año con cocina gourmet y plan B cubierto.</div>
+      </div>
+      <img class="exp-thumb" loading="lazy" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500&q=80" alt="Evento corporativo en Aurora">
+      <a href="#reserva" class="exp-cta" aria-label="Consultar corporativos"><i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <!-- Fila 05 -->
+    <div class="exp-row" data-aos="fade-up">
+      <div class="exp-num">05</div>
+      <div>
+        <div class="exp-title">Cumpleaños y eventos sociales</div>
+        <div class="exp-desc">Desde reuniones intimas hasta grandes fiestas, con descorche permitido.</div>
+      </div>
+      <img class="exp-thumb" loading="lazy" src="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=500&q=80" alt="Cumpleaños en Aurora">
+      <a href="#reserva" class="exp-cta" aria-label="Consultar cumpleaños"><i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECCION VIDEO / EL REEL ================= -->
+<!--
+  NOTA: los videos usan clips de muestra publicos para que la galeria FUNCIONE
+  al abrir la pagina. Reemplaza cada atributo href="...mp4" por la URL del
+  video real del venue (alojado en el servidor, YouTube o Vimeo — GLightbox
+  soporta los tres formatos).
+-->
+<section id="reel" class="reel">
+  <div class="glow" style="width:420px;height:420px;bottom:-150px;right:-150px"></div>
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center">El reel</span>
+      <h2 class="section-title">Asi se ve un evento en Aurora</h2>
+      <p class="lead-muted mx-auto mt-2">El espacio se siente mejor en movimiento. Mira como cobra vida cada celebracion.</p>
+    </div>
+
+    <!-- Video destacado -->
+    <div class="reel-feature glightbox mb-4" data-aos="zoom-in"
+         href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+         data-type="video">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=1500&q=80" alt="Video tour de Aurora Casa de Eventos">
+      <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+      <div class="reel-caption">
+        <h3>Video tour completo</h3>
+        <span>02:14 min · Recorrido por la casa</span>
+      </div>
+    </div>
+
+    <!-- Tira de videos cortos -->
+    <div class="row g-3" data-aos="fade-up">
+      <div class="col-6 col-md-3">
+        <div class="vthumb glightbox"
+             href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+             data-type="video">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Video de matrimonio">
+          <div class="vplay"><i class="fa-solid fa-play"></i></div>
+          <div class="vlabel">Matrimonio · Highlights</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="vthumb glightbox"
+             href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+             data-type="video">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="Video de quince años">
+          <div class="vplay"><i class="fa-solid fa-play"></i></div>
+          <div class="vlabel">Quinces · La fiesta</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="vthumb glightbox"
+             href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
+             data-type="video">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80" alt="Video de evento corporativo">
+          <div class="vplay"><i class="fa-solid fa-play"></i></div>
+          <div class="vlabel">Corporativo · Aftermovie</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="vthumb glightbox"
+             href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+             data-type="video">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt="Video drone de la terraza">
+          <div class="vplay"><i class="fa-solid fa-play"></i></div>
+          <div class="vlabel">Drone · La terraza</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ESPACIOS — BENTO GRID ================= -->
+<section id="espacios">
+  <div class="container">
+    <div class="row align-items-end mb-4">
+      <div class="col-md-7" data-aos="fade-up">
+        <span class="eyebrow">Nuestros espacios</span>
+        <h2 class="section-title">Cada rincon,<br>pensado para ti</h2>
+      </div>
+      <div class="col-md-5 text-md-end" data-aos="fade-up">
+        <p class="lead-muted ms-md-auto">Espacios modulares que se adaptan a 80 o a 500 invitados, llueva o haga sol.</p>
+      </div>
+    </div>
+
+    <div class="bento" data-aos="fade-up">
+      <!-- Celda grande con imagen -->
+      <div class="bento-cell img c-1">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1000&q=80" alt="Salon principal con domo de cristal">
+        <div class="bento-cap">
+          <h4>Salon con domo de cristal</h4>
+          <span>Hasta 500 invitados · cielo abierto de noche</span>
+        </div>
+      </div>
+      <!-- Celda imagen ancha -->
+      <div class="bento-cell img c-2">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=900&q=80" alt="Terraza panoramica de Aurora">
+        <div class="bento-cap">
+          <h4>Terraza panoramica</h4>
+          <span>Ceremonias al aire libre</span>
+        </div>
+      </div>
+      <!-- Celda texto -->
+      <div class="bento-cell text c-3">
+        <div class="b-ico"><i class="fa-solid fa-square-parking"></i></div>
+        <div><h4>100 parqueaderos</h4><p>Privados y gratuitos para tus invitados.</p></div>
+      </div>
+      <!-- Celda texto -->
+      <div class="bento-cell text c-4">
+        <div class="b-ico"><i class="fa-solid fa-cloud-bolt"></i></div>
+        <div><h4>Plan B cubierto</h4><p>Tu evento sigue, llueva o truene.</p></div>
+      </div>
+      <!-- Celda acento -->
+      <div class="bento-cell text accent c-5">
+        <div class="b-ico"><i class="fa-solid fa-wine-glass"></i></div>
+        <div><h4>Descorche permitido</h4><p>Trae tu propio licor sin recargos ocultos y maneja mejor tu presupuesto.</p></div>
+      </div>
+      <!-- Celda texto con dos features -->
+      <div class="bento-cell text c-6">
+        <div class="d-flex gap-4 flex-wrap">
+          <div class="d-flex gap-2 align-items-center"><i class="fa-solid fa-utensils text-ember"></i><span>Cocina gourmet</span></div>
+          <div class="d-flex gap-2 align-items-center"><i class="fa-solid fa-music text-ember"></i><span>Sonido + luces incluidos</span></div>
+        </div>
+        <div class="d-flex gap-4 flex-wrap mt-2">
+          <div class="d-flex gap-2 align-items-center"><i class="fa-solid fa-couch text-ember"></i><span>Zona lounge</span></div>
+          <div class="d-flex gap-2 align-items-center"><i class="fa-solid fa-restroom text-ember"></i><span>Baños amplios</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-aos="fade-up">
+      <a href="#reserva" class="btn btn-ember">Quiero conocer Aurora <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS BAND ================= -->
+<section class="stats" id="stats" style="padding-top:3.5rem;padding-bottom:3.5rem">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-lg-3" data-aos="fade-up">
+        <div class="stat-num"><span class="counter" data-target="8">0</span>+</div>
+        <div class="stat-label">Años creando eventos</div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-num"><span class="counter" data-target="600">0</span>+</div>
+        <div class="stat-label">Eventos realizados</div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-num"><span class="counter" data-target="500">0</span></div>
+        <div class="stat-label">Invitados por evento</div>
+      </div>
+      <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-num">15'</div>
+        <div class="stat-label">Desde Bucaramanga</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALERIA ================= -->
+<section id="galeria">
+  <div class="container">
+    <div class="text-center mb-4" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center">Galeria</span>
+      <h2 class="section-title">Momentos reales</h2>
+    </div>
+
+    <div class="text-center mb-4" data-aos="fade-up">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="matrimonios">Matrimonios</button>
+      <button class="filter-btn" data-filter="quinces">Quinces</button>
+      <button class="filter-btn" data-filter="grados">Grados</button>
+      <button class="filter-btn" data-filter="corporativos">Corporativos</button>
+    </div>
+
+    <div class="row g-3" id="galleryGrid">
+      <div class="col-6 col-md-4 gallery-item" data-cat="matrimonios" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80" alt="Matrimonio en Aurora"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="quinces" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80" alt="Quince años en Aurora"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="grados" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=700&q=80" alt="Grado en Aurora"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="corporativos" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=700&q=80" alt="Evento corporativo en Aurora"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="matrimonios" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80" alt="Decoracion de matrimonio"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="matrimonios" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=700&q=80" alt="Ceremonia en terraza"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="quinces" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=80" alt="Mesa decorada"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="grados" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=700&q=80" alt="Brindis de celebracion"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="corporativos" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=700&q=80" alt="Salon montado"></a>
+      </div>
+      <!-- Extra -->
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="matrimonios">
+        <a href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=80" alt="Recepcion de matrimonio"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="quinces">
+        <a href="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=700&q=80" alt="Decoracion floral"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="corporativos">
+        <a href="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=700&q=80" alt="Coctel corporativo"></a>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button id="loadMore" class="btn btn-ghost">Ver mas fotos <i class="fa-solid fa-plus"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+<section id="testimonios" class="reel">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center">Testimonios</span>
+      <h2 class="section-title">Lo dicen quienes ya celebraron</h2>
+    </div>
+
+    <div class="swiper swiper-testi" data-aos="fade-up">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">El domo de cristal de noche fue espectacular. Todos nuestros invitados quedaron impresionados con el lugar.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=160&q=80" alt="Valentina Acevedo">
+              <div><h5>Valentina Acevedo</h5><span>Matrimonio · Noviembre 2025</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">Los quince de mi hija fueron un sueño. El equipo nos acompaño en cada paso y el sonido incluido nos ahorro un proveedor.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&q=80" alt="Marcela Ortiz">
+              <div><h5>Marcela Ortiz</h5><span>Quinces · Agosto 2025</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">Hicimos la fiesta de fin de año de la empresa. Parqueadero amplio, comida excelente y atencion impecable.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&q=80" alt="Julian Cardenas">
+              <div><h5>Julian Cardenas</h5><span>Corporativo · Diciembre 2025</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">La terraza al atardecer es de otro nivel. Reservamos con tiempo y conseguimos justo la fecha que queriamos.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=160&q=80" alt="Daniela Rincon">
+              <div><h5>Daniela Rincon</h5><span>Grado · Junio 2025</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMULARIO DE RESERVA ================= -->
+<section id="reserva">
+  <div class="glow" style="width:400px;height:400px;top:0;right:-160px"></div>
+  <div class="container">
+    <div class="row g-5 align-items-center">
+
+      <!-- Izquierda: motivacion -->
+      <div class="col-lg-5" data-aos="fade-up">
+        <span class="eyebrow">Reserva tu fecha</span>
+        <h2 class="section-title mb-3">Las mejores fechas vuelan</h2>
+        <p class="lead-muted mb-4">Cuentanos de tu evento y un asesor te respondera por WhatsApp con disponibilidad y paquetes. Sin compromiso.</p>
+
+        <div class="reason-row">
+          <span class="r-ico"><i class="fa-solid fa-calendar-day"></i></span>
+          <div><h5>Un evento por dia</h5><p>Nos dedicamos por completo a tu celebracion, sin compartir el espacio.</p></div>
+        </div>
+        <div class="reason-row">
+          <span class="r-ico"><i class="fa-solid fa-bolt"></i></span>
+          <div><h5>Respuesta rapida</h5><p>Te contactamos por WhatsApp el mismo dia habil.</p></div>
+        </div>
+        <div class="reason-row">
+          <span class="r-ico"><i class="fa-solid fa-tags"></i></span>
+          <div><h5>Tarifa anticipada</h5><p>Reservar con tiempo asegura precio y mas opciones de menu.</p></div>
+        </div>
+      </div>
+
+      <!-- Derecha: formulario -->
+      <div class="col-lg-7" data-aos="fade-up">
+        <div class="form-wrap">
+          <h3 class="mb-4" style="font-size:1.5rem">Consulta disponibilidad</h3>
+          <!-- Formulario sin backend: arma un mensaje y abre WhatsApp -->
+          <form id="reservaForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="f-nombre">Nombre completo <span class="req">*</span></label>
+                <input type="text" class="form-control" id="f-nombre" placeholder="Ej: Ana Gomez">
+                <div class="field-error" data-for="f-nombre">Por favor ingresa tu nombre.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-tel">Telefono / WhatsApp <span class="req">*</span></label>
+                <input type="tel" class="form-control" id="f-tel" placeholder="Ej: 3001234567">
+                <div class="field-error" data-for="f-tel">Ingresa un numero colombiano valido (10 digitos).</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-email">Email</label>
+                <input type="email" class="form-control" id="f-email" placeholder="tucorreo@ejemplo.com">
+                <div class="field-error" data-for="f-email">Revisa el formato del correo.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-tipo">Tipo de evento <span class="req">*</span></label>
+                <select class="form-select" id="f-tipo">
+                  <option value="">Selecciona...</option>
+                  <option>Matrimonio</option>
+                  <option>Quinces</option>
+                  <option>Grado</option>
+                  <option>Primera comunion</option>
+                  <option>Cumpleaños</option>
+                  <option>Evento corporativo</option>
+                  <option>Otro</option>
+                </select>
+                <div class="field-error" data-for="f-tipo">Selecciona el tipo de evento.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-fecha">Fecha tentativa</label>
+                <input type="date" class="form-control" id="f-fecha">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-invitados">No. estimado de invitados <span class="req">*</span></label>
+                <input type="number" class="form-control" id="f-invitados" min="20" max="500" placeholder="Ej: 150">
+                <div class="field-error" data-for="f-invitados">Indica un numero de invitados.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="f-mensaje">Mensaje (opcional)</label>
+                <textarea class="form-control" id="f-mensaje" rows="3" placeholder="Cuentanos algun detalle de tu evento..."></textarea>
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="f-acepto">
+                  <label class="form-check-label" style="font-size:.86rem" for="f-acepto">
+                    Acepto el tratamiento de mis datos segun la
+                    <a class="text-ember open-priv">Politica de Privacidad (Ley 1581 de 2012)</a>.
+                  </label>
+                  <div class="field-error" data-for="f-acepto">Debes aceptar el tratamiento de datos.</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-ember w-100 justify-content-center">
+                  <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
+                </button>
+                <p class="text-center mt-2 mb-0" style="font-size:.78rem;color:var(--muted)">
+                  Al enviar se abrira WhatsApp con tu consulta lista para mandar.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= UBICACION ================= -->
+<section id="ubicacion" class="reel">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center">Como llegar</span>
+      <h2 class="section-title">Te esperamos en Giron</h2>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-7" data-aos="fade-up">
+        <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Giron%20Santander%20Colombia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          title="Ubicacion de Aurora Casa de Eventos en Giron"></iframe>
+      </div>
+      <div class="col-lg-5" data-aos="fade-up">
+        <div class="loc-card">
+          <h3 style="font-size:1.5rem" class="mb-3">Aurora<span class="text-ember">.</span></h3>
+          <div class="loc-item"><i class="fa-solid fa-location-dot"></i>
+            <span>Km 4 Via Giron, Vereda El Cedro, Giron, Santander.</span></div>
+          <div class="loc-item"><i class="fa-solid fa-route"></i>
+            <span>A 15 minutos del centro de Bucaramanga por via pavimentada.</span></div>
+          <div class="loc-item"><i class="fa-solid fa-phone"></i>
+            <span>(607) 646 2200</span></div>
+          <div class="loc-item"><i class="fa-brands fa-whatsapp"></i>
+            <span>+57 315 370 6558</span></div>
+          <div class="loc-item"><i class="fa-solid fa-clock"></i>
+            <span>Visitas con cita previa: Lunes a Domingo, 9:00 a.m. – 6:00 p.m.</span></div>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a class="btn btn-ember btn-sm-c" target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/?api=1&query=Giron+Santander">
+              <i class="fa-solid fa-map-location-dot"></i> Google Maps</a>
+            <a class="btn btn-ghost btn-sm-c" target="_blank" rel="noopener"
+               href="https://waze.com/ul?q=Giron%20Santander">
+              <i class="fa-brands fa-waze"></i> Waze</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faqs">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4" data-aos="fade-up">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section-title">Preguntas<br>frecuentes</h2>
+        <p class="lead-muted mt-3">¿Te queda otra duda? Escribenos por WhatsApp y te respondemos al instante.</p>
+        <a href="https://wa.me/573153706558" target="_blank" rel="noopener" class="btn btn-ghost mt-2">
+          <i class="fa-brands fa-whatsapp"></i> Escribir ahora</a>
+      </div>
+      <div class="col-lg-8" data-aos="fade-up">
+        <div class="accordion" id="faqAcc">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">¿Permiten descorche?</button></h2>
+            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Si. Puedes traer tu propio licor sin recargos ocultos, lo que te ayuda a manejar mejor el presupuesto del evento.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">¿El alquiler incluye decoracion?</button></h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">El alquiler base incluye mobiliario, manteleria, montaje, sonido e iluminacion. La decoracion tematica se cotiza aparte; trabajamos con decoradores aliados o puedes traer el tuyo.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">¿Hasta que hora puede durar el evento?</button></h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Los eventos pueden extenderse hasta las 2:00 a.m. Si necesitas mas tiempo, se acuerda una hora adicional con anticipacion.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">¿Que pasa si llueve?</button></h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Contamos con plan B cubierto y el domo de cristal. Tu evento esta garantizado sin importar el clima.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">¿Como reservo? ¿Cuanto es el anticipo?</button></h2>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">La fecha se aparta con un anticipo del 30% del valor del paquete. El saldo se cancela una semana antes del evento. Escribenos por WhatsApp para iniciar.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">¿Tienen parqueadero?</button></h2>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Si, parqueadero privado y gratuito con capacidad para 100 vehiculos dentro de las instalaciones.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">¿Aceptan proveedores externos (DJ, catering)?</button></h2>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Si. Puedes traer tu propio DJ, grupo musical o catering. Tambien ofrecemos proveedores aliados de confianza si prefieres que organicemos todo.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">¿Politicas de cancelacion?</button></h2>
+            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">El anticipo puede reprogramarse para una nueva fecha dentro de los 12 meses siguientes, sujeto a disponibilidad. Los detalles se entregan por escrito al firmar el contrato.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <span class="navbar-brand" style="font-size:1.6rem">Aurora<span class="dot">.</span></span>
+        <p class="mt-3" style="color:var(--muted);font-size:.92rem;max-width:300px">
+          Casa de eventos contemporanea en Giron, Santander. Donde la luz convierte un dia en un recuerdo.
+        </p>
+        <div class="mt-3">
+          <a class="social-ic" href="https://instagram.com/aurora.casadeeventos" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="social-ic" href="https://facebook.com/auroracasaeventos" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="social-ic" href="https://wa.me/573153706558" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a class="social-ic" href="https://tiktok.com/@aurora.eventos" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <h5>Explora</h5>
+        <a class="f-link" href="#inicio">Inicio</a>
+        <a class="f-link" href="#experiencias">Eventos</a>
+        <a class="f-link" href="#reel">Video</a>
+        <a class="f-link" href="#galeria">Galeria</a>
+        <a class="f-link" href="#reserva">Reservar fecha</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h5>Contacto</h5>
+        <a class="f-link"><i class="fa-solid fa-location-dot text-ember me-2"></i>Km 4 Via Giron, Vereda El Cedro</a>
+        <a class="f-link" href="tel:+576076462200"><i class="fa-solid fa-phone text-ember me-2"></i>(607) 646 2200</a>
+        <a class="f-link" href="https://wa.me/573153706558"><i class="fa-brands fa-whatsapp text-ember me-2"></i>+57 315 370 6558</a>
+        <a class="f-link" href="mailto:hola@auroraeventos.co"><i class="fa-solid fa-envelope text-ember me-2"></i>hola@auroraeventos.co</a>
+        <a class="f-link"><i class="fa-solid fa-clock text-ember me-2"></i>Lun – Dom · 9am a 6pm</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h5>Legal</h5>
+        <p style="color:var(--muted);font-size:.9rem">Tratamos tus datos personales conforme a la Ley 1581 de 2012 de Colombia.</p>
+        <a class="btn btn-ghost btn-sm-c open-priv">Politica de Privacidad</a>
+      </div>
+    </div>
+
+    <div class="foot-bottom text-center">
+      <p class="mb-1">&copy; <span id="year"></span> Aurora — Casa de Eventos. Todos los derechos reservados. NIT: 901.XXX.XXX-X</p>
+      <p class="mb-0">Hecho con <span style="color:var(--ember)">&hearts;</span> en Santander por
+        <a href="https://sruedadev.com" target="_blank" rel="noopener">sruedadev.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOTANTES ================= -->
+<a href="https://wa.me/573153706558?text=Hola%20Aurora%2C%20quiero%20informacion%20para%20mi%20evento."
+   class="wa-float" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<button class="to-top" id="toTop" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ================= TOAST ================= -->
+<div class="toast-ok" id="toastOk"><i class="fa-solid fa-circle-check me-2"></i>¡Listo! Abriendo WhatsApp con tu consulta...</div>
+
+<!-- ================= MODAL POLITICA DE PRIVACIDAD (Ley 1581) ================= -->
+<div class="modal fade modal-priv" id="privModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Politica de Tratamiento de Datos Personales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p>En cumplimiento de la <strong style="color:var(--bone)">Ley 1581 de 2012</strong> y el Decreto 1377 de 2013 de la
+        Republica de Colombia, Aurora Casa de Eventos informa su politica de tratamiento de la informacion
+        de los titulares de datos personales.</p>
+
+        <h6>1. Responsable del tratamiento</h6>
+        <p>Aurora — Casa de Eventos, ubicada en el Km 4 Via Giron, Vereda El Cedro, Giron,
+        Santander. Telefono (607) 646 2200. Correo: hola@auroraeventos.co</p>
+
+        <h6>2. Finalidad del tratamiento</h6>
+        <p>Los datos personales recolectados a traves de este sitio web (nombre, telefono, correo y
+        detalles del evento) seran utilizados unicamente para: atender solicitudes de cotizacion y
+        disponibilidad, contactar al titular por WhatsApp, telefono o correo, enviar informacion
+        comercial sobre nuestros servicios y gestionar la reserva del evento.</p>
+
+        <h6>3. Derechos del titular</h6>
+        <p>Como titular de los datos, usted tiene derecho a:</p>
+        <ul>
+          <li>Conocer, actualizar y rectificar sus datos personales.</li>
+          <li>Solicitar prueba de la autorizacion otorgada.</li>
+          <li>Ser informado sobre el uso dado a sus datos personales.</li>
+          <li>Revocar la autorizacion y/o solicitar la supresion de los datos cuando no exista un
+          deber legal o contractual que lo impida.</li>
+          <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC).</li>
+        </ul>
+
+        <h6>4. Canales para ejercer sus derechos</h6>
+        <p>Para conocer, actualizar, rectificar, suprimir sus datos o revocar la autorizacion, el
+        titular puede comunicarse al correo <strong style="color:var(--bone)">hola@auroraeventos.co</strong>, al
+        WhatsApp <strong style="color:var(--bone)">+57 315 370 6558</strong> o al telefono <strong style="color:var(--bone)">(607) 646 2200</strong>.
+        Las solicitudes seran atendidas en los terminos establecidos por la ley.</p>
+
+        <h6>5. Vigencia</h6>
+        <p>Los datos seran conservados durante el tiempo necesario para cumplir las finalidades
+        descritas y mientras exista una relacion comercial o un deber legal de conservarlos.</p>
+
+        <p class="mt-3" style="font-size:.82rem">Ultima actualizacion: 2026.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ember btn-sm-c" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= LIBRERIAS JS (al final, con defer) ================= -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+
+<!-- ================= JAVASCRIPT PROPIO ================= -->
+<script defer>
+window.addEventListener('DOMContentLoaded', function () {
+
+  /* ===== CONFIGURACION ===== */
+  const WHATSAPP_NUMERO = '573153706558';   // <-- numero del venue (pais + numero, sin "+")
+  const NOMBRE_VENUE    = 'Aurora';
+
+  /* ===== LOADER ===== */
+  window.addEventListener('load', function () {
+    setTimeout(function () { document.getElementById('loader').classList.add('hidden'); }, 600);
+  });
+
+  /* ===== AOS ===== */
+  AOS.init({ duration: 850, once: true, offset: 90 });
+
+  /* ===== SWIPER (testimonios) ===== */
+  new Swiper('.swiper-testi', {
+    slidesPerView: 1, spaceBetween: 24, loop: true,
+    autoplay: { delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: { 768: { slidesPerView: 2 }, 992: { slidesPerView: 3 } }
+  });
+
+  /* ===== GLIGHTBOX (imagenes + videos) ===== */
+  GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true, autoplayVideos: true });
+
+  /* ===== jQuery ===== */
+  jQuery(function ($) {
+
+    /* --- Navbar solida al hacer scroll --- */
+    function navState() { $('.navbar').toggleClass('solid', window.scrollY > 60); }
+    navState();
+    $(window).on('scroll', navState);
+
+    /* --- Smooth scroll en links internos --- */
+    $('a[href^="#"]').on('click', function (e) {
+      const target = $(this.getAttribute('href'));
+      if (target.length) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: target.offset().top - 60 }, 600);
+      }
+    });
+
+    /* --- Boton volver arriba --- */
+    $(window).on('scroll', function () {
+      $('#toTop').toggleClass('show', window.scrollY > 600);
+    });
+    $('#toTop').on('click', function () { $('html, body').animate({ scrollTop: 0 }, 600); });
+
+    /* --- Counters animados (al entrar en viewport) --- */
+    let counted = false;
+    function runCounters() {
+      const band = $('#stats');
+      if (!band.length) return;
+      if (!counted && window.scrollY + window.innerHeight > band.offset().top + 60) {
+        counted = true;
+        $('.counter').each(function () {
+          const $el = $(this), target = +$el.data('target');
+          $({ n: 0 }).animate({ n: target }, {
+            duration: 1900,
+            step: function () { $el.text(Math.floor(this.n)); },
+            complete: function () { $el.text(target); }
+          });
+        });
+      }
+    }
+    runCounters();
+    $(window).on('scroll', runCounters);
+
+    /* --- Galeria con filtros --- */
+    $('.filter-btn').on('click', function () {
+      $('.filter-btn').removeClass('active');
+      $(this).addClass('active');
+      const cat = $(this).data('filter');
+      $('.gallery-item').each(function () {
+        const match = (cat === 'all' || $(this).data('cat') === cat);
+        const hiddenExtra = $(this).hasClass('extra') && !$(this).hasClass('shown');
+        if (match && !hiddenExtra) { $(this).stop().fadeIn(300).removeClass('hide'); }
+        else { $(this).stop().fadeOut(200).addClass('hide'); }
+      });
+    });
+
+    /* --- Galeria: Ver mas --- */
+    $('#loadMore').on('click', function () {
+      $('.gallery-item.extra').addClass('shown').hide().fadeIn(400);
+      $(this).fadeOut(200);
+    });
+
+    /* --- Validacion del formulario en tiempo real --- */
+    const $form = $('#reservaForm');
+
+    function showError($field, show) {
+      const id = $field.attr('id');
+      $('.field-error[data-for="' + id + '"]').toggle(show);
+      $field.toggleClass('is-invalid', show)
+            .toggleClass('is-valid', !show && $field.val().trim() !== '');
+    }
+    function validarCampo($field) {
+      const id = $field.attr('id'), val = $field.val().trim();
+      let ok = true;
+      if (id === 'f-nombre')    ok = val.length >= 3;
+      if (id === 'f-tel')       ok = /^3\d{9}$/.test(val.replace(/\s+/g, ''));
+      if (id === 'f-email')     ok = val === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if (id === 'f-tipo')      ok = val !== '';
+      if (id === 'f-invitados') ok = val !== '' && +val >= 20;
+      showError($field, !ok);
+      return ok;
+    }
+    $('#f-nombre, #f-tel, #f-email, #f-tipo, #f-invitados').on('input change blur', function () {
+      validarCampo($(this));
+    });
+
+    /* --- Envio: abre WhatsApp con mensaje pre-llenado --- */
+    $form.on('submit', function (e) {
+      e.preventDefault();
+
+      let valido = true;
+      $('#f-nombre, #f-tel, #f-tipo, #f-invitados').each(function () {
+        if (!validarCampo($(this))) valido = false;
+      });
+      if ($('#f-email').val().trim() !== '' && !validarCampo($('#f-email'))) valido = false;
+
+      const aceptado = $('#f-acepto').is(':checked');
+      $('.field-error[data-for="f-acepto"]').toggle(!aceptado);
+      if (!aceptado) valido = false;
+
+      if (!valido) {
+        $('html, body').animate({ scrollTop: $('#reserva').offset().top - 60 }, 400);
+        return;
+      }
+
+      const nombre    = $('#f-nombre').val().trim();
+      const tel       = $('#f-tel').val().trim();
+      const tipo      = $('#f-tipo').val();
+      const fecha     = $('#f-fecha').val() || 'por definir';
+      const invitados = $('#f-invitados').val();
+      const mensaje   = $('#f-mensaje').val().trim() || 'sin comentarios adicionales';
+
+      const texto =
+        'Hola ' + NOMBRE_VENUE + ', quiero consultar disponibilidad. ' +
+        'Mi nombre es ' + nombre + ', evento: ' + tipo + ', fecha tentativa: ' + fecha +
+        ', invitados: ' + invitados + '. Telefono: ' + tel + '. Mensaje: ' + mensaje;
+
+      const url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(texto);
+
+      const $toast = $('#toastOk');
+      $toast.addClass('show');
+      setTimeout(function () { $toast.removeClass('show'); }, 4000);
+
+      window.open(url, '_blank');
+      $form[0].reset();
+      $('.form-control, .form-select').removeClass('is-valid is-invalid');
+    });
+
+    /* --- Modal de privacidad --- */
+    $('.open-priv').on('click', function (e) {
+      e.preventDefault();
+      new bootstrap.Modal(document.getElementById('privModal')).show();
+    });
+
+    /* --- Año automatico --- */
+    $('#year').text(new Date().getFullYear());
+
+  }); // fin jQuery
+});
+</script>
+
+<!--
+=======================================================================
+  GUIA DE PERSONALIZACION  ·  Aurora — Casa de Eventos
+=======================================================================
+
+  1. COLORES
+     Edita las variables en :root (inicio del <style>):
+       --ink (fondo), --surface, --bone (texto), --ember (acento marca).
+
+  2. WHATSAPP
+     - JS: variable WHATSAPP_NUMERO (formato pais+numero, sin "+").
+     - Boton flotante .wa-float, footer y boton del FAQ: atributo href.
+
+  3. SECCION DE VIDEO (#reel)  <-- IMPORTANTE
+     Los videos usan clips de muestra publicos solo para que la galeria
+     funcione de inmediato. Reemplaza cada href="...mp4" por la URL del
+     video REAL del venue. GLightbox acepta:
+       - Archivo propio:  href="https://tudominio.com/video.mp4"
+       - YouTube:         href="https://www.youtube.com/watch?v=XXXX"
+       - Vimeo:           href="https://vimeo.com/XXXX"
+     Cambia tambien la imagen poster (<img> de cada .reel-feature / .vthumb).
+
+  4. HERO CON VIDEO (opcional)
+     El hero usa una imagen con efecto Ken Burns. Para usar video real,
+     reemplaza <div class="hero-media"></div> por:
+       <video class="hero-media" autoplay muted loop playsinline
+              poster="IMAGEN.jpg">
+         <source src="TU-VIDEO.mp4" type="video/mp4">
+       </video>
+
+  5. TEXTOS / DATOS
+     Busca y reemplaza "Aurora" por el nombre real del venue.
+     Actualiza direccion, telefonos, email, redes y NIT (footer + #ubicacion).
+
+  6. IMAGENES
+     Reemplaza las URLs de Unsplash por las fotos reales del venue
+     (hero, manifiesto, experiencias, bento de espacios, galeria, testimonios).
+     Conserva loading="lazy" y un alt descriptivo en cada una.
+
+  7. MAPA
+     En #ubicacion el <iframe> usa una busqueda generica. Reemplaza el
+     parametro q= por la direccion exacta. Igual en los botones de
+     Google Maps y Waze.
+
+  8. SEO
+     Ajusta <title>, meta description, keywords, Open Graph y el JSON-LD
+     (coordenadas geo, telefono, direccion, capacidad).
+
+=======================================================================
+  SUPUESTOS ASUMIDOS (datos no entregados — rellenados de forma
+  razonable, confirmar con el cliente real):
+  - Nombre del venue: "Aurora — Casa de Eventos"
+  - Ubicacion: Giron, Santander (Vereda El Cedro, Km 4 Via Giron)
+  - Capacidad: 80 a 500 invitados · 8 años · 600+ eventos
+  - Telefono fijo: (607) 646 2200
+  - WhatsApp: 573153706558 (placeholder — tomado del brief original)
+  - Instagram: @aurora.casadeeventos · Facebook: /auroracasaeventos
+  - Email: hola@auroraeventos.co · NIT: 901.XXX.XXX-X (placeholder)
+  - Coordenadas geo: aproximadas de Giron (7.0675, -73.1690)
+  - Diferenciales (domo de cristal, terraza, plan B, 100 parqueaderos,
+    sonido e iluminacion incluidos) y politicas comerciales: ejemplos
+    tipicos del sector — confirmar con el cliente.
+  - Videos de la seccion #reel: clips de muestra publicos de Google,
+    deben reemplazarse por el material real del venue.
+=======================================================================
+-->
+</body>
+</html>

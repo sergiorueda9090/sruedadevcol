@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<!--
+=======================================================================
+  LANDING PAGE · VILLA CLARA & VILLA ISABEL
+  Fincas de alquiler en Mesa de los Santos (alojamiento + eventos)
+  Estilo: claro, elegante, botanico · verde esmeralda + dorado + crema
+  Stack: Bootstrap 5.3 · jQuery 3.7 · AOS · Swiper · GLightbox · FA6
+  Desarrollada por sruedadev.com — Santander, Colombia
+  Guia de personalizacion al final del archivo.
+=======================================================================
+-->
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ================= SEO LOCAL ================= -->
+  <title>Villa Clara & Villa Isabel · Fincas de alquiler en Mesa de los Santos, Santander</title>
+  <meta name="description" content="Alquiler de finca en Mesa de los Santos: dos predios, alojamiento hasta 24 personas y eventos hasta 80. Tu escapada de descanso en Santander. Reserva por WhatsApp.">
+  <meta name="keywords" content="alquiler finca Mesa de los Santos, finca para descanso Santander, finca con alojamiento Mesa de los Santos, finca para eventos Los Santos, escapada Bucaramanga, alquiler casa campestre Santander">
+  <meta name="author" content="Villa Clara & Villa Isabel">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.villaclaraisabel.co/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="business.business">
+  <meta property="og:title" content="Villa Clara & Villa Isabel · Fincas de alquiler en Mesa de los Santos">
+  <meta property="og:description" content="Dos fincas, un mismo paraiso. Alojamiento hasta 24 personas y eventos hasta 80 en Mesa de los Santos, Santander.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&q=80">
+  <meta property="og:url" content="https://www.villaclaraisabel.co/">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Villa Clara & Villa Isabel">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Villa Clara & Villa Isabel · Fincas en Mesa de los Santos">
+  <meta name="twitter:description" content="Alquiler de finca con alojamiento y eventos en Mesa de los Santos, Santander.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&q=80">
+
+  <!-- Favicon emoji (fallback SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+
+  <!-- Schema.org JSON-LD tipo LodgingBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Villa Clara & Villa Isabel — Fincas de alquiler",
+    "description": "Alquiler de finca en Mesa de los Santos, Santander, con alojamiento hasta 24 personas y eventos hasta 80.",
+    "image": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&q=80",
+    "url": "https://www.villaclaraisabel.co/",
+    "telephone": "+57 318 358 0093",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Predios Villa Clara y Villa Isabel, Mesa de los Santos",
+      "addressLocality": "Los Santos",
+      "addressRegion": "Santander",
+      "postalCode": "684501",
+      "addressCountry": "CO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 6.8123,
+      "longitude": -73.0654
+    },
+    "petsAllowed": true,
+    "numberOfRooms": 24,
+    "areaServed": ["Bucaramanga", "Floridablanca", "Giron", "Piedecuesta", "Los Santos"]
+  }
+  </script>
+
+  <!-- ================= LIBRERIAS CDN ================= -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- ================= ESTILOS PROPIOS ================= -->
+  <style>
+    /* ===== VARIABLES DE MARCA (editar colores aqui) ===== */
+    :root {
+      --esmeralda:   #1E5A41;   /* verde esmeralda — color de marca principal */
+      --esmeralda-d: #163F2E;   /* esmeralda oscuro para hover */
+      --esmeralda-l: #EAF1EC;   /* tinte verde muy claro / fondos suaves */
+      --oro:         #C29B4E;   /* dorado champagne — color de marca secundario */
+      --oro-d:       #A8843D;   /* dorado oscuro */
+      --crema:       #FBF8F1;   /* marfil calido — fondo base */
+      --carbon:      #25302A;   /* verde-carbon — textos */
+      --gris:        #6D7770;   /* gris suave — textos secundarios */
+      --blanco:      #FFFFFF;
+
+      --radius:      18px;
+      --sombra:      0 18px 50px rgba(30,90,65,.12);
+      --sombra-sm:   0 8px 26px rgba(37,48,42,.08);
+      --trans:       .35s cubic-bezier(.22,.7,.3,1);
+      --sec-pad:     6.5rem;
+    }
+
+    /* ===== RESET / BASE ===== */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--crema);
+      color: var(--carbon);
+      overflow-x: hidden;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1,h2,h3,h4,h5,.serif {
+      font-family: 'Fraunces', serif;
+      font-weight: 500; line-height: 1.14; letter-spacing: -.01em;
+    }
+    .section-title { font-size: clamp(2.2rem, 4.5vw, 3.6rem); }
+    a { text-decoration: none; transition: color var(--trans); }
+    img { max-width: 100%; display: block; }
+    section { padding: var(--sec-pad) 0; position: relative; }
+    ::selection { background: var(--esmeralda); color: #fff; }
+
+    /* ===== UTILIDADES ===== */
+    .text-oro { color: var(--oro) !important; }
+    .text-esmeralda { color: var(--esmeralda) !important; }
+    .bg-esmeralda { background: var(--esmeralda); }
+    .bg-soft { background: var(--esmeralda-l); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .55rem;
+      letter-spacing: .2em; text-transform: uppercase; font-size: .76rem;
+      font-weight: 600; color: var(--oro-d); margin-bottom: 1rem;
+    }
+    .eyebrow i { font-size: .8rem; }
+    .lead-muted { color: var(--gris); font-size: 1.06rem; }
+    .divider { width: 54px; height: 2px; background: var(--oro); margin: 1.1rem auto 1.5rem; }
+    .divider.start { margin-left: 0; }
+    .leaf-deco { position: absolute; color: var(--esmeralda); opacity: .07; z-index: 0; pointer-events: none; }
+
+    /* ===== BOTONES ===== */
+    .btn-esmeralda {
+      background: var(--esmeralda); color: #fff; border: 1.5px solid var(--esmeralda);
+      border-radius: 50px; padding: .9rem 2rem; font-weight: 500; font-size: .98rem;
+      transition: all var(--trans); display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-esmeralda:hover { background: var(--esmeralda-d); border-color: var(--esmeralda-d); color: #fff; transform: translateY(-3px); box-shadow: 0 14px 30px rgba(30,90,65,.3); }
+    .btn-oro {
+      background: var(--oro); color: var(--carbon); border: 1.5px solid var(--oro);
+      border-radius: 50px; padding: .9rem 2rem; font-weight: 500; font-size: .98rem;
+      transition: all var(--trans); display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-oro:hover { background: var(--oro-d); border-color: var(--oro-d); color: #fff; transform: translateY(-3px); }
+    .btn-outline-light-c {
+      background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.6);
+      border-radius: 50px; padding: .9rem 2rem; font-weight: 500;
+      transition: all var(--trans); display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-outline-light-c:hover { background: #fff; color: var(--esmeralda); transform: translateY(-3px); }
+    .btn-outline-c {
+      background: transparent; color: var(--esmeralda); border: 1.5px solid var(--esmeralda);
+      border-radius: 50px; padding: .65rem 1.5rem; font-weight: 500; font-size: .9rem;
+      transition: all var(--trans); display: inline-flex; align-items: center; gap: .45rem;
+    }
+    .btn-outline-c:hover { background: var(--esmeralda); color: #fff; }
+
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed; inset: 0; background: var(--crema); z-index: 100000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-mark { font-family: 'Fraunces'; font-size: 1.8rem; color: var(--esmeralda); }
+    .loader-mark i { color: var(--oro); }
+    .loader-bar { width: 150px; height: 2px; background: rgba(30,90,65,.15); margin-top: 1rem; overflow: hidden; }
+    .loader-bar::after { content: ""; display: block; height: 100%; width: 40%; background: var(--oro); animation: loaderRun 1s infinite; }
+    @keyframes loaderRun { 0%{transform:translateX(-100%);} 100%{transform:translateX(360%);} }
+
+    /* ===== NAVBAR ===== */
+    .topbar {
+      background: var(--esmeralda); color: var(--crema); font-size: .8rem;
+      text-align: center; padding: .45rem 0; letter-spacing: .03em;
+    }
+    .topbar i { color: var(--oro); }
+    .navbar {
+      transition: background var(--trans), padding var(--trans), box-shadow var(--trans);
+      padding: 1.05rem 0;
+    }
+    .navbar.transparent { background: transparent; }
+    .navbar.solid { background: var(--crema); box-shadow: var(--sombra-sm); padding: .6rem 0; }
+    .navbar-brand { font-family: 'Fraunces'; font-weight: 600; font-size: 1.42rem; letter-spacing: -.01em; }
+    .navbar-brand .leaf { color: var(--oro); }
+    .navbar.transparent .navbar-brand, .navbar.transparent .nav-link { color: #fff !important; }
+    .navbar.solid .navbar-brand, .navbar.solid .nav-link { color: var(--carbon) !important; }
+    .nav-link { font-weight: 400; font-size: .95rem; margin: 0 .35rem; position: relative; }
+    .nav-link::after {
+      content: ""; position: absolute; left: 0; bottom: 2px; width: 0; height: 1.5px;
+      background: var(--oro); transition: width var(--trans);
+    }
+    .nav-link:hover::after { width: 100%; }
+    .navbar-toggler { border: none; }
+    .navbar.transparent .navbar-toggler i { color: #fff; }
+    .navbar.solid .navbar-toggler i { color: var(--carbon); }
+    .navbar-toggler:focus { box-shadow: none; }
+    .offcanvas { background: var(--crema); }
+    .offcanvas .nav-link { color: var(--carbon) !important; font-size: 1.1rem; padding: .6rem 0; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center;
+      text-align: center;
+      background:
+        linear-gradient(180deg, rgba(22,63,46,.5) 0%, rgba(22,63,46,.42) 50%, rgba(22,63,46,.78) 100%),
+        url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1900&q=80') center/cover fixed;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6.2vw, 5rem); font-weight: 500;
+      margin-bottom: 1.3rem; text-shadow: 0 2px 24px rgba(0,0,0,.3);
+    }
+    .hero h1 .it { font-style: italic; }
+    .hero-sub { max-width: 620px; margin: 0 auto 2.1rem; font-size: 1.12rem; opacity: .94; }
+    .hero-sub strong { color: var(--oro); font-weight: 500; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .55rem;
+      border: 1px solid rgba(255,255,255,.4); border-radius: 50px;
+      padding: .4rem 1.1rem; font-size: .76rem; letter-spacing: .14em;
+      text-transform: uppercase; margin-bottom: 1.7rem;
+    }
+    .hero-tag .pin { width: 7px; height: 7px; border-radius: 50%; background: var(--oro); }
+    .scroll-ind {
+      position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+      color: #fff; font-size: 1.3rem; animation: bob 1.9s infinite;
+    }
+    @keyframes bob { 0%,100%{transform:translate(-50%,0);} 50%{transform:translate(-50%,12px);} }
+
+    /* ===== TRUST BAND ===== */
+    .trust { background: var(--esmeralda); color: var(--crema); padding: 3rem 0; }
+    .trust-item i { font-size: 1.7rem; color: var(--oro); margin-bottom: .55rem; }
+    .trust-num { font-family: 'Fraunces'; font-size: 2.5rem; font-weight: 500; line-height: 1; }
+    .trust-label { font-size: .9rem; opacity: .85; }
+
+    /* ===== BIENVENIDA ===== */
+    .welcome-imgs { position: relative; }
+    .welcome-imgs .w-main { width: 82%; border-radius: var(--radius); box-shadow: var(--sombra); }
+    .welcome-imgs .w-sub {
+      position: absolute; bottom: -34px; right: 0; width: 46%;
+      border: 7px solid var(--crema); border-radius: var(--radius); box-shadow: var(--sombra-sm);
+    }
+    .welcome-badge {
+      position: absolute; top: 18px; left: -14px; z-index: 3;
+      background: var(--oro); color: var(--carbon); border-radius: 50%;
+      width: 112px; height: 112px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      font-family: 'Fraunces'; box-shadow: var(--sombra-sm);
+    }
+    .welcome-badge .b-num { font-size: 1.7rem; font-weight: 600; line-height: 1; }
+    .welcome-badge .b-txt { font-size: .6rem; text-transform: uppercase; letter-spacing: .07em; }
+
+    /* ===== CARDS DE LAS DOS FINCAS ===== */
+    .finca-card {
+      background: var(--blanco); border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--sombra-sm); height: 100%; transition: transform var(--trans), box-shadow var(--trans);
+    }
+    .finca-card:hover { transform: translateY(-8px); box-shadow: var(--sombra); }
+    .finca-card .img-wrap { position: relative; height: 280px; overflow: hidden; }
+    .finca-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+    .finca-card:hover .img-wrap img { transform: scale(1.08); }
+    .finca-tag {
+      position: absolute; top: 16px; left: 16px; z-index: 2;
+      background: var(--crema); color: var(--esmeralda); border-radius: 50px;
+      padding: .35rem 1rem; font-size: .78rem; font-weight: 600;
+      letter-spacing: .04em; box-shadow: var(--sombra-sm);
+    }
+    .finca-card .card-body { padding: 2rem 1.9rem 1.9rem; }
+    .finca-card h3 { font-size: 1.7rem; margin-bottom: .5rem; }
+    .finca-card p { color: var(--gris); font-size: .96rem; }
+    .finca-specs { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.1rem 0 1.3rem; }
+    .finca-specs span {
+      background: var(--esmeralda-l); color: var(--esmeralda); border-radius: 8px;
+      padding: .35rem .8rem; font-size: .82rem; font-weight: 500;
+      display: inline-flex; align-items: center; gap: .4rem;
+    }
+
+    /* ===== TIPOS DE USO ===== */
+    .use-card {
+      background: var(--blanco); border-radius: var(--radius); padding: 2.1rem 1.7rem;
+      box-shadow: var(--sombra-sm); height: 100%; transition: transform var(--trans), box-shadow var(--trans);
+      border-bottom: 3px solid transparent;
+    }
+    .use-card:hover { transform: translateY(-6px); box-shadow: var(--sombra); border-bottom-color: var(--oro); }
+    .use-card .u-ico {
+      width: 56px; height: 56px; border-radius: 15px; background: var(--esmeralda-l);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--esmeralda); font-size: 1.4rem; margin-bottom: 1.1rem;
+    }
+    .use-card h4 { font-size: 1.3rem; margin-bottom: .45rem; }
+    .use-card p { color: var(--gris); font-size: .93rem; margin: 0; }
+
+    /* ===== ESPACIOS / AMENIDADES ===== */
+    .feature-list li {
+      list-style: none; padding: .5rem 0; display: flex; gap: .85rem; align-items: flex-start;
+    }
+    .feature-list li i {
+      color: var(--esmeralda); background: var(--esmeralda-l);
+      width: 36px; height: 36px; border-radius: 10px; flex: 0 0 36px;
+      display: flex; align-items: center; justify-content: center; margin-top: 2px;
+    }
+    .feature-list li strong { font-weight: 500; }
+    .space-frame { border-radius: var(--radius); box-shadow: var(--sombra); width: 100%; object-fit: cover; }
+    .space-stack { position: relative; }
+    .space-stack .s-2 {
+      position: absolute; bottom: -34px; left: -22px; width: 50%;
+      border: 7px solid var(--crema); border-radius: var(--radius);
+    }
+    .space-quote {
+      border-left: 3px solid var(--oro); padding-left: 1.2rem;
+      font-family: 'Fraunces'; font-style: italic; font-size: 1.15rem; color: var(--esmeralda);
+    }
+
+    /* ===== STATEMENT BAND ===== */
+    .statement { background: var(--esmeralda-l); text-align: center; }
+    .statement p {
+      font-family: 'Fraunces'; font-style: italic; font-weight: 400;
+      font-size: clamp(1.5rem, 3.4vw, 2.5rem); line-height: 1.35; color: var(--esmeralda);
+      max-width: 880px; margin: 0 auto;
+    }
+    .statement .qm { color: var(--oro); }
+
+    /* ===== GALERIA ===== */
+    .filter-btn {
+      background: transparent; border: 1.5px solid rgba(37,48,42,.18); color: var(--gris);
+      border-radius: 50px; padding: .45rem 1.35rem; margin: .25rem; font-size: .88rem;
+      font-weight: 500; transition: all var(--trans);
+    }
+    .filter-btn:hover { color: var(--esmeralda); border-color: var(--esmeralda); }
+    .filter-btn.active { background: var(--esmeralda); border-color: var(--esmeralda); color: #fff; }
+    .gallery-item { transition: opacity .4s ease; }
+    .gallery-item.hide { display: none; }
+    .gallery-item a { display: block; border-radius: 14px; overflow: hidden; position: relative; }
+    .gallery-item img { width: 100%; height: 260px; object-fit: cover; transition: transform .6s ease; }
+    .gallery-item a::after {
+      content: "\f00e"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.5rem; background: rgba(22,63,46,0); opacity: 0; transition: all var(--trans);
+    }
+    .gallery-item a:hover::after { background: rgba(22,63,46,.5); opacity: 1; }
+    .gallery-item a:hover img { transform: scale(1.09); }
+    .gallery-item.extra { display: none; }
+    .gallery-item.extra.shown { display: block; }
+
+    /* ===== TESTIMONIOS ===== */
+    .testi-card {
+      background: var(--blanco); border-radius: var(--radius); padding: 2.3rem;
+      box-shadow: var(--sombra-sm); height: 100%;
+    }
+    .testi-card .qmark { font-family: 'Fraunces'; font-size: 3.4rem; color: var(--oro); line-height: .4; }
+    .testi-card .stars { color: var(--oro); font-size: .82rem; margin-bottom: .9rem; }
+    .testi-card .quote { color: var(--carbon); font-size: 1rem; margin: 1rem 0 1.4rem; }
+    .testi-foot { display: flex; align-items: center; gap: .9rem; }
+    .testi-foot img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--oro); }
+    .testi-foot h5 { font-size: 1.05rem; margin: 0; }
+    .testi-foot span { color: var(--gris); font-size: .82rem; }
+    .swiper-testi { padding-bottom: 3.4rem; }
+    .swiper-pagination-bullet { background: var(--gris); }
+    .swiper-pagination-bullet-active { background: var(--esmeralda); }
+
+    /* ===== FORMULARIO ===== */
+    .form-section { background: var(--esmeralda); color: var(--crema); }
+    .form-section .eyebrow { color: var(--oro); }
+    .form-section .section-title, .form-section .lead-muted { color: var(--crema); }
+    .reason-row { display: flex; gap: 1rem; margin-bottom: 1.3rem; }
+    .reason-row .r-ico {
+      flex: 0 0 46px; width: 46px; height: 46px; border-radius: 12px;
+      background: rgba(194,155,78,.18); border: 1px solid rgba(194,155,78,.4); color: var(--oro);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .reason-row h5 { font-size: 1.08rem; margin-bottom: .15rem; color: #fff; }
+    .reason-row p { color: rgba(251,248,241,.75); font-size: .9rem; margin: 0; }
+    .form-box { background: var(--crema); border-radius: var(--radius); padding: 2.6rem; box-shadow: var(--sombra); }
+    .form-box h3 { color: var(--carbon); }
+    .form-label { font-weight: 500; font-size: .87rem; margin-bottom: .35rem; color: var(--carbon); }
+    .form-label .req { color: var(--oro-d); }
+    .form-control, .form-select {
+      background: var(--blanco); border: 1.5px solid #e4ddcd; color: var(--carbon);
+      border-radius: 11px; padding: .72rem .9rem; font-size: .94rem;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--oro); box-shadow: 0 0 0 .2rem rgba(194,155,78,.18);
+    }
+    .field-error { color: #b5462e; font-size: .79rem; margin-top: .25rem; display: none; }
+    .form-control.is-invalid, .form-select.is-invalid { border-color: #b5462e; background-image: none; }
+    .form-control.is-valid, .form-select.is-valid { border-color: var(--esmeralda); background-image: none; }
+    .form-check-input:checked { background: var(--esmeralda); border-color: var(--esmeralda); }
+
+    /* ===== UBICACION ===== */
+    .map-frame { border: 0; width: 100%; height: 100%; min-height: 400px; border-radius: var(--radius); }
+    .loc-card { background: var(--esmeralda-l); border-radius: var(--radius); padding: 2.4rem; height: 100%; }
+    .loc-item { display: flex; gap: .9rem; margin-bottom: 1.15rem; }
+    .loc-item i { color: var(--oro-d); font-size: 1.05rem; width: 24px; flex: 0 0 24px; margin-top: 3px; }
+    .loc-item span { color: var(--gris); font-size: .95rem; }
+
+    /* ===== FAQ ===== */
+    .accordion-item { border: none; margin-bottom: .8rem; border-radius: 14px !important; overflow: hidden; box-shadow: var(--sombra-sm); }
+    .accordion-button {
+      font-family: 'Fraunces'; font-weight: 500; font-size: 1.12rem;
+      background: var(--blanco); color: var(--carbon); padding: 1.2rem 1.35rem;
+    }
+    .accordion-button:not(.collapsed) { background: var(--esmeralda-l); color: var(--esmeralda); box-shadow: none; }
+    .accordion-button:focus { box-shadow: none; }
+    .accordion-button::after {
+      background-image: none; content: "\2b"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+      color: var(--oro-d); width: auto; height: auto;
+    }
+    .accordion-button:not(.collapsed)::after { content: "\f068"; }
+    .accordion-body { color: var(--gris); padding: 0 1.35rem 1.35rem; }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--esmeralda-d); color: rgba(251,248,241,.72); padding: 4.5rem 0 0; }
+    footer h5 { color: var(--crema); font-size: 1.15rem; margin-bottom: 1.2rem; }
+    footer .f-link { color: rgba(251,248,241,.72); display: block; padding: .3rem 0; font-size: .92rem; }
+    footer .f-link:hover { color: var(--oro); }
+    .social-ic {
+      width: 42px; height: 42px; border-radius: 12px; background: rgba(255,255,255,.07);
+      display: inline-flex; align-items: center; justify-content: center; color: var(--crema);
+      margin-right: .5rem; transition: all var(--trans);
+    }
+    .social-ic:hover { background: var(--oro); color: var(--carbon); transform: translateY(-3px); }
+    .foot-bottom { border-top: 1px solid rgba(255,255,255,.1); margin-top: 3.5rem; padding: 1.5rem 0; font-size: .84rem; }
+    .foot-bottom a { color: var(--oro); }
+    .open-priv { cursor: pointer; }
+
+    /* ===== FLOTANTES ===== */
+    .wa-float {
+      position: fixed; bottom: 22px; right: 22px; z-index: 9000;
+      width: 60px; height: 60px; border-radius: 50%; background: #25D366;
+      display: flex; align-items: center; justify-content: center; color: #fff;
+      font-size: 1.9rem; box-shadow: 0 6px 22px rgba(37,211,102,.45); transition: transform var(--trans);
+    }
+    .wa-float:hover { transform: scale(1.1); color: #fff; }
+    .wa-float::before {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background: #25D366; z-index: -1; animation: waPulse 2s infinite;
+    }
+    @keyframes waPulse { 0%{transform:scale(1);opacity:.6;} 100%{transform:scale(1.8);opacity:0;} }
+    .to-top {
+      position: fixed; bottom: 94px; right: 26px; z-index: 8500;
+      width: 48px; height: 48px; border-radius: 50%; background: var(--esmeralda);
+      color: #fff; border: none; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all var(--trans);
+    }
+    .to-top.show { opacity: 1; visibility: visible; }
+    .to-top:hover { background: var(--oro); color: var(--carbon); }
+
+    /* ===== TOAST ===== */
+    .toast-ok {
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-130px);
+      background: var(--esmeralda); color: #fff; padding: 1rem 1.6rem; border-radius: 50px;
+      box-shadow: var(--sombra); z-index: 99990; font-weight: 500;
+      transition: transform .5s cubic-bezier(.22,.7,.3,1);
+    }
+    .toast-ok.show { transform: translateX(-50%) translateY(0); }
+
+    /* ===== MODAL ===== */
+    .modal-priv .modal-content { border-radius: var(--radius); border: none; background: var(--crema); }
+    .modal-priv h6 { color: var(--esmeralda); font-weight: 600; margin-top: 1.3rem; }
+    .modal-priv p, .modal-priv li { color: var(--gris); font-size: .92rem; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 991px) {
+      :root { --sec-pad: 4.2rem; }
+      .hero { background-attachment: scroll; }
+      .welcome-imgs .w-sub, .space-stack .s-2 { position: static; width: 100%; margin-top: 1rem; border: none; }
+      .welcome-imgs .w-main { width: 100%; }
+      .welcome-badge { top: 14px; left: 14px; }
+    }
+    @media (max-width: 575px) {
+      :root { --sec-pad: 3.4rem; }
+      .form-box { padding: 1.6rem; }
+      .trust-num { font-size: 2.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================= LOADER ================= -->
+<div id="loader">
+  <div class="loader-mark">Villa Clara &amp; Isabel <i class="fa-solid fa-leaf"></i></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+<div class="topbar">
+  <i class="fa-solid fa-leaf me-2"></i>Reservas abiertas — aparta tu fin de semana en Mesa de los Santos
+</div>
+<nav class="navbar navbar-expand-lg fixed-top transparent">
+  <div class="container">
+    <a class="navbar-brand" href="#inicio">Villa Clara<span class="leaf"> &amp; Isabel</span></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars fa-lg"></i>
+    </button>
+
+    <!-- Menu desktop -->
+    <div class="d-none d-lg-flex">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#fincas">Las fincas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#usos">Ideal para</a></li>
+        <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
+        <li class="nav-item"><a class="nav-link" href="#amenidades">Comodidades</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonios">Testimonios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faqs">FAQs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ubicacion">Contacto</a></li>
+        <li class="nav-item ms-2"><a class="btn btn-oro" style="padding:.6rem 1.5rem;font-size:.9rem" href="#reserva">Reservar</a></li>
+      </ul>
+    </div>
+
+    <!-- Off-canvas mobile -->
+    <div class="offcanvas offcanvas-end d-lg-none" id="navMenu" tabindex="-1">
+      <div class="offcanvas-header">
+        <span class="navbar-brand" style="color:var(--carbon)">Villa Clara<span class="leaf"> &amp; Isabel</span></span>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#inicio" data-bs-dismiss="offcanvas">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#fincas" data-bs-dismiss="offcanvas">Las fincas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#usos" data-bs-dismiss="offcanvas">Ideal para</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria" data-bs-dismiss="offcanvas">Galeria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#amenidades" data-bs-dismiss="offcanvas">Comodidades</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonios" data-bs-dismiss="offcanvas">Testimonios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faqs" data-bs-dismiss="offcanvas">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ubicacion" data-bs-dismiss="offcanvas">Contacto</a></li>
+          <li class="nav-item mt-3"><a class="btn btn-esmeralda w-100" href="#reserva" data-bs-dismiss="offcanvas">Reservar</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="inicio">
+  <div class="container">
+    <div data-aos="fade-up">
+      <span class="hero-tag"><span class="pin"></span>Mesa de los Santos · Santander</span>
+      <h1>Tu refugio en<br><span class="it">Mesa de los Santos</span></h1>
+      <p class="hero-sub">
+        <strong>Villa Clara &amp; Villa Isabel</strong> son dos fincas de alquiler rodeadas
+        de naturaleza, para descansar en familia o celebrar tus momentos especiales.
+      </p>
+      <div class="d-flex flex-wrap gap-3 justify-content-center">
+        <a href="#reserva" class="btn btn-oro">Consultar disponibilidad <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#fincas" class="btn btn-outline-light-c"><i class="fa-solid fa-house-chimney"></i> Ver las fincas</a>
+      </div>
+    </div>
+  </div>
+  <a href="#trust" class="scroll-ind" aria-label="Bajar"><i class="fa-solid fa-chevron-down"></i></a>
+</header>
+
+<!-- ================= TRUST BAND ================= -->
+<section class="trust" id="trust" style="padding-top:3rem;padding-bottom:3rem">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up">
+        <i class="fa-solid fa-mountain-sun"></i>
+        <div class="trust-num">10.000 m&sup2;</div>
+        <div class="trust-label">De naturaleza y zonas verdes</div>
+      </div>
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-bed"></i>
+        <div class="trust-num">Hasta <span class="counter" data-target="24">0</span></div>
+        <div class="trust-label">Huespedes en alojamiento</div>
+      </div>
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa-solid fa-champagne-glasses"></i>
+        <div class="trust-num">Hasta <span class="counter" data-target="80">0</span></div>
+        <div class="trust-label">Personas para eventos</div>
+      </div>
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa-solid fa-house-chimney-window"></i>
+        <div class="trust-num">2 fincas</div>
+        <div class="trust-label">Villa Clara y Villa Isabel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BIENVENIDA ================= -->
+<section id="bienvenida">
+  <i class="fa-solid fa-leaf leaf-deco" style="font-size:14rem;top:30px;right:-30px;transform:rotate(25deg)"></i>
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="welcome-imgs">
+          <img class="w-main" loading="lazy" src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=900&q=80" alt="Finca de alquiler en Mesa de los Santos rodeada de naturaleza">
+          <img class="w-sub" loading="lazy" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80" alt="Zona verde de la finca en Mesa de los Santos">
+          <div class="welcome-badge">
+            <span class="b-num">Mesa de<br>los Santos</span>
+            <span class="b-txt">Clima y<br>tranquilidad</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <span class="eyebrow"><i class="fa-solid fa-leaf"></i> Bienvenidos</span>
+        <h2 class="section-title">Dos fincas, un mismo<br>rincon de paz</h2>
+        <div class="divider start"></div>
+        <p class="lead-muted">
+          En el corazon de Mesa de los Santos, Villa Clara y Villa Isabel ofrecen el
+          escenario perfecto para desconectarse: clima agradable, aire puro y amplias
+          zonas verdes a pocos minutos de Bucaramanga.
+        </p>
+        <p class="lead-muted">
+          Alquila la finca para una escapada en familia, una estadia con amigos o un
+          evento intimo. Tu solo llegas a disfrutar; del resto nos encargamos nosotros.
+        </p>
+        <a href="#usos" class="btn btn-esmeralda mt-2">¿Para que es ideal? <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LAS DOS FINCAS ================= -->
+<section id="fincas" class="bg-soft">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-leaf"></i> Las fincas</span>
+      <h2 class="section-title">Elige tu predio favorito</h2>
+      <div class="divider"></div>
+      <p class="lead-muted mx-auto" style="max-width:600px">
+        Dos predios independientes en Mesa de los Santos. Reserva uno, o ambos para
+        grupos mas grandes.
+      </p>
+    </div>
+
+    <div class="row g-4 mt-2">
+      <!-- Villa Clara -->
+      <div class="col-lg-6" data-aos="fade-up">
+        <article class="finca-card">
+          <div class="img-wrap">
+            <span class="finca-tag"><i class="fa-solid fa-star me-1"></i>Predio principal</span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1000&q=80" alt="Finca Villa Clara en Mesa de los Santos">
+          </div>
+          <div class="card-body">
+            <h3>Villa Clara</h3>
+            <p>El predio mas amplio: 10.000 m&sup2; de naturaleza con espacio de sobra
+            para descansar, recorrer los jardines y reunir a todos.</p>
+            <div class="finca-specs">
+              <span><i class="fa-solid fa-ruler-combined"></i>10.000 m&sup2;</span>
+              <span><i class="fa-solid fa-bed"></i>Alojamiento de grupo</span>
+              <span><i class="fa-solid fa-tree"></i>Amplias zonas verdes</span>
+            </div>
+            <a href="#reserva" class="btn btn-outline-c">Consultar Villa Clara</a>
+          </div>
+        </article>
+      </div>
+      <!-- Villa Isabel -->
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <article class="finca-card">
+          <div class="img-wrap">
+            <span class="finca-tag"><i class="fa-solid fa-leaf me-1"></i>Predio acogedor</span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1000&q=80" alt="Finca Villa Isabel en Mesa de los Santos">
+          </div>
+          <div class="card-body">
+            <h3>Villa Isabel</h3>
+            <p>Un espacio mas intimo y acogedor, ideal para escapadas tranquilas en
+            pareja, en familia o con un grupo reducido.</p>
+            <div class="finca-specs">
+              <span><i class="fa-solid fa-house-chimney"></i>Ambiente acogedor</span>
+              <span><i class="fa-solid fa-mug-hot"></i>Descanso en pareja</span>
+              <span><i class="fa-solid fa-seedling"></i>Entorno natural</span>
+            </div>
+            <a href="#reserva" class="btn btn-outline-c">Consultar Villa Isabel</a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <p class="text-center lead-muted mt-4 mb-0" data-aos="fade-up" style="font-size:.96rem">
+      <i class="fa-solid fa-circle-info text-esmeralda me-1"></i>
+      Capacidad combinada: alojamiento hasta <strong>24 personas</strong> y eventos hasta
+      <strong>80 personas</strong>. Escribenos para armar tu plan ideal.
+    </p>
+  </div>
+</section>
+
+<!-- ================= TIPOS DE USO / IDEAL PARA ================= -->
+<section id="usos">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-leaf"></i> Ideal para</span>
+      <h2 class="section-title">Tu plan, a tu manera</h2>
+      <div class="divider"></div>
+      <p class="lead-muted mx-auto" style="max-width:600px">
+        Estas fincas se adaptan a lo que necesites. Estos son los planes mas pedidos.
+      </p>
+    </div>
+
+    <div class="row g-4 mt-2">
+      <div class="col-md-6 col-lg-3" data-aos="fade-up">
+        <div class="use-card">
+          <div class="u-ico"><i class="fa-solid fa-people-roof"></i></div>
+          <h4>Escapadas en familia</h4>
+          <p>Fines de semana de descanso lejos del ruido, con espacio para todos.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="use-card">
+          <div class="u-ico"><i class="fa-solid fa-champagne-glasses"></i></div>
+          <h4>Eventos sociales</h4>
+          <p>Cumpleaños, integraciones y celebraciones intimas hasta 80 personas.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="use-card">
+          <div class="u-ico"><i class="fa-solid fa-user-group"></i></div>
+          <h4>Grupos y retiros</h4>
+          <p>Reuniones de amigos, retiros y planes en grupo con alojamiento incluido.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="use-card">
+          <div class="u-ico"><i class="fa-solid fa-spa"></i></div>
+          <h4>Descanso y desconexion</h4>
+          <p>Estadias tranquilas para recargar energias en plena naturaleza.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AMENIDADES / ESPACIOS ================= -->
+<section id="amenidades" class="bg-soft">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6" data-aos="fade-right">
+        <span class="eyebrow"><i class="fa-solid fa-leaf"></i> Comodidades</span>
+        <h2 class="section-title">Todo listo para<br>que solo disfrutes</h2>
+        <div class="divider start"></div>
+        <p class="lead-muted">
+          Las fincas cuentan con lo necesario para una estadia comoda en cualquier epoca
+          del año.
+        </p>
+        <ul class="feature-list ps-0 mt-3">
+          <li><i class="fa-solid fa-bed"></i><span><strong>Alojamiento</strong> para grupos de hasta 24 personas entre ambos predios.</span></li>
+          <li><i class="fa-solid fa-kitchen-set"></i><span><strong>Cocina equipada</strong> para preparar tus propias comidas con libertad.</span></li>
+          <li><i class="fa-solid fa-tree"></i><span><strong>Amplias zonas verdes</strong> con 10.000 m&sup2; de naturaleza en Villa Clara.</span></li>
+          <li><i class="fa-solid fa-fire-burner"></i><span><strong>Zona de asado / BBQ</strong> para los planes al aire libre.</span></li>
+          <li><i class="fa-solid fa-square-parking"></i><span><strong>Parqueadero</strong> dentro del predio para tu tranquilidad.</span></li>
+        </ul>
+        <p class="space-quote mt-4">"Un lugar para respirar hondo, compartir y volver a casa renovado."</p>
+        <a href="#reserva" class="btn btn-esmeralda mt-3">Quiero reservar <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="space-stack">
+          <img class="space-frame" style="height:420px" loading="lazy"
+               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80"
+               alt="Espacios de las fincas Villa Clara y Villa Isabel">
+          <img class="s-2" loading="lazy"
+               src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80"
+               alt="Habitacion de la finca en Mesa de los Santos">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATEMENT BAND ================= -->
+<section class="statement" data-aos="fade-up">
+  <div class="container">
+    <p><span class="qm">&ldquo;</span>Lejos del ruido, cerca de lo que importa. Mesa de los
+    Santos te espera.<span class="qm">&rdquo;</span></p>
+  </div>
+</section>
+
+<!-- ================= GALERIA ================= -->
+<section id="galeria">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-leaf"></i> Galeria</span>
+      <h2 class="section-title">Conoce las fincas por dentro</h2>
+      <div class="divider"></div>
+      <p class="lead-muted mx-auto" style="max-width:600px">
+        Un recorrido por Villa Clara y Villa Isabel. Haz click en cualquier foto para verla en grande.
+      </p>
+    </div>
+
+    <div class="text-center my-4" data-aos="fade-up">
+      <button class="filter-btn active" data-filter="all">Todo</button>
+      <button class="filter-btn" data-filter="clara">Villa Clara</button>
+      <button class="filter-btn" data-filter="isabel">Villa Isabel</button>
+      <button class="filter-btn" data-filter="naturaleza">Naturaleza</button>
+      <button class="filter-btn" data-filter="eventos">Eventos</button>
+    </div>
+
+    <div class="row g-3" id="galleryGrid">
+      <div class="col-6 col-md-4 gallery-item" data-cat="clara" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=700&q=80" alt="Fachada de Villa Clara"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="isabel" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=700&q=80" alt="Fachada de Villa Isabel"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="naturaleza" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=700&q=80" alt="Paisaje de Mesa de los Santos"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="clara" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80" alt="Sala de estar de la finca"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="isabel" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&q=80" alt="Habitacion de Villa Isabel"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="naturaleza" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&q=80" alt="Zonas verdes de la finca"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="eventos" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1464047736614-af3ef285b470?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=700&q=80" alt="Evento social en la finca"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="clara" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=700&q=80" alt="Interior de Villa Clara"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="eventos" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80" alt="Celebracion en la finca"></a>
+      </div>
+      <!-- Extra -->
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="naturaleza">
+        <a href="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&q=80" alt="Bosque cercano a la finca"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="isabel">
+        <a href="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=700&q=80" alt="Sala de Villa Isabel"></a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="clara">
+        <a href="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=700&q=80" alt="Vista panoramica desde la finca"></a>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button id="loadMore" class="btn btn-outline-c">Ver mas fotos <i class="fa-solid fa-plus ms-1"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+<section id="testimonios" class="bg-soft">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-leaf"></i> Testimonios</span>
+      <h2 class="section-title">Lo que dicen nuestros huespedes</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="swiper swiper-testi mt-4" data-aos="fade-up">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">Pasamos un fin de semana en familia y fue justo lo que necesitabamos. El clima de Mesa de los Santos es delicioso y la finca, amplisima.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=160&q=80" alt="Sandra Pabon">
+              <div><h5>Sandra Pabon</h5><span>Escapada familiar · Villa Clara</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">Celebramos un cumpleaños con unas 60 personas. El espacio rindio perfecto y todos quedaron encantados con el entorno natural.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&q=80" alt="Mauricio Leon">
+              <div><h5>Mauricio Leon</h5><span>Evento social · Villa Clara</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">Villa Isabel es acogedora y tranquila. Ideal para desconectarse del trabajo. Volveremos sin duda.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&q=80" alt="Catalina Ruiz">
+              <div><h5>Catalina Ruiz</h5><span>Descanso en pareja · Villa Isabel</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <div class="qmark">&ldquo;</div>
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">Hicimos un retiro de grupo y el alojamiento alcanzo comodo para todos. Atencion muy amable desde la reserva por WhatsApp.</p>
+            <div class="testi-foot">
+              <img loading="lazy" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=160&q=80" alt="Diego Camargo">
+              <div><h5>Diego Camargo</h5><span>Retiro de grupo · Villa Clara</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMULARIO DE RESERVA ================= -->
+<section id="reserva" class="form-section">
+  <i class="fa-solid fa-leaf leaf-deco" style="font-size:16rem;bottom:-40px;left:-50px;color:#fff;transform:rotate(-20deg)"></i>
+  <div class="container">
+    <div class="row g-5 align-items-center">
+
+      <!-- Izquierda -->
+      <div class="col-lg-5" data-aos="fade-right">
+        <span class="eyebrow"><i class="fa-solid fa-leaf"></i> Reserva</span>
+        <h2 class="section-title">Aparta tu fecha<br>en Mesa de los Santos</h2>
+        <div class="divider start"></div>
+        <p class="lead-muted mb-4">
+          Cuentanos sobre tu plan y te respondemos por WhatsApp con disponibilidad
+          y precios. Sin compromiso.
+        </p>
+
+        <div class="reason-row">
+          <span class="r-ico"><i class="fa-solid fa-calendar-check"></i></span>
+          <div><h5>Confirmacion rapida</h5><p>Verificamos la disponibilidad de las fechas que quieres.</p></div>
+        </div>
+        <div class="reason-row">
+          <span class="r-ico"><i class="fa-solid fa-house-circle-check"></i></span>
+          <div><h5>El predio ideal para ti</h5><p>Te recomendamos Villa Clara o Villa Isabel segun tu grupo.</p></div>
+        </div>
+        <div class="reason-row">
+          <span class="r-ico"><i class="fa-solid fa-headset"></i></span>
+          <div><h5>Atencion personalizada</h5><p>Te acompañamos en cada detalle de tu reserva.</p></div>
+        </div>
+      </div>
+
+      <!-- Derecha: formulario -->
+      <div class="col-lg-7" data-aos="fade-left">
+        <div class="form-box">
+          <h3 class="mb-4" style="font-size:1.6rem">Consulta disponibilidad</h3>
+          <!-- Formulario sin backend: arma un mensaje y abre WhatsApp -->
+          <form id="reservaForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="f-nombre">Nombre completo <span class="req">*</span></label>
+                <input type="text" class="form-control" id="f-nombre" placeholder="Ej: Ana Gomez">
+                <div class="field-error" data-for="f-nombre">Por favor ingresa tu nombre.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-tel">Telefono / WhatsApp <span class="req">*</span></label>
+                <input type="tel" class="form-control" id="f-tel" placeholder="Ej: 3001234567">
+                <div class="field-error" data-for="f-tel">Ingresa un numero colombiano valido (10 digitos).</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-email">Email</label>
+                <input type="email" class="form-control" id="f-email" placeholder="tucorreo@ejemplo.com">
+                <div class="field-error" data-for="f-email">Revisa el formato del correo.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-finca">Finca de interes</label>
+                <select class="form-select" id="f-finca">
+                  <option value="">Cualquiera / por definir</option>
+                  <option>Villa Clara</option>
+                  <option>Villa Isabel</option>
+                  <option>Ambas fincas</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-plan">Tipo de plan <span class="req">*</span></label>
+                <select class="form-select" id="f-plan">
+                  <option value="">Selecciona...</option>
+                  <option>Escapada / descanso</option>
+                  <option>Estadia en familia</option>
+                  <option>Grupo o retiro</option>
+                  <option>Evento social</option>
+                  <option>Otro</option>
+                </select>
+                <div class="field-error" data-for="f-plan">Selecciona el tipo de plan.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-fecha">Fecha tentativa</label>
+                <input type="date" class="form-control" id="f-fecha">
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="f-personas">No. estimado de personas <span class="req">*</span></label>
+                <input type="number" class="form-control" id="f-personas" min="1" max="80" placeholder="Ej: 12">
+                <div class="field-error" data-for="f-personas">Indica cuantas personas serian.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="f-mensaje">Mensaje (opcional)</label>
+                <textarea class="form-control" id="f-mensaje" rows="3" placeholder="Cuentanos algun detalle de tu plan..."></textarea>
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="f-acepto">
+                  <label class="form-check-label" style="font-size:.86rem" for="f-acepto">
+                    Acepto el tratamiento de mis datos segun la
+                    <a class="text-esmeralda open-priv" style="font-weight:500">Politica de Privacidad (Ley 1581 de 2012)</a>.
+                  </label>
+                  <div class="field-error" data-for="f-acepto">Debes aceptar el tratamiento de datos.</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-esmeralda w-100 justify-content-center">
+                  <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
+                </button>
+                <p class="text-center mt-2 mb-0" style="font-size:.8rem;color:var(--gris)">
+                  Al enviar se abrira WhatsApp con tu consulta lista para mandar.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= UBICACION ================= -->
+<section id="ubicacion">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-leaf"></i> Como llegar</span>
+      <h2 class="section-title">Te esperamos en Mesa de los Santos</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="row g-4 mt-2 align-items-stretch">
+      <div class="col-lg-7" data-aos="fade-right">
+        <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Mesa%20de%20los%20Santos%20Santander%20Colombia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          title="Ubicacion de Villa Clara y Villa Isabel en Mesa de los Santos"></iframe>
+      </div>
+      <div class="col-lg-5" data-aos="fade-left">
+        <div class="loc-card">
+          <h3 style="font-size:1.5rem" class="mb-3">Villa Clara &amp; Villa Isabel</h3>
+          <div class="loc-item"><i class="fa-solid fa-location-dot"></i>
+            <span>Predios Villa Clara y Villa Isabel, Mesa de los Santos (Los Santos), Santander.</span></div>
+          <div class="loc-item"><i class="fa-solid fa-route"></i>
+            <span>A aproximadamente 45 minutos del centro de Bucaramanga.</span></div>
+          <div class="loc-item"><i class="fa-brands fa-whatsapp"></i>
+            <span>+57 318 358 0093</span></div>
+          <div class="loc-item"><i class="fa-solid fa-clock"></i>
+            <span>Atencion para reservas: todos los dias, 8:00 a.m. – 6:00 p.m.</span></div>
+          <div class="loc-item"><i class="fa-solid fa-circle-info"></i>
+            <span>Te enviamos la ubicacion exacta y las indicaciones al confirmar tu reserva.</span></div>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a class="btn btn-esmeralda" style="padding:.6rem 1.4rem;font-size:.9rem" target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/?api=1&query=Mesa+de+los+Santos+Santander">
+              <i class="fa-solid fa-map-location-dot"></i> Google Maps</a>
+            <a class="btn btn-outline-c" target="_blank" rel="noopener"
+               href="https://waze.com/ul?q=Mesa%20de%20los%20Santos%20Santander">
+              <i class="fa-brands fa-waze"></i> Waze</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faqs" class="bg-soft">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow" style="justify-content:center"><i class="fa-solid fa-leaf"></i> Preguntas frecuentes</span>
+      <h2 class="section-title">Resolvemos tus dudas</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="row justify-content-center mt-2">
+      <div class="col-lg-9">
+        <div class="accordion" id="faqAcc" data-aos="fade-up">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">¿Cuantas personas se pueden alojar?</button></h2>
+            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Entre Villa Clara y Villa Isabel se puede alojar a grupos de hasta 24 personas. Escribenos para confirmar la distribucion segun tu grupo.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">¿Se pueden hacer eventos en las fincas?</button></h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Si. Las fincas reciben eventos sociales de hasta aproximadamente 80 personas (cumpleaños, integraciones y celebraciones intimas). Consultanos las condiciones para tu fecha.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">¿Puedo alquilar solo una de las dos fincas?</button></h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Claro. Puedes reservar Villa Clara o Villa Isabel de forma independiente, o ambas si tu grupo es mas grande.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">¿Como reservo y como funciona el pago?</button></h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Escribenos por WhatsApp con tus fechas y numero de personas. Confirmamos disponibilidad, el valor y el anticipo para apartar tu reserva.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">¿Que incluye el alquiler?</button></h2>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">El alquiler incluye el uso del predio, el alojamiento y las zonas comunes. Los detalles especificos de cada finca se confirman al momento de la reserva.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">¿Aceptan mascotas?</button></h2>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Cuentanos si viajas con mascota al momento de reservar y te indicamos las condiciones para recibirla.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">¿Como llego a las fincas?</button></h2>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Las fincas estan en Mesa de los Santos, a unos 45 minutos de Bucaramanga. Al confirmar tu reserva te enviamos la ubicacion exacta y las indicaciones para llegar.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">¿Cuales son las politicas de cancelacion?</button></h2>
+            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Las condiciones de cancelacion y reprogramacion se informan por escrito al momento de confirmar la reserva. Escribenos por WhatsApp para conocer los detalles.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <span class="navbar-brand" style="color:var(--crema);font-size:1.55rem">Villa Clara<span class="leaf"> &amp; Isabel</span></span>
+        <p class="mt-3" style="font-size:.92rem;max-width:300px">
+          Fincas de alquiler en Mesa de los Santos, Santander. Tu refugio de descanso y celebracion.
+        </p>
+        <div class="mt-3">
+          <a class="social-ic" href="https://instagram.com/villaclaraisabel" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="social-ic" href="https://facebook.com/villaclaraisabel" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="social-ic" href="https://wa.me/573183580093" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <h5>Explora</h5>
+        <a class="f-link" href="#inicio">Inicio</a>
+        <a class="f-link" href="#fincas">Las fincas</a>
+        <a class="f-link" href="#galeria">Galeria</a>
+        <a class="f-link" href="#testimonios">Testimonios</a>
+        <a class="f-link" href="#reserva">Reservar</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h5>Contacto</h5>
+        <a class="f-link"><i class="fa-solid fa-location-dot text-oro me-2"></i>Mesa de los Santos, Los Santos (Santander)</a>
+        <a class="f-link" href="https://wa.me/573183580093"><i class="fa-brands fa-whatsapp text-oro me-2"></i>+57 318 358 0093</a>
+        <a class="f-link" href="mailto:reservas@villaclaraisabel.co"><i class="fa-solid fa-envelope text-oro me-2"></i>reservas@villaclaraisabel.co</a>
+        <a class="f-link"><i class="fa-solid fa-clock text-oro me-2"></i>Todos los dias · 8am a 6pm</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h5>Legal</h5>
+        <p style="font-size:.9rem">Tratamos tus datos personales conforme a la Ley 1581 de 2012 de Colombia.</p>
+        <a class="btn btn-outline-light-c" style="padding:.55rem 1.3rem;font-size:.85rem">
+          <span class="open-priv">Politica de Privacidad</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-bottom text-center">
+      <p class="mb-1">&copy; <span id="year"></span> Villa Clara &amp; Villa Isabel — Fincas de alquiler en Mesa de los Santos. Todos los derechos reservados.</p>
+      <p class="mb-0">Hecho con <span style="color:var(--oro)">&hearts;</span> en Santander por
+        <a href="https://sruedadev.com" target="_blank" rel="noopener">sruedadev.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOTANTES ================= -->
+<a href="https://wa.me/573183580093?text=Hola%2C%20quiero%20informacion%20para%20alquilar%20la%20finca%20en%20Mesa%20de%20los%20Santos."
+   class="wa-float" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<button class="to-top" id="toTop" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ================= TOAST ================= -->
+<div class="toast-ok" id="toastOk"><i class="fa-solid fa-circle-check me-2"></i>¡Listo! Abriendo WhatsApp con tu consulta...</div>
+
+<!-- ================= MODAL POLITICA DE PRIVACIDAD (Ley 1581) ================= -->
+<div class="modal fade modal-priv" id="privModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title serif">Politica de Tratamiento de Datos Personales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p>En cumplimiento de la <strong style="color:var(--carbon)">Ley 1581 de 2012</strong> y el Decreto 1377 de 2013 de la
+        Republica de Colombia, Villa Clara &amp; Villa Isabel informa su politica de tratamiento de la
+        informacion de los titulares de datos personales.</p>
+
+        <h6>1. Responsable del tratamiento</h6>
+        <p>Villa Clara &amp; Villa Isabel — Fincas de alquiler, ubicadas en Mesa de los Santos (Los Santos),
+        Santander. WhatsApp +57 318 358 0093. Correo: reservas@villaclaraisabel.co</p>
+
+        <h6>2. Finalidad del tratamiento</h6>
+        <p>Los datos personales recolectados a traves de este sitio web (nombre, telefono, correo y
+        detalles del plan) seran utilizados unicamente para: atender solicitudes de disponibilidad
+        y reserva, contactar al titular por WhatsApp, telefono o correo, enviar informacion
+        comercial sobre el servicio y gestionar la reserva del alquiler.</p>
+
+        <h6>3. Derechos del titular</h6>
+        <p>Como titular de los datos, usted tiene derecho a:</p>
+        <ul>
+          <li>Conocer, actualizar y rectificar sus datos personales.</li>
+          <li>Solicitar prueba de la autorizacion otorgada.</li>
+          <li>Ser informado sobre el uso dado a sus datos personales.</li>
+          <li>Revocar la autorizacion y/o solicitar la supresion de los datos cuando no exista un
+          deber legal o contractual que lo impida.</li>
+          <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC).</li>
+        </ul>
+
+        <h6>4. Canales para ejercer sus derechos</h6>
+        <p>Para conocer, actualizar, rectificar, suprimir sus datos o revocar la autorizacion, el
+        titular puede comunicarse al correo <strong style="color:var(--carbon)">reservas@villaclaraisabel.co</strong>
+        o al WhatsApp <strong style="color:var(--carbon)">+57 318 358 0093</strong>. Las solicitudes
+        seran atendidas en los terminos establecidos por la ley.</p>
+
+        <h6>5. Vigencia</h6>
+        <p>Los datos seran conservados durante el tiempo necesario para cumplir las finalidades
+        descritas y mientras exista una relacion comercial o un deber legal de conservarlos.</p>
+
+        <p class="mt-3" style="font-size:.82rem">Ultima actualizacion: 2026.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-esmeralda" style="padding:.6rem 1.5rem;font-size:.9rem" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= LIBRERIAS JS (al final, con defer) ================= -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+
+<!-- ================= JAVASCRIPT PROPIO ================= -->
+<script defer>
+window.addEventListener('DOMContentLoaded', function () {
+
+  /* ===== CONFIGURACION ===== */
+  const WHATSAPP_NUMERO = '573183580093';   // <-- numero del operador (pais + numero, sin "+")
+  const NOMBRE_VENUE    = 'Villa Clara & Villa Isabel';
+
+  /* ===== LOADER ===== */
+  window.addEventListener('load', function () {
+    setTimeout(function () { document.getElementById('loader').classList.add('hidden'); }, 600);
+  });
+
+  /* ===== AOS ===== */
+  AOS.init({ duration: 850, once: true, offset: 90 });
+
+  /* ===== SWIPER (testimonios) ===== */
+  new Swiper('.swiper-testi', {
+    slidesPerView: 1, spaceBetween: 24, loop: true,
+    autoplay: { delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: { 768: { slidesPerView: 2 }, 992: { slidesPerView: 3 } }
+  });
+
+  /* ===== GLIGHTBOX ===== */
+  GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+
+  /* ===== jQuery ===== */
+  jQuery(function ($) {
+
+    /* --- Navbar transparente -> solida --- */
+    function navState() {
+      $('.navbar').toggleClass('solid', window.scrollY > 80)
+                  .toggleClass('transparent', window.scrollY <= 80);
+    }
+    navState();
+    $(window).on('scroll', navState);
+
+    /* --- Smooth scroll --- */
+    $('a[href^="#"]').on('click', function (e) {
+      const target = $(this.getAttribute('href'));
+      if (target.length) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: target.offset().top - 62 }, 600);
+      }
+    });
+
+    /* --- Boton volver arriba --- */
+    $(window).on('scroll', function () {
+      $('#toTop').toggleClass('show', window.scrollY > 600);
+    });
+    $('#toTop').on('click', function () { $('html, body').animate({ scrollTop: 0 }, 600); });
+
+    /* --- Counters animados --- */
+    let counted = false;
+    function runCounters() {
+      const band = $('#trust');
+      if (!counted && window.scrollY + window.innerHeight > band.offset().top + 60) {
+        counted = true;
+        $('.counter').each(function () {
+          const $el = $(this), target = +$el.data('target');
+          $({ n: 0 }).animate({ n: target }, {
+            duration: 1700,
+            step: function () { $el.text(Math.floor(this.n)); },
+            complete: function () { $el.text(target); }
+          });
+        });
+      }
+    }
+    runCounters();
+    $(window).on('scroll', runCounters);
+
+    /* --- Galeria con filtros --- */
+    $('.filter-btn').on('click', function () {
+      $('.filter-btn').removeClass('active');
+      $(this).addClass('active');
+      const cat = $(this).data('filter');
+      $('.gallery-item').each(function () {
+        const match = (cat === 'all' || $(this).data('cat') === cat);
+        const hiddenExtra = $(this).hasClass('extra') && !$(this).hasClass('shown');
+        if (match && !hiddenExtra) { $(this).stop().fadeIn(300).removeClass('hide'); }
+        else { $(this).stop().fadeOut(200).addClass('hide'); }
+      });
+    });
+
+    /* --- Galeria: Ver mas --- */
+    $('#loadMore').on('click', function () {
+      $('.gallery-item.extra').addClass('shown').hide().fadeIn(400);
+      $(this).fadeOut(200);
+    });
+
+    /* --- Validacion del formulario en tiempo real --- */
+    const $form = $('#reservaForm');
+    function showError($field, show) {
+      const id = $field.attr('id');
+      $('.field-error[data-for="' + id + '"]').toggle(show);
+      $field.toggleClass('is-invalid', show)
+            .toggleClass('is-valid', !show && $field.val().trim() !== '');
+    }
+    function validarCampo($field) {
+      const id = $field.attr('id'), val = $field.val().trim();
+      let ok = true;
+      if (id === 'f-nombre')   ok = val.length >= 3;
+      if (id === 'f-tel')      ok = /^3\d{9}$/.test(val.replace(/\s+/g, ''));
+      if (id === 'f-email')    ok = val === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if (id === 'f-plan')     ok = val !== '';
+      if (id === 'f-personas') ok = val !== '' && +val >= 1;
+      showError($field, !ok);
+      return ok;
+    }
+    $('#f-nombre, #f-tel, #f-email, #f-plan, #f-personas').on('input change blur', function () {
+      validarCampo($(this));
+    });
+
+    /* --- Envio: abre WhatsApp con mensaje pre-llenado --- */
+    $form.on('submit', function (e) {
+      e.preventDefault();
+      let valido = true;
+      $('#f-nombre, #f-tel, #f-plan, #f-personas').each(function () {
+        if (!validarCampo($(this))) valido = false;
+      });
+      if ($('#f-email').val().trim() !== '' && !validarCampo($('#f-email'))) valido = false;
+
+      const aceptado = $('#f-acepto').is(':checked');
+      $('.field-error[data-for="f-acepto"]').toggle(!aceptado);
+      if (!aceptado) valido = false;
+
+      if (!valido) {
+        $('html, body').animate({ scrollTop: $('#reserva').offset().top - 60 }, 400);
+        return;
+      }
+
+      const nombre   = $('#f-nombre').val().trim();
+      const tel      = $('#f-tel').val().trim();
+      const finca    = $('#f-finca').val() || 'por definir';
+      const plan     = $('#f-plan').val();
+      const fecha    = $('#f-fecha').val() || 'por definir';
+      const personas = $('#f-personas').val();
+      const mensaje  = $('#f-mensaje').val().trim() || 'sin comentarios adicionales';
+
+      const texto =
+        'Hola ' + NOMBRE_VENUE + ', quiero consultar disponibilidad. ' +
+        'Mi nombre es ' + nombre + ', finca de interes: ' + finca + ', plan: ' + plan +
+        ', fecha tentativa: ' + fecha + ', personas: ' + personas +
+        '. Telefono: ' + tel + '. Mensaje: ' + mensaje;
+
+      const url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(texto);
+
+      const $toast = $('#toastOk');
+      $toast.addClass('show');
+      setTimeout(function () { $toast.removeClass('show'); }, 4000);
+
+      window.open(url, '_blank');
+      $form[0].reset();
+      $('.form-control, .form-select').removeClass('is-valid is-invalid');
+    });
+
+    /* --- Modal de privacidad --- */
+    $('.open-priv').on('click', function (e) {
+      e.preventDefault();
+      new bootstrap.Modal(document.getElementById('privModal')).show();
+    });
+
+    /* --- Año automatico --- */
+    $('#year').text(new Date().getFullYear());
+
+  }); // fin jQuery
+});
+</script>
+
+<!--
+=======================================================================
+  GUIA DE PERSONALIZACION  ·  Villa Clara & Villa Isabel
+=======================================================================
+
+  1. COLORES
+     Edita las variables en :root (inicio del <style>):
+       --esmeralda (verde de marca), --oro (dorado de marca),
+       --crema (fondo), --carbon (texto).
+
+  2. WHATSAPP
+     - JS: variable WHATSAPP_NUMERO (formato pais+numero, sin "+").
+     - Boton flotante .wa-float, footer y enlaces de contacto: atributo href.
+
+  3. TEXTOS / DATOS
+     Busca y reemplaza nombres y datos por los reales del operador.
+     Actualiza email, redes sociales y, si aplica, NIT y direccion exacta.
+
+  4. IMAGENES
+     Reemplaza las URLs de Unsplash por las fotos reales de las fincas
+     (hero -> background CSS .hero; bienvenida; cards de #fincas;
+     #amenidades; galeria; testimonios). Conserva loading="lazy" y alt.
+
+  5. MAPA
+     En #ubicacion el <iframe> usa una busqueda generica de Mesa de los
+     Santos. Reemplaza el parametro q= por la direccion / coordenadas
+     exactas del predio. Igual en los botones de Google Maps y Waze.
+
+  6. SEO
+     Ajusta <title>, meta description, keywords, Open Graph y el JSON-LD
+     (coordenadas geo, telefono, direccion).
+
+  7. GALERIA
+     Cada foto es un .gallery-item con data-cat (clara / isabel /
+     naturaleza / eventos). Las marcadas con clase "extra" aparecen
+     solo al dar "Ver mas".
+
+=======================================================================
+  DATOS USADOS (tomados de la ficha entregada) y SUPUESTOS:
+
+  DATOS REALES (de la imagen):
+  - Predios: Villa Clara (10.000 m2) y Villa Isabel, Mesa de los Santos.
+  - Tipo: alquiler de finca con uso eventual para eventos.
+  - Capacidad: hasta 24 personas en alojamiento; eventos hasta ~80.
+  - Telefono / WhatsApp: +57 318 358 0093.
+    >>> IMPORTANTE: este numero esta marcado en la ficha como
+    "referenciado en fichas del operador — confirmar". VERIFICAR que sea
+    el numero correcto antes de publicar la pagina.
+
+  SUPUESTOS (datos NO entregados — rellenados de forma razonable,
+  reemplazar/confirmar con el operador real):
+  - Nombre comercial unificado: "Villa Clara & Villa Isabel".
+  - Email: reservas@villaclaraisabel.co (placeholder).
+  - Redes sociales (Instagram / Facebook): placeholders.
+  - Distancia "45 min desde Bucaramanga": aproximada, confirmar.
+  - Amenidades (cocina equipada, zona de asado/BBQ, parqueadero) y
+    horario de atencion: ejemplos tipicos — confirmar con el operador.
+  - Coordenadas geo: aproximadas de Mesa de los Santos (6.8123, -73.0654).
+  - Testimonios: ejemplos de muestra, reemplazar por reseñas reales.
+=======================================================================
+-->
+</body>
+</html>

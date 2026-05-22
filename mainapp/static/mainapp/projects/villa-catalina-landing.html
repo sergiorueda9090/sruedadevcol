@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<!--
+=======================================================================
+  LANDING PAGE · VILLA CATALINA — FINCA DE EVENTOS
+  Single-page · Bootstrap 5.3 · jQuery 3.7 · AOS · Swiper · GLightbox
+  Desarrollada por sruedadev.com — Santander, Colombia
+  Instrucciones de personalizacion al final del archivo.
+=======================================================================
+-->
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ================= SEO LOCAL ================= -->
+  <title>Villa Catalina · Salon de Eventos en Mesa de los Santos | Matrimonios, Quinces y Grados</title>
+  <meta name="description" content="Finca para matrimonios, quinces y grados en Mesa de los Santos, Santander. Jardin con vista a la Mesa, plan B techado y parqueadero. Reserva tu fecha por WhatsApp.">
+  <meta name="keywords" content="salon de eventos Mesa de los Santos, finca para matrimonios Santander, finca de eventos Bucaramanga, centro de eventos Santander, salon para quinces, finca para grados Floridablanca">
+  <meta name="author" content="Villa Catalina">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.villacatalina.com.co/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="business.business">
+  <meta property="og:title" content="Villa Catalina · Salon de Eventos en Mesa de los Santos">
+  <meta property="og:description" content="El lugar donde tu historia comienza. Finca de eventos con vista a la Mesa de los Santos. Matrimonios, quinces, grados y eventos corporativos.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80">
+  <meta property="og:url" content="https://www.villacatalina.com.co/">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Villa Catalina">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Villa Catalina · Salon de Eventos en Mesa de los Santos">
+  <meta name="twitter:description" content="Finca de eventos con vista a la Mesa de los Santos. Reserva tu fecha por WhatsApp.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80">
+
+  <!-- Favicon emoji (fallback SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
+
+  <!-- Schema.org JSON-LD tipo EventVenue -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EventVenue",
+    "name": "Villa Catalina — Finca de Eventos",
+    "description": "Finca de eventos en Mesa de los Santos, Santander, para matrimonios, quinces, grados y eventos corporativos.",
+    "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80",
+    "url": "https://www.villacatalina.com.co/",
+    "telephone": "+57 607 685 4477",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Km 8 Via Mesa de los Santos",
+      "addressLocality": "Los Santos",
+      "addressRegion": "Santander",
+      "postalCode": "684501",
+      "addressCountry": "CO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 6.7556,
+      "longitude": -73.1042
+    },
+    "openingHours": "Mo-Su 08:00-18:00",
+    "areaServed": ["Bucaramanga", "Floridablanca", "Giron", "Piedecuesta", "Los Santos"],
+    "maximumAttendeeCapacity": 400
+  }
+  </script>
+
+  <!-- ================= LIBRERIAS CDN ================= -->
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts: Playfair Display + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Swiper -->
+  <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+  <!-- GLightbox -->
+  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- ================= ESTILOS PROPIOS ================= -->
+  <style>
+    /* ===== VARIABLES DE MARCA (cambiar colores aqui) ===== */
+    :root {
+      --dorado:    #C9A961;   /* champagne — color de marca principal */
+      --dorado-d:  #A8894A;   /* dorado oscuro para hover */
+      --sage:      #87A878;   /* verde sage — color de marca secundario */
+      --crema:     #FAF7F2;   /* neutro claro / fondos */
+      --carbon:    #2C2C2C;   /* neutro oscuro / textos */
+      --blanco:    #FFFFFF;
+      --gris:      #6E6A63;   /* gris suave para textos secundarios */
+
+      --radius:    14px;       /* border-radius consistente */
+      --sombra:    0 12px 40px rgba(44,44,44,.10);
+      --sombra-sm: 0 6px 20px rgba(44,44,44,.08);
+      --trans:     .3s ease;
+      --sec-pad:   6rem;       /* padding vertical de secciones (desktop) */
+    }
+
+    /* ===== RESET / BASE ===== */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--carbon);
+      background: var(--blanco);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+    h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
+    h2.section-title { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.2; }
+    a { text-decoration: none; transition: color var(--trans); }
+    img { max-width: 100%; }
+    section { padding: var(--sec-pad) 0; }
+    ::selection { background: var(--dorado); color: #fff; }
+
+    /* ===== UTILIDADES ===== */
+    .text-dorado { color: var(--dorado) !important; }
+    .text-sage   { color: var(--sage) !important; }
+    .bg-crema    { background: var(--crema); }
+    .bg-carbon   { background: var(--carbon); }
+    .eyebrow {
+      display: inline-block; letter-spacing: .22em; text-transform: uppercase;
+      font-size: .78rem; font-weight: 600; color: var(--dorado); margin-bottom: 1rem;
+    }
+    .divider {
+      width: 60px; height: 3px; background: var(--dorado);
+      border-radius: 3px; margin: 1.2rem auto 1.6rem;
+    }
+    .divider.start { margin-left: 0; }
+
+    /* ===== BOTONES ===== */
+    .btn-marca {
+      background: var(--dorado); color: #fff; border: 2px solid var(--dorado);
+      border-radius: 50px; padding: .85rem 2.1rem; font-weight: 600;
+      letter-spacing: .03em; transition: all var(--trans);
+    }
+    .btn-marca:hover { background: var(--dorado-d); border-color: var(--dorado-d); color: #fff; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(201,169,97,.4); }
+    .btn-outline-light-marca {
+      background: transparent; color: #fff; border: 2px solid #fff;
+      border-radius: 50px; padding: .85rem 2.1rem; font-weight: 600; transition: all var(--trans);
+    }
+    .btn-outline-light-marca:hover { background: #fff; color: var(--carbon); transform: translateY(-3px); }
+    .btn-outline-marca {
+      background: transparent; color: var(--carbon); border: 2px solid var(--carbon);
+      border-radius: 50px; padding: .7rem 1.7rem; font-weight: 600; transition: all var(--trans);
+    }
+    .btn-outline-marca:hover { background: var(--carbon); color: #fff; }
+
+    /* ===== LOADER INICIAL ===== */
+    #loader {
+      position: fixed; inset: 0; background: var(--crema); z-index: 99999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-mark { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--carbon); letter-spacing: .05em; }
+    .loader-bar { width: 140px; height: 3px; background: rgba(44,44,44,.12); border-radius: 3px; margin-top: 1rem; overflow: hidden; }
+    .loader-bar::after { content: ""; display: block; width: 40%; height: 100%; background: var(--dorado); animation: loaderRun 1s infinite ease-in-out; }
+    @keyframes loaderRun { 0%{transform:translateX(-100%);} 100%{transform:translateX(350%);} }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      transition: background var(--trans), padding var(--trans), box-shadow var(--trans);
+      padding: 1.1rem 0;
+    }
+    .navbar.transparent { background: transparent; }
+    .navbar.solid { background: var(--blanco); box-shadow: var(--sombra-sm); padding: .6rem 0; }
+    .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.55rem; letter-spacing: .02em; }
+    .navbar.transparent .navbar-brand,
+    .navbar.transparent .nav-link { color: #fff !important; }
+    .navbar.solid .navbar-brand,
+    .navbar.solid .nav-link { color: var(--carbon) !important; }
+    .navbar-brand .brand-leaf { color: var(--dorado); }
+    .nav-link { font-weight: 500; font-size: .95rem; margin: 0 .35rem; position: relative; }
+    .nav-link::after {
+      content: ""; position: absolute; left: 0; bottom: 2px; width: 0; height: 2px;
+      background: var(--dorado); transition: width var(--trans);
+    }
+    .nav-link:hover::after { width: 100%; }
+    .navbar-toggler { border: none; }
+    .navbar.transparent .navbar-toggler i { color: #fff; }
+    .navbar.solid .navbar-toggler i { color: var(--carbon); }
+    .navbar-toggler:focus { box-shadow: none; }
+    .offcanvas { background: var(--crema); }
+    .offcanvas .nav-link { color: var(--carbon) !important; font-size: 1.1rem; padding: .6rem 0; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; height: 100vh; min-height: 600px;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+                  url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1800&q=80') center/cover fixed;
+      color: #fff; padding: 0;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 700;
+      line-height: 1.12; margin-bottom: 1.2rem; text-shadow: 0 2px 20px rgba(0,0,0,.4);
+    }
+    .hero .hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); max-width: 640px; margin: 0 auto 2.2rem; font-weight: 300; }
+    .hero .hero-sub strong { font-weight: 600; color: var(--dorado); }
+    .scroll-ind {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      color: #fff; font-size: 1.4rem; animation: bob 1.8s infinite;
+    }
+    @keyframes bob { 0%,100%{transform:translate(-50%,0);} 50%{transform:translate(-50%,12px);} }
+
+    /* ===== BARRA DE TRUST ===== */
+    .trust-bar { background: var(--dorado); color: #fff; padding: 2.6rem 0; }
+    .trust-item i { font-size: 2rem; margin-bottom: .5rem; opacity: .9; }
+    .trust-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; line-height: 1; }
+    .trust-label { font-size: .92rem; font-weight: 400; opacity: .92; }
+
+    /* ===== CARDS DE EVENTOS ===== */
+    .event-card {
+      border-radius: var(--radius); overflow: hidden; background: #fff;
+      box-shadow: var(--sombra-sm); transition: transform var(--trans), box-shadow var(--trans);
+      height: 100%;
+    }
+    .event-card:hover { transform: translateY(-8px); box-shadow: var(--sombra); }
+    .event-card .img-wrap { position: relative; overflow: hidden; height: 230px; }
+    .event-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .event-card:hover .img-wrap img { transform: scale(1.12); }
+    .event-card .img-wrap::after {
+      content: ""; position: absolute; inset: 0;
+      background: rgba(135,168,120,.0); transition: background var(--trans);
+    }
+    .event-card:hover .img-wrap::after { background: rgba(135,168,120,.35); }
+    .event-card .card-body { padding: 1.6rem; }
+    .event-card h4 { font-size: 1.4rem; margin-bottom: .5rem; }
+    .event-card p { color: var(--gris); font-size: .95rem; }
+    .event-card .ev-icon {
+      position: absolute; top: 14px; left: 14px; z-index: 2;
+      width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.92);
+      display: flex; align-items: center; justify-content: center; color: var(--dorado);
+    }
+
+    /* ===== SECCION ESPACIOS ===== */
+    .feature-list li {
+      list-style: none; padding: .55rem 0; display: flex; align-items: flex-start; gap: .8rem;
+    }
+    .feature-list li i {
+      color: var(--sage); background: rgba(135,168,120,.14);
+      width: 34px; height: 34px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; flex: 0 0 34px; margin-top: 2px;
+    }
+    .space-img { border-radius: var(--radius); box-shadow: var(--sombra); width: 100%; object-fit: cover; }
+    .space-img-stack { position: relative; }
+    .space-img-stack .img-2 {
+      position: absolute; bottom: -36px; right: -20px; width: 52%;
+      border: 6px solid #fff; border-radius: var(--radius);
+    }
+
+    /* ===== GALERIA ===== */
+    .filter-btn {
+      background: transparent; border: 1.5px solid rgba(44,44,44,.2); color: var(--carbon);
+      border-radius: 50px; padding: .45rem 1.4rem; margin: .25rem; font-size: .9rem;
+      font-weight: 500; transition: all var(--trans);
+    }
+    .filter-btn:hover { border-color: var(--dorado); color: var(--dorado); }
+    .filter-btn.active { background: var(--dorado); border-color: var(--dorado); color: #fff; }
+    .gallery-item { transition: opacity .4s ease, transform .4s ease; }
+    .gallery-item.hide { display: none; }
+    .gallery-item a { display: block; border-radius: var(--radius); overflow: hidden; position: relative; }
+    .gallery-item img { width: 100%; height: 250px; object-fit: cover; transition: transform .6s ease; }
+    .gallery-item a::after {
+      content: "\f00e"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.6rem; background: rgba(44,44,44,0); opacity: 0; transition: all var(--trans);
+    }
+    .gallery-item a:hover::after { background: rgba(44,44,44,.45); opacity: 1; }
+    .gallery-item a:hover img { transform: scale(1.1); }
+    .gallery-item.extra { display: none; }
+    .gallery-item.extra.shown { display: block; }
+
+    /* ===== TESTIMONIOS ===== */
+    .testi-card {
+      background: #fff; border-radius: var(--radius); padding: 2.2rem;
+      box-shadow: var(--sombra-sm); height: 100%; text-align: center;
+    }
+    .testi-card img {
+      width: 78px; height: 78px; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--dorado); margin-bottom: 1rem;
+    }
+    .testi-card .stars { color: var(--dorado); margin-bottom: .8rem; }
+    .testi-card .quote { color: var(--gris); font-style: italic; margin-bottom: 1rem; }
+    .testi-card h5 { margin-bottom: .1rem; font-family: 'Playfair Display', serif; }
+    .testi-card .ev-date { font-size: .82rem; color: var(--dorado); font-weight: 500; }
+    .swiper-pagination-bullet-active { background: var(--dorado); }
+    .swiper-testi { padding-bottom: 3.5rem; }
+
+    /* ===== FORMULARIO ===== */
+    .form-section { background: var(--crema); }
+    .reason-item { display: flex; gap: 1rem; margin-bottom: 1.4rem; }
+    .reason-item .r-ico {
+      flex: 0 0 48px; width: 48px; height: 48px; border-radius: 50%;
+      background: var(--dorado); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .reason-item h5 { margin-bottom: .15rem; font-size: 1.1rem; }
+    .reason-item p { color: var(--gris); font-size: .92rem; margin: 0; }
+    .form-box { background: #fff; border-radius: var(--radius); padding: 2.4rem; box-shadow: var(--sombra); }
+    .form-control, .form-select {
+      border-radius: 10px; border: 1.5px solid #e3ddd2; padding: .7rem .9rem; font-size: .95rem;
+    }
+    .form-control:focus, .form-select:focus { border-color: var(--dorado); box-shadow: 0 0 0 .2rem rgba(201,169,97,.18); }
+    .form-label { font-weight: 500; font-size: .9rem; margin-bottom: .35rem; }
+    .form-label .req { color: #c0392b; }
+    .field-error { color: #c0392b; font-size: .8rem; margin-top: .25rem; display: none; }
+    .form-control.is-invalid, .form-select.is-invalid { border-color: #c0392b; background-image: none; }
+    .form-control.is-valid, .form-select.is-valid { border-color: var(--sage); background-image: none; }
+
+    /* ===== MAPA / UBICACION ===== */
+    .map-frame { border: 0; width: 100%; height: 100%; min-height: 380px; border-radius: var(--radius); }
+    .loc-card { background: var(--crema); border-radius: var(--radius); padding: 2.2rem; height: 100%; }
+    .loc-item { display: flex; gap: .9rem; margin-bottom: 1.1rem; }
+    .loc-item i { color: var(--dorado); font-size: 1.15rem; width: 24px; flex: 0 0 24px; margin-top: 3px; }
+
+    /* ===== FAQ ===== */
+    .accordion-item { border: none; margin-bottom: .8rem; border-radius: var(--radius) !important; overflow: hidden; box-shadow: var(--sombra-sm); }
+    .accordion-button {
+      font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.1rem;
+      background: #fff; color: var(--carbon); padding: 1.15rem 1.3rem;
+    }
+    .accordion-button:not(.collapsed) { background: var(--crema); color: var(--dorado-d); box-shadow: none; }
+    .accordion-button:focus { box-shadow: none; }
+    .accordion-button::after {
+      background-image: none; content: "\2b"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+      width: auto; height: auto; transition: transform var(--trans);
+    }
+    .accordion-button:not(.collapsed)::after { content: "\f068"; transform: none; }
+    .accordion-body { color: var(--gris); padding: 0 1.3rem 1.3rem; }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--carbon); color: #cfcabf; padding: 4.5rem 0 0; }
+    footer h5 { color: #fff; font-family: 'Playfair Display', serif; margin-bottom: 1.2rem; font-size: 1.25rem; }
+    footer a { color: #cfcabf; }
+    footer a:hover { color: var(--dorado); }
+    footer .foot-links li { padding: .3rem 0; list-style: none; }
+    .social-ic {
+      width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.08);
+      display: inline-flex; align-items: center; justify-content: center; color: #fff;
+      margin-right: .5rem; transition: all var(--trans);
+    }
+    .social-ic:hover { background: var(--dorado); color: #fff; transform: translateY(-3px); }
+    .foot-bottom { border-top: 1px solid rgba(255,255,255,.08); padding: 1.4rem 0; margin-top: 3.5rem; font-size: .85rem; }
+    .foot-bottom a.btn-link-priv { color: var(--dorado); cursor: pointer; }
+
+    /* ===== WHATSAPP FLOTANTE ===== */
+    .wa-float {
+      position: fixed; bottom: 22px; right: 22px; z-index: 9000;
+      width: 60px; height: 60px; border-radius: 50%; background: #25D366;
+      display: flex; align-items: center; justify-content: center; color: #fff;
+      font-size: 1.9rem; box-shadow: 0 6px 22px rgba(37,211,102,.5);
+      transition: transform var(--trans);
+    }
+    .wa-float:hover { transform: scale(1.1); color: #fff; }
+    .wa-float::before {
+      content: ""; position: absolute; inset: 0; border-radius: 50%;
+      background: #25D366; z-index: -1; animation: waPulse 2s infinite;
+    }
+    @keyframes waPulse { 0%{transform:scale(1);opacity:.7;} 100%{transform:scale(1.8);opacity:0;} }
+
+    /* ===== BOTON VOLVER ARRIBA ===== */
+    .to-top {
+      position: fixed; bottom: 94px; right: 26px; z-index: 8500;
+      width: 48px; height: 48px; border-radius: 50%; background: var(--carbon);
+      color: #fff; border: none; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all var(--trans);
+    }
+    .to-top.show { opacity: 1; visibility: visible; }
+    .to-top:hover { background: var(--dorado); }
+
+    /* ===== TOAST ===== */
+    .toast-ok {
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-120px);
+      background: var(--sage); color: #fff; padding: 1rem 1.6rem; border-radius: 50px;
+      box-shadow: var(--sombra); z-index: 99990; font-weight: 500; transition: transform .5s ease;
+    }
+    .toast-ok.show { transform: translateX(-50%) translateY(0); }
+
+    /* ===== MODAL PRIVACIDAD ===== */
+    .modal-priv .modal-content { border-radius: var(--radius); border: none; }
+    .modal-priv h6 { color: var(--dorado-d); font-weight: 600; margin-top: 1.2rem; }
+    .modal-priv p, .modal-priv li { font-size: .92rem; color: var(--gris); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 991px) {
+      :root { --sec-pad: 4rem; }
+      .hero { background-attachment: scroll; height: 90vh; }
+      .space-img-stack .img-2 { position: static; width: 100%; margin-top: 1rem; border: none; }
+    }
+    @media (max-width: 575px) {
+      :root { --sec-pad: 3.2rem; }
+      .form-box { padding: 1.5rem; }
+      .trust-num { font-size: 2.1rem; }
+      .wa-float { width: 54px; height: 54px; font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================= LOADER INICIAL ================= -->
+<div id="loader">
+  <div class="loader-mark">Villa <span style="color:var(--dorado)">Catalina</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg fixed-top transparent">
+  <div class="container">
+    <a class="navbar-brand" href="#inicio">Villa<span class="brand-leaf">Catalina</span></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navMenu" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars fa-lg"></i>
+    </button>
+
+    <!-- Menu desktop -->
+    <div class="collapse navbar-collapse justify-content-end d-none d-lg-flex">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#eventos">Eventos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
+        <li class="nav-item"><a class="nav-link" href="#espacios">Espacios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonios">Testimonios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faqs">FAQs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ubicacion">Contacto</a></li>
+        <li class="nav-item ms-2"><a class="btn btn-marca btn-sm" href="#reserva">Reservar fecha</a></li>
+      </ul>
+    </div>
+
+    <!-- Menu off-canvas (mobile) -->
+    <div class="offcanvas offcanvas-end d-lg-none" id="navMenu" tabindex="-1">
+      <div class="offcanvas-header">
+        <span class="navbar-brand m-0" style="color:var(--carbon)">Villa<span class="brand-leaf">Catalina</span></span>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#inicio" data-bs-dismiss="offcanvas">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#eventos" data-bs-dismiss="offcanvas">Eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria" data-bs-dismiss="offcanvas">Galeria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#espacios" data-bs-dismiss="offcanvas">Espacios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonios" data-bs-dismiss="offcanvas">Testimonios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faqs" data-bs-dismiss="offcanvas">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ubicacion" data-bs-dismiss="offcanvas">Contacto</a></li>
+          <li class="nav-item mt-3"><a class="btn btn-marca w-100" href="#reserva" data-bs-dismiss="offcanvas">Reservar fecha</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="inicio">
+  <div class="container">
+    <div data-aos="fade-up">
+      <span class="eyebrow" style="color:#fff">Finca de eventos · Santander</span>
+      <h1>El lugar donde tu<br>historia comienza</h1>
+      <p class="hero-sub">
+        <strong>Villa Catalina</strong> · Mesa de los Santos. Un jardin con vista a la Mesa
+        para celebrar matrimonios, quinces y grados que se recuerdan toda la vida.
+      </p>
+      <div class="d-flex flex-wrap gap-3 justify-content-center">
+        <a href="#reserva" class="btn btn-marca">Ver disponibilidad</a>
+        <a href="#galeria" class="btn btn-outline-light-marca">Galeria</a>
+      </div>
+    </div>
+  </div>
+  <a href="#trust" class="scroll-ind" aria-label="Bajar"><i class="fa-solid fa-chevron-down"></i></a>
+</header>
+
+<!-- ================= BARRA DE TRUST ================= -->
+<section class="trust-bar" id="trust" style="padding-top:2.6rem;padding-bottom:2.6rem">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="0">
+        <i class="fa-solid fa-champagne-glasses"></i>
+        <div class="trust-num"><span class="counter" data-target="15">0</span>+</div>
+        <div class="trust-label">Años de experiencia</div>
+      </div>
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-calendar-check"></i>
+        <div class="trust-num"><span class="counter" data-target="850">0</span>+</div>
+        <div class="trust-label">Eventos realizados</div>
+      </div>
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa-solid fa-users"></i>
+        <div class="trust-num">Hasta <span class="counter" data-target="400">0</span></div>
+        <div class="trust-label">Invitados por evento</div>
+      </div>
+      <div class="col-6 col-lg-3 trust-item" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa-solid fa-location-dot"></i>
+        <div class="trust-num">20 min</div>
+        <div class="trust-label">Desde Bucaramanga</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIPOS DE EVENTO ================= -->
+<section id="eventos">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow">Lo que celebramos</span>
+      <h2 class="section-title">Cada ocasion merece su lugar</h2>
+      <div class="divider"></div>
+      <p class="text-muted mx-auto" style="max-width:620px">
+        Adaptamos cada espacio al tipo de evento que sueñas. Elige el tuyo y consulta
+        disponibilidad sin compromiso.
+      </p>
+    </div>
+
+    <div class="row g-4 mt-2">
+      <!-- Card: Matrimonios -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <article class="event-card">
+          <div class="img-wrap">
+            <span class="ev-icon"><i class="fa-solid fa-ring"></i></span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80" alt="Matrimonio celebrado en Villa Catalina, Mesa de los Santos">
+          </div>
+          <div class="card-body">
+            <h4>Matrimonios</h4>
+            <p>Ceremonia al aire libre con vista a la Mesa y recepcion bajo nuestro salon-jardin. El dia perfecto, de principio a fin.</p>
+            <a href="#reserva" class="btn btn-outline-marca btn-sm">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+      <!-- Card: Quinces -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <article class="event-card">
+          <div class="img-wrap">
+            <span class="ev-icon"><i class="fa-solid fa-crown"></i></span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80" alt="Fiesta de quince años en finca de eventos Santander">
+          </div>
+          <div class="card-body">
+            <h4>Quinces</h4>
+            <p>Un escenario de ensueño para la fiesta de quince años: pista de baile, iluminacion y espacio para el vals.</p>
+            <a href="#reserva" class="btn btn-outline-marca btn-sm">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+      <!-- Card: Grados -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <article class="event-card">
+          <div class="img-wrap">
+            <span class="ev-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80" alt="Celebracion de grado en salon de eventos Mesa de los Santos">
+          </div>
+          <div class="card-body">
+            <h4>Grados</h4>
+            <p>Celebra ese logro con la familia. Menus para grupos, brindis y un ambiente alegre para la promocion.</p>
+            <a href="#reserva" class="btn btn-outline-marca btn-sm">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+      <!-- Card: Primeras comuniones -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+        <article class="event-card">
+          <div class="img-wrap">
+            <span class="ev-icon"><i class="fa-solid fa-dove"></i></span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80" alt="Primera comunion celebrada en finca de eventos">
+          </div>
+          <div class="card-body">
+            <h4>Primeras comuniones</h4>
+            <p>Un espacio luminoso y tranquilo para una celebracion familiar especial, con jardin para los mas pequeños.</p>
+            <a href="#reserva" class="btn btn-outline-marca btn-sm">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+      <!-- Card: Cumpleaños -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <article class="event-card">
+          <div class="img-wrap">
+            <span class="ev-icon"><i class="fa-solid fa-cake-candles"></i></span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=800&q=80" alt="Fiesta de cumpleaños en finca de eventos Santander">
+          </div>
+          <div class="card-body">
+            <h4>Cumpleaños</h4>
+            <p>Desde reuniones intimas hasta grandes celebraciones. Tu fiesta, a tu manera, con descorche permitido.</p>
+            <a href="#reserva" class="btn btn-outline-marca btn-sm">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+      <!-- Card: Corporativos -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <article class="event-card">
+          <div class="img-wrap">
+            <span class="ev-icon"><i class="fa-solid fa-briefcase"></i></span>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80" alt="Evento corporativo en centro de eventos Santander">
+          </div>
+          <div class="card-body">
+            <h4>Eventos corporativos</h4>
+            <p>Integraciones de empresa, fin de año y lanzamientos. Cocina industrial, parqueadero y plan B techado.</p>
+            <a href="#reserva" class="btn btn-outline-marca btn-sm">Consultar disponibilidad</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NUESTROS ESPACIOS ================= -->
+<section id="espacios" class="bg-crema">
+  <div class="container">
+
+    <!-- Bloque 1: texto izquierda / imagen derecha -->
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-aos="fade-right">
+        <span class="eyebrow">Nuestros espacios</span>
+        <h2 class="section-title">Un jardin pensado para celebrar</h2>
+        <div class="divider start"></div>
+        <p class="text-muted">
+          Tres hectareas de naturaleza a 20 minutos de Bucaramanga. Cada rincon de Villa Catalina
+          esta diseñado para que tu evento fluya sin contratiempos, llueva o haga sol.
+        </p>
+        <ul class="feature-list ps-0 mt-3">
+          <li><i class="fa-solid fa-arch"></i><span><strong>Zona de ceremonia</strong> al aire libre con vista panoramica a la Mesa de los Santos.</span></li>
+          <li><i class="fa-solid fa-utensils"></i><span><strong>Cocina industrial</strong> equipada para tu proveedor de catering o el nuestro.</span></li>
+          <li><i class="fa-solid fa-square-parking"></i><span><strong>Parqueadero privado</strong> con capacidad para 80 vehiculos.</span></li>
+        </ul>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="space-img-stack">
+          <img class="space-img" style="height:380px" loading="lazy"
+               src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&q=80"
+               alt="Jardin principal de Villa Catalina con vista a la Mesa de los Santos">
+          <img class="img-2" loading="lazy"
+               src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=80"
+               alt="Zona de ceremonia al aire libre">
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloque 2: imagen izquierda / texto derecha (alterna) -->
+    <div class="row align-items-center g-5 mt-5 pt-3 flex-lg-row-reverse">
+      <div class="col-lg-6" data-aos="fade-left">
+        <span class="eyebrow">Salon principal</span>
+        <h2 class="section-title">Plan B techado, siempre listo</h2>
+        <div class="divider start"></div>
+        <p class="text-muted">
+          La lluvia nunca sera un problema. Nuestro salon cubierto recibe hasta 400 invitados
+          y se integra al jardin sin perder la magia del entorno.
+        </p>
+        <ul class="feature-list ps-0 mt-3">
+          <li><i class="fa-solid fa-cloud-showers-heavy"></i><span><strong>Plan B techado</strong> para garantizar tu evento pase lo que pase.</span></li>
+          <li><i class="fa-solid fa-restroom"></i><span><strong>Baterias de baños</strong> amplias y modernas para hombres y mujeres.</span></li>
+          <li><i class="fa-solid fa-music"></i><span><strong>Pista de baile</strong> e instalacion electrica preparada para DJ o grupo en vivo.</span></li>
+          <li><i class="fa-solid fa-wine-glass"></i><span><strong>Descorche permitido</strong>: trae tu propio licor sin recargos ocultos.</span></li>
+        </ul>
+        <a href="#reserva" class="btn btn-marca mt-2">Quiero conocer los espacios</a>
+      </div>
+      <div class="col-lg-6" data-aos="fade-right">
+        <!-- Video nativo (reemplazar src por video drone real) -->
+        <video class="space-img" style="height:380px;object-fit:cover" muted loop autoplay playsinline
+               poster="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&q=80">
+          <source src="" type="video/mp4">
+          Tu navegador no soporta video.
+        </video>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= GALERIA ================= -->
+<section id="galeria">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow">Galeria</span>
+      <h2 class="section-title">Momentos que ya vivimos aqui</h2>
+      <div class="divider"></div>
+      <p class="text-muted mx-auto" style="max-width:620px">
+        Recorre algunos de los eventos celebrados en Villa Catalina. Haz click en cualquier
+        foto para verla en grande.
+      </p>
+    </div>
+
+    <!-- Filtros -->
+    <div class="text-center my-4" data-aos="fade-up">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="matrimonios">Matrimonios</button>
+      <button class="filter-btn" data-filter="quinces">Quinces</button>
+      <button class="filter-btn" data-filter="grados">Grados</button>
+      <button class="filter-btn" data-filter="corporativos">Corporativos</button>
+    </div>
+
+    <!-- Grid -->
+    <div class="row g-3" id="galleryGrid">
+      <div class="col-6 col-md-4 gallery-item" data-cat="matrimonios" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80" alt="Matrimonio en Villa Catalina">
+        </a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="quinces" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80" alt="Fiesta de quince años">
+        </a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="grados" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=700&q=80" alt="Celebracion de grado">
+        </a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="corporativos" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=700&q=80" alt="Evento corporativo">
+        </a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="matrimonios" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80" alt="Decoracion de matrimonio">
+        </a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="matrimonios" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=700&q=80" alt="Ceremonia al aire libre">
+        </a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="quinces" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=80" alt="Mesa decorada para evento">
+        </a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="grados" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=700&q=80" alt="Brindis de celebracion">
+        </a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item" data-cat="corporativos" data-aos="fade-up">
+        <a href="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1464047736614-af63643285bf?w=700&q=80" alt="Salon montado para evento">
+        </a>
+      </div>
+      <!-- Imagenes extra (se muestran con "Ver mas") -->
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="matrimonios">
+        <a href="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=80" alt="Recepcion de matrimonio">
+        </a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="quinces">
+        <a href="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=700&q=80" alt="Decoracion floral del evento">
+        </a>
+      </div>
+      <div class="col-6 col-md-4 gallery-item extra" data-cat="corporativos">
+        <a href="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1400&q=80" class="glightbox" data-gallery="g">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=700&q=80" alt="Coctel de evento corporativo">
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button id="loadMore" class="btn btn-outline-marca">Ver mas fotos <i class="fa-solid fa-plus ms-1"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+<section id="testimonios" class="bg-crema">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow">Testimonios</span>
+      <h2 class="section-title">Lo que dicen quienes ya celebraron</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="swiper swiper-testi mt-4" data-aos="fade-up">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80" alt="Cliente Laura Mendez">
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">"Nuestro matrimonio fue perfecto. La vista a la Mesa al atardecer dejo a todos los invitados sin palabras. El equipo estuvo pendiente de cada detalle."</p>
+            <h5>Laura Mendez</h5>
+            <span class="ev-date">Matrimonio · Octubre 2025</span>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80" alt="Cliente Carolina Rojas">
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">"Hicimos los quince de mi hija y fue un sueño. El plan B techado nos dio tranquilidad porque llovio, y ni se noto. 100% recomendados."</p>
+            <h5>Carolina Rojas</h5>
+            <span class="ev-date">Quinces · Julio 2025</span>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80" alt="Cliente Andres Pineda">
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">"Organizamos la integracion de fin de año de la empresa. Parqueadero amplio, buena cocina y atencion impecable. Volveremos sin duda."</p>
+            <h5>Andres Pineda</h5>
+            <span class="ev-date">Evento corporativo · Diciembre 2025</span>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testi-card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&q=80" alt="Cliente Diana Suarez">
+            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="quote">"La primera comunion de mi hijo quedo hermosa. Un lugar tranquilo, verde y muy familiar. El descorche nos ayudo muchisimo con el presupuesto."</p>
+            <h5>Diana Suarez</h5>
+            <span class="ev-date">Primera comunion · Mayo 2025</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMULARIO DE RESERVA ================= -->
+<section id="reserva" class="form-section">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+
+      <!-- Columna izquierda: motivacion -->
+      <div class="col-lg-5" data-aos="fade-right">
+        <span class="eyebrow">Reserva tu fecha</span>
+        <h2 class="section-title">Las mejores fechas se agendan con tiempo</h2>
+        <div class="divider start"></div>
+        <p class="text-muted">
+          Cuentanos sobre tu evento y un asesor te respondera por WhatsApp con disponibilidad
+          y paquetes. Sin compromiso.
+        </p>
+
+        <div class="mt-4">
+          <div class="reason-item">
+            <span class="r-ico"><i class="fa-solid fa-calendar-day"></i></span>
+            <div><h5>Agenda limitada</h5><p>Solo realizamos un evento por dia para dedicarnos por completo al tuyo.</p></div>
+          </div>
+          <div class="reason-item">
+            <span class="r-ico"><i class="fa-solid fa-tags"></i></span>
+            <div><h5>Mejores precios anticipados</h5><p>Reservando con tiempo aseguras tarifa y mas opciones de menu.</p></div>
+          </div>
+          <div class="reason-item">
+            <span class="r-ico"><i class="fa-solid fa-headset"></i></span>
+            <div><h5>Acompañamiento total</h5><p>Te guiamos desde la cotizacion hasta el dia del evento.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna derecha: formulario -->
+      <div class="col-lg-7" data-aos="fade-left">
+        <div class="form-box">
+          <h3 class="mb-4" style="font-size:1.6rem">Consulta disponibilidad</h3>
+          <!-- Formulario: NO usa backend, abre WhatsApp -->
+          <form id="reservaForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="f-nombre">Nombre completo <span class="req">*</span></label>
+                <input type="text" class="form-control" id="f-nombre" placeholder="Ej: Ana Gomez">
+                <div class="field-error" data-for="f-nombre">Por favor ingresa tu nombre.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-tel">Telefono / WhatsApp <span class="req">*</span></label>
+                <input type="tel" class="form-control" id="f-tel" placeholder="Ej: 3001234567">
+                <div class="field-error" data-for="f-tel">Ingresa un numero colombiano valido (10 digitos).</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-email">Email</label>
+                <input type="email" class="form-control" id="f-email" placeholder="tucorreo@ejemplo.com">
+                <div class="field-error" data-for="f-email">Revisa el formato del correo.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-tipo">Tipo de evento <span class="req">*</span></label>
+                <select class="form-select" id="f-tipo">
+                  <option value="">Selecciona...</option>
+                  <option>Matrimonio</option>
+                  <option>Quinces</option>
+                  <option>Grado</option>
+                  <option>Primera comunion</option>
+                  <option>Cumpleaños</option>
+                  <option>Evento corporativo</option>
+                  <option>Otro</option>
+                </select>
+                <div class="field-error" data-for="f-tipo">Selecciona el tipo de evento.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-fecha">Fecha tentativa</label>
+                <input type="date" class="form-control" id="f-fecha">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="f-invitados">No. estimado de invitados <span class="req">*</span></label>
+                <input type="number" class="form-control" id="f-invitados" min="10" max="400" placeholder="Ej: 120">
+                <div class="field-error" data-for="f-invitados">Indica un numero de invitados.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="f-mensaje">Mensaje (opcional)</label>
+                <textarea class="form-control" id="f-mensaje" rows="3" placeholder="Cuentanos algun detalle de tu evento..."></textarea>
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="f-acepto">
+                  <label class="form-check-label" style="font-size:.88rem" for="f-acepto">
+                    Acepto el tratamiento de mis datos segun la
+                    <a href="#" class="text-dorado open-priv">Politica de Privacidad (Ley 1581 de 2012)</a>.
+                  </label>
+                  <div class="field-error" data-for="f-acepto">Debes aceptar el tratamiento de datos.</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-marca w-100">
+                  <i class="fa-brands fa-whatsapp me-2"></i>Enviar por WhatsApp
+                </button>
+                <p class="text-center text-muted mt-2 mb-0" style="font-size:.8rem">
+                  Al enviar se abrira WhatsApp con tu consulta lista para mandar.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= UBICACION ================= -->
+<section id="ubicacion">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow">Como llegar</span>
+      <h2 class="section-title">Te esperamos en la Mesa</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="row g-4 mt-2 align-items-stretch">
+      <div class="col-lg-7" data-aos="fade-right">
+        <!-- Mapa Google Maps embebido (sin API key) -->
+        <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Mesa%20de%20los%20Santos%20Santander%20Colombia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          title="Ubicacion de Villa Catalina en Mesa de los Santos"></iframe>
+      </div>
+      <div class="col-lg-5" data-aos="fade-left">
+        <div class="loc-card">
+          <h3 style="font-size:1.5rem" class="mb-3">Villa Catalina</h3>
+          <div class="loc-item"><i class="fa-solid fa-location-dot"></i>
+            <span>Km 8 Via Mesa de los Santos, Los Santos, Santander.</span></div>
+          <div class="loc-item"><i class="fa-solid fa-route"></i>
+            <span>A 20 minutos del centro de Bucaramanga. Via pavimentada y señalizada.</span></div>
+          <div class="loc-item"><i class="fa-solid fa-phone"></i>
+            <span>(607) 685 4477</span></div>
+          <div class="loc-item"><i class="fa-brands fa-whatsapp"></i>
+            <span>+57 315 370 6558</span></div>
+          <div class="loc-item"><i class="fa-solid fa-clock"></i>
+            <span>Atencion para visitas: Lunes a Domingo, 8:00 a.m. – 6:00 p.m. (con cita previa).</span></div>
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <a class="btn btn-marca btn-sm" target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/?api=1&query=Mesa+de+los+Santos+Santander">
+              <i class="fa-solid fa-map-location-dot me-1"></i>Abrir en Google Maps</a>
+            <a class="btn btn-outline-marca btn-sm" target="_blank" rel="noopener"
+               href="https://waze.com/ul?q=Mesa%20de%20los%20Santos%20Santander">
+              <i class="fa-brands fa-waze me-1"></i>Como llegar en Waze</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faqs" class="bg-crema">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2 class="section-title">Resolvemos tus dudas</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="row justify-content-center mt-2">
+      <div class="col-lg-9">
+        <div class="accordion" id="faqAcc" data-aos="fade-up">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq1">¿Permiten descorche?</button></h2>
+            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Si. En Villa Catalina puedes traer tu propio licor sin recargos ocultos. Esto te permite manejar mejor el presupuesto de tu evento.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">¿El alquiler incluye decoracion?</button></h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">El alquiler base incluye mobiliario, mantelería y montaje estandar. La decoracion tematica se cotiza aparte; trabajamos con decoradores aliados o puedes traer el tuyo.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">¿Hasta que hora puede durar el evento?</button></h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Los eventos pueden extenderse hasta las 2:00 a.m. Si necesitas mas tiempo, se acuerda una hora adicional con anticipacion.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">¿Que pasa si llueve el dia del evento?</button></h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Contamos con un salon techado (plan B) con capacidad para 400 invitados. Tu evento esta garantizado pase lo que pase con el clima.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">¿Como reservo la fecha? ¿Cuanto es el anticipo?</button></h2>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">La fecha se aparta con un anticipo del 30% del valor total del paquete. El saldo se cancela una semana antes del evento. Escríbenos por WhatsApp para iniciar el proceso.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">¿Tienen parqueadero?</button></h2>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Si, parqueadero privado y gratuito con capacidad para 80 vehiculos, dentro de las instalaciones de la finca.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">¿Aceptan proveedores externos (DJ, catering)?</button></h2>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">Si. Puedes traer tu propio DJ, grupo musical o catering. Tambien ofrecemos proveedores aliados de confianza si prefieres que organicemos todo por ti.</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">¿Cuales son las politicas de cancelacion?</button></h2>
+            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+              <div class="accordion-body">En caso de cancelacion, el anticipo puede reprogramarse para una nueva fecha dentro de los 12 meses siguientes, sujeto a disponibilidad. Los detalles se entregan por escrito al firmar el contrato.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <span class="navbar-brand" style="color:#fff">Villa<span class="brand-leaf">Catalina</span></span>
+        <p class="mt-3" style="font-size:.92rem">
+          Finca de eventos en Mesa de los Santos, Santander. El lugar donde tu historia comienza.
+        </p>
+        <div class="mt-3">
+          <a class="social-ic" href="https://instagram.com/villacatalina.eventos" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="social-ic" href="https://facebook.com/villacatalinaeventos" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="social-ic" href="https://wa.me/573153706558" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <h5>Menu rapido</h5>
+        <ul class="foot-links ps-0">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#eventos">Eventos</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#reserva">Reservar fecha</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h5>Contacto</h5>
+        <ul class="foot-links ps-0">
+          <li><i class="fa-solid fa-location-dot text-dorado me-2"></i>Km 8 Via Mesa de los Santos</li>
+          <li><i class="fa-solid fa-phone text-dorado me-2"></i>(607) 685 4477</li>
+          <li><i class="fa-brands fa-whatsapp text-dorado me-2"></i>+57 315 370 6558</li>
+          <li><i class="fa-solid fa-envelope text-dorado me-2"></i>reservas@villacatalina.com.co</li>
+          <li><i class="fa-solid fa-clock text-dorado me-2"></i>Lun – Dom · 8am a 6pm</li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h5>Legal</h5>
+        <p style="font-size:.9rem">
+          Tratamos tus datos personales conforme a la Ley 1581 de 2012 de Colombia.
+        </p>
+        <a class="btn btn-outline-light-marca btn-sm open-priv" style="border-width:1.5px">
+          Politica de Privacidad
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-bottom text-center">
+      <p class="mb-1">&copy; <span id="year"></span> Villa Catalina — Finca de Eventos. Todos los derechos reservados. NIT: 901.XXX.XXX-X</p>
+      <p class="mb-0">Hecho con <span style="color:#e25555">&hearts;</span> en Santander por
+        <a href="https://sruedadev.com" target="_blank" rel="noopener" class="text-dorado">sruedadev.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= ELEMENTOS FLOTANTES ================= -->
+<a href="https://wa.me/573153706558?text=Hola%20Villa%20Catalina%2C%20quiero%20informacion%20para%20mi%20evento."
+   class="wa-float" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<button class="to-top" id="toTop" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ================= TOAST DE EXITO ================= -->
+<div class="toast-ok" id="toastOk"><i class="fa-solid fa-circle-check me-2"></i>¡Listo! Abriendo WhatsApp con tu consulta...</div>
+
+<!-- ================= MODAL POLITICA DE PRIVACIDAD (Ley 1581) ================= -->
+<div class="modal fade modal-priv" id="privModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title serif">Politica de Tratamiento de Datos Personales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <p>En cumplimiento de la <strong>Ley 1581 de 2012</strong> y el Decreto 1377 de 2013 de la
+        Republica de Colombia, Villa Catalina informa su politica de tratamiento de la informacion
+        de los titulares de datos personales.</p>
+
+        <h6>1. Responsable del tratamiento</h6>
+        <p>Villa Catalina — Finca de Eventos, ubicada en el Km 8 Via Mesa de los Santos, Los Santos,
+        Santander. Telefono (607) 685 4477. Correo: reservas@villacatalina.com.co</p>
+
+        <h6>2. Finalidad del tratamiento</h6>
+        <p>Los datos personales recolectados a traves de este sitio web (nombre, telefono, correo y
+        detalles del evento) seran utilizados unicamente para: atender solicitudes de cotizacion y
+        disponibilidad, contactar al titular por WhatsApp, telefono o correo, enviar informacion
+        comercial sobre nuestros servicios y gestionar la reserva del evento.</p>
+
+        <h6>3. Derechos del titular</h6>
+        <p>Como titular de los datos, usted tiene derecho a:</p>
+        <ul>
+          <li>Conocer, actualizar y rectificar sus datos personales.</li>
+          <li>Solicitar prueba de la autorizacion otorgada.</li>
+          <li>Ser informado sobre el uso dado a sus datos personales.</li>
+          <li>Revocar la autorizacion y/o solicitar la supresion de los datos cuando no exista un
+          deber legal o contractual que lo impida.</li>
+          <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC).</li>
+        </ul>
+
+        <h6>4. Canales para ejercer sus derechos</h6>
+        <p>Para conocer, actualizar, rectificar, suprimir sus datos o revocar la autorizacion, el
+        titular puede comunicarse al correo <strong>reservas@villacatalina.com.co</strong>, al
+        WhatsApp <strong>+57 315 370 6558</strong> o al telefono <strong>(607) 685 4477</strong>.
+        Las solicitudes seran atendidas en los terminos establecidos por la ley.</p>
+
+        <h6>5. Vigencia</h6>
+        <p>Los datos seran conservados durante el tiempo necesario para cumplir las finalidades
+        descritas y mientras exista una relacion comercial o un deber legal de conservarlos.</p>
+
+        <p class="mt-3" style="font-size:.82rem">Ultima actualizacion: 2026.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-marca btn-sm" data-bs-dismiss="modal">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= LIBRERIAS JS (al final, con defer) ================= -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+
+<!-- ================= JAVASCRIPT PROPIO ================= -->
+<script defer>
+// Esperamos a que jQuery este disponible (los scripts tienen defer y se ejecutan en orden)
+window.addEventListener('DOMContentLoaded', function () {
+
+  /* ===== CONFIGURACION: numero de WhatsApp del venue ===== */
+  const WHATSAPP_NUMERO = '573153706558';   // <-- cambiar aqui el numero
+  const NOMBRE_VENUE    = 'Villa Catalina';
+
+  /* ===== 14. LOADER INICIAL ===== */
+  window.addEventListener('load', function () {
+    setTimeout(function () { document.getElementById('loader').classList.add('hidden'); }, 600);
+  });
+
+  /* ===== INICIALIZAR AOS ===== */
+  AOS.init({ duration: 800, once: true, offset: 80, disable: 'mobile' ? false : false });
+
+  /* ===== INICIALIZAR SWIPER (testimonios) ===== */
+  new Swiper('.swiper-testi', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    autoplay: { delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: { 768: { slidesPerView: 2 }, 992: { slidesPerView: 3 } }
+  });
+
+  /* ===== INICIALIZAR GLIGHTBOX ===== */
+  GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+
+  /* ===== jQuery: interacciones ===== */
+  jQuery(function ($) {
+
+    /* --- 1. Navbar transparente -> solida al hacer scroll --- */
+    function navState() {
+      if (window.scrollY > 80) {
+        $('.navbar').removeClass('transparent').addClass('solid');
+      } else {
+        $('.navbar').removeClass('solid').addClass('transparent');
+      }
+    }
+    navState();
+    $(window).on('scroll', navState);
+
+    /* --- 2. Smooth scroll en links del menu (offset por navbar fija) --- */
+    $('a[href^="#"]').on('click', function (e) {
+      const target = $(this.getAttribute('href'));
+      if (target.length) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: target.offset().top - 65 }, 600);
+      }
+    });
+
+    /* --- 3. Boton "volver arriba" --- */
+    $(window).on('scroll', function () {
+      $('#toTop').toggleClass('show', window.scrollY > 600);
+    });
+    $('#toTop').on('click', function () {
+      $('html, body').animate({ scrollTop: 0 }, 600);
+    });
+
+    /* --- 4. Counter animado en barra de trust --- */
+    let counted = false;
+    function runCounters() {
+      const barTop = $('#trust').offset().top;
+      if (!counted && window.scrollY + window.innerHeight > barTop + 60) {
+        counted = true;
+        $('.counter').each(function () {
+          const $el = $(this), target = +$el.data('target');
+          $({ n: 0 }).animate({ n: target }, {
+            duration: 1800,
+            step: function () { $el.text(Math.floor(this.n)); },
+            complete: function () { $el.text(target); }
+          });
+        });
+      }
+    }
+    runCounters();
+    $(window).on('scroll', runCounters);
+
+    /* --- 6. Galeria con filtros (fade) --- */
+    $('.filter-btn').on('click', function () {
+      $('.filter-btn').removeClass('active');
+      $(this).addClass('active');
+      const cat = $(this).data('filter');
+      $('.gallery-item').each(function () {
+        const match = (cat === 'all' || $(this).data('cat') === cat);
+        // respeta el estado "extra" (oculto hasta dar Ver mas)
+        const isHiddenExtra = $(this).hasClass('extra') && !$(this).hasClass('shown');
+        if (match && !isHiddenExtra) {
+          $(this).stop().fadeIn(300).removeClass('hide');
+        } else {
+          $(this).stop().fadeOut(200).addClass('hide');
+        }
+      });
+    });
+
+    /* --- Galeria: boton "Ver mas" --- */
+    $('#loadMore').on('click', function () {
+      $('.gallery-item.extra').addClass('shown').hide().fadeIn(400);
+      $(this).fadeOut(200);
+    });
+
+    /* --- 9. Validacion del formulario en tiempo real --- */
+    const $form = $('#reservaForm');
+
+    function showError($field, show) {
+      const id = $field.attr('id');
+      $('.field-error[data-for="' + id + '"]').toggle(show);
+      $field.toggleClass('is-invalid', show).toggleClass('is-valid', !show && $field.val().trim() !== '');
+    }
+
+    function validarCampo($field) {
+      const id = $field.attr('id');
+      const val = $field.val().trim();
+      let ok = true;
+      if (id === 'f-nombre')    ok = val.length >= 3;
+      if (id === 'f-tel')       ok = /^3\d{9}$/.test(val.replace(/\s+/g, '')); // celular colombiano: 10 digitos, inicia en 3
+      if (id === 'f-email')     ok = val === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val); // email opcional
+      if (id === 'f-tipo')      ok = val !== '';
+      if (id === 'f-invitados') ok = val !== '' && +val >= 10;
+      showError($field, !ok);
+      return ok;
+    }
+
+    // Validacion en vivo (al escribir / cambiar)
+    $('#f-nombre, #f-tel, #f-email, #f-tipo, #f-invitados').on('input change blur', function () {
+      validarCampo($(this));
+    });
+
+    /* --- 10. Envio del formulario: abre WhatsApp con mensaje pre-llenado --- */
+    $form.on('submit', function (e) {
+      e.preventDefault();
+
+      // Validar campos obligatorios
+      let valido = true;
+      $('#f-nombre, #f-tel, #f-tipo, #f-invitados').each(function () {
+        if (!validarCampo($(this))) valido = false;
+      });
+      // email solo si tiene contenido
+      if ($('#f-email').val().trim() !== '' && !validarCampo($('#f-email'))) valido = false;
+
+      // Checkbox de Ley 1581
+      const aceptado = $('#f-acepto').is(':checked');
+      $('.field-error[data-for="f-acepto"]').toggle(!aceptado);
+      if (!aceptado) valido = false;
+
+      if (!valido) {
+        // Llevar al primer campo con error
+        const $primerError = $('.is-invalid, .field-error:visible').first();
+        if ($primerError.length) {
+          $('html, body').animate({ scrollTop: $('#reserva').offset().top - 60 }, 400);
+        }
+        return;
+      }
+
+      // Recoger datos
+      const nombre    = $('#f-nombre').val().trim();
+      const tel       = $('#f-tel').val().trim();
+      const tipo      = $('#f-tipo').val();
+      const fecha     = $('#f-fecha').val() || 'por definir';
+      const invitados = $('#f-invitados').val();
+      const mensaje   = $('#f-mensaje').val().trim() || 'sin comentarios adicionales';
+
+      // Construir mensaje pre-formateado
+      const texto =
+        'Hola ' + NOMBRE_VENUE + ', quiero consultar disponibilidad. ' +
+        'Mi nombre es ' + nombre + ', evento: ' + tipo + ', fecha tentativa: ' + fecha +
+        ', invitados: ' + invitados + '. Telefono: ' + tel + '. Mensaje: ' + mensaje;
+
+      const url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(texto);
+
+      // Mostrar toast de exito
+      const $toast = $('#toastOk');
+      $toast.addClass('show');
+      setTimeout(function () { $toast.removeClass('show'); }, 4000);
+
+      // Abrir WhatsApp en nueva pestaña
+      window.open(url, '_blank');
+
+      // Limpiar formulario
+      $form[0].reset();
+      $('.form-control, .form-select').removeClass('is-valid is-invalid');
+    });
+
+    /* --- 12. Abrir modal de privacidad desde links --- */
+    $('.open-priv').on('click', function (e) {
+      e.preventDefault();
+      new bootstrap.Modal(document.getElementById('privModal')).show();
+    });
+
+    /* --- Año automatico en el footer --- */
+    $('#year').text(new Date().getFullYear());
+
+  }); // fin jQuery
+});
+</script>
+
+<!--
+=======================================================================
+  GUIA RAPIDA DE PERSONALIZACION  ·  Villa Catalina Landing
+=======================================================================
+
+  1. COLORES DE MARCA
+     Edita las variables CSS en el bloque :root (parte superior del <style>):
+       --dorado, --dorado-d, --sage, --crema, --carbon
+     Cambia los HEX y toda la pagina se actualiza.
+
+  2. NUMERO DE WHATSAPP
+     - En el JS: variable WHATSAPP_NUMERO (formato pais+numero, sin "+").
+     - En el boton flotante <a class="wa-float">: atributo href.
+     - En el footer y seccion de contacto.
+
+  3. TEXTOS / DATOS DEL NEGOCIO
+     Busca y reemplaza "Villa Catalina" por el nombre real del venue.
+     Actualiza direccion, telefonos, email, redes sociales y NIT
+     (footer y seccion #ubicacion).
+
+  4. IMAGENES
+     Reemplaza las URLs de Unsplash (https://images.unsplash.com/...) por
+     las fotos reales del venue. Estan en: hero (background CSS .hero),
+     cards de #eventos, seccion #espacios, galeria #galeria y testimonios.
+     Mantiene el atributo loading="lazy" y un alt descriptivo.
+
+  5. VIDEO DRONE
+     En #espacios hay un <video>. Pon la URL del video real en <source src="">.
+     Si no hay video, elimina el <video> y deja una imagen.
+
+  6. MAPA
+     En #ubicacion, el <iframe> usa una busqueda generica de Google Maps.
+     Reemplaza el parametro q= por la direccion exacta del venue.
+     Igual en los botones "Abrir en Google Maps" y "Waze".
+
+  7. SEO
+     Ajusta <title>, meta description, keywords, Open Graph y el bloque
+     JSON-LD (coordenadas geo, telefono, direccion, capacidad).
+
+  8. GALERIA
+     Cada foto es un .gallery-item con data-cat (categoria del filtro).
+     Las marcadas con clase "extra" aparecen solo al dar "Ver mas".
+
+=======================================================================
+  SUPUESTOS ASUMIDOS (datos no entregados en el brief, rellenados de
+  forma razonable — confirmar/ajustar con el cliente real):
+  - Nombre del venue: "Villa Catalina"
+  - Ubicacion: Mesa de los Santos (Los Santos), Santander
+  - Direccion: Km 8 Via Mesa de los Santos
+  - Capacidad: 50 a 400 invitados
+  - 15 años de experiencia · 850+ eventos realizados
+  - Telefono fijo: (607) 685 4477
+  - WhatsApp: 573153706558 (tomado del ejemplo del brief)
+  - Instagram: @villacatalina.eventos · Facebook: /villacatalinaeventos
+  - Email: reservas@villacatalina.com.co
+  - NIT: 901.XXX.XXX-X (placeholder — reemplazar por el real)
+  - Coordenadas geo: aproximadas de Mesa de los Santos (6.7556, -73.1042)
+  - Imagenes: placeholders de Unsplash categoria "wedding venue"
+  - Politicas (anticipo 30%, hora limite 2am, cancelacion 12 meses):
+    valores tipicos del sector — confirmar con el cliente.
+=======================================================================
+-->
+</body>
+</html>
